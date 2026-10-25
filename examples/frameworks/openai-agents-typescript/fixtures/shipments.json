@@ -1,0 +1,14 @@
+{
+  "ORD-2026-001": {
+    "order_id": "ORD-2026-001",
+    "status": "운송 중",
+    "expected_date": "2026-10-24",
+    "source_id": "SHIP-001"
+  },
+  "ORD-2026-002": {
+    "order_id": "ORD-2026-002",
+    "status": "배송 보류",
+    "expected_date": null,
+    "source_id": "SHIP-002"
+  }
+}

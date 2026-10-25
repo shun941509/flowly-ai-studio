@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "fingerprint": "b549406c39f0782d3be362f6eaaead81e1d1d9b43f751e3e470933d59eaeeb07",
+  "scope": "explicit workflow branch/data/state scenarios on actual exported CLIs; test-only provider responses, not live model quality",
+  "projects": [
+    {
+      "id": "integrated-048-redacted-agent-input",
+      "designHash": "106b347372335f01e8a775776b57381f03c1fa80ab6a1c97bfe8af129727f015",
+      "executionHash": "3c46c13629dd95765c5de29422ce63bcd9e08d5125f0f9fefef89a7b00a4b5e7",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "60c16788363a7f0582efa727a29dc2bfc8bf64b20c1ea53987ba8d10f345f2ea",
+        "python": "137dcddb9cb3b5df87a2977c331d0c85a9fc3f6664502886fa31b99487ac860f"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "이메일을 가린 자료만 Agent가 수신",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_PRIVATE_ANALYSIS:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "가림 없는 기술 입력도 동일 계약으로 처리",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_PRIVATE_ANALYSIS:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "이메일을 가린 자료만 Agent가 수신",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_PRIVATE_ANALYSIS:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "가림 없는 기술 입력도 동일 계약으로 처리",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_PRIVATE_ANALYSIS:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    }
+  ],
+  "checks": 6,
+  "failures": [],
+  "externalCalls": 0,
+  "progress": {
+    "selected": 1,
+    "completed": 1,
+    "retained": 0,
+    "workers": 1,
+    "interrupted": false,
+    "updatedAt": "2026-10-24T21:05:48.428Z"
+  }
+}

@@ -1,0 +1,5 @@
+minimumReleaseAgeExclude:
+  - '@openai/agents-core@0.21.0'
+  - '@openai/agents-openai@0.21.0'
+  - '@openai/agents-realtime@0.21.0'
+  - '@openai/agents@0.21.0'

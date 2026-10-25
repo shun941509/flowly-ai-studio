@@ -1,0 +1,21 @@
+{
+  "release-2026-10": {
+    "release_id": "release-2026-10",
+    "checks": [
+      {
+        "name": "unit",
+        "status": "passed"
+      },
+      {
+        "name": "migration-backup",
+        "status": "missing"
+      },
+      {
+        "name": "accessibility",
+        "status": "failed"
+      }
+    ],
+    "decision": "hold",
+    "source_id": "REL-001"
+  }
+}

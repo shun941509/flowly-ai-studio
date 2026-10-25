@@ -1,0 +1,39 @@
+{
+  "id": "llamaindex-python",
+  "framework": "LlamaIndex",
+  "language": "python",
+  "kind": "native",
+  "projectId": "policy-citations",
+  "title": "적용일에 맞는 규정 버전 확인",
+  "description": "기준일로 유효한 규정 버전을 먼저 제한한 뒤 LlamaIndex로 검색하고 적용 기간과 근거를 인용합니다.",
+  "entrypoint": "main.py",
+  "files": [
+    "main.py",
+    "requirements.txt",
+    "README.md",
+    ".env.example",
+    ".gitignore",
+    "fixtures.json",
+    "test_offline.py",
+    "manifest.json",
+    "setup_data.py",
+    "verification.json"
+  ],
+  "verification": {
+    "static": true,
+    "offline": true,
+    "live": false
+  },
+  "inputExample": "{\"as_of\":\"2026-10-22\",\"question\":\"반차 신청 마감은 언제인가요?\"}",
+  "expectedOutput": "HR-02-new: 2026-10-01부터 적용, 전 영업일 18시. 2026-09-30 기준은 HR-02의 2영업일 전 18시. 기준일 누락은 추가 질문.",
+  "sources": [
+    "https://developers.llamaindex.ai/python/framework/module_guides/models/llms/usage_custom/",
+    "https://developers.llamaindex.ai/python/framework/module_guides/querying/retriever/"
+  ],
+  "requirements": [
+    "Python 3.11 이상",
+    "사용자가 지정하는 OPENAI_API_KEY와 FLOWLY_MODEL",
+    "NLTK stopwords/punkt/punkt_tab 언어 자료: python setup_data.py"
+  ],
+  "limits": "기준일은 YYYY-MM-DD 날짜 1개. JSON as_of/question 또는 날짜를 포함한 문장. 유효 기간으로 먼저 제외한 로컬 키워드 검색 top2 + compact 답변 합성. 날짜가 없거나 해당 기준일의 근거가 없으면 모델을 호출하지 않습니다."
+}

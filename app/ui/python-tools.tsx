@@ -1,0 +1,23 @@
+"use client";
+import { useState } from "react";
+import type { FlowNode, Resource } from "../lib/model";
+import { TOOL_CANDIDATES, TOOL_FAMILIES, getToolCandidate } from "../../domain/tool-catalog";
+
+export function PythonToolPicker({ value, onChange }: { value: string; onChange: (id: string) => void }) {
+  const tool = getToolCandidate(value);
+  return <><label className="field-label">등록된 Python 도구<select value={value} onChange={event => onChange(event.target.value)}>{TOOL_FAMILIES.map(family => <optgroup label={family.name} key={family.id}>{TOOL_CANDIDATES.filter(item => item.family === family.id).map(item => <option value={item.id} key={item.id}>{item.name}</option>)}</optgroup>)}</select></label>{tool && <><p className="field-help">{tool.description} · 실행 전에 내보낸 폴더에서 check로 준비 상태를 확인하세요.</p><details><summary>입력 예시와 준비 사항</summary><p className="field-help">{tool.usage}</p><p className="field-help">필요 패키지: {tool.dependencies.length ? tool.dependencies.join(", ") : "Python 기본 제공 기능"}{tool.modelRequired ? " · 사용자 제공 로컬 모델 필요" : ""}</p><pre style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}>{JSON.stringify(tool.exampleArguments, null, 2)}</pre></details></>}</>;
+}
+
+export function PythonAgentTools({ node, onChange }: { node: FlowNode; onChange: (node: FlowNode) => void }) {
+  const [selected, setSelected] = useState("bm25");
+  const ids = node.pythonTools ?? [];
+  return <section aria-label="Agent Python 도구"><h4>로컬 Python 도구 <span>{ids.length}</span></h4><p className="field-help">선택한 도구만 Agent가 호출할 수 있어요. 실제 계산은 내보낸 실행기에서 수행하며 필요한 패키지·모델은 별도 설정합니다.</p><PythonToolPicker value={selected} onChange={setSelected}/><button type="button" className="btn secondary" disabled={ids.includes(selected) || ids.length + (node.allowedTools?.length ?? 0) >= 12} onClick={() => onChange({ ...node, pythonTools: [...ids, selected] })}>이 Agent에 허용</button><div className="agent-tools">{ids.map(id => <div className="agent-tool" key={id}><span><strong>{getToolCandidate(id)?.name ?? id}</strong><small>{id}</small></span><button type="button" className="text-btn" onClick={() => onChange({ ...node, pythonTools: ids.filter(item => item !== id) })}>해제</button></div>)}</div></section>;
+}
+
+export function PythonToolCatalog({ onCreatePreset }: { onCreatePreset?: (initial: Partial<Resource>) => void }) {
+  const [query, setQuery] = useState("");
+  const [family, setFamily] = useState("all");
+  const [limit, setLimit] = useState(12);
+  const matches = TOOL_CANDIDATES.filter(tool => (family === "all" || family === tool.family) && `${tool.name} ${tool.id} ${tool.description}`.toLowerCase().includes(query.toLowerCase()));
+  return <details className="settings-card python-tool-catalog"><summary>Python 도구팩 · {TOOL_CANDIDATES.length}개 활용 항목</summary><p>검색·분석·검증 도구를 Agent와 계산·검증 프로그램에 연결할 수 있어요. 아래 목록은 제공 기능과 설정 안내이며, 이 컴퓨터의 설치·모델 연결 상태를 뜻하지 않아요.</p><div className="resource-search-row"><label className="field-label">도구 검색<input value={query} onChange={event => { setQuery(event.target.value); setLimit(12); }} placeholder="예: BM25, 데이터 품질, OCR"/></label><label className="field-label">기능별 보기<select value={family} onChange={event => { setFamily(event.target.value); setLimit(12); }}><option value="all">모든 기능</option>{TOOL_FAMILIES.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label></div><p>{matches.length}개 항목</p><div className="resource-grid">{matches.slice(0, limit).map(tool => <article className="settings-card" key={tool.id}><h4>{tool.name}</h4><p>{tool.description}</p><p className="field-help">{tool.id} · {TOOL_FAMILIES.find(item => item.id === tool.family)?.name}</p><details><summary>사용 범위·준비 사항</summary><p className="field-help">{tool.usage}</p><p className="field-help">필요 패키지: {tool.dependencies.join(", ") || "Python 기본 제공 기능"}{tool.modelRequired ? " · 사용자 제공 로컬 모델 필요" : ""}</p></details><details><summary>연결 기획 {tool.exampleIds.length}개</summary><p className="field-help">{tool.exampleIds.join(", ")}</p></details>{onCreatePreset && <button type="button" className="btn secondary" onClick={() => onCreatePreset({ type: "document", name: `${tool.name} 실행 설정`, description: tool.description.slice(0, 300), content: JSON.stringify({ flowlyPython: { version: 1, toolId: tool.id, arguments: structuredClone(tool.exampleArguments) } }, null, 2), visibility: "private", allowedEmails: [], url: "" })}>설정 자료로 등록</button>}</article>)}</div>{matches.length > limit && <button type="button" className="btn secondary" onClick={() => setLimit(limit + 12)}>더 보기</button>}<p className="field-help">설정 자료는 Document로 저장해 기존 공유·수정·삭제 권한을 사용해요. 키와 토큰은 넣지 마세요. 자료를 워크플로에 추가하면 Python 프로그램 설정으로 연결됩니다.</p></details>;
+}

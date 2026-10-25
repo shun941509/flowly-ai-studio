@@ -1,0 +1,37 @@
+{
+  "id": "crewai-python",
+  "framework": "CrewAI",
+  "language": "python",
+  "kind": "native",
+  "projectId": "procurement-crew",
+  "title": "납기 위험 구매 요청 팀 검토",
+  "description": "구매 조정자가 납기 조사자에게 위임하고 공급 일정의 근거를 모아 확인 목록을 만듭니다.",
+  "entrypoint": "main.py",
+  "files": [
+    "main.py",
+    "requirements.txt",
+    "README.md",
+    ".env.example",
+    ".gitignore",
+    "fixtures.json",
+    "test_offline.py",
+    "manifest.json",
+    "verification.json"
+  ],
+  "verification": {
+    "static": true,
+    "offline": true,
+    "live": false
+  },
+  "inputExample": "PO-104의 납기 위험과 구매 담당자 확인 목록",
+  "expectedOutput": "계약 대비 지연 3일, 공급사 확약과 계약 변경 확인, 발주 미실행",
+  "sources": [
+    "https://docs.crewai.com/en/concepts/collaboration",
+    "https://docs.crewai.com/en/learn/custom-llm"
+  ],
+  "requirements": [
+    "Python 3.11 이상",
+    "사용자가 지정하는 OPENAI_API_KEY와 FLOWLY_MODEL"
+  ],
+  "limits": "조정자/조사자 각각 최대 4 반복, 실행 한도 60/45초. 메모리·원격 추적·코드 실행을 끄며 실제 Crew 위임 도구를 사용합니다."
+}

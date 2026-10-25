@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-22",
+  "python": "3.13.3",
+  "static": "Python AST와 manifest 파일 존재 검사 통과",
+  "offlineTests": 4,
+  "configurationChecks": [
+    "키 없는 --check는 unconfigured",
+    "키 없는 실제 실행은 미설정 오류로 중단"
+  ],
+  "providerCalls": 0,
+  "mcpCalls": 0,
+  "externalWrites": 0,
+  "liveVerified": false,
+  "dependencies": [
+    "llama-index-core==0.14.25",
+    "llama-index-llms-openai==0.8.3",
+    "python-dotenv==1.2.4"
+  ],
+  "mainSha256": "c64ba46baa587da06412db710d40db89190f421ed87c3df41dee87bfc4a2ea8b",
+  "notes": "실제 LlamaIndex 0.14.25 SDK + 테스트 응답 주입. 유효 기간 밖 문서가 모델 문맥에 섞이지 않음을 검사. 외부 socket 차단, Windows asyncio 내부 loopback 허용. 실제 모델/외부 API 미검증.",
+  "scenarios": [
+    "JSON 기준일 신규 규정만 검색/전달/인용",
+    "이전 규정 적용 종료일 포함 검색",
+    "기준일 누락/무효/복수/빈 질문 추가 확인",
+    "관계없는 질문/등록 기간 이전 근거 없음"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "input": "로그인 후 결제 영수증 다운로드가 실패합니다",
+  "expected": {
+    "category": "billing",
+    "urgency": "normal",
+    "summary": "영수증 다운로드 실패 문의"
+  }
+}

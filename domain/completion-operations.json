@@ -1,0 +1,1693 @@
+{
+  "version": 1,
+  "operations": [
+    {
+      "description": "operations.board_claim: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.board_claim"
+    },
+    {
+      "description": "operations.board_commit: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.board_commit"
+    },
+    {
+      "description": "operations.board_work: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.board_work"
+    },
+    {
+      "description": "operations.code_benchmark: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.code_benchmark"
+    },
+    {
+      "description": "operations.code_build: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.code_build"
+    },
+    {
+      "description": "operations.code_dependencies: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.code_dependencies"
+    },
+    {
+      "description": "operations.code_differential: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.code_differential"
+    },
+    {
+      "description": "operations.code_inspect: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.code_inspect"
+    },
+    {
+      "description": "operations.code_mutation: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.code_mutation"
+    },
+    {
+      "description": "operations.code_patch: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.code_patch"
+    },
+    {
+      "description": "operations.code_reproduce: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.code_reproduce"
+    },
+    {
+      "description": "operations.code_schedule: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.code_schedule"
+    },
+    {
+      "description": "operations.code_test: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.code_test"
+    },
+    {
+      "description": "operations.collect_evidence: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.collect_evidence"
+    },
+    {
+      "description": "operations.db_apply: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_apply"
+    },
+    {
+      "description": "operations.db_archive: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_archive"
+    },
+    {
+      "description": "operations.db_backup: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_backup"
+    },
+    {
+      "description": "operations.db_capacity: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_capacity"
+    },
+    {
+      "description": "operations.db_inspect: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_inspect"
+    },
+    {
+      "description": "operations.db_lock_release: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_lock_release"
+    },
+    {
+      "description": "operations.db_locks: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_locks"
+    },
+    {
+      "description": "operations.db_permissions: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_permissions"
+    },
+    {
+      "description": "operations.db_permissions_restrict: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_permissions_restrict"
+    },
+    {
+      "description": "operations.db_plan: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_plan"
+    },
+    {
+      "description": "operations.db_quality: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_quality"
+    },
+    {
+      "description": "operations.db_query_compare: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_query_compare"
+    },
+    {
+      "description": "operations.db_replication: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_replication"
+    },
+    {
+      "description": "operations.db_restore: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_restore"
+    },
+    {
+      "description": "operations.db_restore_check: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_restore_check"
+    },
+    {
+      "description": "operations.db_synthetic: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_synthetic"
+    },
+    {
+      "description": "operations.db_verify: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.db_verify"
+    },
+    {
+      "description": "operations.evidence_pin: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.evidence_pin"
+    },
+    {
+      "description": "operations.evidence_revalidate: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.evidence_revalidate"
+    },
+    {
+      "description": "operations.final_verify: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.final_verify"
+    },
+    {
+      "description": "operations.integration_contract: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.integration_contract"
+    },
+    {
+      "description": "operations.lineage_execute: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.lineage_execute"
+    },
+    {
+      "description": "operations.lineage_execute_decision: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.lineage_execute_decision"
+    },
+    {
+      "description": "operations.lineage_execute_mean: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.lineage_execute_mean"
+    },
+    {
+      "description": "operations.lineage_execute_report: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.lineage_execute_report"
+    },
+    {
+      "description": "operations.lineage_execute_sum: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.lineage_execute_sum"
+    },
+    {
+      "description": "operations.lineage_plan: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.lineage_plan"
+    },
+    {
+      "description": "operations.lineage_reuse_decision: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.lineage_reuse_decision"
+    },
+    {
+      "description": "operations.lineage_reuse_mean: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.lineage_reuse_mean"
+    },
+    {
+      "description": "operations.lineage_reuse_report: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.lineage_reuse_report"
+    },
+    {
+      "description": "operations.lineage_reuse_sum: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.lineage_reuse_sum"
+    },
+    {
+      "description": "operations.lineage_snapshot: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.lineage_snapshot"
+    },
+    {
+      "description": "operations.lineage_verify: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.lineage_verify"
+    },
+    {
+      "description": "operations.rag_feedback: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.rag_feedback"
+    },
+    {
+      "description": "operations.rag_incremental: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.rag_incremental"
+    },
+    {
+      "description": "operations.rag_lifecycle: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.rag_lifecycle"
+    },
+    {
+      "description": "operations.rag_query: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.rag_query"
+    },
+    {
+      "description": "operations.rag_recover: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.rag_recover"
+    },
+    {
+      "description": "operations.rag_revoke: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "id": "operations.rag_revoke"
+    },
+    {
+      "description": "operations.ui_interaction: registered bounded reference-project computation; no arbitrary shell, code, SQL or network",
+      "exampleArguments": {},
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "effect": "read",
+      "scope": "isolated registered reference project",
+      "dependencies": [
+        "playwright==1.58.0"
+      ],
+      "configuration": [
+        "installed Chrome browser"
+      ],
+      "id": "operations.ui_interaction"
+    },
+    {
+      "description": "완료한 페이지의 실제 항목 결과에서 성공·실패·완료 커서를 집계합니다.",
+      "exampleArguments": {
+        "pages": [
+          {
+            "output": {
+              "rows": [
+                {
+                  "output": {
+                    "data": {
+                      "id": "a",
+                      "status": "completed",
+                      "squared": 4
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.batch_collect"
+    },
+    {
+      "description": "비음수 숫자 작업을 실제 제곱 계산하며 잘못된 항목을 실패 기록으로 분리합니다.",
+      "exampleArguments": {
+        "item": {
+          "id": "a",
+          "value": 2
+        }
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.batch_item"
+    },
+    {
+      "description": "한 페이지의 최대20개 항목을 같은 비음수 계산 계약으로 처리해 항목별 성공·실패를 보존합니다.",
+      "exampleArguments": {
+        "items": [
+          {
+            "id": "a",
+            "value": 2
+          },
+          {
+            "id": "b",
+            "value": -1
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.batch_page"
+    },
+    {
+      "description": "최대400항목을 최대20페이지로 분할하고 다음 커서와 입력 해시를 계산합니다.",
+      "exampleArguments": {
+        "items": [
+          {
+            "id": "a",
+            "value": 2
+          },
+          {
+            "id": "b",
+            "value": 3
+          }
+        ],
+        "pageSize": 1
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.batch_prepare"
+    },
+    {
+      "description": "실패 ID와 페이지 재처리 결과를 대조하고 이전 성공 결과를 변경 없이 결합합니다.",
+      "exampleArguments": {
+        "completed": [],
+        "failed": [
+          {
+            "id": "b",
+            "status": "failed"
+          }
+        ],
+        "retried": [
+          {
+            "id": "b",
+            "status": "completed",
+            "squared": 9
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.batch_repair_merge"
+    },
+    {
+      "description": "최대400개 실패 보완을 검증하고 기존 페이지 처리기로 넘길 20항목 페이지를 구성합니다.",
+      "exampleArguments": {
+        "completed": [],
+        "failed": [
+          {
+            "id": "b",
+            "status": "failed"
+          }
+        ],
+        "repairs": [
+          {
+            "id": "b",
+            "value": 3
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.batch_repair_prepare"
+    },
+    {
+      "description": "실패 ID와 정확히 같은 보완 집합만 재처리하고 완료 결과를 보존합니다.",
+      "exampleArguments": {
+        "completed": [
+          {
+            "id": "a",
+            "status": "completed",
+            "squared": 4
+          }
+        ],
+        "failed": [
+          {
+            "id": "b",
+            "status": "failed"
+          }
+        ],
+        "repairs": [
+          {
+            "id": "b",
+            "value": 3
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.batch_repairs"
+    },
+    {
+      "description": "실행기가 주입한 실제 잔여 예산으로 필수 작업 우선 계획과 생략 목록을 계산합니다.",
+      "exampleArguments": {
+        "runtimeBudget": {
+          "maxTurns": 8,
+          "usedTurns": 1,
+          "maxToolCalls": 12,
+          "usedToolCalls": 0,
+          "maxTokens": 8000,
+          "usedTokens": 100,
+          "remainingDurationMs": 60000
+        },
+        "tasks": [
+          {
+            "id": "required",
+            "required": true,
+            "cost": {
+              "turns": 1,
+              "tools": 0,
+              "tokens": 100,
+              "durationMs": 1000
+            }
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.budget_plan"
+    },
+    {
+      "description": "등록 작업의 비용·효용을 같은 기준으로 합산하고 제약 탈락·최고 후보·동률을 계산합니다.",
+      "exampleArguments": {
+        "costs": {
+          "a": 2,
+          "b": 3
+        },
+        "benefits": {
+          "a": 4,
+          "b": 5
+        },
+        "capacity": 4,
+        "candidates": [
+          {
+            "id": "first",
+            "selected": [
+              "a"
+            ]
+          },
+          {
+            "id": "second",
+            "selected": [
+              "b"
+            ]
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.candidate_score"
+    },
+    {
+      "description": "같은 기준으로 계산한 합격 후보의 최고 점수와 동률을 판정합니다.",
+      "exampleArguments": {
+        "scores": [
+          {
+            "candidateId": "a",
+            "passed": true,
+            "score": 2
+          },
+          {
+            "candidateId": "b",
+            "passed": true,
+            "score": 1
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.choose_candidate"
+    },
+    {
+      "description": "최초 CRM 등록의 요청ID와 신규 CRM ID를 검증하여 다른 서비스에 잘못 연결하지 않습니다.",
+      "exampleArguments": {
+        "requested": {
+          "requestId": "r1"
+        },
+        "receipt": {
+          "requestId": "r1",
+          "crmId": "c1"
+        }
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.crm_receipt"
+    },
+    {
+      "description": "등록 조회의 열·건수·숫자 형식을 검사하고 검증된 값·단위·원문 해시를 반환합니다.",
+      "exampleArguments": {
+        "rows": [
+          {
+            "day": "월",
+            "count": 10
+          },
+          {
+            "day": "화",
+            "count": 20
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.data_contract"
+    },
+    {
+      "description": "각 쟁점의 주장·반박을 실제 출처와 인용에 대조하여 검증 실패 쟁점을 분리합니다.",
+      "exampleArguments": {
+        "sources": [
+          {
+            "id": "s1",
+            "text": "지연 2분. 표본 1건."
+          }
+        ],
+        "issues": [
+          {
+            "id": "latency",
+            "claim": {
+              "sourceId": "s1",
+              "quote": "지연 2분."
+            },
+            "rebuttal": {
+              "sourceId": "s1",
+              "quote": "표본 1건."
+            }
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.debate"
+    },
+    {
+      "description": "회의 요청과 서비스 영수증의 회의ID·신규 업무ID를 검증합니다.",
+      "exampleArguments": {
+        "requested": {
+          "meetingId": "m1"
+        },
+        "receipt": {
+          "meetingId": "m1",
+          "taskId": "t1"
+        }
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.followup_receipt"
+    },
+    {
+      "description": "실제 미해결 참조를 방문 집합·출처 계보와 대조하고 다음 질문을 제한합니다.",
+      "exampleArguments": {
+        "records": [
+          {
+            "id": "a",
+            "text": "A는 B를 참조한다.",
+            "relations": [
+              {
+                "targetId": "b",
+                "query": "B 조회"
+              }
+            ]
+          }
+        ],
+        "proposal": {
+          "sourceId": "a",
+          "targetId": "b",
+          "query": "B 조회"
+        }
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.frontier"
+    },
+    {
+      "description": "경쟁 가설의 예측과 관찰을 대조해 지지·반증·미해결 및 구별 가능한 다음 특징을 계산합니다.",
+      "exampleArguments": {
+        "hypotheses": [
+          {
+            "id": "network",
+            "predictions": {
+              "cpu": "normal"
+            }
+          },
+          {
+            "id": "compute",
+            "predictions": {
+              "cpu": "high"
+            }
+          }
+        ],
+        "observations": [
+          {
+            "feature": "cpu",
+            "value": "high",
+            "source": "metrics"
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.hypothesis_update"
+    },
+    {
+      "description": "변경 문단 ID를 업무 참조 목록과 교차해 영향과 미확인을 분리합니다.",
+      "exampleArguments": {
+        "changedIds": [
+          "a"
+        ],
+        "registry": [
+          {
+            "taskId": "backup",
+            "policyRefs": [
+              "a"
+            ],
+            "referencesComplete": true
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.impact_search"
+    },
+    {
+      "description": "사내 권한 결과·자료 ID·본문 형식·기존 해시로 반입, 격리, 중복을 계산합니다.",
+      "exampleArguments": {
+        "documents": [
+          {
+            "resourceId": "guide",
+            "version": "v1",
+            "content": "release ready"
+          }
+        ],
+        "allowedIds": [
+          "guide"
+        ],
+        "permissions": {
+          "guide": true
+        },
+        "existing": []
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.intake"
+    },
+    {
+      "description": "보존 기간 전체 사건ID·변경 상태를 검사해 중복, 미변경, 신규, 미확정을 분리합니다.",
+      "exampleArguments": {
+        "event": {
+          "eventId": "e1",
+          "at": "2026-10-25T00:00:00Z",
+          "source": "release",
+          "state": "blocked"
+        },
+        "retentionSeconds": 86400,
+        "ledger": []
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.notification"
+    },
+    {
+      "description": "실제 영수증의 사건ID와 저장 원장을 대조한 뒤 전송 완료 기록을 만듭니다.",
+      "exampleArguments": {
+        "ledger": [
+          {
+            "eventId": "e1",
+            "at": "2026-10-25T00:00:00Z",
+            "source": "release",
+            "state": "blocked",
+            "fingerprint": "f82d1db2936dc6ed5180fed11cb80befd7eef49e3affb1c208eec0e992f648c8",
+            "status": "pending"
+          }
+        ],
+        "eventId": "e1",
+        "receipt": {
+          "eventId": "e1",
+          "receiptId": "r1"
+        }
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.notification_commit"
+    },
+    {
+      "description": "문단 ID로 두 원문 버전의 추가·삭제·수정을 계산하고 해시를 남깁니다.",
+      "exampleArguments": {
+        "old": [
+          {
+            "id": "a",
+            "text": "30일"
+          }
+        ],
+        "new": [
+          {
+            "id": "a",
+            "text": "60일"
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.policy_diff"
+    },
+    {
+      "description": "범위·효력 기간·권위·효력 시작일을 대조해 적용 규정과 동급 충돌을 계산합니다.",
+      "exampleArguments": {
+        "asOf": "2026-10-25T00:00:00Z",
+        "scope": "개발",
+        "documents": [
+          {
+            "id": "p1",
+            "text": "3일",
+            "value": "3일",
+            "authority": 90,
+            "effectiveFrom": "2025-01-01T00:00:00Z",
+            "scopes": [
+              "개발"
+            ]
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.policy_resolve"
+    },
+    {
+      "description": "프로젝트 범위·원문 인용·만료를 검사하고 기존 기억과 충돌을 분리합니다.",
+      "exampleArguments": {
+        "projectId": "P1",
+        "asOf": "2026-10-25T00:00:00Z",
+        "store": {},
+        "candidate": {
+          "projectId": "P1",
+          "key": "retry",
+          "value": "영수증 조회",
+          "sources": [
+            {
+              "id": "test1",
+              "quote": "영수증을 조회했다."
+            }
+          ],
+          "expiresAt": "2027-01-01T00:00:00Z"
+        },
+        "evidence": [
+          {
+            "id": "test1",
+            "text": "영수증을 조회했다."
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.project_memory"
+    },
+    {
+      "description": "사람 수락 경로에서 원문 인용·범위·만료를 다시 검사하고 교훈 및 충돌 이력을 저장할 값을 만듭니다.",
+      "exampleArguments": {
+        "projectId": "P1",
+        "asOf": "2026-10-25T00:00:00Z",
+        "store": {},
+        "candidate": {
+          "projectId": "P1",
+          "key": "retry",
+          "value": "영수증 조회",
+          "sources": [
+            {
+              "id": "test1",
+              "quote": "영수증을 조회했다."
+            }
+          ],
+          "expiresAt": "2027-01-01T00:00:00Z"
+        },
+        "evidence": [
+          {
+            "id": "test1",
+            "text": "영수증을 조회했다."
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.project_memory_commit"
+    },
+    {
+      "description": "원 요청과 실제 서비스 영수증의 교차 ID를 대조하고 완료 ID·요청 해시를 반환합니다.",
+      "exampleArguments": {
+        "requested": {
+          "requestId": "r1",
+          "crmId": "c1"
+        },
+        "receipt": {
+          "requestId": "r1",
+          "crmId": "c1",
+          "ticketId": "t1"
+        }
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.receipt"
+    },
+    {
+      "description": "제한된 숫자 조건 AST를 명세와 실제 비교하여 반례와 회귀 실패를 계산합니다. 코드를 실행하지 않습니다.",
+      "exampleArguments": {
+        "candidate": {
+          "op": "gt",
+          "field": "x",
+          "value": 0
+        },
+        "specification": {
+          "op": "gte",
+          "field": "x",
+          "value": 0
+        },
+        "cases": [
+          {
+            "x": 0
+          },
+          {
+            "x": 1
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.regression"
+    },
+    {
+      "description": "실패 작업의 전이적 종속 영향을 계산하고 정상 캐시를 보존하며 허용 담당자만 배정합니다.",
+      "exampleArguments": {
+        "tasks": [
+          {
+            "id": "facts",
+            "handler": "analyze",
+            "dependsOn": [],
+            "input": {
+              "n": 2
+            }
+          },
+          {
+            "id": "analysis",
+            "handler": "verify",
+            "dependsOn": [
+              "facts"
+            ],
+            "input": {}
+          }
+        ],
+        "failedIds": [
+          "analysis"
+        ],
+        "results": {
+          "facts": {
+            "value": 2
+          },
+          "analysis": {
+            "value": "wrong"
+          }
+        },
+        "replacements": [
+          {
+            "taskId": "analysis",
+            "assignee": "specialist"
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.repair_plan"
+    },
+    {
+      "description": "응답의 요청ID·대상·신선도·출처·값 충돌을 검사하여 신뢰/재조회/검토를 구분합니다.",
+      "exampleArguments": {
+        "request": {
+          "requestId": "q1",
+          "target": "release",
+          "asOf": "2026-10-25T00:00:30Z",
+          "maxAgeSeconds": 60
+        },
+        "responses": [
+          {
+            "requestId": "q1",
+            "target": "release",
+            "observedAt": "2026-10-25T00:00:00Z",
+            "source": "metrics",
+            "value": "ready"
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.response_trust"
+    },
+    {
+      "description": "CSV와 SKU|수량|단위|단가|통화 원문을 파싱해 단위 환산·식별자 결합·출처 셀을 계산합니다.",
+      "exampleArguments": {
+        "csvText": "sku,quantity,unit,unitPrice,currency\nA,2,kg,1000,KRW",
+        "documentText": "A|2000|g|1|KRW"
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.table_reconcile"
+    },
+    {
+      "description": "등록 핸들러·작업 ID·의존 DAG를 검사하고 실행 순서·입력 해시·계획 해시를 계산합니다.",
+      "exampleArguments": {
+        "tasks": [
+          {
+            "id": "facts",
+            "handler": "analyze",
+            "dependsOn": [],
+            "input": {
+              "n": 2
+            }
+          },
+          {
+            "id": "analysis",
+            "handler": "verify",
+            "dependsOn": [
+              "facts"
+            ],
+            "input": {}
+          }
+        ]
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.task_plan"
+    },
+    {
+      "description": "구형 원장이 있으면 전환 확인 전 중단하고, 요청별 누적 원장의 중복·내용 충돌 검사 후 외부 쓰기 전 CAS 예약을 만듭니다.",
+      "exampleArguments": {
+        "ledger": {
+          "revision": 0,
+          "requests": {}
+        },
+        "legacy": {},
+        "request": {
+          "requestId": "r1",
+          "title": "배포 오류",
+          "mode": "create"
+        }
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.transfer_begin"
+    },
+    {
+      "description": "실제 CRM·티켓 영수증을 요청 ID와 대조하고 다른 요청을 보존한 CAS 갱신을 만듭니다.",
+      "exampleArguments": {
+        "ledger": {
+          "revision": 1,
+          "requests": {
+            "r1": {
+              "requestId": "r1",
+              "status": "reserved",
+              "crmId": "",
+              "ticketId": ""
+            }
+          }
+        },
+        "requestId": "r1",
+        "stage": "crm",
+        "receipt": {
+          "requestId": "r1",
+          "crmId": "c1"
+        }
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.transfer_record"
+    },
+    {
+      "description": "사람이 편집한 문서의 해시를 계산하고 후속 판단의 버전 결합을 검증합니다.",
+      "exampleArguments": {
+        "document": {
+          "title": "공지",
+          "body": "배포 취소"
+        }
+      },
+      "effect": "read",
+      "implementationScope": "bounded_pure_json",
+      "limits": {
+        "network": false,
+        "arbitraryCode": false
+      },
+      "id": "research.version"
+    },
+    {
+      "description": "alignment: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.alignment"
+    },
+    {
+      "description": "api_diff: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.api_diff"
+    },
+    {
+      "description": "asof: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.asof"
+    },
+    {
+      "description": "audit: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.audit"
+    },
+    {
+      "description": "avatar: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.avatar"
+    },
+    {
+      "description": "case_delivery: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.case_delivery"
+    },
+    {
+      "description": "case_event: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.case_event"
+    },
+    {
+      "description": "cells: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.cells"
+    },
+    {
+      "description": "citation: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.citation"
+    },
+    {
+      "description": "compatibility: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.compatibility"
+    },
+    {
+      "description": "config_diff: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.config_diff"
+    },
+    {
+      "description": "constraints: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.constraints"
+    },
+    {
+      "description": "correlate: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.correlate"
+    },
+    {
+      "description": "coverage: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.coverage"
+    },
+    {
+      "description": "cross_modal: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.cross_modal"
+    },
+    {
+      "description": "document_impact: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.document_impact"
+    },
+    {
+      "description": "documents: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.documents"
+    },
+    {
+      "description": "events: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.events"
+    },
+    {
+      "description": "experiment: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.experiment"
+    },
+    {
+      "description": "experiment_confirm: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.experiment_confirm"
+    },
+    {
+      "description": "experiment_discovery: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.experiment_discovery"
+    },
+    {
+      "description": "feedback: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.feedback"
+    },
+    {
+      "description": "goal_update: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.goal_update"
+    },
+    {
+      "description": "graph_search: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.graph"
+    },
+    {
+      "description": "improvement: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.improvement"
+    },
+    {
+      "description": "join_numeric: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.join_numeric"
+    },
+    {
+      "description": "learning: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.learning"
+    },
+    {
+      "description": "migration: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.migration"
+    },
+    {
+      "description": "negotiate: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.negotiate"
+    },
+    {
+      "description": "partition: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.partition"
+    },
+    {
+      "description": "practice_avatar: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.practice_avatar"
+    },
+    {
+      "description": "procedure: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.procedure"
+    },
+    {
+      "description": "revoke: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.revoke"
+    },
+    {
+      "description": "roleplay: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.roleplay"
+    },
+    {
+      "description": "sensitivity: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.sensitivity"
+    },
+    {
+      "description": "board_request: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.taskboard_request"
+    },
+    {
+      "description": "board_transition: bounded deterministic technical validation; no external I/O",
+      "exampleArguments": {},
+      "effect": "read",
+      "id": "technical.taskboard_transition"
+    }
+  ]
+}

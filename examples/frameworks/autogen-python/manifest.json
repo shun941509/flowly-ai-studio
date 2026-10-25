@@ -1,0 +1,37 @@
+{
+  "id": "autogen-python",
+  "framework": "AutoGen",
+  "language": "python",
+  "kind": "native",
+  "projectId": "incident-review",
+  "title": "서비스 장애 조치안 상호 검토",
+  "description": "분석자가 장애 측정값을 조회하고 검토자가 복구 여부와 추가 측정을 구분합니다.",
+  "entrypoint": "main.py",
+  "files": [
+    "main.py",
+    "requirements.txt",
+    "README.md",
+    ".env.example",
+    ".gitignore",
+    "fixtures.json",
+    "test_offline.py",
+    "manifest.json",
+    "verification.json"
+  ],
+  "verification": {
+    "static": true,
+    "offline": true,
+    "live": false
+  },
+  "inputExample": "PAY-17 결제 지연의 현재 조치와 검증 항목",
+  "expectedOutput": "p95 2200ms, 복구 미확인, 큐 길이와 지연 재측정",
+  "sources": [
+    "https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html",
+    "https://microsoft.github.io/autogen/stable/reference/python/autogen_ext.models.replay.html"
+  ],
+  "requirements": [
+    "Python 3.11 이상",
+    "사용자가 지정하는 OPENAI_API_KEY와 FLOWLY_MODEL"
+  ],
+  "limits": "최대 4 대화 턴, 분석자 턴당 도구 반복 2회, 전체 120초. AutoGen은 유지보수 단계이며 이 고정 버전의 AgentChat을 사용합니다."
+}

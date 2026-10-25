@@ -1,0 +1,37 @@
+{
+  "id": "pydantic-ai-python",
+  "framework": "Pydantic AI",
+  "language": "python",
+  "kind": "native",
+  "projectId": "typed-expense",
+  "title": "출장비 규정 구조화 판정",
+  "description": "규정 조회와 타입/업무 규칙 검증을 결합해 식비 초과 여부를 JSON으로 반환합니다.",
+  "entrypoint": "main.py",
+  "files": [
+    "main.py",
+    "requirements.txt",
+    "README.md",
+    ".env.example",
+    ".gitignore",
+    "fixtures.json",
+    "test_offline.py",
+    "manifest.json",
+    "verification.json"
+  ],
+  "verification": {
+    "static": true,
+    "offline": true,
+    "live": false
+  },
+  "inputExample": "식비 45000원, 영수증 있음",
+  "expectedOutput": "meal/45000/limit30000/over_limit=true/needs_review=true/EXP-01",
+  "sources": [
+    "https://ai.pydantic.dev/testing/",
+    "https://ai.pydantic.dev/output/"
+  ],
+  "requirements": [
+    "Python 3.11 이상",
+    "사용자가 지정하는 OPENAI_API_KEY와 FLOWLY_MODEL"
+  ],
+  "limits": "요청 최대5, 도구 최대3, 총 토큰4000. 식비만 지원하며 한도나 초과 판정이 틀린 모델 응답을 재검증합니다. 실제 승인/결제를 수행하지 않습니다."
+}

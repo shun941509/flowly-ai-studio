@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "fingerprint": "d5617828631fe81a436d2e5017dad535cf05b9ca34c9fc788f3e1ac6a72ed22c",
+  "scope": "explicit workflow branch/data/state scenarios on actual exported CLIs; test-only provider responses, not live model quality",
+  "projects": [],
+  "checks": 0,
+  "failures": [
+    {
+      "id": "integrated-026-readonly-metrics",
+      "message": "AssertionError [ERR_ASSERTION]: integrated-026-readonly-metrics/node/등록 조회 뒤 실제 합계30과 평균15 설명: unexpected/repeated tools\n+ actual - expected\n\n+ {\n+   read_registered_metric: 1\n+ }\n- {}\n\n    at <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:292:20)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:80:178)\n    at async Promise.allSettled (index 0)\n    at async boundedWorkers (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:80:17)\n    at async main (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:229:10)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:320:79)",
+      "artifactDirectory": "C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\outputs\\integrated-analytics\\.validation-uUsHU2\\integrated-026-readonly-metrics"
+    },
+    {
+      "id": "integrated-027-transcript-followup",
+      "message": "AssertionError [ERR_ASSERTION]: 담당·기한 보완 후 승인된 정확한 업무 등록: supplemental input did not wait\n+ actual - expected\n\n+ 'failed'\n- 'waiting_input'\n\n    at resolveScenarioInputs (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:147:12)\n    at resolveScenarioDecisions (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:121:15)\n    at <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:272:39)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:80:178)\n    at async Promise.allSettled (index 0)\n    at async boundedWorkers (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:80:17)\n    at async main (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:229:10)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:320:79)",
+      "artifactDirectory": "C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\outputs\\integrated-analytics\\.validation-uUsHU2\\integrated-027-transcript-followup"
+    },
+    {
+      "id": "__fingerprint_changed__",
+      "message": "Runtime/harness changed during validation; results cannot be reused. Run --resume after sources stabilize."
+    }
+  ],
+  "externalCalls": 0,
+  "progress": {
+    "selected": 3,
+    "completed": 3,
+    "retained": 0,
+    "workers": 2,
+    "interrupted": false,
+    "updatedAt": "2026-10-24T21:12:57.945Z"
+  }
+}

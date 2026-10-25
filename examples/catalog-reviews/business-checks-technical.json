@@ -1,0 +1,4290 @@
+{
+  "version": 1,
+  "reviewer": "/root/independent_review",
+  "humanReviewed": false,
+  "scope": "독립 AI 검토 기록이다. 최초 /root/catalog_ui가 기술 분야 1,059개 전체의 입력·합성 자료·기대 결과·판단 규칙·실패 조건·문제 설명을 직접 읽고 산식, 전제, 확인 가능한 내부 및 업무 분야 중복을 검토했다. 반복 공통 문구는 파일별 전체 빈도를 확인하고 한 번 읽었다. 본 재개 검토자 /root/independent_review는 미결 45개와 명시된 대응 계약 전체를 읽었고, 전제·수치 보강 10개 및 별도 과제로 재저작한 35개의 모든 필드를 다시 읽었다. 관련 용어를 전체 카탈로그에서 검색해 찾은 후보와 판단 구조를 직접 비교했다. 저장 암호화, 누적 계수기, 자막 범위의 재중복 후보를 추가로 발견해 각각 보고 전용 정책, Count-Min 스케치, 불용어 제거 뒤 구절 위치로 다시 교체한 뒤 재검토했다. 기존 1,014개 승인은 변경 없는 해시와 앞선 검토 범위를 승계한다. 현재 대상 1,059개에서 미결 지적은 없다. 모든 가능한 프로젝트 쌍의 의미 중복 부재 증명, 인간 검수, 실제 모델 답변 품질 검증을 뜻하지 않는다. 외부 API와 모델을 호출하지 않았다.",
+  "reviewed": [
+    {
+      "id": "tech-ai-001",
+      "contractHash": "228b45540147e9a6ab47a2a68e5a9adbc61115288ce011b1d0a2e7049eb3a098"
+    },
+    {
+      "id": "tech-ai-002",
+      "contractHash": "6f3c6ef2a025ef02ad585cc4e3acb913130db0820f59d85c0d4fa9a537c9ed18"
+    },
+    {
+      "id": "tech-ai-003",
+      "contractHash": "90660e2039526ad51e77ef42c6cd44a5b60f68cc9bc4aa54a20d0043ee442a84"
+    },
+    {
+      "id": "tech-ai-004",
+      "contractHash": "c06dd77e9fc3fb5f6452db5044b9d49840105c2a81b12d8f2f2151a612eb9cca"
+    },
+    {
+      "id": "tech-ai-005",
+      "contractHash": "a132101864f07aeff312585c1712d54d012669590ad17f4fdb0649d388cd41c8"
+    },
+    {
+      "id": "tech-ai-006",
+      "contractHash": "4ecdc2d79f5e5ce9f342872e8f4ebed55b20549bd068552b2fc1c35288d173de"
+    },
+    {
+      "id": "tech-ai-007",
+      "contractHash": "11be5ad4f6e06105fe4836583e6d279ff2e65d4fe1be53fddba1e19741e66fbc"
+    },
+    {
+      "id": "tech-ai-008",
+      "contractHash": "14e726af179beee6325a5e0330c0bcefcc09694c4b04f593ab1ea06b83a7daaa"
+    },
+    {
+      "id": "tech-ai-009",
+      "contractHash": "0c07769c222ee18e29bd4c2a57d1d697bca01e52d9acd5167d7c2b7f702ee6f9"
+    },
+    {
+      "id": "tech-ai-010",
+      "contractHash": "44c7f0f3a551b8b02df35c995474417101819627168bd74f9610086650a94313"
+    },
+    {
+      "id": "tech-ai-011",
+      "contractHash": "bcad52922ebfd1f064aa33bff44953fbb673448bf74d9650c22d6a9b0102e3b5"
+    },
+    {
+      "id": "tech-ai-012",
+      "contractHash": "7149888d6799e61798d214812f201555cc469a786c9ede163a81fdb3d780a283"
+    },
+    {
+      "id": "tech-ai-013",
+      "contractHash": "41d6a6405251ef4daaee943c5d39f982799859d51ae5e29eac98f406719f9d36",
+      "distinction": "누적확률0.8 최소접두집합A/B를선택해0.625/0.375로재정규화하며 실제샘플결과는미확인이다."
+    },
+    {
+      "id": "tech-ai-014",
+      "contractHash": "2d5f81060728a5b6f8aef0ae901a38c53ccdc6fb7288c2b9b40f52fbb50ba8da"
+    },
+    {
+      "id": "tech-ai-015",
+      "contractHash": "d05e5295de6a02cf31739a77d96f0e4756b33a1534b5b59fe25893d9a6a2d3a9"
+    },
+    {
+      "id": "tech-ai-016",
+      "contractHash": "e3e9cf6c9859e8367d966a59557f1f4509b458df79e59bfa24015ad6f4aaa186"
+    },
+    {
+      "id": "tech-ai-017",
+      "contractHash": "df84b46ae5320327c0e414dfe68700ff11cfec1b7f21609f69fdcee7a96ec2d1"
+    },
+    {
+      "id": "tech-ai-018",
+      "contractHash": "5d02084779d3a890d7086f802205bacd1527a7ec2d4b7d708ab589faefcd81c2"
+    },
+    {
+      "id": "tech-ai-019",
+      "contractHash": "83511ef74fd9d22d4694dc3cb876cf359a9149f0ab2a1ec0dceb1582a6ce8464"
+    },
+    {
+      "id": "tech-ai-020",
+      "contractHash": "a346882fc7a176a5aa4e6f994b62912d8d63f90cdac2ad0a7bff56e653dd81df"
+    },
+    {
+      "id": "tech-ai-021",
+      "contractHash": "024a3d600d4372b9bb000b2ff9292ad16338e4f00275ce733b456351988ad310"
+    },
+    {
+      "id": "tech-ai-022",
+      "contractHash": "0c64c24d0ddee150993b8f3ca904bd6ea889aa89a0030773e99549b04e9000a9"
+    },
+    {
+      "id": "tech-ai-023",
+      "contractHash": "bc3bb16d24ac67dbc136e218de58e7083f8c2ee5c550305686df1e3c9bff128c"
+    },
+    {
+      "id": "tech-ai-024",
+      "contractHash": "60e6d88131ba880277b771e400a75b92b1b8f1281882b4bc2bf0cd7bc39d4dd2"
+    },
+    {
+      "id": "tech-ai-025",
+      "contractHash": "9516d3a8e660aa89425b3d0b74ac64d82d72e9bd80a8b9af12369c93a403f5a6"
+    },
+    {
+      "id": "tech-ai-026",
+      "contractHash": "de87abe6e019d0027601c4718eb868898e3a5991f04d86336579430e00b52d3e"
+    },
+    {
+      "id": "tech-ai-027",
+      "contractHash": "ca5869769747ace57ebb5c0c07c186904b1b7b543d2dd902c2418ef0e55cef1f"
+    },
+    {
+      "id": "tech-ai-028",
+      "contractHash": "239614e12f4f050a8a70a6683f83f756c80de8b310bdfdc805375694642928f8"
+    },
+    {
+      "id": "tech-ai-029",
+      "contractHash": "7355ac2970e527dc2b46988f2bdddb6c31ad4d2ba52bce5cf72671a1717df29d"
+    },
+    {
+      "id": "tech-ai-030",
+      "contractHash": "51d898acb5bbaf7afc5d2ea846e6ec19ee864c669a1bd33ba72e739817a098f4"
+    },
+    {
+      "id": "tech-ai-031",
+      "contractHash": "02df3c65023b324eda3fb6eef3f08ca770002f872e1dbc793a2845f39b2705ce"
+    },
+    {
+      "id": "tech-ai-032",
+      "contractHash": "53b9804ed166d7af50ca0ff5b2f490d0eb64af791067f52f7f47fd0de20471b8"
+    },
+    {
+      "id": "tech-ai-033",
+      "contractHash": "af0d9a8b62d32e13f98a7acac1a29bff411ddafedb90f4120cb49c9fd3d57bdc"
+    },
+    {
+      "id": "tech-ai-034",
+      "contractHash": "c090a60372f11995f59b3658e0631ca6f08d4135e44f57f5ad2145dc569ddca5"
+    },
+    {
+      "id": "tech-ai-035",
+      "contractHash": "d4352cc118a4e5fb03ee9aeb516a9d80b8a86e0d1360b78814a41c576e87a156"
+    },
+    {
+      "id": "tech-ai-036",
+      "contractHash": "78aee85f28f98ec265c663c9ca17d991422c94c401d0aa03a539ae9c6496d1d6"
+    },
+    {
+      "id": "tech-ai-037",
+      "contractHash": "13d023ff56fcafe8415f7ddefe4659830c6177710db8b6a75245151bd402508c"
+    },
+    {
+      "id": "tech-ai-038",
+      "contractHash": "5267306425973b5f353925feb92fb3a1b14933bf59741726003d6b8fc1e7d85e"
+    },
+    {
+      "id": "tech-ai-039",
+      "contractHash": "cc6fce59a10a43793cb96a984242a34492c3c65aab48d7e9eb01abc91abd199e"
+    },
+    {
+      "id": "tech-ai-040",
+      "contractHash": "fafb8df7ba67c9576120f50bd8108446e3c7339ea58586fda26c384aa8fa0f12"
+    },
+    {
+      "id": "tech-ai-041",
+      "contractHash": "d091c8a1c03e8788607140e5857a9df36d9511fbbbbd7feb19f0307d47a2d2a9"
+    },
+    {
+      "id": "tech-ai-042",
+      "contractHash": "61f800bc41a66e50d1c508ac49d03129e42d918a60d55bc74c94566c02f39a76"
+    },
+    {
+      "id": "tech-ai-043",
+      "contractHash": "cc566988f576aa2de64edda0f5226eb68dd281c9e56eaae7ab64293e14fdba9d"
+    },
+    {
+      "id": "tech-ai-044",
+      "contractHash": "b3696974774731be070b7eb8c73775f7f64d324922e3ebcf3af813f2fb373a8c"
+    },
+    {
+      "id": "tech-ai-045",
+      "contractHash": "56b259857160e7e1caf151a18d682bef5ceb57d4af1a544ebd726fd1f77d23fc"
+    },
+    {
+      "id": "tech-ai-046",
+      "contractHash": "9d8c5e8328203dfe7ef8c25391c2beaeba6d7516a4859f3af78ed7638210696c",
+      "distinction": "1/61+1/63=0.0322667187...와2/62=0.0322580645...이므로 소수6자리 반올림과 A우선이 맞다."
+    },
+    {
+      "id": "tech-ai-047",
+      "contractHash": "a18bc712c845ffec5caa08908c801869a998407cdb09ed4c7d75fd70377d4f8c"
+    },
+    {
+      "id": "tech-ai-048",
+      "contractHash": "3bd505b8fc27f6c1b3926c63719c77266c6f96a03635a90b421c5666fef8dde8"
+    },
+    {
+      "id": "tech-ai-049",
+      "contractHash": "3acaf6281660a9a3993f6ee3d099da6bf0b40494f7db4bdf26f5ed7cbec20ce5"
+    },
+    {
+      "id": "tech-ai-050",
+      "contractHash": "c8427ddff5c36e3a545b8bdaedf6cc4d9cbf1f056fe59d71bdd15d290b56411f"
+    },
+    {
+      "id": "tech-ai-051",
+      "contractHash": "b53790905dd2a43ebbedcbdf3b1e53f243ad7eee7021fbf7d620bd3d09acd894"
+    },
+    {
+      "id": "tech-ai-052",
+      "contractHash": "76f8898fc38b701930661c6488b5fa89ad754f6351d941b0ff9c306345cc3ce3"
+    },
+    {
+      "id": "tech-ai-053",
+      "contractHash": "d57a88358bf9a202727ecefd4368cf08780cabc78d927710b2bd014ab9a75e8d"
+    },
+    {
+      "id": "tech-ai-054",
+      "contractHash": "9f89ad75011cd8f83f7a522b7032d1227188acf4705395495704f1131b913a5a"
+    },
+    {
+      "id": "tech-ai-055",
+      "contractHash": "43c801445fe9f2a229abef84960bde9e10ae24578b554c7b6cabf24331123bca"
+    },
+    {
+      "id": "tech-ai-056",
+      "contractHash": "c21bc2936b96e9ca48c99b40691311de0133219624d0c80adacdf47b09e648f7"
+    },
+    {
+      "id": "tech-ai-057",
+      "contractHash": "16b82af475fa9c57a40b6bcd747f8888878cae32ecf9824261d30729b283dc75"
+    },
+    {
+      "id": "tech-ai-058",
+      "contractHash": "540f23c12b8cee241e274f6cc92750e601115d0a2fc1eaf01b8d3ec6569eb754"
+    },
+    {
+      "id": "tech-ai-059",
+      "contractHash": "bdb5f33d6786e862dcc769e14a0d2bd1986d081a0b43404c924e34a5e6cf74ac"
+    },
+    {
+      "id": "tech-ai-060",
+      "contractHash": "c36a38426677c1ce94432222496cd47c9aca854417562969683560bcf3d505d1"
+    },
+    {
+      "id": "tech-ai-061",
+      "contractHash": "fc584ed9e09564b5edfbfec32e37bdaf5c37e0177785f022b8f2a559f0befac3"
+    },
+    {
+      "id": "tech-ai-062",
+      "contractHash": "a1d7c85adc93df5a981f269339b1df8dd14b64c1b09d8d91c3e579a5db283595",
+      "distinction": "조건부확률0.5/0.125의 로그평균PPL4와 산술확률평균역수3.2의 차이를 계산한다."
+    },
+    {
+      "id": "tech-ai-063",
+      "contractHash": "5cc3591c5f03130afe1052089b677442b8e67d2243af774e8f992ae5c5484e0a"
+    },
+    {
+      "id": "tech-ai-064",
+      "contractHash": "c61c1626f2167258f145cbc734da32d2c76de001cc608d6adc02fa6b2453e41b"
+    },
+    {
+      "id": "tech-ai-065",
+      "contractHash": "b846d29e6a62218eb9b2c5dd6a6744e2f7787b4af08f754a55fcc797c72dd389"
+    },
+    {
+      "id": "tech-ai-066",
+      "contractHash": "dd7f6f12c30133ebc378a9ce6434eba47265bebddcfa0420e8b26f2808c6d7a2"
+    },
+    {
+      "id": "tech-ai-067",
+      "contractHash": "3b458229bffcc0eb29e6ec5f665fb50652993c33b12a992036476aefefc0f4ae"
+    },
+    {
+      "id": "tech-ai-068",
+      "contractHash": "90ef24c3bb6ecbce5c81e3388acd8712f18c108b4527d5246a688ac5dccc963d"
+    },
+    {
+      "id": "tech-ai-069",
+      "contractHash": "de9c4fd7a9a5258d0ab667921a5b83a20a6d2be04902c27eecbc05e95c97f343"
+    },
+    {
+      "id": "tech-ai-070",
+      "contractHash": "45ab2d2f8719578bc897a9326e5e4d672e4ccce5f90bc1db33326ee4ebba49f9"
+    },
+    {
+      "id": "tech-ai-071",
+      "contractHash": "f0da2e237119ddfae2f67417fa4e3ebe39f11cf9714f89857342692570d0634f"
+    },
+    {
+      "id": "tech-ai-072",
+      "contractHash": "118491941a9b38bf668b88fe54c927ede40c08f8118ca4202693ed9ef8b90a03"
+    },
+    {
+      "id": "tech-ai-073",
+      "contractHash": "06b51ff5ca6943df639d25da26105d56281e242499f882aa5e9087016d6693b0"
+    },
+    {
+      "id": "tech-ai-074",
+      "contractHash": "69edbff35c538a4f3123a30e829d60f4c139597771c726c2bfedc71d80255035"
+    },
+    {
+      "id": "tech-ai-075",
+      "contractHash": "bee31a3f9dc625d1c0575b9a26afd1c9c4166078fabdf43be304a0b0ef322305"
+    },
+    {
+      "id": "tech-ai-076",
+      "contractHash": "05411666f403702141f7ca0f15d7bb67ba019924f4d2ffd910e4133efccfdecc"
+    },
+    {
+      "id": "tech-ai-077",
+      "contractHash": "cc441b4f78f2d5fe24632102827ca4ae93c50a9819522c14e221d1d496a65e45",
+      "distinction": "합성 토크나이저 결과표에서 구분자없는 연결후 토큰수1과 조각별합2의 비가산성을 확인한다."
+    },
+    {
+      "id": "tech-ai-078",
+      "contractHash": "26b540cd00faf3778c39f0a46c95bd9ea78549c8362f7db1a4d441cc6c097af7",
+      "distinction": "로그확률합의 원시순위A와 길이정규화순위B가 반대임을 -2/-0.8로 검산한다."
+    },
+    {
+      "id": "tech-ai-079",
+      "contractHash": "847b38e0ba420d5a21de49c80aa40cde2989e91b205c463679eb56c8a51611b5"
+    },
+    {
+      "id": "tech-ai-080",
+      "contractHash": "ae70b9bd29fe663afa2ca053acee3473e68487508b00cd458dd3540e4e101466"
+    },
+    {
+      "id": "tech-ai-081",
+      "contractHash": "6ad948249d3de00790ab86aea2af303a7f1e9829db5bec9e6c823d7605636059"
+    },
+    {
+      "id": "tech-ai-082",
+      "contractHash": "3740a8ef3615e9cfeb434209121c7e6c2cafd0b67bacda0a6e05ff335fb2ad5c"
+    },
+    {
+      "id": "tech-ai-083",
+      "contractHash": "e34803f779d6d8bcb92292919f29e7f50d1625e7d3695915ca3b51d1cd3dadd2"
+    },
+    {
+      "id": "tech-ai-084",
+      "contractHash": "b2d62f9324709e2089eefaf5728faafd9192d56fcde0e27a2c17d1cc41a9d53b"
+    },
+    {
+      "id": "tech-ai-085",
+      "contractHash": "32abc6ef6fbe91a6e5a50235edeeebef8338b8d6e3bd4adb75d767a61d07497c"
+    },
+    {
+      "id": "tech-ai-086",
+      "contractHash": "62588cf29828932a2e34ab7ff38bc46df9138c2f320896ab4450c775f5d99eff"
+    },
+    {
+      "id": "tech-ai-087",
+      "contractHash": "deed1f4649dbb40a07ab9396b6d30a063272087b628deec878a6abdd419f220d",
+      "distinction": "제안모델의 승인토큰과 첫교정뒤 미검증 후속토큰을 분리한다. 문맥변경뒤 C의 검증을 추정하지않는다."
+    },
+    {
+      "id": "tech-ai-088",
+      "contractHash": "e98077e9d5ba4a15d8de0b48210ca7a472e7fc0fdd5537bc175b248b364a6298"
+    },
+    {
+      "id": "tech-ai-089",
+      "contractHash": "b4cf67a307629da0c430040bf24a183c48a2e5fddb92442499ac79bc024841b7"
+    },
+    {
+      "id": "tech-ai-090",
+      "contractHash": "86a3f5408552b2ba2187e46eecb5598ffb586b9476278e57f27dfc52b617835d",
+      "distinction": "동일모델설정에서 KV상태의 재사용위치를 공통토큰접두사1개로 제한한다. 길이만같은다른문맥은불가하다."
+    },
+    {
+      "id": "tech-ai-091",
+      "contractHash": "b026276ef3007672d48aa7e0b0e2c10b9f52387b00f25fd3243d63baa3b8702d"
+    },
+    {
+      "id": "tech-ai-092",
+      "contractHash": "ed487e9abb290b7c9a94d48531d468344ef52ce3609811ee80de92ba8aefe4a6"
+    },
+    {
+      "id": "tech-ai-093",
+      "contractHash": "34f66368ec206e6b4c35d7a6345f79a1ad5d4eff9a83b7adf6b063c8d1282bd2"
+    },
+    {
+      "id": "tech-ai-094",
+      "contractHash": "c70ad53d8c59e31d6b19f4210e7fee8377baa613bffc771813b5ce59d7165123"
+    },
+    {
+      "id": "tech-ai-095",
+      "contractHash": "412f5c0e7d589e73139fbee8ca416c7023ab9a77a767b01fc98ae60bfb9c637e"
+    },
+    {
+      "id": "tech-ai-096",
+      "contractHash": "4d4fd41d6d078bc936546ab4ea7268a7c16bbe9e74eaa976d928846e633fbc47"
+    },
+    {
+      "id": "tech-ai-097",
+      "contractHash": "b43dd2d03689740f705135a018c6d9604962618d9d00250a5ca1659fd3a91033"
+    },
+    {
+      "id": "tech-ai-098",
+      "contractHash": "b15a4f106a1635597f6ee155ab446051b09bb3a8d6bbba4593d86fd2b16803f3"
+    },
+    {
+      "id": "tech-code-001",
+      "contractHash": "c3729b6a3212cd521aa09a2ad6e082f90cebb96c6e4d3b52a517ee96e4606ae8"
+    },
+    {
+      "id": "tech-code-002",
+      "contractHash": "ce0632f98d5754084a629574fdd68d6cc72e1fd85a297b14801e7fb1723bda21"
+    },
+    {
+      "id": "tech-code-003",
+      "contractHash": "dbe4703db51a77c8db3a2f305b224d0ed3fa2dd446738a91baa7d959fc4db49b"
+    },
+    {
+      "id": "tech-code-004",
+      "contractHash": "7f580fadd3ebfedf3f15b1d90e262466585a4e6ba74265af624a71c2a7742225"
+    },
+    {
+      "id": "tech-code-005",
+      "contractHash": "79081f513f35936f91193e57e548b766cc33671bfe5cd3c7714ddc6c51359898"
+    },
+    {
+      "id": "tech-code-006",
+      "contractHash": "760147287f8d5f990cfe9b46ab3150eea095f05dc395cf21baf8ccd8fc100ee6"
+    },
+    {
+      "id": "tech-code-007",
+      "contractHash": "7cc6aa92ea34ee1848436b08bf275156cfd06a48c92c950db28208800e764cb2"
+    },
+    {
+      "id": "tech-code-008",
+      "contractHash": "16ff138837661fbabf9e9b1b816979331ee28f51ea61234c2797e8706778e0fd"
+    },
+    {
+      "id": "tech-code-009",
+      "contractHash": "ccc3bf8322a7527d6a068fe3606267058ceaead3be9e81ff55483f06fd1b2df9"
+    },
+    {
+      "id": "tech-code-010",
+      "contractHash": "fbd5a86b867c89bd1afff1c27928303de1e188b5c93b8071c393651762e5fd44"
+    },
+    {
+      "id": "tech-code-011",
+      "contractHash": "366cced4a87a734c97cc85db970092cef27fea6ea76a0785cedcfe79b670d92f"
+    },
+    {
+      "id": "tech-code-012",
+      "contractHash": "af698de3b7f1369da8f2fc987e555a9e4b28a36bd1db7bfc07e6129f00b01b01"
+    },
+    {
+      "id": "tech-code-013",
+      "contractHash": "5aa0a1e7487e9b04d9a563fed3d47e8114de08f2564be0c60faf8ae642276c5c"
+    },
+    {
+      "id": "tech-code-014",
+      "contractHash": "fd8a213ec5cba5dfb7d544e53d5e7ce42a023af877679adcf93135d99af45b4b"
+    },
+    {
+      "id": "tech-code-015",
+      "contractHash": "18bb07925441cc359dddb33662aa5355f1a8d071326fd6742d45c1972ac99b6c"
+    },
+    {
+      "id": "tech-code-016",
+      "contractHash": "582b4a31d89e095d65e71349cd636d194ac09311085d2e5c1ec821c9413240c9"
+    },
+    {
+      "id": "tech-code-017",
+      "contractHash": "08737c3751390dfdfb97c3d6f6e636d20386698c0af61132ea2f809a775239d6"
+    },
+    {
+      "id": "tech-code-018",
+      "contractHash": "edf724c6857f517af884022ea70a2492a51a8a2abb51a85fc0127f075ca611ad"
+    },
+    {
+      "id": "tech-code-019",
+      "contractHash": "1661308be808a07d1c08d539620849b4d2d51d6c6df176529193d5bc636f0b1d"
+    },
+    {
+      "id": "tech-code-020",
+      "contractHash": "5caab376f2261854e0adaaecc0af08d311c268e34e3e71dbb3914190e10c36e9"
+    },
+    {
+      "id": "tech-code-021",
+      "contractHash": "ada1e519bb1a12044e6ea9368da9f58056bdf802047884061e3debeb76fbbdc5"
+    },
+    {
+      "id": "tech-code-022",
+      "contractHash": "9b8f09aa77d575ed18f61e15430e7f037794ba2444dc72eeebf7090237e64d9d"
+    },
+    {
+      "id": "tech-code-023",
+      "contractHash": "4aaf56dfbc5a5840a2bde4fda928f14d1f8bf2a9cb3d8bba905f8ad42df125a8"
+    },
+    {
+      "id": "tech-code-024",
+      "contractHash": "0d9cb74cd974f955743e1fb31d43526cd078a0a7b8a58e5f05f22a7f836d9c27"
+    },
+    {
+      "id": "tech-code-025",
+      "contractHash": "00f80b403d69bcd5a426e7e184498cf84a3a14c71e2129f8e020f7c0186a954f"
+    },
+    {
+      "id": "tech-code-026",
+      "contractHash": "37706cd03221f724cc742fa5b56566542e5cfddca8d11918cb867f51175d87ad"
+    },
+    {
+      "id": "tech-code-027",
+      "contractHash": "59eabd1ce77d1212457c8d40b3a1dc536546ef6bd01c70d3230b28fa0c657408"
+    },
+    {
+      "id": "tech-code-028",
+      "contractHash": "9b0166fb84749b37a63452f0937ac93c2fd456a0817384bcd61c8a1553949345"
+    },
+    {
+      "id": "tech-code-029",
+      "contractHash": "ef57780312ddc0c03f26a87fffadf29085f0709dc602993baf239045414b537a"
+    },
+    {
+      "id": "tech-code-030",
+      "contractHash": "a9ba15f18e486de4b245e10c7303b4f459aca65b202fe71dd1f63cf175c9e59d"
+    },
+    {
+      "id": "tech-code-031",
+      "contractHash": "fd1a10e2ed9761154b1742af01db587d5939730c85b71b0c1de26d6f282b3109"
+    },
+    {
+      "id": "tech-code-032",
+      "contractHash": "9066e2672e25dbb0fd22775bf35c2b211ddd7d2d746ef0124609f1bf3c43771e"
+    },
+    {
+      "id": "tech-code-033",
+      "contractHash": "3f7b3a81808f4b00fec8f6c16c028c0e9691c006e42ec1a2b6505c2107e484d9"
+    },
+    {
+      "id": "tech-code-034",
+      "contractHash": "a2c757dbd87c2cdf0a0d220f1c5e464de6e3a14b0a245f08bdd1ade61c6467ed"
+    },
+    {
+      "id": "tech-code-035",
+      "contractHash": "3769fddf892c0c930efc2221fe62e1638268b145554d16aaa8f0771ba7ce638b"
+    },
+    {
+      "id": "tech-code-036",
+      "contractHash": "d59fa9fac3a212cfec79bb80ca26f35f2a63af67bffb90ad33977acddd3f79e4"
+    },
+    {
+      "id": "tech-code-037",
+      "contractHash": "2c6c3ce55bad133742caa5f60f52475474723534906eead1bbf7fa01490add37"
+    },
+    {
+      "id": "tech-code-038",
+      "contractHash": "07e16eb04cbc3f634e7655c1a53e2caffcab66726ec9373cdca71ca580c15640"
+    },
+    {
+      "id": "tech-code-039",
+      "contractHash": "5e3f929bc44fe551ef03c37783b250776d3e8b776a7211299c62fb7911854d21"
+    },
+    {
+      "id": "tech-code-040",
+      "contractHash": "247e33f4e7bf2d5ed68bb942b62eb9389e7d05f6bbb9d415e432dcd412b85e4d"
+    },
+    {
+      "id": "tech-code-041",
+      "contractHash": "19137ea8372be5d45b20369f1fffc3d3bd123bdf74d0b864876c823256d563b5"
+    },
+    {
+      "id": "tech-code-042",
+      "contractHash": "90794925f7b6ba711eb6c393e4b70a556b56a6fb314109dc88d787bd208247a3"
+    },
+    {
+      "id": "tech-code-043",
+      "contractHash": "cd571fa70fa6efb01fb78d8dcf9a5df6f4e2aff81df8dacd6300f4376c496555"
+    },
+    {
+      "id": "tech-code-044",
+      "contractHash": "e1de555b11cd2d06ff6bf472465536485373983b823d23b7108938c4e63a51b0"
+    },
+    {
+      "id": "tech-code-045",
+      "contractHash": "015e4f467bc6eec44ae5400a3c665a7eac8baa49f7d07b4f382b67a10fd45e8d"
+    },
+    {
+      "id": "tech-code-046",
+      "contractHash": "9ab441cd3693c4633c66c72fe156b2056060602b4078eb1d4789e9cbdd187c09"
+    },
+    {
+      "id": "tech-code-047",
+      "contractHash": "d6294aed8b2b020fe774d9a37cd4cb725617133b32a7ce026a2d0e563171e997"
+    },
+    {
+      "id": "tech-code-048",
+      "contractHash": "1583daff5db8b0899e46f0fb4f0566c3f69c0ccc7ed649b1312d1ccf876ecb1a"
+    },
+    {
+      "id": "tech-code-049",
+      "contractHash": "fe2572243888165b821d46e0ff676c7d54c2540e5dfe10c29dce67571f261719"
+    },
+    {
+      "id": "tech-code-050",
+      "contractHash": "cdfa2358f5b49017ecd146151c18edbb38cbc6ed14db40b0cf1473821cadbca0"
+    },
+    {
+      "id": "tech-code-051",
+      "contractHash": "e27d5e543b4a1cbbe6c3338152d34fd30174979cbf2496696cffca5a3e5d760d"
+    },
+    {
+      "id": "tech-code-052",
+      "contractHash": "021a95722040161d8a35b0fa275f2f8dc4790adb801813a8be95a50275c1511f"
+    },
+    {
+      "id": "tech-code-053",
+      "contractHash": "6a5e1f2c891621e942747a5708902ad5b1d310f82b94c0bab12be7bb4cdf2744"
+    },
+    {
+      "id": "tech-code-054",
+      "contractHash": "689e628935157a13d390bd227ced8fe25ddf8617e834cfa628d050cf453f9fce"
+    },
+    {
+      "id": "tech-code-055",
+      "contractHash": "98aad84b60d1510e62a9e000a318a5c19e4e9372c8a826360b7d07990301d66a"
+    },
+    {
+      "id": "tech-code-056",
+      "contractHash": "4043899a499dcbb3b2d83d379b486b32cb4a045c05536b6362e0b2df0fbb173f"
+    },
+    {
+      "id": "tech-code-057",
+      "contractHash": "6b43ec5b1774b787d9e600f1dd79a12d6284ff71c8ab525f9f2cdac632f649d8"
+    },
+    {
+      "id": "tech-code-058",
+      "contractHash": "75e9bbce84a2f0f89b36bf3820179228e64de90d9fd81d5ffc82a82d423e6f64"
+    },
+    {
+      "id": "tech-code-059",
+      "contractHash": "eda6f3f67787c8075c9dbc76acf8eb100b4650cdd6ccef96350aeab3d5fedfbd"
+    },
+    {
+      "id": "tech-code-060",
+      "contractHash": "0b99d35880b02f507be10322ead68620a421bb5da629fc5cd0c71887694b1729"
+    },
+    {
+      "id": "tech-code-061",
+      "contractHash": "6631f3c0c917b5016d1d2f56989734e74256331bf4474dac3c9f7af04dafb195"
+    },
+    {
+      "id": "tech-code-062",
+      "contractHash": "6e77dabe6099406fd01639765d49288574ddd765f6fdc7dabe81a8634270a640"
+    },
+    {
+      "id": "tech-code-063",
+      "contractHash": "1a5da16cd620b1b00eade080a6a6a521b5e6337cd6c4daaeec0fd607d3cfe720"
+    },
+    {
+      "id": "tech-code-064",
+      "contractHash": "3696884789186f23cbed4439447d6636c307e6d13fe20969232728cbcaeb25b7"
+    },
+    {
+      "id": "tech-code-065",
+      "contractHash": "5c507634c0511fadbdb80e5b3c483a6f3fae51797e9f1f64f95d60d49221dc8b"
+    },
+    {
+      "id": "tech-code-066",
+      "contractHash": "f242335f949e1c7e2fcec2da9dc1003d5f3da90d888af206bfc710fe7faee094"
+    },
+    {
+      "id": "tech-code-067",
+      "contractHash": "b38a554197ec6f492860cb2e35fab5d0829f6599055e5df0cd25d6b1251494b6"
+    },
+    {
+      "id": "tech-code-068",
+      "contractHash": "7948a551e1a2a498ee630202dde111624eb67194529484dc65dac38f0db9bbb6"
+    },
+    {
+      "id": "tech-code-069",
+      "contractHash": "c171a882848cdafc971fc14bbd06fb0fa909c08afba2edfaf4814b76518bf1fc"
+    },
+    {
+      "id": "tech-code-070",
+      "contractHash": "fded4c4548355e173853d0abacd98b9e3a96d2aef15f1cd74c1c19c1cf8a1132"
+    },
+    {
+      "id": "tech-code-071",
+      "contractHash": "9c446a704ef4b36b0012783f40305a226961704fdd2f7d2de895a7faa9a00ba6"
+    },
+    {
+      "id": "tech-code-072",
+      "contractHash": "46092c16e10a8f1af1e0049ecd3d3962e8735dd9192939ac0e662d9464e8716c"
+    },
+    {
+      "id": "tech-code-073",
+      "contractHash": "46b024fc55655750e15e3c7b0c3f45213c8ffac8cd5e9905fd15852a65b82447"
+    },
+    {
+      "id": "tech-code-074",
+      "contractHash": "8be10170361db5ac64e930f7ea15a6ca2c4279b04932f3abb9815c5ce8685863"
+    },
+    {
+      "id": "tech-code-075",
+      "contractHash": "d6ac981fc5c847ca6898feaa7464d3f478e82210972948a0e652f89dbeae1907"
+    },
+    {
+      "id": "tech-code-076",
+      "contractHash": "3633680aabab249b220d67df57eb5d710ff6873384d8cf5e6989277146412062"
+    },
+    {
+      "id": "tech-code-077",
+      "contractHash": "7bc88b8e382fca9079b6d3e01a28f0c482ca186655040fd1ff3817d317097e44"
+    },
+    {
+      "id": "tech-code-078",
+      "contractHash": "7c16dff27fe45014a6a846c1a58816f5e93ee604594b44b496d5217b4d382b94"
+    },
+    {
+      "id": "tech-code-079",
+      "contractHash": "758b89048c4c2f0fbb0b151dfb3c1e230ff4520e7399190ee80f3398c9d9c05b"
+    },
+    {
+      "id": "tech-code-080",
+      "contractHash": "7075eb90c9f0b7a97bac91c98b94f76b68b3228aeb7e013f12e5e93a5d511335"
+    },
+    {
+      "id": "tech-code-081",
+      "contractHash": "4adad7484c09d5bf0e1d87b5f04683eca7b2341caabc14b2a213ab835bba1c50"
+    },
+    {
+      "id": "tech-code-082",
+      "contractHash": "153f6e7924e540e8c6cb59c83bf425ed8be02b8bbd75522c61ee74482d0577d6"
+    },
+    {
+      "id": "tech-code-083",
+      "contractHash": "4dbf4f509af725127df2f5cea412d443b55c464a63cb8e58f812d67ae2de67b4"
+    },
+    {
+      "id": "tech-code-084",
+      "contractHash": "c8def1254a397021001afc351c301a575f219d10848f83e1b66dbd0e1b9fe9ed"
+    },
+    {
+      "id": "tech-code-085",
+      "contractHash": "f4a534c198cab69764c1dc348de41ec00726deaa39587ed8edcba023d821665f"
+    },
+    {
+      "id": "tech-code-086",
+      "contractHash": "f01ea4aea814f143a4f053e5abae5e57f99e048b747461764a78093903fb1357"
+    },
+    {
+      "id": "tech-code-087",
+      "contractHash": "62f3175942634e4100a2d8b2c6468c364415fe7740181c16579fff04a553fcc9"
+    },
+    {
+      "id": "tech-code-088",
+      "contractHash": "9cc2a66562f4be867e890c0591a876c4b07191a9b0382ab6bb30355c25d780d0"
+    },
+    {
+      "id": "tech-code-089",
+      "contractHash": "52cdc36caf4628c04a1d3eab38363a8139c5dc002379ab57c002f99f11839c47"
+    },
+    {
+      "id": "tech-code-090",
+      "contractHash": "6a3ae0f0f8961854f8f6ef7964fb3202885b9cdd0e500388bcc0828257cf43e1"
+    },
+    {
+      "id": "tech-code-091",
+      "contractHash": "e56e247324e17f8315eccc943c5893b4dcc3fa1023867c256db716f71c869fec"
+    },
+    {
+      "id": "tech-code-092",
+      "contractHash": "ef7c7457e8dca49574c3bebc0db76f05cb4a14fbac1a17266c36c7d75111661c"
+    },
+    {
+      "id": "tech-code-093",
+      "contractHash": "2ded073726e07dfbec1135f6f36ffea59f55d33f9af0c996118aa23d3b68db06"
+    },
+    {
+      "id": "tech-code-094",
+      "contractHash": "41ea2be4bea94d533aeb545253313de8501fab53dcf3d59ded84ec43cce85747"
+    },
+    {
+      "id": "tech-code-095",
+      "contractHash": "586ce03906299396ac35a0aa112a85e198ed6684cd88b8fc226eb505a1f9b16c"
+    },
+    {
+      "id": "tech-code-096",
+      "contractHash": "9dc5719f4f51c3d8fc9e3e7fa77460b0d0a2fa8be13dd71e94c8ba789ccce6e1"
+    },
+    {
+      "id": "tech-code-097",
+      "contractHash": "7aa6801769a01e56511070eb518757add738fba52fc29d0c2bc57c7ec78f2705"
+    },
+    {
+      "id": "tech-code-098",
+      "contractHash": "98aee039112d9498c24f2cab7fc77f3f9637fd9f6eb4992073ab7e0c17f1cf0f"
+    },
+    {
+      "id": "tech-code-099",
+      "contractHash": "5000f7ec02ac952e0c6fa63abf1b7cbc1d4c568a4df8ac2d024af7fce50f8ac6"
+    },
+    {
+      "id": "tech-code-100",
+      "contractHash": "572461f299e26f962e5b2ea2c6e41bd291f1d687dca0eb2de7f00a77bea5dae7"
+    },
+    {
+      "id": "tech-data-001",
+      "contractHash": "e5b45ee16e7b47aba8d999ef8f7792b494da9779df9ca2f2b63fa6ab9d9b06c9"
+    },
+    {
+      "id": "tech-data-002",
+      "contractHash": "ceebf8f46d1bc7902689e19fd6c8562bc54bdc8c84e11d500c61629242cac5da",
+      "distinction": "넓은버킷을 가르는새경계의 세부건수는 분포가정없이 식별불가다. 누적버킷차감으로 알고있는구간을구하는 기존data022와 다르다."
+    },
+    {
+      "id": "tech-data-003",
+      "contractHash": "7db5f8cdfa360a85da047fd6b8b8e624441f91036d466ddb83944b4925588f40"
+    },
+    {
+      "id": "tech-data-004",
+      "contractHash": "0227c7edc709cb7bce800b939c8b1f093dbcb6f69ed0b829c5c1cbeeafe5736c"
+    },
+    {
+      "id": "tech-data-005",
+      "contractHash": "f5b260f4bf3b514e4ed12983ca7f33fe695a30b96a3d5226b47aeefb48f68e3a"
+    },
+    {
+      "id": "tech-data-006",
+      "contractHash": "3864aae0f21e7721a1a750232d34ca498acdd219c06a27c0d5c89d346cfa1023"
+    },
+    {
+      "id": "tech-data-007",
+      "contractHash": "c0de6b2e9e9d10fa2c02e8c4b111efd410ac4a9eeba9a66f177c657ca94aa177"
+    },
+    {
+      "id": "tech-data-008",
+      "contractHash": "0ace79c4d67e0e3c2d07e956bee7022efcc682215a2eea2c8b3b5e7ddd350a89",
+      "distinction": "시점두개로 순증3은 알지만 유입·유출총량은 여러해가가능한 비식별성이다. 관찰된증감거래의합계나구성비변화와 다르다."
+    },
+    {
+      "id": "tech-data-009",
+      "contractHash": "52387bb59034d04370f5a52d42cb28c07a7fefe728a98d5e1a2633cf17530672"
+    },
+    {
+      "id": "tech-data-010",
+      "contractHash": "a33ecd2aaa5725b4ee8665ffee9e727f895a054c54f39fbd33e5c3e3ce067c8c"
+    },
+    {
+      "id": "tech-data-011",
+      "contractHash": "f46c6327785d3ac8dd82ba6280b3ddf2417c6aec4e4e04183a9f80450ef33de4"
+    },
+    {
+      "id": "tech-data-012",
+      "contractHash": "26dbccf2a1e64786fb329daa8bf8b3b7fa85596a3b4681f9f718f25f10b6a5fb"
+    },
+    {
+      "id": "tech-data-013",
+      "contractHash": "c34fd2feac9789d922c22e1ea6e29aa84b402dc026dd287891b996d1b9fcefda"
+    },
+    {
+      "id": "tech-data-014",
+      "contractHash": "37156d5b5a5a84a93dda07d7a05202615511922a0f39f8c06fa0625e4b7fdd8a"
+    },
+    {
+      "id": "tech-data-015",
+      "contractHash": "28097332d77ace130b58749c74afd3b4256783a44224ad204752054fce75cb7c"
+    },
+    {
+      "id": "tech-data-016",
+      "contractHash": "29526ab1a0bafb6485de687ff840d2d36a28ce4fa44ce89e50cc45ef593a08ef",
+      "distinction": "삽입만 수행한 Count-Min의 카운터 최소4는 충돌에 따른 상한 추정치다. 정확한 빈도와 단방향 오차를 구별하며 초기화 계수기 문제와 다르다."
+    },
+    {
+      "id": "tech-data-017",
+      "contractHash": "b0861e9c8acf16b5a12b747679be75145eee166c3c1850279b02cb17f02d87ae"
+    },
+    {
+      "id": "tech-data-018",
+      "contractHash": "aa976e7f0d61bc7e0768b6edf3cff92f5328592397330a2e3d69dfe648f926b6"
+    },
+    {
+      "id": "tech-data-019",
+      "contractHash": "bea894313905c38145d45fc7088a61aa36f938854760a191c430d86e17cdd3ab"
+    },
+    {
+      "id": "tech-data-020",
+      "contractHash": "003808c3ec4a79776e8502f436bf4b542628f930721493f0bae03360a0948409"
+    },
+    {
+      "id": "tech-data-021",
+      "contractHash": "980f96e239e2004d69d7b7b57d64a5c3a11288cf553364ebe3b5236a0fbd19dd"
+    },
+    {
+      "id": "tech-data-022",
+      "contractHash": "94169521823ccc4cd73f7bb2e74b30af5b3db309a75826ed3c89851c3ccdc7bb"
+    },
+    {
+      "id": "tech-data-023",
+      "contractHash": "aeb19d21f705b1780c50736c12be883d30bc15b85fe3160d6f79ec3935e87d67"
+    },
+    {
+      "id": "tech-data-024",
+      "contractHash": "d146da83ac5237fd86a1ceabf17f31a1faafffe8c20252d2b213a50957f542d3"
+    },
+    {
+      "id": "tech-data-025",
+      "contractHash": "8c7a5b515ea0af5ea15b4a33073795e8725db2e19c5b2bf93babfbb6e2dd14ed"
+    },
+    {
+      "id": "tech-data-026",
+      "contractHash": "632fa214cf5a4a5e30c0c2c651fd9b1676f7a614bf1de10f06386abefe3aca6b"
+    },
+    {
+      "id": "tech-data-027",
+      "contractHash": "ada3c90cf251566b8976af03b05558741b5502dbf058700c3c116f757013d3c1"
+    },
+    {
+      "id": "tech-data-028",
+      "contractHash": "1cb47859e6900152c61b88acc316706dcbfe09ad9c441b7e4ddfb91b85a68364"
+    },
+    {
+      "id": "tech-data-029",
+      "contractHash": "98e7c2ebb629ef1f70fe58a7a8e3f6d27476c25963dda434589dd31cbcb519ac"
+    },
+    {
+      "id": "tech-data-030",
+      "contractHash": "2dfd2a12123de082f26f5343ed433da0cab6ed6bdf8eb6e3b65acd23369ecd38"
+    },
+    {
+      "id": "tech-data-031",
+      "contractHash": "805c0ac05266c3283c46f3b21ca26b5b0df1996e3a67abd8097f5557770b3fc4"
+    },
+    {
+      "id": "tech-data-032",
+      "contractHash": "466fd7bcd8833c21fbf8e0644db056f7a6e83b8eaf9dee98e11c04987e9a66ce"
+    },
+    {
+      "id": "tech-data-033",
+      "contractHash": "16d956d25e0cb80f13392789779f92c057ff063af835c2cd240aa9ab805c88c0"
+    },
+    {
+      "id": "tech-data-034",
+      "contractHash": "4a8cd8070483303d0543b28f447f32fc00442b1f163561e9a1048bbe8abb1aa6"
+    },
+    {
+      "id": "tech-data-035",
+      "contractHash": "c741a53b7b4ae2bc96c0ed949f71e1b132e27ecdbde2106b59d7006ca2b4f4e9"
+    },
+    {
+      "id": "tech-data-036",
+      "contractHash": "127d4b08f8e82b6d14327636120e08a67e715bdee8b4132e781cdbfbfbc5d652"
+    },
+    {
+      "id": "tech-data-037",
+      "contractHash": "af26bb45ffc31a81ec7c64c5dc46ff85ed65cebfe7a42e0ea82f2a2dfe965ac8"
+    },
+    {
+      "id": "tech-data-038",
+      "contractHash": "a279137a5d58a76c8f8971fac6f36f90a1e4e4dd9d6366a26d49a6f677eee2db"
+    },
+    {
+      "id": "tech-data-039",
+      "contractHash": "8b9ad0a4d1f00af457e773b39f7aa4e23bac8c82536d2bceb3f1f2c7628861f1"
+    },
+    {
+      "id": "tech-data-040",
+      "contractHash": "e16212a27f97cce958484dc61c33e533d426c7f384d5b04ece7a28856f57dc84"
+    },
+    {
+      "id": "tech-data-041",
+      "contractHash": "02dd599a63ff9def474a55a6cac001372f84ea7e6fb1ebfbc38268c51262a01e"
+    },
+    {
+      "id": "tech-data-042",
+      "contractHash": "ded72618c639aae970f5db2c66d90683730f3fcf2bc7311bfb48e40599d4ddc6"
+    },
+    {
+      "id": "tech-data-043",
+      "contractHash": "671fac8e340f800e1c4759e8efe32ff5c27353b71109910228b4dc6e3fb97356"
+    },
+    {
+      "id": "tech-data-044",
+      "contractHash": "a59acc8ed54c1ca9d3f73e8e467cf7fed83d324599aef98be4b23182523a115b"
+    },
+    {
+      "id": "tech-data-045",
+      "contractHash": "b7a1420664493b86838d10916abd0bfa9440dc5b0a1b8ca0f0a6fc77065546e3"
+    },
+    {
+      "id": "tech-data-046",
+      "contractHash": "d3487ee7217fcb9819f83195c3bb3e1fa4c9ab7988cfbc8dc82fced7cf1a7dec"
+    },
+    {
+      "id": "tech-data-047",
+      "contractHash": "84da55419ca95ad6faa5ae9bda04a283d9d2e6fe2a2601bbf6ee88de47d3e668"
+    },
+    {
+      "id": "tech-data-048",
+      "contractHash": "a0e9c7be311c4c035bea63e3bf302668fd654711f894493e1d86c12c5b54aaba"
+    },
+    {
+      "id": "tech-data-049",
+      "contractHash": "3c9ab95464bbda206458101bebea69381d9145c38a3a7c0ae36ab5a7928745a1"
+    },
+    {
+      "id": "tech-data-050",
+      "contractHash": "c555797875a78b685cab30e4168f709edfd2a700cdcd74cef6dc7f81b2b7dbe5"
+    },
+    {
+      "id": "tech-data-051",
+      "contractHash": "c65bee2c00d5d5f6a0b4219b5c27bff8a3f12d241bc70af4b8f04277365542c2"
+    },
+    {
+      "id": "tech-data-052",
+      "contractHash": "411b68f2d011250422c9136686fae92ebf6ae33ddece44d99862577c8efca10b"
+    },
+    {
+      "id": "tech-data-053",
+      "contractHash": "049ff4fba3eedac40cc3bba6586801a951bed015fa1d893124a782e7823dc02c"
+    },
+    {
+      "id": "tech-data-054",
+      "contractHash": "e71b2a80b7bef0ec236a5ead6cc4be4a5b3f52e21d39df72e12a65de36fea440"
+    },
+    {
+      "id": "tech-data-055",
+      "contractHash": "8181031a9c4ee0182144136d51374e1e12ddb9c0719690765a0a4e612807a959"
+    },
+    {
+      "id": "tech-data-056",
+      "contractHash": "b08a05905a372583ec6e4b05447b327a7f337521d28743e5844c74a26436f726"
+    },
+    {
+      "id": "tech-data-057",
+      "contractHash": "846b461982a006b51b94935afd9f8987a0106e9bba2f01ae93d91252de5a451a"
+    },
+    {
+      "id": "tech-data-058",
+      "contractHash": "e959be0043041a432116adea2b0990cd3b5fbf6352a3b98d2bddf04933e538dc"
+    },
+    {
+      "id": "tech-data-059",
+      "contractHash": "5ae172f546e69d767c0fe3c903dc71e43d257c234b50b53d3bf4f88aa01238cf"
+    },
+    {
+      "id": "tech-data-060",
+      "contractHash": "96c2166df8fbff2deb97014fc7ebb8fefc2a472d4d604e2ad13bbd185a6e7eaf"
+    },
+    {
+      "id": "tech-data-061",
+      "contractHash": "77c03cd7d7603a64ce650ef86c79d74edc50269aa888430e2c3eebff837bf55d"
+    },
+    {
+      "id": "tech-data-062",
+      "contractHash": "7cae3e4cad4ac12107b11d5e9211715ff9d53bf682a2ff1ba9671380038b7097"
+    },
+    {
+      "id": "tech-data-063",
+      "contractHash": "fc90a6ebbbc20d3515e897c1df3050a08f2cd6a699f02e8552a7a9f35904b4f3"
+    },
+    {
+      "id": "tech-data-064",
+      "contractHash": "d516b0e69024a809b8866e50f7dd5d4c8246b2f2528125f314dbe12055c2ce43"
+    },
+    {
+      "id": "tech-data-065",
+      "contractHash": "265ad439704fc7e74443d3db15213e9f70b7007f309158bc5539d2990f35f6bc"
+    },
+    {
+      "id": "tech-data-066",
+      "contractHash": "7c8e28864f128f94033e159251e0843a0ac522acc98ddf88d9c2c1d640eeec26"
+    },
+    {
+      "id": "tech-data-067",
+      "contractHash": "60d1161a7d5e61135e61321810fd6670535689c533fba15267a673a4811a6561"
+    },
+    {
+      "id": "tech-data-068",
+      "contractHash": "58aeaac97c3da8a6f763cde3120ad9e77ffe9c1eb215bbaa288538ae54f1cf10"
+    },
+    {
+      "id": "tech-data-069",
+      "contractHash": "ed67e43d26c7dca7de55e077934b1ef72e1d269e7123d305ba53196f5524ddd6"
+    },
+    {
+      "id": "tech-data-070",
+      "contractHash": "4ca23d2e09a7b9a179abbeb25ea45821ea9965a998e5560678e6d73729648b2f"
+    },
+    {
+      "id": "tech-data-071",
+      "contractHash": "55143b4782488d9ed2510b3420bc8d021b492e53b5d1c0c65c2070fc31d362c3"
+    },
+    {
+      "id": "tech-data-072",
+      "contractHash": "f734249620d234e853016611fa6a7ae48ce5be3917ca167cd393a604aefee378"
+    },
+    {
+      "id": "tech-data-073",
+      "contractHash": "8b35db01581125f0bc2e26e580eaeca4ea85306fb95093cdcd6073591aecab19"
+    },
+    {
+      "id": "tech-data-074",
+      "contractHash": "17f0298b7485a7c32648d95d6fc81441c6a4fc90f1e231e68195c56c53e25184"
+    },
+    {
+      "id": "tech-data-075",
+      "contractHash": "2a91d87a332abfae1ab71b4ea23e89bce2413fa0e6b3fee0cf5db6fbe8ddcd0a"
+    },
+    {
+      "id": "tech-data-076",
+      "contractHash": "db06c90a60309dc4ecc845b380dd04355cf961684dedf87bfa7035a10195f091"
+    },
+    {
+      "id": "tech-data-077",
+      "contractHash": "cb31abedfb7adb3879968868004ef0422a07f8f1bbaa7549b12b122f94b7539e"
+    },
+    {
+      "id": "tech-data-078",
+      "contractHash": "950b700b46a65d50054ccf536eee2d5ec2680097169be574d399293066422ada"
+    },
+    {
+      "id": "tech-data-079",
+      "contractHash": "16e2f31c7779559d31c53c831de92db9e7bcf43b3dd636b3e219610bad797fee"
+    },
+    {
+      "id": "tech-data-080",
+      "contractHash": "eb7046707a4d0b8a8a10607fe9ec92de916dbf58a08da0823eac3d5533499552"
+    },
+    {
+      "id": "tech-data-081",
+      "contractHash": "458b12c77e2fe81a54de15d3ae09389aa35e0341050681ac5a82eeda0e55db3d"
+    },
+    {
+      "id": "tech-data-082",
+      "contractHash": "c15e8360c34b55973b4bf2368ca1ed50835923c9023e2394b828426baba03d53"
+    },
+    {
+      "id": "tech-data-083",
+      "contractHash": "d54b84c1bbf08842e162b496f71f7bfb8f476962a0fa0c90d10f1020962af373"
+    },
+    {
+      "id": "tech-data-084",
+      "contractHash": "61f9ccb2310831e1ce589c7b563f199d4bb8c616ebbc63b0fe723b8206b1efc0"
+    },
+    {
+      "id": "tech-data-085",
+      "contractHash": "2ffe59357d242ea6a4301f5eeb3f839b8a178231b3d200d95a354bc0452938ae"
+    },
+    {
+      "id": "tech-data-086",
+      "contractHash": "2135328fd80039a64842ac914cbf6315b5967f4ec7d73aeed61a5f46e1a84a74"
+    },
+    {
+      "id": "tech-data-087",
+      "contractHash": "e88bcd41c1afc1e0d2e8ce1e99b3754847ea31a6b850ab06351263e8050ecbfb"
+    },
+    {
+      "id": "tech-data-088",
+      "contractHash": "e24fe94e6b769c221399418fad69b61a02c33dca21f6c65b8caea14b9b0a85bb"
+    },
+    {
+      "id": "tech-data-089",
+      "contractHash": "34097a9bebdf6b95001179cf76318ce78a7c8ade07ce6af7b2f4afcdf7efb5e9"
+    },
+    {
+      "id": "tech-data-090",
+      "contractHash": "8e4ff6579aa7e6acdbbce9994b8ed04a582016de1995d48a1bf24bb162c9676f"
+    },
+    {
+      "id": "tech-data-091",
+      "contractHash": "effb9e72b0d0f5f4895eb8b45bd32b4e060469678269c3359e8d3a7dc606092c"
+    },
+    {
+      "id": "tech-data-092",
+      "contractHash": "c8a9a15bc01a957df9e5261f2ef35653fb79373cda8281b8b43f2c8ebc4c1b23"
+    },
+    {
+      "id": "tech-data-093",
+      "contractHash": "08acd28f754e8b5a0662bd7d49ff5e166bc9cd879870e91e1996f4e4e3ffa672"
+    },
+    {
+      "id": "tech-data-094",
+      "contractHash": "28b4eab75e262042b0d7b32248bd01708341460791f67117f4fed7a4435c5d8f"
+    },
+    {
+      "id": "tech-data-095",
+      "contractHash": "a83d025dfc9ae226fec2ab57f6a7dcc875391998967fc31e40a78dae98ae3184"
+    },
+    {
+      "id": "tech-data-096",
+      "contractHash": "5c5f57f578345e26baff1350ba343cf6c72c51e80ddce3d343f57bb8aee24ad1"
+    },
+    {
+      "id": "tech-data-097",
+      "contractHash": "ed29e05f0185be4b03b9d4054031ef9d0887510ee18b08033cfa0d3a18112cfc"
+    },
+    {
+      "id": "tech-data-098",
+      "contractHash": "0ce79bb8f33ba4510b48f83b34283d606ab75f621d893433b55d49e01275ab0d"
+    },
+    {
+      "id": "tech-data-099",
+      "contractHash": "5be04bb3256855b3efa12758efb183b5c4c1a5e3e0c34f7fac963142018d72fd"
+    },
+    {
+      "id": "tech-data-100",
+      "contractHash": "4e69632a67103aa537fc3c55140e08feffccabbfbcd5bf553932c890ccccc159"
+    },
+    {
+      "id": "tech-data-101",
+      "contractHash": "7caa36c37fae6752f81c1dcbd2558c54fb54b064f15438752a9db07ffca82a69"
+    },
+    {
+      "id": "tech-edu-001",
+      "contractHash": "2bf6be221526a4efc6f99176ea3028faeb34ef5bdae89b76fbf09ee4c854e837",
+      "distinction": "제공교육과정이 같은분모분수덧셈으로 한정돼 관찰가능한 설명동사로 목표를 구체화할 근거가 있다."
+    },
+    {
+      "id": "tech-edu-002",
+      "contractHash": "a8d317cb894c93cb2e849ceed63707a33569f290dcb8f4de0c115fe2614a3df2"
+    },
+    {
+      "id": "tech-edu-003",
+      "contractHash": "1b08d543253d14d7c6bfb476290ffdc307bd7145e9cd1de254eabed2af2a4941"
+    },
+    {
+      "id": "tech-edu-004",
+      "contractHash": "e28d185585c64610c008dee316e630098e5a697f3c0d1f81cddfb83e9d7a7527"
+    },
+    {
+      "id": "tech-edu-005",
+      "contractHash": "2368db6b7737fccf6fa21b86d0e2e5696b57f3b215500631483ac716a6301d32"
+    },
+    {
+      "id": "tech-edu-006",
+      "contractHash": "b15d00e661217791b49498dc1c0c2b6504b3df4f70cb0b88952c973c6c3417f5"
+    },
+    {
+      "id": "tech-edu-007",
+      "contractHash": "53a9c6c9b8b61992b9c846d52197e87babcb72667c702a596f8d175bf354b941"
+    },
+    {
+      "id": "tech-edu-008",
+      "contractHash": "e6c92cd0adac29525ee371c733b5ef201faec69533fd1cbd6c12199a1b3f8458"
+    },
+    {
+      "id": "tech-edu-009",
+      "contractHash": "e3b96f9698cfed43c59286a6751e19639ffefb83e09e928ae45c363c678409bc"
+    },
+    {
+      "id": "tech-edu-010",
+      "contractHash": "18e5699bc6da8a29554f50b40ed8e34be6602305ab81c59a812dc1fb3756d1eb"
+    },
+    {
+      "id": "tech-edu-011",
+      "contractHash": "ea20859b95e9d21c89cbdf28d25ef4517d7e2f938a1fec647d1be0952331b26c"
+    },
+    {
+      "id": "tech-edu-012",
+      "contractHash": "f7ef8d57c8319c235a4f3a799329e34b6545195254e70a5946272edcf56b6a2a"
+    },
+    {
+      "id": "tech-edu-013",
+      "contractHash": "893a143357c76cd63f021e67b94535b5ed98ad1ae5f4bd4f6f2f996352ef0efc"
+    },
+    {
+      "id": "tech-edu-014",
+      "contractHash": "bb05abb9461f0f915360b648665032a790940c337bdaeead6cc3650baa79d0e8"
+    },
+    {
+      "id": "tech-edu-015",
+      "contractHash": "50c35d3916d7fff683e261e333a123d89e7f74b47ddc40cdcf6c2f3967c72168"
+    },
+    {
+      "id": "tech-edu-016",
+      "contractHash": "bcc74b94fd901cb49a80c5a746dcb6d697d540ca12897a63c4d2c0e078b3a826"
+    },
+    {
+      "id": "tech-edu-017",
+      "contractHash": "8f1eac970187abe733405d50fea2f112d8f43ba8a73fe9a17b86f952cab2ec5a",
+      "distinction": "최상/중간/기초의 전체루브릭과 근거관련성 확인이 제공돼 두근거·반론없음의 중간판정이 성립한다."
+    },
+    {
+      "id": "tech-edu-018",
+      "contractHash": "74c3dfe3212df319161549c0c3503ee0beea979a86a1d0f2375bedec461d22ef"
+    },
+    {
+      "id": "tech-edu-019",
+      "contractHash": "e084bcc7a30f67813c4471bcc27b19ece8721990907f463436dd1118c8627994"
+    },
+    {
+      "id": "tech-edu-020",
+      "contractHash": "a6c5e87997e8e857b7bb7a5f535cd1420bc4894f9d143ad15c4a17dc86d11342"
+    },
+    {
+      "id": "tech-edu-021",
+      "contractHash": "b8f46fef0a7110242fb1d6fa6385fef677891b46c9265641a47488be5744cbc3"
+    },
+    {
+      "id": "tech-edu-022",
+      "contractHash": "4fb905976c44476bda436146275623372d1725af525c8332a1f33a9c019ae2bb"
+    },
+    {
+      "id": "tech-edu-023",
+      "contractHash": "a6d1617e73f05df4a5adf854f9bc3b70fb8f34fa7933a7ad101ec764aa174700"
+    },
+    {
+      "id": "tech-edu-024",
+      "contractHash": "1d3aa044a07836f3033d521492c4a6aa37e28fdf9dd6b2e41f8e131a0ec33c6a"
+    },
+    {
+      "id": "tech-edu-025",
+      "contractHash": "48c018f2f5f8ebcd0a99c285c5bf5146d0f0c812dd0ceddd9d12386bf300a81b"
+    },
+    {
+      "id": "tech-edu-026",
+      "contractHash": "75df18d820eea1a028eced417bd926c893789e62adc00a7448f4c760d05e27f0"
+    },
+    {
+      "id": "tech-edu-027",
+      "contractHash": "14f07558174b47cadaa51a7278f1352131d33b22f547e5184eeb2bda53ebf225"
+    },
+    {
+      "id": "tech-edu-028",
+      "contractHash": "b5be917d04d2ac3f46157150191f244a562cbd1794a3b78e5a362345c291256d"
+    },
+    {
+      "id": "tech-edu-029",
+      "contractHash": "9ef70ea2355e30ca30983ded41342db7311edc98fa714a4010a9b9df7c693292"
+    },
+    {
+      "id": "tech-edu-030",
+      "contractHash": "dc244883dc3177f3e8c8ce7996c96f98cbec0791b63b27082d9b08c95eac4c97"
+    },
+    {
+      "id": "tech-edu-031",
+      "contractHash": "320acf33ac6d041f56e967da8ffba17c3c46fefd333e051ed5eb18bac47ceaca"
+    },
+    {
+      "id": "tech-edu-032",
+      "contractHash": "5bc027fcea8e142766b31557304656e3872d4d194e9d48467f4d47e66b67fcde"
+    },
+    {
+      "id": "tech-edu-033",
+      "contractHash": "bdfc9c896629227070d5c5f17c9c2cabd7eb63d9b9f8e7ba52c29fd8526fc4c4"
+    },
+    {
+      "id": "tech-edu-034",
+      "contractHash": "ea1d5fb3139049ff1c6baf587630bba34ce1c8c1541fa0401c88f44bc302d408"
+    },
+    {
+      "id": "tech-edu-035",
+      "contractHash": "5fc1365eb3a8f7b963bb2eef22529e3d76a28c8b49ed8949be40a877432681e8"
+    },
+    {
+      "id": "tech-edu-036",
+      "contractHash": "92ba77e3721824e65f4ba6b2e6089bb1f7bf6eed0955548afd792c0b6f9d5b57"
+    },
+    {
+      "id": "tech-edu-037",
+      "contractHash": "68484ffeaab36eb78004067a572446533a320ec3ca0f6094acb934ebd1ba9898"
+    },
+    {
+      "id": "tech-edu-038",
+      "contractHash": "5c4b7c6a88f555911d81cebac00763df7348750b84917fa27402d0f31cae78ff"
+    },
+    {
+      "id": "tech-edu-039",
+      "contractHash": "e667df99058b5a281291a8722be3bae8ab5745cb09545a3268b9020f28c783e2"
+    },
+    {
+      "id": "tech-edu-040",
+      "contractHash": "6bc5f9d0aa496d1cee4e99bb91fdf5258df2ebfac76ca9c4ba68c15ae2e90f0e"
+    },
+    {
+      "id": "tech-edu-041",
+      "contractHash": "5ad0ea138b592329a3059019ca606c143fdf3430cd00127e66b72eb378da2b66"
+    },
+    {
+      "id": "tech-edu-042",
+      "contractHash": "65e8678a3fa1e23fe53d452aeabb13a49a1a0f53e3115f1b6565e2c244885f8d"
+    },
+    {
+      "id": "tech-edu-043",
+      "contractHash": "169a06d0c2c04a8348e0955c1b2211adda895bf2a1cd743f0ac6517ca98c4973"
+    },
+    {
+      "id": "tech-edu-044",
+      "contractHash": "1d9f6ded825997428d285224b3398d969d6e7350de259fd39cbd7a4e12a27c71"
+    },
+    {
+      "id": "tech-edu-045",
+      "contractHash": "c18007b81ef0d2c5c9af46f1e13bcaa58eeea77d81cefd42f34ebd993314ecf6"
+    },
+    {
+      "id": "tech-edu-046",
+      "contractHash": "adbfa30531d08e3cb6809dec4b8a051a1ffb0e80074e51f82c54fa39feb3bd7d"
+    },
+    {
+      "id": "tech-edu-047",
+      "contractHash": "04e5fb003c730e71f46e8e2b117cb9f97aa439021b03c62b5d4884cf148557de"
+    },
+    {
+      "id": "tech-edu-048",
+      "contractHash": "ce0baf504d5e3a37bbb930c2a8e3de9d21f8ce5f573097db9faf541fb36ac231"
+    },
+    {
+      "id": "tech-edu-049",
+      "contractHash": "ab6cbd21b0d31e8b44a6f3a35dee38e928942a21694c3c94c45d10f245519c69"
+    },
+    {
+      "id": "tech-edu-050",
+      "contractHash": "c44aafa22eed44e232bb9686841ff7bdfc33c0c00ac2cdfccc93e370fb23ff05"
+    },
+    {
+      "id": "tech-edu-051",
+      "contractHash": "4962747945da4ea0a4fc8b5a6a7f992ef4a5257e0506ef8f856b7f56c6083362"
+    },
+    {
+      "id": "tech-edu-052",
+      "contractHash": "23724120b6d03335f371991740953fbc705bc3b246db12d9b3d852e7175ae6e2"
+    },
+    {
+      "id": "tech-edu-053",
+      "contractHash": "96a5f925cf54501242ad87b856649564c5f43687c1a0b50c6b5872836c56ef3e"
+    },
+    {
+      "id": "tech-edu-054",
+      "contractHash": "a99f7658f1ef41a7b3cce90ecbc11112e60c463edcd9c86729c03de91fe3eb49"
+    },
+    {
+      "id": "tech-edu-055",
+      "contractHash": "590b6ae16ee8b9e7c0bc7cb64dcbb596a4e68c8d6868d929c4822a1d4811e82a"
+    },
+    {
+      "id": "tech-edu-056",
+      "contractHash": "662c194065999722610542e35d9a7b15f723de32059206d07c504a86fd6f5fa9"
+    },
+    {
+      "id": "tech-edu-057",
+      "contractHash": "735f27c60113ccba5c33acf12df2d58ac39282584f8188ea7aa339d7b100665c"
+    },
+    {
+      "id": "tech-edu-058",
+      "contractHash": "3509dcb541a16f59f7bb49e131040d4f66840ed19ebb9edc38671d71d3ba2f2a"
+    },
+    {
+      "id": "tech-edu-059",
+      "contractHash": "641823a30ad72fa2bdccf544f9e804d9e29016f534488d03225522598e13e4b7"
+    },
+    {
+      "id": "tech-edu-060",
+      "contractHash": "bda419bee3ac9c732c9d406b7df341dc2e14aa13e56c58c74e7d1193f8cb4ee5"
+    },
+    {
+      "id": "tech-edu-061",
+      "contractHash": "454453cd69a6863aa09fa8707ea6daea7e597962b4a682f65badcacf85e0f4e8"
+    },
+    {
+      "id": "tech-edu-062",
+      "contractHash": "f1388d76fccced84485d1695a41cf398e5382780f4f2a6cd9a0481a4e238db3d"
+    },
+    {
+      "id": "tech-edu-063",
+      "contractHash": "aaea69a9ff36efb5566480b1ac703c223a8fe19632227b54468695f35b676b50"
+    },
+    {
+      "id": "tech-edu-064",
+      "contractHash": "558acdc29c18c902a89ce888b5bd77e1b9361b9920f64c55879d59e5dd06a896"
+    },
+    {
+      "id": "tech-edu-065",
+      "contractHash": "5a22b4add7b58d36fde84003887c02b134545fb95c783c757efc2945591814da"
+    },
+    {
+      "id": "tech-edu-066",
+      "contractHash": "b436f28c435e7456771db5fc1b9f911414df438efd9c44a1479b4abccc9f9370"
+    },
+    {
+      "id": "tech-edu-067",
+      "contractHash": "5f9aeb1eb186174842f3024dc611655441456465f9c4eeeab39eeb74c03f87f1"
+    },
+    {
+      "id": "tech-edu-068",
+      "contractHash": "7a41f8080e3914fefc3b1b24387745d1ee8b5d3b36c5384519c33ac0bdc0a281"
+    },
+    {
+      "id": "tech-edu-069",
+      "contractHash": "3d0b4381ae7bf622ceba15733821eaea416bde901f5f3e44d746bab4fd72cabd"
+    },
+    {
+      "id": "tech-edu-070",
+      "contractHash": "18cb9c06cb7a006ad17a10d5f070a63777abd73d68649b45d1de00053f7d4783"
+    },
+    {
+      "id": "tech-edu-071",
+      "contractHash": "3a682e3898cfe04e74b8dc10b7a5d216216995cc04e1e3213e89bb31e6c5fd1e"
+    },
+    {
+      "id": "tech-edu-072",
+      "contractHash": "8dafc5ca0724a3a12ff0c5be47fe1a908b2d1eba64afdf7e0b3405b6d1a46673"
+    },
+    {
+      "id": "tech-edu-073",
+      "contractHash": "1fcf555dc57f4154d097028f9243abd85de699ad2c1ce2174d7aa61f4b93b693"
+    },
+    {
+      "id": "tech-edu-074",
+      "contractHash": "73487d4fc1df2c23e0a886d986aa8a1796c8e665c8b331830401cd55a63501c6"
+    },
+    {
+      "id": "tech-edu-075",
+      "contractHash": "d5a118ff48f02ca5df8640db5f72b4425e8b318f7519086e6b51fd0a83f12b7e"
+    },
+    {
+      "id": "tech-edu-076",
+      "contractHash": "4b2283407bca2266ee2e303a46c6a2fbb9ceeee7489a91e126fb6ed0d8ce01c6",
+      "distinction": "글자이름 나열과 주어진 음소의 합성 /kæt/를 다른 수행으로 확인한다. 실제학생 진단이나 미제공 발음기록을 만들지 않는다."
+    },
+    {
+      "id": "tech-edu-077",
+      "contractHash": "36032ed9301793098023bfd74287286b87fd22c498f354764bbed20fbe49fe54"
+    },
+    {
+      "id": "tech-edu-078",
+      "contractHash": "d35b1f9a875acb57328d426df76ef502af4510a64bf67e0076c9e59687b4c1f8"
+    },
+    {
+      "id": "tech-edu-079",
+      "contractHash": "ea6cb2476b38600ba6d3baa7176628a6933c7bcd367353e033a7ce45ad36b1c3"
+    },
+    {
+      "id": "tech-edu-080",
+      "contractHash": "513182d5c9f7c58e9380f67c46e17372e3a16c91bcb015d8c6edf67ee1181562"
+    },
+    {
+      "id": "tech-edu-081",
+      "contractHash": "4ffb0463e358ef64a3f8947763cc7889dd4d0afdf9f14995270ee4df1e78172f"
+    },
+    {
+      "id": "tech-edu-082",
+      "contractHash": "0045cf0f2a5555b8dcf25ef48d54ca0e9c977c803dd7937e4b3b524e231ddff8"
+    },
+    {
+      "id": "tech-edu-083",
+      "contractHash": "a92e868d5023193e0411b6fa4dfd51c8bc5867cea71192cd301f6a89a9a6ff5b"
+    },
+    {
+      "id": "tech-edu-084",
+      "contractHash": "73ed007da5de96d8386fec11060e1bf940e8113f6b61c57a3dc972693b1f9dc7"
+    },
+    {
+      "id": "tech-edu-085",
+      "contractHash": "769ed334c26be0c0cb7c6f412ed0d30cd9540d856d1f77820972b28383ba922f"
+    },
+    {
+      "id": "tech-edu-086",
+      "contractHash": "284cde95b1e97a43635c674d8cb34d594faf1de29520ad91a4d4e02aa5e6b30f"
+    },
+    {
+      "id": "tech-edu-087",
+      "contractHash": "f7987521b109d8f12e6eafe21e1c7c3eb567a088196a68fa0a75460944fea1e9"
+    },
+    {
+      "id": "tech-edu-088",
+      "contractHash": "45de5a1beaa93d631088046e8837310bc4c6076fd0ea03d239d73446f1fad886"
+    },
+    {
+      "id": "tech-edu-089",
+      "contractHash": "d77205705bf3b3e540232bf1b930b9f99389ca4434753ddd9634bdec74597bc6"
+    },
+    {
+      "id": "tech-edu-090",
+      "contractHash": "a9ece0ee444381c86ed0342b67973dde0f95c952f74cff4635b85f06ebf90fa5"
+    },
+    {
+      "id": "tech-edu-091",
+      "contractHash": "f03334283bfae9cfb3c5070f9aa8923afbfce5b44b1c427c16f95cf0efd8ca6f"
+    },
+    {
+      "id": "tech-edu-092",
+      "contractHash": "1eaa785fe3ade88fc55610696996fe7b27cf5f4358583581b54b2e941552e97d"
+    },
+    {
+      "id": "tech-edu-093",
+      "contractHash": "c901041729805e7d7dbdb493d74501fe92e4742217bc45727215005020f1d7b0"
+    },
+    {
+      "id": "tech-edu-094",
+      "contractHash": "333f992c2e84f47931806fac2899bc676ae4fdd3b67a6015568511ab3ffac317"
+    },
+    {
+      "id": "tech-edu-095",
+      "contractHash": "1d66cf95ca3f0720edc2c577867f513fcde5b66b42d2805fb9beab4e2aca6257"
+    },
+    {
+      "id": "tech-edu-096",
+      "contractHash": "19862a32e86c0c4d127e026986f983e32dc7609acf4396aa2313be925a67add0"
+    },
+    {
+      "id": "tech-edu-097",
+      "contractHash": "4ced0c4de97aef2d5074207ab85caa114288fa1dca82cc737e069b087e9c8ecf"
+    },
+    {
+      "id": "tech-edu-098",
+      "contractHash": "bc8448ea5498eb74da36e47ca2a5b55bcbca97b2f1080e6604fc517f8919c00c"
+    },
+    {
+      "id": "tech-edu-099",
+      "contractHash": "773971b928e856f5f0abb6db8778bb0cc4ad88a052faad5577701be126d845e4"
+    },
+    {
+      "id": "tech-edu-100",
+      "contractHash": "ea2d14a8d1d5de0225c42fc2caef6d5c86bc532eb94e942a4a0fd40d71d4b819"
+    },
+    {
+      "id": "tech-eng-001",
+      "contractHash": "5955474934a24d64ad958b330473f3d13736e313ca097f24959a2a33278e63d8"
+    },
+    {
+      "id": "tech-eng-002",
+      "contractHash": "287a79155b6dff40485341802a095526f101c23d1e3b4b641ba9f9b7db9b3614"
+    },
+    {
+      "id": "tech-eng-003",
+      "contractHash": "a6b696463f382b5191e174bce42d363d5797f2275929398d70f0f8bdd56e9216"
+    },
+    {
+      "id": "tech-eng-004",
+      "contractHash": "846ae2f9ff4652d94b4b099ab6fa7d23a2ff7d1632394541e2ee60e97425782b"
+    },
+    {
+      "id": "tech-eng-005",
+      "contractHash": "f24d0696f6959fe5e761c588cbcb16503741c8d7122dd28fea6b530738e07289"
+    },
+    {
+      "id": "tech-eng-006",
+      "contractHash": "80a1e9213e4deb40be9f81d56e5cc6054a12ab20cc51e121b962a127b8916c18",
+      "distinction": "문자열/주석 밖 미해결 HEAD표식이라는 명시 입력이 있어 의도된예제문자와 구분된다."
+    },
+    {
+      "id": "tech-eng-007",
+      "contractHash": "da298a2890b2bdd242e0e790075885b16c035d04ac3d346920419b4c0bd7443b"
+    },
+    {
+      "id": "tech-eng-008",
+      "contractHash": "b84c5e14decc2c561a5c74c4452961d51330ac1640a1147dc88a481a17f5abd2"
+    },
+    {
+      "id": "tech-eng-009",
+      "contractHash": "b44d67fc1e800d841ede3bddbdbb5e8b5b0659039a95a2466d592d17b1260198"
+    },
+    {
+      "id": "tech-eng-010",
+      "contractHash": "a1381e48162e3fd5ab297bc9e2ae4d13fe2f0d8e79386ddcbb946246e8a5c97e"
+    },
+    {
+      "id": "tech-eng-011",
+      "contractHash": "c0d31db9630cb811bc55c05073b8eeeb507c8a0f8f5070a4ad1cc8fddfd35792"
+    },
+    {
+      "id": "tech-eng-012",
+      "contractHash": "f6dd0c47a2befc2df18c3ef42d1688a52bb104ddbc313e37bd49c7743e02ab71"
+    },
+    {
+      "id": "tech-eng-013",
+      "contractHash": "bdc279a4a7db49032149623dc5a67720633ec8c062705a4c404e1df1c270be36"
+    },
+    {
+      "id": "tech-eng-014",
+      "contractHash": "cb57dbf8594b6ec94f7c9c72cc3ca7e19a639aa6cfd74b1aa73a62a79b7af699"
+    },
+    {
+      "id": "tech-eng-015",
+      "contractHash": "182dade71b1562e467c3e4e4b22cc7c246bc556b92a026887e42acae3d238b0f"
+    },
+    {
+      "id": "tech-eng-016",
+      "contractHash": "dc2ddce89a96809d13de009e487f725a7eb55d372467b70e3a192406e4d502fd",
+      "distinction": "단조 실패를 가정해도 skip B/C는 결과미확인이므로 첫도입후보B/C/D가 남는다. 비단조결과 때문에 이분법이 부적합한 eng014와 다르다. 실패 직접관측D만이라는 수정 문장을 재독했다."
+    },
+    {
+      "id": "tech-eng-017",
+      "contractHash": "668e75f64f971cdc2d08d179e22f780954dba1a943b37c81fd69a24cf4d5eb3a"
+    },
+    {
+      "id": "tech-eng-018",
+      "contractHash": "1354be6451e00a63969901e3f6982e51ea8bfda4e9ab30932f1159da1905a802"
+    },
+    {
+      "id": "tech-eng-019",
+      "contractHash": "24a7bb7fcf18a97c0b1d7a6a546832b3b9320720e770f41f5df29a35850ccf81"
+    },
+    {
+      "id": "tech-eng-020",
+      "contractHash": "3acba2c01b329c983b06323ed949a948d3ed646a669265aab549c728655543e5"
+    },
+    {
+      "id": "tech-eng-021",
+      "contractHash": "ab9922da6721395b63f3f446a3b8b8ee17e9ffd318dfebb5d1f8fd7ec19195e9"
+    },
+    {
+      "id": "tech-eng-022",
+      "contractHash": "de52b3ef3eee377c03030dceefc54447a06cfd37bb967b215a007bfa63008a6f"
+    },
+    {
+      "id": "tech-eng-023",
+      "contractHash": "f1aaa6e3e88e28b34a5cc989c036fbad021234f600d63a0cbe7dff13c2eb28fd"
+    },
+    {
+      "id": "tech-eng-024",
+      "contractHash": "33c7c78a4a2e94b17f4feecde57b107cf64b719b7241c1913ba94b6f7ad5de4a"
+    },
+    {
+      "id": "tech-eng-025",
+      "contractHash": "96a993aa9fea70ff5a86f57d3e44ffad19bec2c20d7cb6394cdf76940925a8a8"
+    },
+    {
+      "id": "tech-eng-026",
+      "contractHash": "0571f29669ce2d0e1f615b0446360fa4d938cf2318dcd7bcf2a7a70c0026297b"
+    },
+    {
+      "id": "tech-eng-027",
+      "contractHash": "6aa1d58e956da69adab70c117fa407b55901cfbe73742fe1fab556760474f395"
+    },
+    {
+      "id": "tech-eng-028",
+      "contractHash": "eb3a8daf6a95d119a4d673f10a1c308df84b8590612f0c09855570d073eaa8e4"
+    },
+    {
+      "id": "tech-eng-029",
+      "contractHash": "3a750ef0bd77c2392174e21d37595379fbb763ac45165bb004cd3429f9bb387e"
+    },
+    {
+      "id": "tech-eng-030",
+      "contractHash": "fef00135dc2a16b1d5721c0983e97e0aaa7b538ff19bb3e9868a78bd5021f58f"
+    },
+    {
+      "id": "tech-eng-031",
+      "contractHash": "ef8fc70e741f566044e0c155e5f9b786e7afd9142a5c394dda4d72b956171184"
+    },
+    {
+      "id": "tech-eng-032",
+      "contractHash": "8df014830238493c250e629ec1ff07c6ec0cb9436c93a8357813eec8261d2656"
+    },
+    {
+      "id": "tech-eng-033",
+      "contractHash": "e0e572e82ef944f18d7486a94daaec1e3b4b46202effd04d74f56ddf6f7764a1"
+    },
+    {
+      "id": "tech-eng-034",
+      "contractHash": "74def43a387c93893a851c49c2596e9d68e721895439ffd35f71d246cbb77bbe"
+    },
+    {
+      "id": "tech-eng-035",
+      "contractHash": "8040d4e91ee87828aa014496cb68b71a07448f46fd45c7b206e436826baf24e9"
+    },
+    {
+      "id": "tech-eng-036",
+      "contractHash": "1c8164a9637db46185294ebc2d7295d189dd4e9ef73147400e62ad88a043f9be"
+    },
+    {
+      "id": "tech-eng-037",
+      "contractHash": "1fb3c55745dd93ff7659c6502084ba4f33ac635b5275d4312f0ee95d941cc847"
+    },
+    {
+      "id": "tech-eng-038",
+      "contractHash": "b2d484d811473be17793ba90d03fa57eeff18669bb93cf496f1834dee8a6c7bf"
+    },
+    {
+      "id": "tech-eng-039",
+      "contractHash": "10c8e04b50bf362347a205c3fc9babbdbb310e123820904f2f34919fd72e39de"
+    },
+    {
+      "id": "tech-eng-040",
+      "contractHash": "3fa65e1a691912737310e829100bf9076a4d934c6efafa60804093639a767d43"
+    },
+    {
+      "id": "tech-eng-041",
+      "contractHash": "b3341361f30f2361109699e543dcac89dcbe5976ea3a86136496058b9c361629"
+    },
+    {
+      "id": "tech-eng-042",
+      "contractHash": "8ccc85dc440dba904c44b44fdbaba315d02b6a8fe24646a9134d0ee22c0760d8"
+    },
+    {
+      "id": "tech-eng-043",
+      "contractHash": "d3ce71e481a3a8baeea5e8cdd51f286c2d0feaa0c97f45581839d8ccb8568810"
+    },
+    {
+      "id": "tech-eng-044",
+      "contractHash": "4a8b4b511beb88fb4030e6ea941c65c7fb8bde08ae9162d0c387fea60f27d3e2"
+    },
+    {
+      "id": "tech-eng-045",
+      "contractHash": "feeca087fe14897dc8e5093a1ba564303216cd53e9b138ba220977a289fa414f"
+    },
+    {
+      "id": "tech-eng-046",
+      "contractHash": "926ca14b541359dbba34be7a9e19342459608202f7c14b71c9401ae24596745d"
+    },
+    {
+      "id": "tech-eng-047",
+      "contractHash": "c67c716a63e0f8b37ff22efd069aefec9361746a2ee54a704719ca084fab79be"
+    },
+    {
+      "id": "tech-eng-048",
+      "contractHash": "1815eb43d0a590660b70df9df8d27b3c84bfd1ebd633bc946b1cdde08390571d"
+    },
+    {
+      "id": "tech-eng-049",
+      "contractHash": "416be1e7c975e34a1541cfbc6966377e1cf99607774818a04ce0ecd18980c36b"
+    },
+    {
+      "id": "tech-eng-050",
+      "contractHash": "2d18d27e97e4d7d2259b8bc36881c3e51e68b9c33ecb63444d3584199b9e1157"
+    },
+    {
+      "id": "tech-eng-051",
+      "contractHash": "b076305b104537bbce32e2bc3c1248ac4019c431edc98ffe05ac521799bcd87d"
+    },
+    {
+      "id": "tech-eng-052",
+      "contractHash": "1ae276b9df18215d090c0abfdaa3a839dcb342a2803f04546281663d8203b58a"
+    },
+    {
+      "id": "tech-eng-053",
+      "contractHash": "ea421520331aea48f8ca9f08fe9251dab4d576e030089d6dadbb84172093f7c6"
+    },
+    {
+      "id": "tech-eng-054",
+      "contractHash": "f4f4505e65b291aa99b61d61cbc281755e734174b394f9c270c591895fb3ed38"
+    },
+    {
+      "id": "tech-eng-055",
+      "contractHash": "6a1de6b37f5fa76aa4a7076d6820f41a1d235abd4b357ee406007a8897929c8f"
+    },
+    {
+      "id": "tech-eng-056",
+      "contractHash": "92a39596ca6a49d215ffa84984d5e4ffe890535f4befd63acd1377fa35fb774d"
+    },
+    {
+      "id": "tech-eng-057",
+      "contractHash": "0e732d6964f8c875ce51ae47090b6f71373c1b9dd6fe8b086f574b6ff559f672"
+    },
+    {
+      "id": "tech-eng-058",
+      "contractHash": "0727c06e9d0b7fc6e1cca7c291f5dff216682c12f09c5626ae2311eaedfd3f87"
+    },
+    {
+      "id": "tech-eng-059",
+      "contractHash": "0f38a267a0b3ea31234d4e8e4aa82d726ed416297762f4f279bf073c9482b99c"
+    },
+    {
+      "id": "tech-eng-060",
+      "contractHash": "a7c66c1758f732e4897e8cc6a80f3615fd1ea63d4c770f70ade64b98e80191ae"
+    },
+    {
+      "id": "tech-eng-061",
+      "contractHash": "2f104d8247f83c9c76bd7c2f35461cfe0464e23fbc680b651d7a0c86a275d5f4"
+    },
+    {
+      "id": "tech-eng-062",
+      "contractHash": "73d2305854560990ae914b00feb0bad8259fc90dd06ed8650c200a7c530f933f",
+      "distinction": "동일바이트01 02의 big-endian258과 little-endian513을 검산한다. 전달오류와 해석규약 불일치를 분리한다."
+    },
+    {
+      "id": "tech-eng-063",
+      "contractHash": "6029d6142ec68d7d5928a0294e47a461dd4781fe43bc4f2fdcfdf42df0700b83"
+    },
+    {
+      "id": "tech-eng-064",
+      "contractHash": "e7631428aba469520ca2875a6ae42ced05eed1f030ba26712850e485e2005917"
+    },
+    {
+      "id": "tech-eng-065",
+      "contractHash": "188554f6f12f94daefb965288585073c2f341bcd932fae8defeaee40354d827e"
+    },
+    {
+      "id": "tech-eng-066",
+      "contractHash": "fb9f7c62def6abc7f7646dcdf551a961b984e89a42da1cc88b91edf1b495b351"
+    },
+    {
+      "id": "tech-eng-067",
+      "contractHash": "3dd39914c2976085d8607130b05e7d750d38868fc94919f44c5a1531b82b122f"
+    },
+    {
+      "id": "tech-eng-068",
+      "contractHash": "88d094e1fd9359dec4066ea383af2521090b05de38862d8bda7b7352d74e66fc"
+    },
+    {
+      "id": "tech-eng-069",
+      "contractHash": "86ca29ffdadabfe415695a30b3204cd813bed017932082a1a0922cc8263eb54e"
+    },
+    {
+      "id": "tech-eng-070",
+      "contractHash": "35cd990bae4f2c4cb1b03e7a98505bea1a8e5eec678f21117bb1db44099a5f8e",
+      "distinction": "CAS가현재A를 확인해 성공해도 A→B→A 이력이 없어지지 않는다. 현재값비교와 상태수명/변경세대를 분리한다."
+    },
+    {
+      "id": "tech-eng-071",
+      "contractHash": "dfa7de14d09a47ff905d41819dc8a4ee769341caaece94302caae6cc689b590f"
+    },
+    {
+      "id": "tech-eng-072",
+      "contractHash": "4ede8312dec7596d2530e857ae41cfc253921bb710e8d4cd31707110211be986"
+    },
+    {
+      "id": "tech-eng-073",
+      "contractHash": "a3a63580013e800122cca36dee7f1e3764ebd5940d08b5819d63553d8779d05e"
+    },
+    {
+      "id": "tech-eng-074",
+      "contractHash": "70534b1a6824451b14a0aec92e7b68c3d6ca7d7e0dcf55d1bb9d0e618b9fdc6b"
+    },
+    {
+      "id": "tech-eng-075",
+      "contractHash": "f4534804449de58a9488e595436b5cae3f3b6a93cbfcb385ac1de0701676076a"
+    },
+    {
+      "id": "tech-eng-076",
+      "contractHash": "ec7f84e2065f12c31de5166982bff8d051e68b356ff3d41caf71785643dda55c"
+    },
+    {
+      "id": "tech-eng-077",
+      "contractHash": "024378640b03f54b6fc33ce17c802235a586a369f59e481c291482e41fcd6cca"
+    },
+    {
+      "id": "tech-eng-078",
+      "contractHash": "9b639257000489c4d64012a5eef9e4f1cd97e1e6c8de8a3fcf4c8dd19142b156"
+    },
+    {
+      "id": "tech-eng-079",
+      "contractHash": "faff1f0388ba75c947267c20ae1fc8cccadbad536d0247c0d2895fe88901f2d6"
+    },
+    {
+      "id": "tech-eng-080",
+      "contractHash": "b27de05757d218bbcf116dfc2a5f8be25c8bcf4de5b4f62b2244174ff840b407",
+      "distinction": "기존5/10=50%에서 총량20으로 바뀐25% 정정이 정합적이다. 업로드와후속변환의 단계분리 계약과 다르다."
+    },
+    {
+      "id": "tech-eng-081",
+      "contractHash": "15664abaf8efcf8cf22627cead9dda23ff3bb74a83c6eec96c455aa18d0f931b"
+    },
+    {
+      "id": "tech-eng-082",
+      "contractHash": "a598450cf6313145bd633d85013764ce8608faea13478e624bbb4c44ab4784ae"
+    },
+    {
+      "id": "tech-eng-083",
+      "contractHash": "ba569f4fe9d9faedc58618a8e92aa005ee86358c691936a9eafce100ec2b4053"
+    },
+    {
+      "id": "tech-eng-084",
+      "contractHash": "8bb6ccd3257207ead98982b79fc165d324d07ede85521cfd641a3be01276ce8d"
+    },
+    {
+      "id": "tech-eng-085",
+      "contractHash": "b64ae941b6ea2ff7535524400f3ea3345a2d40b2f8f849ff3bcac58b23c2433d"
+    },
+    {
+      "id": "tech-eng-086",
+      "contractHash": "ae19b0a7378e6d7f92a4ac57d3834a8adcda1ec459e58e6d7f9bcb24fa86aee7"
+    },
+    {
+      "id": "tech-eng-087",
+      "contractHash": "e8f75e89eb7b92cd74a6948094d21486c20ca48ecbf0c48b0e92c61cdac0d322"
+    },
+    {
+      "id": "tech-eng-088",
+      "contractHash": "134ddab3fcaec21fd5b0ab0cdaabe44997ffcff4eb869b524adcf4cddb31f550",
+      "distinction": "계획된 소비자 조기종료 뒤 EPIPE는 닫힌파이프 쓰기 관측이다. 데이터손상이나 무조건정상성공으로 확대하지 않고 종료계약을 확인한다."
+    },
+    {
+      "id": "tech-eng-089",
+      "contractHash": "8c2634496007e775c6dc4b1cbb02c7880dd4bc5795d796ea02f7d22ad9b6060a"
+    },
+    {
+      "id": "tech-eng-090",
+      "contractHash": "9ef4608d585fe89b83f7754bac1966f1f073329709ae3c19cf50edd95150dffa"
+    },
+    {
+      "id": "tech-eng-091",
+      "contractHash": "88038298928e4e716067fff2231391b69ca632166cd75a3e850b30b58b8f1644"
+    },
+    {
+      "id": "tech-eng-092",
+      "contractHash": "d324692ea8bf3bfecd580a6b2cc6d4d428028452df4aff8c00f09005d5822dea"
+    },
+    {
+      "id": "tech-eng-093",
+      "contractHash": "f8dc35dbcf58b62eff8779a8859175798891cba7b5d3e1eff09688c528e8bd14"
+    },
+    {
+      "id": "tech-eng-094",
+      "contractHash": "369a14004f9fef462899f0a652496e79095d267aea84dacb5399b484cb3ba9a8"
+    },
+    {
+      "id": "tech-eng-095",
+      "contractHash": "00064a23f4c3223826003f0671e5c712c4bccd50166d7b1dbcc7203d109fe6cc"
+    },
+    {
+      "id": "tech-eng-096",
+      "contractHash": "2ca58ef4c53e0bc0dbf572250e758f6034dbc73a2d5d66d59e38ee6fee03242c"
+    },
+    {
+      "id": "tech-eng-097",
+      "contractHash": "1591c5d50fc8eec6d820146606878f856d6a058260cccc18fbfd61882173c980"
+    },
+    {
+      "id": "tech-eng-098",
+      "contractHash": "ef2311553c1fbed83de4433f828a52423a108bee0854cff2cea3f8508b7e2f70"
+    },
+    {
+      "id": "tech-eng-099",
+      "contractHash": "0a932120fc8bf8d1cf665200f99936371d66c39bfc1864b47efe0a93856a6fab"
+    },
+    {
+      "id": "tech-eng-100",
+      "contractHash": "95101c389ee7008dae3c2c55f8421e39b0173b50f91dcf2cbb9e4209a7f919eb"
+    },
+    {
+      "id": "tech-eng-101",
+      "contractHash": "695eb15f107b1b41d78a066dd73800403d850da2b2f83f52fedb0d1bc86ac1b8"
+    },
+    {
+      "id": "tech-eng-102",
+      "contractHash": "5c8243b689a10fc5a4adf02bd4eeb318d0c0c2254eb0918b57813369e720a5a0"
+    },
+    {
+      "id": "tech-lib-001",
+      "contractHash": "9aa6c2bdefb0e460f49050155e6d2606d265eb61e97a58925eb5b34875bee218"
+    },
+    {
+      "id": "tech-lib-002",
+      "contractHash": "9ed6a03c6a3c2e423949c7e6acedd01ce4a5a9bc117d24cd04eda78021b0ca2e"
+    },
+    {
+      "id": "tech-lib-003",
+      "contractHash": "b5f4c5ddef625d527089dc96f39f479610a1f9f1481b24d4c8fab25ff0d146c6"
+    },
+    {
+      "id": "tech-lib-004",
+      "contractHash": "bed6198bc6a3e204d857cd7c9d70ca458789754329329c8e7ef988983d1441e2"
+    },
+    {
+      "id": "tech-lib-005",
+      "contractHash": "52e229a9950a669610c5b32f2f179203db7b1ff3522a152e82422d006caadbf8"
+    },
+    {
+      "id": "tech-lib-006",
+      "contractHash": "416d4f1b97545f8138144d536fa10904aae6e0cb09c3025b97f1961cccc779cc"
+    },
+    {
+      "id": "tech-lib-007",
+      "contractHash": "04fc15977b1444c8c7840ceb0a08c66ad5fa1f19341cfb976e660f5a2ae9e2ab"
+    },
+    {
+      "id": "tech-lib-008",
+      "contractHash": "4492ace061eed37e7f0c10f113be780f44895df7d9e416d73709922e90a3726b"
+    },
+    {
+      "id": "tech-lib-009",
+      "contractHash": "e2f9afff28c1cb2c39f05f8c02a9826c0d21396e473b105a199ec7dbeb7c5c58"
+    },
+    {
+      "id": "tech-lib-010",
+      "contractHash": "c474b67a08b6037a0f9ed30e56861fe9660e8d383bd6373fdf23f3f55c235890",
+      "distinction": "원표제 The Atlas를 보존하면서 정렬제외4문자에 따라 키 Atlas만 만든다. 현지화된 표시언어의 정렬순서 교정과 다르다."
+    },
+    {
+      "id": "tech-lib-011",
+      "contractHash": "d7ed714ef27413f5371fc8e0294beac14439c0e7887060cee39e751283e75fa7"
+    },
+    {
+      "id": "tech-lib-012",
+      "contractHash": "c57003b7402d5b9511f7fbf49ef36bb8b7c3fae4fc81b47f7dd9a36de7d4e65d"
+    },
+    {
+      "id": "tech-lib-013",
+      "contractHash": "0f85a54a2fdf35c1aac56a9bc2a769b7bece723947b5188e17cc1c132cde4646"
+    },
+    {
+      "id": "tech-lib-014",
+      "contractHash": "c6bba4a7dc6196105b457fb3e0d7a131bd1afbc4bc6f0196d2e7dc8cdb64efe5"
+    },
+    {
+      "id": "tech-lib-015",
+      "contractHash": "c52fcf3e9bcaa6b0c232f08628ec15717ec06f5082e22d24b8ebda8898def91a"
+    },
+    {
+      "id": "tech-lib-016",
+      "contractHash": "4a6fb60b3e8a4bb81481649c509b454b01701872ddc87315740c0d4088d277c3"
+    },
+    {
+      "id": "tech-lib-017",
+      "contractHash": "717bdf9cb73633367fc088209236ab90a22ac298ab3850c598762e947c83ea24"
+    },
+    {
+      "id": "tech-lib-018",
+      "contractHash": "f6e29d548a712846c65aa25958d1f91694ab283ff5d8f965865b2f50f04e03e2"
+    },
+    {
+      "id": "tech-lib-019",
+      "contractHash": "b3a9e102575396acd2a266a4057f8eabf8005844a09541e1c0ec025b15eda36d"
+    },
+    {
+      "id": "tech-lib-020",
+      "contractHash": "3c6fbc1ce45ef35befbce64309713a84ea642676ca693fa49abf66bf60173f06"
+    },
+    {
+      "id": "tech-lib-021",
+      "contractHash": "37c3930309b183be267bcf18d5a23c58ce25dece91ce6df977490ea21e4fd4dd"
+    },
+    {
+      "id": "tech-lib-022",
+      "contractHash": "ac52aa3af46e77a56b582fa466084a9eef0b7ab9cdad4ff1a09b816f1b93c14a"
+    },
+    {
+      "id": "tech-lib-023",
+      "contractHash": "94d2f200974aa1c1ad3861e624e3da930b0f88900ab616797ec0896904e2a32c"
+    },
+    {
+      "id": "tech-lib-024",
+      "contractHash": "e2a7a667444ca978cdf7f4c20223fcde61d5639507fb45275f5074f825cf83ba"
+    },
+    {
+      "id": "tech-lib-025",
+      "contractHash": "19f4ee608abba61989ff0434712e4968bfd112a1143227c422e75d2b7b9b9ede"
+    },
+    {
+      "id": "tech-lib-026",
+      "contractHash": "08d66b2511dfbc4e899ef64a6bbdc2444ad4e67460df570b0c19e8baaf6266e4"
+    },
+    {
+      "id": "tech-lib-027",
+      "contractHash": "a66a0a887886156efe27b114072624e6bb5c35e32ed13351e29b3561e33a7da9"
+    },
+    {
+      "id": "tech-lib-028",
+      "contractHash": "8c665a79a3b88b9b7bf378604ddb8863a601c4941d946648a75904026a74ee5b"
+    },
+    {
+      "id": "tech-lib-029",
+      "contractHash": "585f54a33afb926e5374c83fd5a23ebf008194be869b27d04c01cd44bc8666b6"
+    },
+    {
+      "id": "tech-lib-030",
+      "contractHash": "791b84cdf86fa761a4123d310333767cfdf3106afaffefcc431d8b17bd497c26"
+    },
+    {
+      "id": "tech-lib-031",
+      "contractHash": "8709eb4ce07b65235048376fd4ada4adb75aa94433eb3e04debbf7bd34fe6972"
+    },
+    {
+      "id": "tech-lib-032",
+      "contractHash": "45b0404d87bf1303cf7e2baedb00a37dbc2e605fd742167af127d3f4af86da5e"
+    },
+    {
+      "id": "tech-lib-033",
+      "contractHash": "efe947faa5efe8bb60f5f7805883f71f7940c762bff23f43916b8d5fa803eae8"
+    },
+    {
+      "id": "tech-lib-034",
+      "contractHash": "b94c7f33b05b99eb5631dc31e1cdb30a5ba3b853152ac9470a06cdfb71663664"
+    },
+    {
+      "id": "tech-lib-035",
+      "contractHash": "d7a6f5e7090ad44bb92f0a3f482c94398db8ed7e450f0597ae12029a4a8fa6a5"
+    },
+    {
+      "id": "tech-lib-036",
+      "contractHash": "e3d5e876a7da2aaf8b490abfa26c4128665bcfff22742bc16f53df6c3d1472f3"
+    },
+    {
+      "id": "tech-lib-037",
+      "contractHash": "cf44e0ab85fdfe503f7d76ff5ee2503d119141d969ea345ebbfea1631e39143a"
+    },
+    {
+      "id": "tech-lib-038",
+      "contractHash": "49187d632b21dba2011cc6fe393f81399f7baeeb2cde676c3f0c67746613e977"
+    },
+    {
+      "id": "tech-lib-039",
+      "contractHash": "d14f4f11b8a8d2e7cf982bef8468b8c1ee8952039ba1235d23a7a7a8f1aaf865"
+    },
+    {
+      "id": "tech-lib-040",
+      "contractHash": "8f9217f0b60396d4400605010cfe692ea1fad7a72d8b0a723804dc5de178610c",
+      "distinction": "검은 도형으로 가려도 PDF 텍스트 객체가 추출되는 관측을 원문제거와 구분한다. 확장자 검사나 오프라인복사본 회수 문제와 다르다."
+    },
+    {
+      "id": "tech-lib-041",
+      "contractHash": "a77fc260d74555831e15ab0b3bea4165081b7af73670441d0ddaaad31d3ded5a"
+    },
+    {
+      "id": "tech-lib-042",
+      "contractHash": "63a3ec072fa5b9687dba3d66f39120c8ff57980ad4612f3a8af8915dce9f7a56"
+    },
+    {
+      "id": "tech-lib-043",
+      "contractHash": "4c684475df5fff52a9824380673fc7c9eecca6dbd57d0ce160b2a6dfd0417081"
+    },
+    {
+      "id": "tech-lib-044",
+      "contractHash": "656254329521e366af083b1a313abdcc73c266c2e399be14d6f8705a396e6b04"
+    },
+    {
+      "id": "tech-lib-045",
+      "contractHash": "41b5fcb113ebe9bff779c7ae03d46f0a8c482c32801f59603757af1eb65b7886"
+    },
+    {
+      "id": "tech-lib-046",
+      "contractHash": "19407ded43d9a77dadc73a56d73c798ad7156eceedef607073f05e7169306161"
+    },
+    {
+      "id": "tech-lib-047",
+      "contractHash": "293823f7b8d119b3863915831dbbfdc71c5d5b0a6e680a3f50a3f2d04441a7af"
+    },
+    {
+      "id": "tech-lib-048",
+      "contractHash": "c8219a7b5ffdc2035c6ee69ba101f9674a4bde2d659cc5445bdb3a3d0e2d99a1"
+    },
+    {
+      "id": "tech-lib-049",
+      "contractHash": "8a6205f61b712496d5be3885414be0d51f9ad7af7c5a3636faa69fd9e1a0ded2"
+    },
+    {
+      "id": "tech-lib-050",
+      "contractHash": "d9f696520b3fc1f746d5999318013c2460880156f201b11d8ca69b51aec0d20f"
+    },
+    {
+      "id": "tech-lib-051",
+      "contractHash": "61f7a64c194571c00833a1bdc98d38bcee7d2ef4f395a61e33ba3d40e057e9a4"
+    },
+    {
+      "id": "tech-lib-052",
+      "contractHash": "d0379e01e65b3fdc88b8457c81168772075373a008f16e5f74bd4401911c2d2e"
+    },
+    {
+      "id": "tech-lib-053",
+      "contractHash": "bc6ecc67c394c11a25f3fa26a6a13ec1e3bc8f633bfbc4b63c36abc4997500a0"
+    },
+    {
+      "id": "tech-lib-054",
+      "contractHash": "d28187f30df5e269a9bccf4b2fc03ba18cbf2c8ae93108d6357d9f81a3f7074d"
+    },
+    {
+      "id": "tech-lib-055",
+      "contractHash": "7b64875ba1ea6b59cbce76bf1452f93e89a21549c4839e6c2940ded35f68c87b"
+    },
+    {
+      "id": "tech-lib-056",
+      "contractHash": "b5311f0cd17f0837a7d9faa0b1a6988e94c2435e7381821935936791cb9a6351"
+    },
+    {
+      "id": "tech-lib-057",
+      "contractHash": "2bf25a5c0ed393dc38b7ff8384d4daa1657853e9ebbcc80b1f7483dd904c0440"
+    },
+    {
+      "id": "tech-lib-058",
+      "contractHash": "93178ae5a5dcc3849e8290daccc6a05b469c89f8eaf7af4f2b3a4c1f887d04eb",
+      "distinction": "불용어를 제거한 압축목록의 인접성과 원래 위치1/3의 비인접성을 대조한다. 정확한구절/단어포함/근접검색의 다른 계약을 명시한다."
+    },
+    {
+      "id": "tech-lib-059",
+      "contractHash": "03e92ff0b81c6606b3a4d9fcbb7f71d0fc052bb9b723c7d7aeb2e311243bb5d5"
+    },
+    {
+      "id": "tech-lib-060",
+      "contractHash": "1ec152359094c4443daefc9662873d0820702ab77b5963726acb378be512ab29"
+    },
+    {
+      "id": "tech-lib-061",
+      "contractHash": "a774baf3007ebbfcc438fcc8f3c98b67da4832f701b812e639efb8fe4a8282a5"
+    },
+    {
+      "id": "tech-lib-062",
+      "contractHash": "ecff7c49143d80712c421f0d521c9053c100d8cfc19057f37bd5be7febe29468"
+    },
+    {
+      "id": "tech-lib-063",
+      "contractHash": "a3866d7ceb27932562dc0aeea4cbbb85f1e138c20eabb6b4b385d67095310641"
+    },
+    {
+      "id": "tech-lib-064",
+      "contractHash": "d6fb03154ea97b31e89dc58fd05982cb4d7487457f51272994fb79741ee2df21"
+    },
+    {
+      "id": "tech-lib-065",
+      "contractHash": "f63232c095d0ac6217c2b546add8b6df30ddfdeec01d75460d7574a79dc7807c"
+    },
+    {
+      "id": "tech-lib-066",
+      "contractHash": "5e7ae7302f9ef6364378ec8896d1802f2ad6b791b63df4cfe5b30f0b56ba14a0"
+    },
+    {
+      "id": "tech-lib-067",
+      "contractHash": "a070cb5e4d1543b2cec0b537a39d4beb5d19e68f8582cd747b353e2bd0696e9b"
+    },
+    {
+      "id": "tech-lib-068",
+      "contractHash": "8c5dda8248f406aaf4da7ceb3453886d12165be075daa3fe3bb4bfca9166b6d3"
+    },
+    {
+      "id": "tech-lib-069",
+      "contractHash": "e71316b0b4984827581ff2f1a220c19f862c0a6eaadf1927086fb8d1ca1cd9d1"
+    },
+    {
+      "id": "tech-lib-070",
+      "contractHash": "fdc7e8c7f312fa1eb9aab3e8ccf4495f47a4bcd8b8741c1e873bd9673a4e406a"
+    },
+    {
+      "id": "tech-lib-071",
+      "contractHash": "c6493d2594ecdafd4fa21a952bfc1d2768204e4c84b823f1711a019f5d74926a"
+    },
+    {
+      "id": "tech-lib-072",
+      "contractHash": "93beecb9626526e78730b6fa8d5e4e2ba768341680ba712b74e8b22d5f488399"
+    },
+    {
+      "id": "tech-lib-073",
+      "contractHash": "5890e2e3a975ecb7ab3f92424c243dbb1138b537107bd739e196b20f9d811cf8"
+    },
+    {
+      "id": "tech-lib-074",
+      "contractHash": "e20a854bef263eaef391a464b111228e90621d23df81d9a854a7dd9fdbd2cebc"
+    },
+    {
+      "id": "tech-lib-075",
+      "contractHash": "0767b21da1e87672a849c57d38148eb133e619a790c682e5f30c0280b1b5d6e8"
+    },
+    {
+      "id": "tech-lib-076",
+      "contractHash": "01af38488379b3d07e65d2235b0460871d81fad242eff95ed18f18dc03f0e59e"
+    },
+    {
+      "id": "tech-lib-077",
+      "contractHash": "9650bc46fa88494b3ccec16c27c9e048267d13813f1b05801833b51282756fc8"
+    },
+    {
+      "id": "tech-lib-078",
+      "contractHash": "2ac4703bf28815679d2364b3fc4ac6eabff5dd30d4df154165836871cc9e1cc4"
+    },
+    {
+      "id": "tech-lib-079",
+      "contractHash": "57ae13efc970ac08d5c87ba74e261566b6ddaf772e92251fc043f05da20c38eb"
+    },
+    {
+      "id": "tech-lib-080",
+      "contractHash": "30c9ae468fc34e9ea735bf08bf73925b07a25a66730d9b0c654d89f21d6d18bb"
+    },
+    {
+      "id": "tech-lib-081",
+      "contractHash": "06be016c216054409f74945cad84999dbbb7df08337046089d0b288415a4702a"
+    },
+    {
+      "id": "tech-lib-082",
+      "contractHash": "6d4dc947cbd18ffacae10eebdd5d87ca9e80307a4a79b277d7e346d9b51cc578"
+    },
+    {
+      "id": "tech-lib-083",
+      "contractHash": "ceb24dbf5861645eedc0c1ff527e53f3ad8b84f09f8105bce6bee6020c53b1df"
+    },
+    {
+      "id": "tech-lib-084",
+      "contractHash": "effa9a6a2ac5716986ece4e70c9ff49eceecf4077096ce873c7e835f257151d6"
+    },
+    {
+      "id": "tech-lib-085",
+      "contractHash": "793ca220176bce21a595cc803086aa55588fec6a597e6e66e57667d4bbbd65e2"
+    },
+    {
+      "id": "tech-lib-086",
+      "contractHash": "e0b315ad1409e8e2b6fd6029bd3fdb910438984993438d39f33097cf74925cb7"
+    },
+    {
+      "id": "tech-lib-087",
+      "contractHash": "4df7bd288460bbc38d8596d4d464860e2fa8bf7a51f1a338152f5bfa24f9831d"
+    },
+    {
+      "id": "tech-lib-088",
+      "contractHash": "260becb1ea97a1e7c0027d27bfa67d369031101c2a482d6a1430b63c15ddc14b",
+      "distinction": "자기해시를 추가해 바뀐 목록M의 버전과 외부봉인 규약을 대조한다. 전달파일 개수대사와 다르며 해시고정점 불가능을 과장하지 않는다."
+    },
+    {
+      "id": "tech-lib-089",
+      "contractHash": "1aff9103ab64919b62f1e84a902e2acd6c6b5892eb06d5e8a954b2ba58c409a4"
+    },
+    {
+      "id": "tech-lib-090",
+      "contractHash": "8d985c0fd7c774b523de9279950a0b9ac2a4f6a544351540140848ee77a955d8"
+    },
+    {
+      "id": "tech-lib-091",
+      "contractHash": "4479a7bca6b46a5392c19098a03e4bdfbb7429da8f7d7da5eb2dbdd85e467954"
+    },
+    {
+      "id": "tech-lib-092",
+      "contractHash": "ac29497ec4b7448a2b1c1aa425ef7c2c033dad84f010b8c47b6be52b972fedfa"
+    },
+    {
+      "id": "tech-lib-093",
+      "contractHash": "2a66dc249afe8de75465b7cf3acc52636560103822b0059ea3e191fcd89eb504"
+    },
+    {
+      "id": "tech-lib-094",
+      "contractHash": "2e9024ea489f156631bed94e0d20249eac48a6032d0597fa4e23802665ca2848"
+    },
+    {
+      "id": "tech-lib-095",
+      "contractHash": "4258f1b5a4fbb359a07a1f0fc86501c2263db0b0938b145c70a97619e9584b3b"
+    },
+    {
+      "id": "tech-lib-096",
+      "contractHash": "4e833d9b62ddeaa244d68337f5d8abf2691658ff130a7ef5cf06dc2aca39ea31"
+    },
+    {
+      "id": "tech-lib-097",
+      "contractHash": "2e2c2ee115f96718453bf0a7ecc9eafa8c9b7883e8cda68205466fafdec8a6b9"
+    },
+    {
+      "id": "tech-lib-098",
+      "contractHash": "13e6f4b10cdae5af7de098937880224ca74f2adfc60700106d1e1af1e69007f6",
+      "distinction": "균일길이80% 축소에서 수치축척62500과 동반축소된 막대축척의 대응유지를 구분한다. 단순거리환산이나 확대정밀도 주장과 다르다."
+    },
+    {
+      "id": "tech-lib-099",
+      "contractHash": "7fcb07db7f57bdd4245f33b68938b5ec34aaea6fe46fc11463cf789fb227f370"
+    },
+    {
+      "id": "tech-lib-100",
+      "contractHash": "fc069f5d21b3d9cd0c2d061df308144b412768397fd0f38572cd5b88a2b424e1"
+    },
+    {
+      "id": "tech-lib-101",
+      "contractHash": "0ae3b47676d3dc6d78d15aafe31e300017ca68373aed1bc131708f521e336e3a"
+    },
+    {
+      "id": "tech-math-001",
+      "contractHash": "ca594c161ad6cda7213905fceee2bc9a380493f201ecf4618399e49ce3d48dcb"
+    },
+    {
+      "id": "tech-math-002",
+      "contractHash": "e43efc0da7bfbae9cc556deaaba1c15ddf2756dda918e8711f3ba1f974547962"
+    },
+    {
+      "id": "tech-math-003",
+      "contractHash": "7d59200246325635278758a17760e0346427f2295058b3d50876f7069b95d22f"
+    },
+    {
+      "id": "tech-math-004",
+      "contractHash": "a69a526b50ce0a453ac60097869e82170e1bdc293ce0464b076417bb103c88e4"
+    },
+    {
+      "id": "tech-math-005",
+      "contractHash": "8fc0b5fd21696d3a0700d78b21d328b64ce6fdd03df558f2df7266c0c1d02895"
+    },
+    {
+      "id": "tech-math-006",
+      "contractHash": "8d9556a297f5bf25ad1c728f5f29d813374b771f5e38b82e7d8d4c11fffd824e"
+    },
+    {
+      "id": "tech-math-007",
+      "contractHash": "68872a0b8e6a79069a7a1dd7af5f443a8bad8c026b46eb293cac2eb1b0d9f7d2"
+    },
+    {
+      "id": "tech-math-008",
+      "contractHash": "3a3dfca018e795d79512c492e6e71d9b0197c1fe0b2bd483254dccd1c5826dc3"
+    },
+    {
+      "id": "tech-math-009",
+      "contractHash": "cec785f874e2325248f5a5e7c12651cd98292c3d9a0b39db58eeb5adb7a626fb"
+    },
+    {
+      "id": "tech-math-010",
+      "contractHash": "d81b4480d03c06d1d01fba5df703661a42f9e7f3b998bb61a632850abb2d3bd5"
+    },
+    {
+      "id": "tech-math-011",
+      "contractHash": "c0650a8b35698dc63cf8b3d6e01662fe08b615d1303548f11df6de93a4a26254"
+    },
+    {
+      "id": "tech-math-012",
+      "contractHash": "23150cbe5f5b2080c1b4ef620706fad8d360f59552b9117a51ed9f9b8fb8d5bd"
+    },
+    {
+      "id": "tech-math-013",
+      "contractHash": "e58fa04cc3f23fdf66e83f5f7fd9229a62f571ea2ceed6e3515556bc6266888a"
+    },
+    {
+      "id": "tech-math-014",
+      "contractHash": "3ed45062b9d6ce875141cf3a79821ea3dfdd07f1890918b015cc289a578ad7a6"
+    },
+    {
+      "id": "tech-math-015",
+      "contractHash": "7f2ffd725725187735c1ae516646115078c4806b55397bf4c96f2de6a79fc2d8"
+    },
+    {
+      "id": "tech-math-016",
+      "contractHash": "fbaa442b270461a659cb7f96408f13c79bb6ee843c5dbdf710ee48369788dcf6"
+    },
+    {
+      "id": "tech-math-017",
+      "contractHash": "e19a62e5f4e09f743911a561ce0a47a34caac42004371f838a85b850bc879491"
+    },
+    {
+      "id": "tech-math-018",
+      "contractHash": "5fc242e0d5011f40e9225f98b966aaba71dabce303f3485c8ad6c35c471fa031"
+    },
+    {
+      "id": "tech-math-019",
+      "contractHash": "b7e31a0f2ce634d3e574e5cb99fbf082dafdad4233ee44982b413752a915b402"
+    },
+    {
+      "id": "tech-math-020",
+      "contractHash": "ee0005d676887cbf976e309cd39f9df56c1bd60fa516e71d6970b8019e0ce2e5"
+    },
+    {
+      "id": "tech-math-021",
+      "contractHash": "640d91308dabdcc32bdf832cc37cbf1a9c5b5b46b6db758c3eb0051a016d3538"
+    },
+    {
+      "id": "tech-math-022",
+      "contractHash": "5e0e434bff52a99405d45772953c46b7d92d041155fe939055dad2095af333ab"
+    },
+    {
+      "id": "tech-math-023",
+      "contractHash": "fd34ca7ac7bb8ea46a44a90d0bc22b6af7cd90de7cb4da7226ab086bf4cfdc76"
+    },
+    {
+      "id": "tech-math-024",
+      "contractHash": "58452595e191b870a438c06693e262758ca250d12e0e15033ca4375e6ec266cf"
+    },
+    {
+      "id": "tech-math-025",
+      "contractHash": "8688ee82c548188b88d073c21591b5ca8cbc8a58c966f83b26b5fdee2632d374"
+    },
+    {
+      "id": "tech-math-026",
+      "contractHash": "49cd70e1ccf35b5b3e2d0148aa2abb873cf6367cf35a4d79d4ac164a3941f00a"
+    },
+    {
+      "id": "tech-math-027",
+      "contractHash": "5050d768891a805957eb8064d238401ee1be12c3ee15d65a3bd935ac146c2d84"
+    },
+    {
+      "id": "tech-math-028",
+      "contractHash": "e0cf594d6b562435ca944a3125594a29a495362ee49afb0bc733cce92d728132"
+    },
+    {
+      "id": "tech-math-029",
+      "contractHash": "12e538d2d2dcff864029cee7c2836621bd9ad8dcdf18bc5a3672127e2ab0f981"
+    },
+    {
+      "id": "tech-math-030",
+      "contractHash": "5ec482f0ce077466be90e2e14dfcdf983ae4eb4c7e7cc0a2593e870f7c14ab50"
+    },
+    {
+      "id": "tech-math-031",
+      "contractHash": "54c12e733ef6b48db125a863cf6f8f785a5ee2b9d63fbfd2f174b30dce9bed0b"
+    },
+    {
+      "id": "tech-math-032",
+      "contractHash": "736b270258cc52f453b06407ef88daadb7cfe84c4f51bea4bf541a739ba1abd3"
+    },
+    {
+      "id": "tech-math-033",
+      "contractHash": "10399e17e9c6c1f59570bf0497f566d4b96e9c20e907c9783c9541ec7183dac7"
+    },
+    {
+      "id": "tech-math-034",
+      "contractHash": "3b8a1efc6b561e653fc4acba006c9994de6c79e91ee2b05af46856efb4f7b2f4"
+    },
+    {
+      "id": "tech-math-035",
+      "contractHash": "cc6dc330c4164d3124619cc44aad47f47bc017fe34e57ae7bc19f4e44894669a"
+    },
+    {
+      "id": "tech-math-036",
+      "contractHash": "082e173b0351f2bef5e40fd65d4342d08b1807ad8a4a1fe06d6608d7f3f17e7c"
+    },
+    {
+      "id": "tech-math-037",
+      "contractHash": "2cd8811554aa2e6565142695208c262f58b2ce2bc5a48e385f6c133785d5d090"
+    },
+    {
+      "id": "tech-math-038",
+      "contractHash": "c388ba9445bc89d54140c98847db59cca1f773d3140abe651f3454e7e60eb179"
+    },
+    {
+      "id": "tech-math-039",
+      "contractHash": "9bc1d0fc040a216b9f438707800718ce4bfafe2678faa1be4df83d9b7c11e307"
+    },
+    {
+      "id": "tech-math-040",
+      "contractHash": "09bbaf7315ca660873a04dee70587945b6fbd0189f3d6b17f8aee1d5ca2aa699"
+    },
+    {
+      "id": "tech-math-041",
+      "contractHash": "aad32e6aae6cf9f198a3ca1c69abc2dddfb2516fdd91c152a8acb479f15e4a2e"
+    },
+    {
+      "id": "tech-math-042",
+      "contractHash": "d2221ef81944b64ffdec97956229a307049c3fc3609a9da91834f9905ae2c436"
+    },
+    {
+      "id": "tech-math-043",
+      "contractHash": "0dfe308f9834121652461c238c5a0d599ddbeca2f06f2af561b6692b0020474b"
+    },
+    {
+      "id": "tech-math-044",
+      "contractHash": "5d96ab86fc63edf92008eba3e2b9508be78a90f44fe4e2355febd70bd663de0f"
+    },
+    {
+      "id": "tech-math-045",
+      "contractHash": "b36fbc82a1f202fe6d7b620d15526aab5dd474dd628dfefc41acff8ab8e71ce4"
+    },
+    {
+      "id": "tech-math-046",
+      "contractHash": "f312e5aa5c0fe5246f0eb3a4bd079d823badc9956b4cb8fa07f6c4566c84cd41"
+    },
+    {
+      "id": "tech-math-047",
+      "contractHash": "2c921fa76ef44650c41228ba9796ae9070dcab1e6c4a181893fc7612efa5b25e"
+    },
+    {
+      "id": "tech-math-048",
+      "contractHash": "7badda008e22e2159eb4d3052d98a2c10e96d36a03bb94262a1e21e2178425cb"
+    },
+    {
+      "id": "tech-math-049",
+      "contractHash": "b93382d950a621d015f7896c5773b14d4f93f4b930689575b3591c98971005c7"
+    },
+    {
+      "id": "tech-math-050",
+      "contractHash": "bb369884df0c6111d607515a173d9cf9fefe8f0a5a57441cfa39e23f6327725d"
+    },
+    {
+      "id": "tech-math-051",
+      "contractHash": "902013171aa122b783615b993f37dca6d35998985cc03157163732891665164a"
+    },
+    {
+      "id": "tech-math-052",
+      "contractHash": "d453f5b8dc2258a7c20ec28e4c8c4975022861345ee624307f3209b3c0bc37b9"
+    },
+    {
+      "id": "tech-math-053",
+      "contractHash": "12a9d077df751824cfdaf0d22db5493c3b8b06076a7c813e2e610fc1cb13e3ed"
+    },
+    {
+      "id": "tech-math-054",
+      "contractHash": "67b5fca0a2b4a7d84ac9407abca63b8d3c1ddf23d6158a14613563453299ea27"
+    },
+    {
+      "id": "tech-math-055",
+      "contractHash": "12286a253dbc3c160f2fc02229018b23e0e46ac31d68ababd922a50bd10e961f"
+    },
+    {
+      "id": "tech-math-056",
+      "contractHash": "c08680459d5690fac4e206bb7033676db72081e7b1c9db87da6c07f13a366b29"
+    },
+    {
+      "id": "tech-math-057",
+      "contractHash": "f348d6c5b5843d81c98500a68b7a5c2fd2d132ab8a7282149308bf49481694ad"
+    },
+    {
+      "id": "tech-math-058",
+      "contractHash": "704a46395b7a8b57ca39da267edd53cec3355d9e17f2c454b9274b571b9cfc4d"
+    },
+    {
+      "id": "tech-math-059",
+      "contractHash": "bbb7a84701e4ac5b9518dbb0dffa84dd86aef0fbb7bd8dfee199dc349c90382f"
+    },
+    {
+      "id": "tech-math-060",
+      "contractHash": "ca8e20c7d5d330fbdb4f5c5c1870c6024a7d928b7c380efd2b925a1ec60415cc"
+    },
+    {
+      "id": "tech-math-061",
+      "contractHash": "240137a03a60054385dabe3bf0093c158467759ac97b9fd5c83a97d6003db0ee"
+    },
+    {
+      "id": "tech-math-062",
+      "contractHash": "862ca69f872f0d92e6fcf9966e407d5ad27640963c1dbb115c5c3da269e2a76d"
+    },
+    {
+      "id": "tech-math-063",
+      "contractHash": "c2f5aab8bbafd596e34552daa9e5933d4ce2b6fb0f6000b1bb3b8a5c4685967d"
+    },
+    {
+      "id": "tech-math-064",
+      "contractHash": "9609f8bbaabc07cf0e40605786fcfdf591b07f0bb19e38dd3cf83c5164cccc3a"
+    },
+    {
+      "id": "tech-math-065",
+      "contractHash": "16686178eb09bddee4cde36135296f3f89945410c18672b9eebcf3b3437cc31e"
+    },
+    {
+      "id": "tech-math-066",
+      "contractHash": "2aa81583edbcd3c6e497e46b8824fa438d77ab62865fbc5622db1d6bec256346"
+    },
+    {
+      "id": "tech-math-067",
+      "contractHash": "3beb005e480f9d3a89618a3ac40fcb30d0e37a177d1853d4500e62a74daf3f1c"
+    },
+    {
+      "id": "tech-math-068",
+      "contractHash": "0496d3eb2561a98c283ef6bffe0a91726e722cd67229cdddfb76d038c6c0300a"
+    },
+    {
+      "id": "tech-math-069",
+      "contractHash": "523846111fdb164ff513b7dd7be9ced38ebe1bf1fe21845dbc6dc94c4c97fb17"
+    },
+    {
+      "id": "tech-math-070",
+      "contractHash": "663c10c45d91f38fd2bc914fd18e6e1a9c185073db4b61a267e0817afda637e6"
+    },
+    {
+      "id": "tech-math-071",
+      "contractHash": "2657fcbeb6aa94bf2e3de87eedf477eb1923a927645e71487f1280e7dcc13bdd"
+    },
+    {
+      "id": "tech-math-072",
+      "contractHash": "b859cf54b5b1e15ca48f53f8d19a447a73d37c7709d1ff1f7fee2b6198baa39d"
+    },
+    {
+      "id": "tech-math-073",
+      "contractHash": "afd7f197ca5fe238136a2f172af1f9456270629de36bb17756a5b97d1fe929ae"
+    },
+    {
+      "id": "tech-math-074",
+      "contractHash": "e2185ed9c103914320fb2d493acd840f2ce5d9ce547d815057f25b9e9a5a0a76"
+    },
+    {
+      "id": "tech-math-075",
+      "contractHash": "da6c7e8895de54605dff38e8de7d380966cf350fb7f85c31834991cee6bf4d51"
+    },
+    {
+      "id": "tech-math-076",
+      "contractHash": "6009b61068a5032215c8b8454cd17a8724b91e0c6ddaa55f4a802b08e43b33f9"
+    },
+    {
+      "id": "tech-math-077",
+      "contractHash": "918ea293b3f32e27cdc54e51e4f732635836ec1b182feff58b9491eac0aa8c59"
+    },
+    {
+      "id": "tech-math-078",
+      "contractHash": "8114bf4ae1845838231557fedfae8dfbb0a3e6290610f2609a04fd68e0921e09"
+    },
+    {
+      "id": "tech-math-079",
+      "contractHash": "c59fd0106dd22fba4636ed734c764c312c412fbc2144695f12a0f1c00e5eb440"
+    },
+    {
+      "id": "tech-math-080",
+      "contractHash": "9e1fb66bee012a0a193bb5063589b3f4c8a2560451b9f52c9a732d2599448074"
+    },
+    {
+      "id": "tech-math-081",
+      "contractHash": "6f3af5f1cb4c955195a209e3c1d559335756c33e98f80e923fd43ab09dde4f6b"
+    },
+    {
+      "id": "tech-math-082",
+      "contractHash": "8f11d309c378133a81d3823c7c74b37a1eb003f4b9b0678d05998cb5997648cb"
+    },
+    {
+      "id": "tech-math-083",
+      "contractHash": "a0d57608d17546160262986fdea388c0bd28256b58908808e1fcddaf58027420"
+    },
+    {
+      "id": "tech-math-084",
+      "contractHash": "0ffcc8741d9c96f7fb499144e9884a09534a974abd9765c51148e09eb7e032e2"
+    },
+    {
+      "id": "tech-math-085",
+      "contractHash": "7fb0569eece9a89f2ee62df4fe3410bef5fb8dfe0aafdaf868131fb3c69f6a98"
+    },
+    {
+      "id": "tech-math-086",
+      "contractHash": "f8328e4390fda14674c7648c4f61c2bd1d23e0fdf2b0889acb59c1cf3f9b22bf"
+    },
+    {
+      "id": "tech-math-087",
+      "contractHash": "be94b4ddcb6f50e523171b47d41c1e627418f71a06621d5851da412820bbe710"
+    },
+    {
+      "id": "tech-math-088",
+      "contractHash": "cce4caf595949801fad4bab451a8c0a828069e373120c282f2cf99bf614c2bef"
+    },
+    {
+      "id": "tech-math-089",
+      "contractHash": "bcf24e0f1bec6710a6d6d3bed68bc5232a1f7618270bea747f696ea587b0a78e"
+    },
+    {
+      "id": "tech-math-090",
+      "contractHash": "fc6cc59c12240b0506690e84fd0abfdcf1ac60b44eeeadb418781e5596477ebd"
+    },
+    {
+      "id": "tech-math-091",
+      "contractHash": "cd08704f534926414a6b98e9a0feb59880959571e60c5c646c2db091c4266c75"
+    },
+    {
+      "id": "tech-math-092",
+      "contractHash": "da7fe4a64796825e658c36ce2111e832a3a31046870ca4dc83de3b501ba2a885"
+    },
+    {
+      "id": "tech-math-093",
+      "contractHash": "50e121e19e0dc2c39b1de4802d9b748601749947fafd60cdc2ec1dd1dceb42f0"
+    },
+    {
+      "id": "tech-math-094",
+      "contractHash": "8b5b8b3849555a7b6e55371cf4d93bbfd6aa9e2ec08d67b1726a831dd9ae78ce"
+    },
+    {
+      "id": "tech-math-095",
+      "contractHash": "918d8086bbdaeeb4cd8b03f6ab7972a2eb2da28a7d47417472e9279e234f4730"
+    },
+    {
+      "id": "tech-math-096",
+      "contractHash": "ddd431eb91effe893c1f8b837881e4f1f05b82ac7da90a00934bd1315cd4c8c0"
+    },
+    {
+      "id": "tech-math-097",
+      "contractHash": "6a2c3fd85669ff2617ca3c30ce8a5b7bc99b37adfda54e7dcc91d80d1af201d3"
+    },
+    {
+      "id": "tech-math-098",
+      "contractHash": "4d9a9868181f963c3c908d95b5505a369a185ddeda16ce76a24f4c97fc8a5d27"
+    },
+    {
+      "id": "tech-math-099",
+      "contractHash": "5120f306aaff10ccd244ce36538cf83482660afe33e1edad96ed656e959cbacb"
+    },
+    {
+      "id": "tech-math-100",
+      "contractHash": "0402a48e8527e39e43a1b0796c1f4ad063c2e1af5273358e9d5f70d54f775280"
+    },
+    {
+      "id": "tech-math-101",
+      "contractHash": "70d4d6b6cd0170d4bd9647f3445c3bc3be045ca42b0458988b45ade137da3ccd"
+    },
+    {
+      "id": "tech-math-102",
+      "contractHash": "e5b039054908bfc5bf05d686ccc73e0532e4a33a812bc904ca3e9e460b5a1f17"
+    },
+    {
+      "id": "tech-meas-001",
+      "contractHash": "2ebd0914fb93015eb23dddb9c3265896ea50b7e80c863e674fc22bf037bccc26"
+    },
+    {
+      "id": "tech-meas-002",
+      "contractHash": "4c472c79dc19398316b4ab3e156f9702e6f7be88e03dc72319e6457feb894b1a"
+    },
+    {
+      "id": "tech-meas-003",
+      "contractHash": "2b048b29e9764082555a990fec48ba9aec1b0365ef8113ed03a0b25c65ffa357"
+    },
+    {
+      "id": "tech-meas-004",
+      "contractHash": "69c7852d5a3f0b7062ebb47d010fe0cb8d0100820312f95eb335b81338739e90"
+    },
+    {
+      "id": "tech-meas-005",
+      "contractHash": "0848d1a9fa7615e41fc853d417405d0acb2e0181d4d2d85b3e5ddacb92c2f797"
+    },
+    {
+      "id": "tech-meas-006",
+      "contractHash": "d4dbbf86e1e5722c3b43fba64bccc9699fefa21e8466d531bb8eb477f50a6095"
+    },
+    {
+      "id": "tech-meas-007",
+      "contractHash": "7b91eb5bf65b41fe241e2fddbae8449389d802d41197947d8a334858b6d44de6"
+    },
+    {
+      "id": "tech-meas-008",
+      "contractHash": "c71e22fe900d1f5ad5799500e5c3a0065b37a51d3d9650fbde11d536be152eed"
+    },
+    {
+      "id": "tech-meas-009",
+      "contractHash": "60c6e24183c46c2a645e6e43f081f83c356421a04e64ed67ef1bcdf151856a1a"
+    },
+    {
+      "id": "tech-meas-010",
+      "contractHash": "9b71f8544606fb8272b4b03f4b521b3bf96c7c1a4a888fa4f22446312e5028c7"
+    },
+    {
+      "id": "tech-meas-011",
+      "contractHash": "9dca4853c62a64cb64583c8cf488da3cd371f32371c0796ffb8b82cc8a7ab167"
+    },
+    {
+      "id": "tech-meas-012",
+      "contractHash": "a0992a1d2e47f524c4902ef52fbba5fa028b202f361c7da2cd8976fcb6b1e6e7"
+    },
+    {
+      "id": "tech-meas-013",
+      "contractHash": "f889f6a0d76ad02f518cc0b54b02f17811d47d99c260466729f1c654fb68b7a4"
+    },
+    {
+      "id": "tech-meas-014",
+      "contractHash": "63a6fb394c9e30ecd21ec590b9836713eab6f54889126f0b8d2426b004744cd5"
+    },
+    {
+      "id": "tech-meas-015",
+      "contractHash": "44eb71d77c44b64325cbd508ac296ae06d222d60a173b82dedc788e5ffa2adcb"
+    },
+    {
+      "id": "tech-meas-016",
+      "contractHash": "dfab04cc20cf46925b0185d8810645d5739dc8358cba8c30074d44bddfbd5537"
+    },
+    {
+      "id": "tech-meas-017",
+      "contractHash": "20dcd3ce8f542eaa9d33a3b390ee28b5410cae02c4a0f28b5939f0aa2eff9584"
+    },
+    {
+      "id": "tech-meas-018",
+      "contractHash": "9838e6fb0f5cce66c0fcb25b45ece6e837d749147135cd0a7432e5eb82e84ffd"
+    },
+    {
+      "id": "tech-meas-019",
+      "contractHash": "39cffd4825b0043a389cde2f9c24cbf4d7c9dc8ff7dd5023c01558d1ca4e3bc0"
+    },
+    {
+      "id": "tech-meas-020",
+      "contractHash": "5c3a7e9ebed5f89c3fa639fba59518e1d209aa0b86241bb19bb315fa6da4b56b"
+    },
+    {
+      "id": "tech-meas-021",
+      "contractHash": "707d580dd132f1b1b982d4abff5678032f49318f29c3fb30cd1ef611bb4b4bec"
+    },
+    {
+      "id": "tech-meas-022",
+      "contractHash": "f18c23b000e5812988e475e4a44bcbfe8e10aca51a7bcf26706beffdf0b4d24f"
+    },
+    {
+      "id": "tech-meas-023",
+      "contractHash": "eb3924ee3214e4faedd25ce57df29f73c4fd712f6c2b21d3297b5dd4acd222c6"
+    },
+    {
+      "id": "tech-meas-024",
+      "contractHash": "39cb58b414e799c53b696a0d49852e03c8d7a8361104cc2c9631bb7428032a3d"
+    },
+    {
+      "id": "tech-meas-025",
+      "contractHash": "6efd3f8210d448ea41a41eab330de04ce3cd6c5c9784874d7dc7e61bc957a916",
+      "distinction": "440/442Hz 선형합의 진폭크기 맥놀이2Hz와 원신호선스펙트럼 성분을 분리한다. 역상상쇄평균과 다른 주파수영역 해석이다."
+    },
+    {
+      "id": "tech-meas-026",
+      "contractHash": "6fe259785e594c38d6458c74af38ed357e44d83e14eab14f8bf815aa17fabd8c"
+    },
+    {
+      "id": "tech-meas-027",
+      "contractHash": "2fcd455e5391ca527a63a61112da746f0d137eea9f6451d9f252543ecb7dfa04"
+    },
+    {
+      "id": "tech-meas-028",
+      "contractHash": "8f9e555103d7bb2a4cbae57a4c521f066d6049755041cecccde18db14354f1b8"
+    },
+    {
+      "id": "tech-meas-029",
+      "contractHash": "d6c5d2a1146faeb5f518b87f3c48806ff0258d45e1f511249be689789a7cc2b8"
+    },
+    {
+      "id": "tech-meas-030",
+      "contractHash": "686fd0d32a34774ce5931ac4b425d5614acd13158d927080914f63618ccb4b04"
+    },
+    {
+      "id": "tech-meas-031",
+      "contractHash": "379dc31679ccd6b7d87ff1c3441b44dab8e4af5bfc48fcf61356738003918c5f"
+    },
+    {
+      "id": "tech-meas-032",
+      "contractHash": "5f24a12e2b6a800cfb31a092854bdd7ab64c1dfc8d693cde279f610ef130a4af"
+    },
+    {
+      "id": "tech-meas-033",
+      "contractHash": "e33928008c18e56ae7de1f45ce717629945b5071af7ce1d4fe421ba6da169d72"
+    },
+    {
+      "id": "tech-meas-034",
+      "contractHash": "f688de4a39da7b531b6a4513f5380c9a91f7f36a69681115a0eb64c51067f8ba"
+    },
+    {
+      "id": "tech-meas-035",
+      "contractHash": "ddc66e9cadf902ddc0f4b1871da041d9f381a123437482a5ee155c2470b48293"
+    },
+    {
+      "id": "tech-meas-036",
+      "contractHash": "eff2f0c919bd99a384e93cbc8518e079e499a9da8edacfd1db615b3a6b66273e"
+    },
+    {
+      "id": "tech-meas-037",
+      "contractHash": "b6703f7e2cd3f454645fb5879e91b86b8d86b06bc3ed975f1eca6571b6e67fed"
+    },
+    {
+      "id": "tech-meas-038",
+      "contractHash": "4d8bd90048bff4c5dc84676ffb91280c02be292158272e13729a11c6f8de4ce1"
+    },
+    {
+      "id": "tech-meas-039",
+      "contractHash": "7ff38d71fa3f8fc6f4c32d4e61a190fd4d8c6230c36ac0a908a6bf1762d7be5e"
+    },
+    {
+      "id": "tech-meas-040",
+      "contractHash": "08d50d840662d197bfc18241f5c86cfcdcb41419eb7e9a7fade48cc501518241"
+    },
+    {
+      "id": "tech-meas-041",
+      "contractHash": "c56d514eeb702b8faf3c7fa545e154fb50bc65a61ea7555453343d5e30f93b39"
+    },
+    {
+      "id": "tech-meas-042",
+      "contractHash": "38084fd6ca1fc9d313dd19c3961747362a6d13792a86384936bdd42c7a8990ff"
+    },
+    {
+      "id": "tech-meas-043",
+      "contractHash": "7eb59bc473c180a9e0ca8e5e27fe19d56c2f5edfbcc8354af54a90f368f13892"
+    },
+    {
+      "id": "tech-meas-044",
+      "contractHash": "b69f403fd22d0a1b7209b85e4b8124766a83458a133bae21d54531b88ac1b077"
+    },
+    {
+      "id": "tech-meas-045",
+      "contractHash": "de361de425255c8fc7fe42d9d6df64455584646df86ab2f7cded35a88d585acb"
+    },
+    {
+      "id": "tech-meas-046",
+      "contractHash": "38a95ee87ba66a2b83ca12d352e8fd3ef2ec6e8f4ee1695744a2b293ad8acc9e"
+    },
+    {
+      "id": "tech-meas-047",
+      "contractHash": "1c96ca45d0d7614af5f3601ea91b5f2746f4a02616cf8baadf581fcca7dbb864"
+    },
+    {
+      "id": "tech-meas-048",
+      "contractHash": "c5783a1ff10932f2ded3eb784653b5d17ef09a61cf86b4aad444059668b349be"
+    },
+    {
+      "id": "tech-meas-049",
+      "contractHash": "2b872482b81e2f0c163314b7e98acd3bea80b23eef55f0daf7e0fd5cc23736c0"
+    },
+    {
+      "id": "tech-meas-050",
+      "contractHash": "6b326b0e69d6b3085e7305e641e06cb7a541034c2c3440de7a37a9aec3cb8e53"
+    },
+    {
+      "id": "tech-meas-051",
+      "contractHash": "7294661bf3be0f24a60d0626438c7f6591e513fa58cfd1a4d9e3a436afef936e"
+    },
+    {
+      "id": "tech-meas-052",
+      "contractHash": "9d2218218e55d7f7eeaf29338f477e1239ed8c67923f673c350b5bef10fc2a8a"
+    },
+    {
+      "id": "tech-meas-053",
+      "contractHash": "ec464f93ebc82c795869d09c12b6f91fbe937fcc90cd12261d282cada9d54dd5"
+    },
+    {
+      "id": "tech-meas-054",
+      "contractHash": "c6a673e40626743aa1a25d6bc7724b2311bdeae5c1d1117053fd45b0c3fc72f2"
+    },
+    {
+      "id": "tech-meas-055",
+      "contractHash": "9fa860877946026fc0735fed347245620f7a559c56227301bd453e79c768e5bb"
+    },
+    {
+      "id": "tech-res-001",
+      "contractHash": "bf5d5e3cda5a0c0b3c5ebe1e23d2b51d1ab3686b601e6ae0c292286aaeecade4"
+    },
+    {
+      "id": "tech-res-002",
+      "contractHash": "30da6bfb1486642cc655fbd794af634d1af67224c77c8a093da93df156ac6f1d"
+    },
+    {
+      "id": "tech-res-003",
+      "contractHash": "baa70b92f8a075185fa25c1206042f523c4860cb34d5c76a4b687fd6518ca5ce"
+    },
+    {
+      "id": "tech-res-004",
+      "contractHash": "5063b64017a4cb1572d77891db556688901abfbc65dc0615314a4406228ce465"
+    },
+    {
+      "id": "tech-res-005",
+      "contractHash": "94d3de419d0f8d610a3eb4ef39a44548133dfa0a0938f049b7ef67c66f99756a"
+    },
+    {
+      "id": "tech-res-006",
+      "contractHash": "b2be8379fd0fad3f167bb9b5f8863d3d3c104ff184ab57058efa870671777ed1"
+    },
+    {
+      "id": "tech-res-007",
+      "contractHash": "9d7ce334d8b51b7c66c00c1fa44f2d4fc49499bb037ac644af258f01ff556000"
+    },
+    {
+      "id": "tech-res-008",
+      "contractHash": "d066fc0a726688c264b3ca3f2b7e927255b1fe15213620859f9e8be1ae6d6baf"
+    },
+    {
+      "id": "tech-res-009",
+      "contractHash": "7cf856b72bfd23d3faf7a3d90bed7c7eb6f6b174a18d7ff5fab701fd3a37274f"
+    },
+    {
+      "id": "tech-res-010",
+      "contractHash": "192a61477adeae00b4b4a0a9e86c8ea797a0a37c74daea7344844e932120e3cf"
+    },
+    {
+      "id": "tech-res-011",
+      "contractHash": "3a072f11f2a7d0109b2dfac5b56c69613705427caa52311a97707a88a52d4081"
+    },
+    {
+      "id": "tech-res-012",
+      "contractHash": "9c80e0412e15790ea2c247807503866c5371e205e18a74d7e481cb12a659e165"
+    },
+    {
+      "id": "tech-res-013",
+      "contractHash": "33db7b1010ad81b0a7d4d9b16f07f21d5e5950fdabe1636acf265da9f6996664"
+    },
+    {
+      "id": "tech-res-014",
+      "contractHash": "c943af63b305a8289435c99c8ec1ba3af60141b508f96904700e5426d4b0f03f"
+    },
+    {
+      "id": "tech-res-015",
+      "contractHash": "cf592ca2dae67098df53ad6c3b719efe1eefc64b79e333e6fa40ba153f305b23"
+    },
+    {
+      "id": "tech-res-016",
+      "contractHash": "0088f3fda85188927bef7a72b33a64edb91c6632635868875b0b39f96f291f9f"
+    },
+    {
+      "id": "tech-res-017",
+      "contractHash": "a13a9131cd1b8e2704b8dae39f5901b63c6ddeeb5d73f8a1aa1416375b449f2b"
+    },
+    {
+      "id": "tech-res-018",
+      "contractHash": "1e7170159086d4738de11ff068ec88323cf55601079b2ba278892695d673e9ed"
+    },
+    {
+      "id": "tech-res-019",
+      "contractHash": "2416e57e1ea7c38bb62e8377827eef421343f1f02dd57bb8a8b7111f62bb1478"
+    },
+    {
+      "id": "tech-res-020",
+      "contractHash": "4e38666e572911d3a4713d53ab771c735226cd3b5a5906ba8a377110b7e06939"
+    },
+    {
+      "id": "tech-res-021",
+      "contractHash": "94e8040192842d5ec8489c5c7f75037e82de0363f8b67d78b9ad744a815b5919"
+    },
+    {
+      "id": "tech-res-022",
+      "contractHash": "a469206e6c00cbd289224300c45a8c4dc68cc0359f8a0d399ebbc1e79f850ef0"
+    },
+    {
+      "id": "tech-res-023",
+      "contractHash": "8461fb6cdbdb66f6c9d3b8a7a6aaa55b86deed9feff9b5d9f5a70051a3270ce1"
+    },
+    {
+      "id": "tech-res-024",
+      "contractHash": "17ead073861aa2da546b6e21852a83bd38b0cec4a609ac60607058df97a35bec"
+    },
+    {
+      "id": "tech-res-025",
+      "contractHash": "a7bb936506a943932f5c706ae31a3ff293ec75be550912a9320b659f8c46fa7a"
+    },
+    {
+      "id": "tech-res-026",
+      "contractHash": "0eb9928bc355609505f33a22ab58dcdc14cea054c2a40ceb9d195b1ae0fc569c"
+    },
+    {
+      "id": "tech-res-027",
+      "contractHash": "5cd17dd4d2cfe71ca9226943da933b940af51bc3bdaf2b48c32495d90c210708"
+    },
+    {
+      "id": "tech-res-028",
+      "contractHash": "d0c8a845baa73543313cca461f0f89dec0f0f9c84c2b0707eafccc1dd8a73f50"
+    },
+    {
+      "id": "tech-res-029",
+      "contractHash": "e9633577d8043809619650e1053ae81f07cbed994e5b1e6247411bb0ee76e417"
+    },
+    {
+      "id": "tech-res-030",
+      "contractHash": "7f8aa6007fc36c54068f74e43ef399faac41c80ad9270eb63e60288989105b2d"
+    },
+    {
+      "id": "tech-res-031",
+      "contractHash": "e68478ce7db0add9dd426982caef57f9c11a9adc310c654bc8073af6cdc7e0a1"
+    },
+    {
+      "id": "tech-res-032",
+      "contractHash": "a60056cccff962f42c9b869a95e461b8dd2839cd0f31704371edec2d203abc86"
+    },
+    {
+      "id": "tech-res-033",
+      "contractHash": "6d58523fc34db7d14b5e87f20079a53b4bb746452fa8b5452726b6d884dcf3a3"
+    },
+    {
+      "id": "tech-res-034",
+      "contractHash": "325b75381424d8a655ac3195ed9e409a3394a72fd40ab36bf5f4309703abb0c2"
+    },
+    {
+      "id": "tech-res-035",
+      "contractHash": "5465f5d745a3a0e29c76319213abfb940e11b0c745a955a25aa7871cd18e92f5"
+    },
+    {
+      "id": "tech-res-036",
+      "contractHash": "80cfcf310655d21ecd300e0627abfcd5815980222cc17ad80142b665198c76d1"
+    },
+    {
+      "id": "tech-res-037",
+      "contractHash": "4942f5420acbf94efee6ad9b29ea6322931f7cca6b05e2232144ae42a63f0731"
+    },
+    {
+      "id": "tech-res-038",
+      "contractHash": "24ec021a72a3741defa059ad94aca550962964d2ede6ef6d646ee83bee4004a7"
+    },
+    {
+      "id": "tech-res-039",
+      "contractHash": "ef1e7190f1193332cfb857b3260fd36e16d26cd8e32214417ad1fa261a585970"
+    },
+    {
+      "id": "tech-res-040",
+      "contractHash": "a78256954907f2a6ab2fec4dab4cf2c088c0d09e150984e4ec55b9816c271037"
+    },
+    {
+      "id": "tech-res-041",
+      "contractHash": "6f611095fbc78e227c94c3fe110fc1e76eaf76b19c3a7e116895f34c11d9678e"
+    },
+    {
+      "id": "tech-res-042",
+      "contractHash": "1c5ca8d1488421b29d885ffbf8465040b24dabee057a67e7b992ad5d9ce38cbf"
+    },
+    {
+      "id": "tech-res-043",
+      "contractHash": "3606734726c776f266572257463a7d9d8ba178a3c86db5a2dc241d54c559d626"
+    },
+    {
+      "id": "tech-res-044",
+      "contractHash": "c52dd088ba5c310228ec596a49a998cedf0d2e7a21886ae251ce9f96c475eb05"
+    },
+    {
+      "id": "tech-res-045",
+      "contractHash": "0780ce6ee6c09577cc27c395501abe190427366fe6b1b3f64b4ff05ade760ae5"
+    },
+    {
+      "id": "tech-res-046",
+      "contractHash": "0d8187e1204a4a915571380fe69a724e20ba6f2876927d18b74775e38ff63e22",
+      "distinction": "새개입-대조·낮을수록좋음·상한<2라는 사전조건으로 상한3의 비열등성 미충족을 판정한다. 양경계 동등성과 다르다."
+    },
+    {
+      "id": "tech-res-047",
+      "contractHash": "3333d539a3e3a6295dae5e5a126ef4094aa88f00aeed33eaf7ad66c383704488"
+    },
+    {
+      "id": "tech-res-048",
+      "contractHash": "515c4e79a57b76a4a0943e7cccef24e35ca695285f5db56a8801b49276ee25c7"
+    },
+    {
+      "id": "tech-res-049",
+      "contractHash": "ee4941e9c20e337acb8dc5c23c3a84206e687243b7f31f2303d4cbcf247a5e7b"
+    },
+    {
+      "id": "tech-res-050",
+      "contractHash": "55bba7f2723dd51c758e041d1be31a03465060308203a4246b6550c3c6d326dd"
+    },
+    {
+      "id": "tech-res-051",
+      "contractHash": "784dd74efcdc8289510a9790f310070e4caf3478ed21c3b1c655890b1c9d2437"
+    },
+    {
+      "id": "tech-res-052",
+      "contractHash": "f1c1d14e297ef95d4b2631563ee2d22d0248067b5a9b4d2c23a8ec9895802718"
+    },
+    {
+      "id": "tech-res-053",
+      "contractHash": "ccaea43d467831cc0fd5276afe35b1ddcf9d7a82d6d62ade765a3d21b814b257"
+    },
+    {
+      "id": "tech-res-054",
+      "contractHash": "e71f35c2865a3d8349b8f12715f02d031cd14069d615da823c027098ba8277ec"
+    },
+    {
+      "id": "tech-res-055",
+      "contractHash": "4b17a78a203dcdcf8a2492f2805fcdfd3946b50b8ecd86135c016b57fbfca482"
+    },
+    {
+      "id": "tech-res-056",
+      "contractHash": "5c43a7df0b9f41666895d568bffa2c70150d9188d6369eb221e96c443b44b807"
+    },
+    {
+      "id": "tech-res-057",
+      "contractHash": "a0ce124b1d03ff295cf7de64042063378bdd85bcef1d9f7053d88b19d22c6d8e"
+    },
+    {
+      "id": "tech-res-058",
+      "contractHash": "b128c00e57186381d3008d490d78d9660670e5c7286520663f3f59f8b6fd69e4",
+      "distinction": "처치 이전 확정 점수는 이후 처치의 결과일 수 없다는 음성 대조다. DID의 사전추세 비교와 달리 시간순서상 인과효과 주장의 불가능성을 다룬다."
+    },
+    {
+      "id": "tech-res-059",
+      "contractHash": "d788282470696a9154a5857f7112de1f021d4c031ddf342ed66423f207479633"
+    },
+    {
+      "id": "tech-res-060",
+      "contractHash": "debaa99736aab4e1578a02b49e490b0e0198e81f4f996cd79890e2923ed8fa48"
+    },
+    {
+      "id": "tech-res-061",
+      "contractHash": "ba036f92d83d84f5e38a65f2a40041c6f52780b3be7ef989120fb5a16656553f"
+    },
+    {
+      "id": "tech-res-062",
+      "contractHash": "6691760f7826b83ee92bd967af8a111a48e3db572dd163189473dce66b238f1b"
+    },
+    {
+      "id": "tech-res-063",
+      "contractHash": "fc80a56f03ea8f2902f7ef1aff572789dff89b85d97ce9bef9b06c7f35f68d10"
+    },
+    {
+      "id": "tech-res-064",
+      "contractHash": "ea2f704b5bee0dc0f8609c263ff136384c39e36cb7751cc2d3a9dd2c3c5730d3"
+    },
+    {
+      "id": "tech-res-065",
+      "contractHash": "f6058543241477e7ea95bf7ca73a5d4a8d7953b02bcc9e10e2b246aa2b5c8a13"
+    },
+    {
+      "id": "tech-res-066",
+      "contractHash": "8853397dba21a01fa3387b74afcc85461814bb004778cb8d5a9a48c359d02056"
+    },
+    {
+      "id": "tech-res-067",
+      "contractHash": "7e8aa24595a7066530d7e15db0a8ddf2af0b8bf75325aae8bffe6306b28c5ad0"
+    },
+    {
+      "id": "tech-res-068",
+      "contractHash": "e3d0c9da2ed37c7139c94a9db452bacb8666d20d7cdb6cd0a35b5b478350d092"
+    },
+    {
+      "id": "tech-res-069",
+      "contractHash": "78670d8da4d5e118d1a9e26c36efd7abe71f9bee3da84aa110238b791f6ac543"
+    },
+    {
+      "id": "tech-res-070",
+      "contractHash": "6c9179abb0a209b24f5f1c6b109cac0579cc7cd673e746a0bff6a61d245930b9"
+    },
+    {
+      "id": "tech-res-071",
+      "contractHash": "4e74614e1624a451fde0481bb784b443d9d58417b52c77ea600d5617e49b53ae"
+    },
+    {
+      "id": "tech-res-072",
+      "contractHash": "a614ca7eb213952426e077aff4227efb14445dde6a6a2094206b5ef07cd6faf5"
+    },
+    {
+      "id": "tech-res-073",
+      "contractHash": "7e5985d7ed7d8d9e9902fcf475e682e3b7d6f480c1a7ae0926f055dd8941fef4"
+    },
+    {
+      "id": "tech-res-074",
+      "contractHash": "f1d28c5fcb5160be71183ba0c3a78f2c42cf033379cf5a9056f570dda55ec821"
+    },
+    {
+      "id": "tech-res-075",
+      "contractHash": "2d21415347ecce6236e1a65e32056c95842689da4618cfc9119b93fbfa80280a"
+    },
+    {
+      "id": "tech-res-076",
+      "contractHash": "41a63d04c2b62b7662df5f08d394bf2a6b1bce89b8151cad9e1c5e3d2a613569"
+    },
+    {
+      "id": "tech-res-077",
+      "contractHash": "ee53e9f9b49f8ddfde72af398406ef59a281ac9c5fde66f2d51b3b32b63b7ec7"
+    },
+    {
+      "id": "tech-res-078",
+      "contractHash": "0e868f0580b51d94f8ca894e2fa5364a676e980945750f75f26f193175e7f6b1"
+    },
+    {
+      "id": "tech-res-079",
+      "contractHash": "95ef26a1ebec1ff6fc7313a47768268d37d3c680ffdb5e874b1cbd8c91fba509",
+      "distinction": "설계로 강제된 찬성칸2/7과 참여자가 선택한 카드의 상대배치를 구별한다. 중립질문 수정과 다른 응답 메커니즘이다."
+    },
+    {
+      "id": "tech-res-080",
+      "contractHash": "3bcd4c28110f071a403af812351fcf581414d55c90cd989775962cc2ca4178ac",
+      "distinction": "공정동전의 강제예/실제선호 응답 관계식에서 집단비율0.4를 구한다. 개인 응답 식별로 확대하지 않는다."
+    },
+    {
+      "id": "tech-res-081",
+      "contractHash": "7f02f1ffe11c6206a1b950977bf9de827d33e3f8dcb73173378563dff56000f5",
+      "distinction": "중앙값3 안정과 사전 합의기준 IQR<=1을 분리한다. IQR4라 합의 미충족이라는 계산이 맞다."
+    },
+    {
+      "id": "tech-res-082",
+      "contractHash": "79a30077b0a3501a13aa92de8628d3fdee1fee759f1bb173199bc0228b63ccf0"
+    },
+    {
+      "id": "tech-res-083",
+      "contractHash": "d4523022b54fe85bc53fe4150db0228388d9b80bdcfc6563fa9044959f35e75c"
+    },
+    {
+      "id": "tech-res-084",
+      "contractHash": "fd7b91c226ec4f77f19e443d1509979f408e6bfc2477556fb94afd21ce007124"
+    },
+    {
+      "id": "tech-res-085",
+      "contractHash": "cbe6c80943cbbe64efeb353a154d4b83c67a605e53a78fbfe0c1838d227e97e9"
+    },
+    {
+      "id": "tech-res-086",
+      "contractHash": "1e3bf2657384e38cd506f5d666043dc8aeeeedec4714cf7d8f747be365dc8908"
+    },
+    {
+      "id": "tech-res-087",
+      "contractHash": "cd0101698e0506096fe23b758e745a4161e8d179f0e398dcfaf9260f4c677a3a"
+    },
+    {
+      "id": "tech-res-088",
+      "contractHash": "7a1360a02d28c2911629c1214ad1f0033cf7045c7a61b7bf1ed1284570d1e301"
+    },
+    {
+      "id": "tech-res-089",
+      "contractHash": "ba22a7432b176f0b11eff319072df3754e33c09fce25f04775470426cb2f5ec8"
+    },
+    {
+      "id": "tech-res-090",
+      "contractHash": "1c7db516d7eb2e1dd283806f76efe47dbee77251e5c12b9d270489cd992a1d31"
+    },
+    {
+      "id": "tech-res-091",
+      "contractHash": "d09c4f1ebe22e4dbec9b2c2b133328947b81f03f1e258473c7059640960003f9"
+    },
+    {
+      "id": "tech-res-092",
+      "contractHash": "cc713caf9378433f89a4ce08ae910bf002f12bb6e87224f648ef4c7bada72f3a"
+    },
+    {
+      "id": "tech-res-093",
+      "contractHash": "3a2b95c3c436cc63423b0e2398a8f6f7c6bf34005a84c7b06882186d310f7af9",
+      "distinction": "포획식60의 산술과 표지개체의 재포획 증가가 흔드는 독립가정을 분리한다. 겹침m 증가 시 추정치 하향 방향도 제공식에 맞다."
+    },
+    {
+      "id": "tech-res-094",
+      "contractHash": "46cef5b3ebe586a71cc1f343d9aa33b949cfd19c60ffb0747566d27af1506adb"
+    },
+    {
+      "id": "tech-res-095",
+      "contractHash": "2316a04f6f87ed5d9b9e9fd500ad9200b5e2e86e973889ab4289bc47d8b07e67"
+    },
+    {
+      "id": "tech-res-096",
+      "contractHash": "063423cbc559d015390e8499010d665a29dc0d311311c523d00f0881212d2d6e"
+    },
+    {
+      "id": "tech-res-097",
+      "contractHash": "1c4570c6e667a4f199d8a74328b089813496ef0090afb7d8f4193ececd475cec"
+    },
+    {
+      "id": "tech-res-098",
+      "contractHash": "a489a91dc6caf0e9bab9505a1bee3b2c889b02ea3f43522b1e6e2833b66af4e9"
+    },
+    {
+      "id": "tech-res-099",
+      "contractHash": "7549cf0fbbe76c2cecc3f03634bfc241ecf78570954d9e291e9fd4119e9cefd1"
+    },
+    {
+      "id": "tech-res-100",
+      "contractHash": "846a89cd7ad6859cd72f7be2682242e6c301d3ce10490bc8958bea41f164dfa6"
+    },
+    {
+      "id": "tech-sec-001",
+      "contractHash": "c6d4d3b5c23679d13a4a2aefb73e2c66ffdb951450f9dc083a2eec31667a7c35"
+    },
+    {
+      "id": "tech-sec-002",
+      "contractHash": "4fa19d71238072a4d266fce4b6aaec19b1774c9e0403f921c3baac27459d3a15"
+    },
+    {
+      "id": "tech-sec-003",
+      "contractHash": "305171f6a3e6ff0a11aa3ec8ae158cd98a04e63a44f2a5c3bf147efd06edf221"
+    },
+    {
+      "id": "tech-sec-004",
+      "contractHash": "f2320fe1cc12af09ffffdf348e3fdec9a91dc72966078666250ea83e887b036c"
+    },
+    {
+      "id": "tech-sec-005",
+      "contractHash": "1bcdb6aade6bd3651791eb82e9d8d29ba218caee5220954f91c701f78689c309"
+    },
+    {
+      "id": "tech-sec-006",
+      "contractHash": "784880a1210b260678662c1a3e077129d863f8a5d37e529d7d2e9d48b8e6c583"
+    },
+    {
+      "id": "tech-sec-007",
+      "contractHash": "dcb4748c86b0f0100361b31631ace2136efe4b69eabbd038b0913a4cd35fe55d"
+    },
+    {
+      "id": "tech-sec-008",
+      "contractHash": "aae0bb786634240de2300f36e24b045e46018c6ee24ef38c669787b96427d7df"
+    },
+    {
+      "id": "tech-sec-009",
+      "contractHash": "5f0b4d6aae41def1e30e44aaf229f85a66d4f889ca1013b637806b437e13a39b"
+    },
+    {
+      "id": "tech-sec-010",
+      "contractHash": "b3f4f9b2c913ceb0e4a090fcd4373d08040d33dacf87dc55a7fe7a25b09baa7f"
+    },
+    {
+      "id": "tech-sec-011",
+      "contractHash": "43c3061e73e8d2c3e3649fbf297159e9ebe70a1c8942c2ad40ff4e416283e291"
+    },
+    {
+      "id": "tech-sec-012",
+      "contractHash": "b0f38b2dd8c704428d92b0590300c6f1bc6d86455153e42917321d678e6e98f2"
+    },
+    {
+      "id": "tech-sec-013",
+      "contractHash": "7cf793bff88b6fd8fbeca23dbf391ab09a75b5b36812810eab5bb9fcc3ebc759"
+    },
+    {
+      "id": "tech-sec-014",
+      "contractHash": "9607eee576b13e39b718ecf90b5f1246218325b391bcfbda283e7112f87d4c17"
+    },
+    {
+      "id": "tech-sec-015",
+      "contractHash": "7cae58e7b2bd9a735bdc399595c94bb9cb2fd9148acecfdfdd04ce38b95e0171"
+    },
+    {
+      "id": "tech-sec-016",
+      "contractHash": "027412edff07dc7bcc46174cefdd797abd038b8a078387cada199041a72c2f47",
+      "distinction": "서로다른 솔트를 포함한 해시의 비교가능성 문제다. 단회토큰 사용이나 만료판정이 아니다."
+    },
+    {
+      "id": "tech-sec-017",
+      "contractHash": "ec431a272c479d1fcece429612321ddac84fc8fdb3ec5979126339103bb9539c"
+    },
+    {
+      "id": "tech-sec-018",
+      "contractHash": "e02e44096a4cc4ea38c9ff35a3506656d613c0ef13e0ea5876ef6e29b0b48fc1"
+    },
+    {
+      "id": "tech-sec-019",
+      "contractHash": "a96ae9a21c73abf96dbd05f7c66861e4e8fa08e6dc43c726c76983b41075c3dd"
+    },
+    {
+      "id": "tech-sec-020",
+      "contractHash": "93b785754100aa64ff52dc708666d2ae63862a86892e0a263c18465da710cc22"
+    },
+    {
+      "id": "tech-sec-021",
+      "contractHash": "2863983017dbea18ddaadeff546fe132a5c1c6f50e6b12ec46a0c56d48c89c52"
+    },
+    {
+      "id": "tech-sec-022",
+      "contractHash": "ddf5508b8f9098286efbcad72e3ca4b87f5eb1e670386a39786503bc990f460c",
+      "distinction": "파일경로 검사를 통과해도 응답헤더에 CR/LF를 허용할 수 없는 출력문법경계를 검사한다."
+    },
+    {
+      "id": "tech-sec-023",
+      "contractHash": "5c09b6294c992991189c23e885a407d4e4b77c8e212080598035e0d0245247bf"
+    },
+    {
+      "id": "tech-sec-024",
+      "contractHash": "cbd7964158a872a2b6b885efaae75af01fd1299d3f86aff340cfa83457fcae04"
+    },
+    {
+      "id": "tech-sec-025",
+      "contractHash": "2786d71bbf6e92712a8bff918bb38c11b2d2bf9f5a0859ba799fe792f74bbbce"
+    },
+    {
+      "id": "tech-sec-026",
+      "contractHash": "33c7bef806b8c5a9b19bdf614b7a99ad641a3ccb30383130940958197205b388"
+    },
+    {
+      "id": "tech-sec-027",
+      "contractHash": "4183edfa2a2a126006236555cc80a2e7d0f9878f186c918075a70289b443f95c"
+    },
+    {
+      "id": "tech-sec-028",
+      "contractHash": "5ef133dd389ee38902412a15de55fce532f7734a581201aba34a8be436a7c21f"
+    },
+    {
+      "id": "tech-sec-029",
+      "contractHash": "e69103175f53541c94e336d642990fea552d18a91afce7cf17dfaf9e96114b80"
+    },
+    {
+      "id": "tech-sec-030",
+      "contractHash": "3b176e9502bdb4690d63f7151cd0500b0488b885a487b8b2f2025075267b45ab"
+    },
+    {
+      "id": "tech-sec-031",
+      "contractHash": "973961aee2bc59a30687c46118e864b42e59dc6557135cea095b059d3742fe40"
+    },
+    {
+      "id": "tech-sec-032",
+      "contractHash": "b4ee2f4aaa55a884c1bc129aa5677c3a3da510ae0b62e579138ceaec4af2d9ef"
+    },
+    {
+      "id": "tech-sec-033",
+      "contractHash": "fa6c7a1928e4336b9deb376a984eec262b261d0f5c24b720c3a7101918c995bb"
+    },
+    {
+      "id": "tech-sec-034",
+      "contractHash": "5b44033c362c1a67386b4e0cd7ca22104147891b5988296dd82afd25f4e7e64c"
+    },
+    {
+      "id": "tech-sec-035",
+      "contractHash": "4218cd02f763651e8a584121ad50dc4c1f30e97e2bbf320b7e22eccfce27db3c",
+      "distinction": "이중escape 후 HTML소스 &amp;amp;와 실제표시 &amp;를 구분한다. 단순 출력맥락별 인코딩 정책과 다르다."
+    },
+    {
+      "id": "tech-sec-036",
+      "contractHash": "eb329539da80c2968f80c39f7e69df19914580ae4b7116407667eb91aef89780"
+    },
+    {
+      "id": "tech-sec-037",
+      "contractHash": "ebd848c6bf82b3116d4692de12a7fdc0805b4275e8c28c8845edf38b069f72ec"
+    },
+    {
+      "id": "tech-sec-038",
+      "contractHash": "5067cdf554b86b9414443a14113d0b93fa77dde2cab34547a5588a8104745262"
+    },
+    {
+      "id": "tech-sec-039",
+      "contractHash": "4df1332afcc2042a86a168295b9a51fc67cdec31ee2e90b20419b1ac73397d85"
+    },
+    {
+      "id": "tech-sec-040",
+      "contractHash": "8f7b241775461dd0d43e3a7cc06ba4b1705d6402f1bcaa8f59c409123c7d810b"
+    },
+    {
+      "id": "tech-sec-041",
+      "contractHash": "4c574f8c1cb69e4e1bb9020668a976e61219ac1209e1fb4eb0c73eeda1ddcd2b",
+      "distinction": "검사기와 저장기 파트집합 차이로 검사받지않은 객체가 저장되는 경계 결함이다. 단순 경로탈출 또는 어느파서가정답인지 판단하는 차등시험과 다르다."
+    },
+    {
+      "id": "tech-sec-042",
+      "contractHash": "a4f5c49be142d8de2c7da7ab0a4116dde0e90ae0996c258ebc7cfa82b4bcd269"
+    },
+    {
+      "id": "tech-sec-043",
+      "contractHash": "098b7d827984fa1e6c5c3bc7d6754763ae4b3b45e5382010ecf64fe615f042fd"
+    },
+    {
+      "id": "tech-sec-044",
+      "contractHash": "6675f71be65c7f15641b3dc1ec7a27f189bbde42453444f6e442eb6dd7895077"
+    },
+    {
+      "id": "tech-sec-045",
+      "contractHash": "6b2c0cafd24689f3a88d6807d31f81157609419e6eeadfef5c5bafb147d92737"
+    },
+    {
+      "id": "tech-sec-046",
+      "contractHash": "90dbcfd499301ab5a63ef2cb23c32b394e28955b3281975a70e46dbe6320a9a2"
+    },
+    {
+      "id": "tech-sec-047",
+      "contractHash": "c375741b785ed819e2d5253d52f3d9fe51b20c2c44359ed754a019e97c49120f"
+    },
+    {
+      "id": "tech-sec-048",
+      "contractHash": "cd60b2268eb6612e477cd9b2fa09ac21d69da9802df82de71b75e6a8996a387a"
+    },
+    {
+      "id": "tech-sec-049",
+      "contractHash": "1231bf6cbfc9bdf9752a6d6b6b840378335c276ad525e612b48ea78e5b5f7c22"
+    },
+    {
+      "id": "tech-sec-050",
+      "contractHash": "8662e1749e51da5e4b09d6a1b85071f71e4d526a44d4e039d4a181c06e8445e8",
+      "distinction": "정상CA·호스트·기간을 모두 통과한 인증서의 공개키회전이 별도 고정핀을 깨뜨리는 계약이다. 만료나SAN이름불일치와 다르다."
+    },
+    {
+      "id": "tech-sec-051",
+      "contractHash": "5d1151ea76cdb61925895fe9d4bc0d9597f5d958e50c63021f8ae5119837a34d"
+    },
+    {
+      "id": "tech-sec-052",
+      "contractHash": "ef0e3c7d94646c40c62b1949896ef73296dd25e90d8c7dce1ab021412663d193"
+    },
+    {
+      "id": "tech-sec-053",
+      "contractHash": "c533ab6d94eb20fc8fe086eb5b3a5cc2a4067d45caec02b8e22311d53f6df770"
+    },
+    {
+      "id": "tech-sec-054",
+      "contractHash": "ed9ea2b31fe2790df255975395ac718ee5a6598417ded4a7561fdfa9dd085847"
+    },
+    {
+      "id": "tech-sec-055",
+      "contractHash": "4f2064dc955d96b5fab84a0b8fbc733a1edb34922d8c8f0150517d66cd59a393"
+    },
+    {
+      "id": "tech-sec-056",
+      "contractHash": "194dabf1401de14784a567e552dddbe007c6f811d18a8d0aee399a663665be61"
+    },
+    {
+      "id": "tech-sec-057",
+      "contractHash": "cd7a3eabe08f787a21773f9d421307af4726303ac7e001164956745ad4854a86"
+    },
+    {
+      "id": "tech-sec-058",
+      "contractHash": "573fc8aa1fede4565dacd39766baf903300953c670658cba9f3ba52a532146e1"
+    },
+    {
+      "id": "tech-sec-059",
+      "contractHash": "4194acb409a47499ee65fd029b32a650b8877d83d9cb967d14720a1d32b61e98"
+    },
+    {
+      "id": "tech-sec-060",
+      "contractHash": "69c0dd4600b8c6b6789a2c3e64df56e897348ef2f1a5927f9e2e95d7f5c4f14f"
+    },
+    {
+      "id": "tech-sec-061",
+      "contractHash": "ebbf6aaf34ac4e44bcadc588741ea5dbe4f7351440cab85f1cbb876653520c4c"
+    },
+    {
+      "id": "tech-sec-062",
+      "contractHash": "99b389391c7c9c8938fc0d051e7a9e28e22e38dfaeaf764594018b2915d03717"
+    },
+    {
+      "id": "tech-sec-063",
+      "contractHash": "00232cd2df4a95285729a42c09fe89d9877ab7e4dd6a8ea60feb32fdefa64999"
+    },
+    {
+      "id": "tech-sec-064",
+      "contractHash": "fb019d6923bfcafcdf8cecd67cd768617480b71383ac648d4157662aca2aa746"
+    },
+    {
+      "id": "tech-sec-065",
+      "contractHash": "46b46e89dd2ffe730934fbce5e8879cd3275ee8353683d6d385336d36efe8047"
+    },
+    {
+      "id": "tech-sec-066",
+      "contractHash": "6997901ef2d87b278c3232a818915b98ff9bfa8e68de2494b08ab932e98c33fe"
+    },
+    {
+      "id": "tech-sec-067",
+      "contractHash": "ddd1394ab2d90850ef90abbd6f78fecc4d9bdf22d0eb11b765fc233be73c1ad2"
+    },
+    {
+      "id": "tech-sec-068",
+      "contractHash": "423d3eff6c69e188aab65d7b9575762312b3ae31ff28a090ca2a4fbeba6e5d3c"
+    },
+    {
+      "id": "tech-sec-069",
+      "contractHash": "da18a6c453a977b450300f7750a95f351110acd57107afa5122889875fc18210",
+      "distinction": "준식별자집단5명 모두S이고 대상소속을 알 때 신원미특정과 민감속성추론을 구별한다."
+    },
+    {
+      "id": "tech-sec-070",
+      "contractHash": "8f9c5f809f5fefd741baa10f2b53e4ced5ba3a852849b44e1c18173c0ebfaebf"
+    },
+    {
+      "id": "tech-sec-071",
+      "contractHash": "7edc39be5567299050b7cab81d18da8f6a47c008d39a194b3c92f4f475fb0a03"
+    },
+    {
+      "id": "tech-sec-072",
+      "contractHash": "f71741047d016354e3e5d0e396003d28defe19c7a8262400988428f47145a538"
+    },
+    {
+      "id": "tech-sec-073",
+      "contractHash": "bfb340d7758b33e49c4a77a7ff7ce6d83a375d1aa9ea8c02720e473d62967b1a"
+    },
+    {
+      "id": "tech-sec-074",
+      "contractHash": "8f299cf19942e33855873eec838e588c082cd8eb0007a9f5cbd30276247fdd6c"
+    },
+    {
+      "id": "tech-sec-075",
+      "contractHash": "451c58f2d3c0b4a516939390d7bfe04d38bccc734ba8fa04f275ff0d02abce85"
+    },
+    {
+      "id": "tech-sec-076",
+      "contractHash": "c349c2f298a6fce293d00d2109d9851797ec5c42f23d386b698d4f4f705fc05b"
+    },
+    {
+      "id": "tech-sec-077",
+      "contractHash": "6f16c183f5619826d6e3100de7fd8da51c0ea14b9df6bc1177a1c80e00831c91"
+    },
+    {
+      "id": "tech-sec-078",
+      "contractHash": "18c69fe3a9bc545192cbd19b89601010af0e76cda0aca2f03295591fd0b7fa35"
+    },
+    {
+      "id": "tech-sec-079",
+      "contractHash": "f3a703c569c9be2baf60e887fe7ac0de48f50c518cedf5c687745ad7609a55c4"
+    },
+    {
+      "id": "tech-sec-080",
+      "contractHash": "6ff193ed21be231ecd56e0be66ece1174e3ca54b9d6f766451d56200ce55c13b"
+    },
+    {
+      "id": "tech-sec-081",
+      "contractHash": "b469dbacfea3338c4875bb176033700cb97675087439f2ecc7a893bb838aacf1"
+    },
+    {
+      "id": "tech-sec-082",
+      "contractHash": "044b73cbd83a76adce5d738e38d62795d7f8bf58294ab6d36140f53c5469ad10"
+    },
+    {
+      "id": "tech-sec-083",
+      "contractHash": "3a8687145d3a3710220b56aab4becd927aa6076e549d828fc804f966d629f2b5"
+    },
+    {
+      "id": "tech-sec-084",
+      "contractHash": "d624d53ae94b6ba435020a12b6dcda65a317bcedb49160b2769be81c8de8cd68",
+      "distinction": "XOR 대수로 동일스트림이 소거돼 평문관계가 남는 것을 설명한다. 로그인/CSPnonce의 단회소비 정책과 다른 산출물이다."
+    },
+    {
+      "id": "tech-sec-085",
+      "contractHash": "a5231fafa27d7281eaccfba4ca45cee9d13dcc20dd69f1fab620ac1bddaf19f9",
+      "distinction": "보고 전용 모드의 위반5건은 정책에 의한 차단5건이 아니다. 설정에 따른 관측과 강제 적용의 경계를 검토한다."
+    },
+    {
+      "id": "tech-sec-086",
+      "contractHash": "2a00f7486c118cdc557b55ecb91a0fae08c0a51888b5ae3614f34319b1176aa5"
+    },
+    {
+      "id": "tech-sec-087",
+      "contractHash": "20f98d5894eb5d02c15adc5251fed8f04b438d04c80ab770d7facd5588998433"
+    },
+    {
+      "id": "tech-sec-088",
+      "contractHash": "a07c5518026e8ea069af1a84f50d44b9f817477ee82fc6f9d0781a5e24170649"
+    },
+    {
+      "id": "tech-sec-089",
+      "contractHash": "edd8dd38d49c4fe0f28be11facea641d71dba826f140af326239e62be1fe9a75"
+    },
+    {
+      "id": "tech-sec-090",
+      "contractHash": "9e9ce647bf2512d0e3474c4e248f36f4fa8286fd319dc93d887322711b223003"
+    },
+    {
+      "id": "tech-sec-091",
+      "contractHash": "51b9ff30e60e67066f3b92ad37cf5655a8204fc8f9c20603e02cdf5cf81f28eb"
+    },
+    {
+      "id": "tech-sec-092",
+      "contractHash": "c28d509be07f066e8f981b2536e9ccf8142b385945943027b238d3495ad7d57b"
+    },
+    {
+      "id": "tech-sec-093",
+      "contractHash": "7ab72d8766ab4d97c89c3329ebd9797e6970c28c6becc3e392ec8f7e6687bab0",
+      "distinction": "고정통계에 독립잡음4회를 더해 공개했을 때 평균잡음분산4/4=1을 계산한다. 최소필드반출이나 단일양자화디더와 다르다."
+    },
+    {
+      "id": "tech-sec-094",
+      "contractHash": "dfc2546f01b590389bce4dda09a7ab2af13237fcdd453e0071cffa5c9b793a16"
+    },
+    {
+      "id": "tech-sec-095",
+      "contractHash": "733c3ff9b181a5a4ab3ee6f7e00bb0393274cb12a260125a559bc28a64e1009b"
+    },
+    {
+      "id": "tech-sec-096",
+      "contractHash": "538de69ac2dbf16ee9098cabce318388992e3673acf3efc8144886990d24a2e3",
+      "distinction": "변경하지않은 암호문도 연관문서ID가바뀌면 인증태그범위가 어긋나는 AAD결합을 검사한다."
+    },
+    {
+      "id": "tech-sec-097",
+      "contractHash": "8b6127557672e0ae2134f591e66c942d9c64558a7422a7f9474a848cc44c6af0"
+    },
+    {
+      "id": "tech-sec-098",
+      "contractHash": "8263fc663604d29d4c58795e1489c67b04d1ad20c705f9cd1e16eba534ca103d"
+    },
+    {
+      "id": "tech-sec-099",
+      "contractHash": "de4e09a20363b7fc9efe6e7bd2f6039195931e296c051aed2f83a1d39fadce6f"
+    },
+    {
+      "id": "tech-sec-100",
+      "contractHash": "b1a87a7402df387787aefba415e8c1b666388df53d07b40f02729f051592c032"
+    },
+    {
+      "id": "tech-sys-001",
+      "contractHash": "663a94d5723520af4d55c50f8af452905b3aa08ad8341ad167394ad89f1b7ccd"
+    },
+    {
+      "id": "tech-sys-002",
+      "contractHash": "16cba715ebf10c518139cbf6dd64a3ad8908262a375656aa18840d3e1d6f341a"
+    },
+    {
+      "id": "tech-sys-003",
+      "contractHash": "cbf4ca3197599ec4b8ce0dcbe2af797c3d3251a1ec3f929892556e957eb5dab4"
+    },
+    {
+      "id": "tech-sys-004",
+      "contractHash": "8119080bbe9fc5dcfa742ee39c987be9bc7a385c91ce07e9c3b209300830daab"
+    },
+    {
+      "id": "tech-sys-005",
+      "contractHash": "678636ce24d85a1937846e00a90510d72e3bfe0de3d0fbe23c5f16ccaf2380c6"
+    },
+    {
+      "id": "tech-sys-006",
+      "contractHash": "aec65c0b8edfaa1fe0edc37ef92e25c49d22207c73dfb4d0a31cf65bd75eccf7"
+    },
+    {
+      "id": "tech-sys-007",
+      "contractHash": "084e342aa682f3fc17eab4576812700eb5178461bf2b95568a7d090b4ca879a8"
+    },
+    {
+      "id": "tech-sys-008",
+      "contractHash": "7ba7c5d34d39f4a28f290c2bb60b7028959a3a10a8987569464ea0e285d40f28"
+    },
+    {
+      "id": "tech-sys-009",
+      "contractHash": "94055fd6633460cbdd4f4fa506d1cb14604007a450d0d9d157a6b36ba5b69af7"
+    },
+    {
+      "id": "tech-sys-010",
+      "contractHash": "db6dd36bbf2b6d9c5a1cc0d4382ba5278c761bd761d0cae04477c4672df8352c"
+    },
+    {
+      "id": "tech-sys-011",
+      "contractHash": "029f2eed5d18c7195b10cf9f7d2231f42969b672e10492f3e669d8b81cb1b3ee"
+    },
+    {
+      "id": "tech-sys-012",
+      "contractHash": "151d318e947043c9007c0b9d370792ccabfb911b5335bb822aacb648166cef40"
+    },
+    {
+      "id": "tech-sys-013",
+      "contractHash": "3563c9ec5b4d00d534249e13e5aeedbda4b7514c00a6c82232dfaefd7a4477cf"
+    },
+    {
+      "id": "tech-sys-014",
+      "contractHash": "55097485344b73c297d28ede4afedc2330e580fdc094662f39cb31632af4d611"
+    },
+    {
+      "id": "tech-sys-015",
+      "contractHash": "31bd75b6f1c9d6a7165820a28f2f8b60e8dbf5da53e36787ccfe50a5b9187c47"
+    },
+    {
+      "id": "tech-sys-016",
+      "contractHash": "31b8f7fae68a2a493f101e5dff2c83acacf2107e12e1f422aa8a091f23e5e430"
+    },
+    {
+      "id": "tech-sys-017",
+      "contractHash": "ebec33a21d6be9602502dfc04005523e570ef768d481809fc339c0e40e18b20a"
+    },
+    {
+      "id": "tech-sys-018",
+      "contractHash": "abe60d6beb2bdd58376a135e2d8db95b0147ff994ac77b249f528a98b5bad628"
+    },
+    {
+      "id": "tech-sys-019",
+      "contractHash": "c0c490d02169b1d47fc0b4f187276063bb1e310230fa835949226cbfd53b8ae4"
+    },
+    {
+      "id": "tech-sys-020",
+      "contractHash": "ca45c8628855682de953f8908957c86de30bf2394c28e7f543d57a38f31259d8"
+    },
+    {
+      "id": "tech-sys-021",
+      "contractHash": "7598bf7c9872aa9368d7fb5836ed9b286030046eae4261092c123109900ccea7"
+    },
+    {
+      "id": "tech-sys-022",
+      "contractHash": "664486321da05b7ffd3ea4e07f44837a75c2406163468f45e655d2f5e8dc2768"
+    },
+    {
+      "id": "tech-sys-023",
+      "contractHash": "223c50b2e7d2da85c85df2536dd52982d2351fd6fd67969434f075c8c7808fd4"
+    },
+    {
+      "id": "tech-sys-024",
+      "contractHash": "b60ef771cc5697c52af542fc5e57e55845debf70611f45883817485b0a9e852b"
+    },
+    {
+      "id": "tech-sys-025",
+      "contractHash": "4ed6672f7c0186ac691f65d2dbbe7fccc33fd29372afc486ca0b7e77d4ff98aa"
+    },
+    {
+      "id": "tech-sys-026",
+      "contractHash": "75b5fd5529af338c4a669758666986dd096b1c423708fadfd95af31520a43388"
+    },
+    {
+      "id": "tech-sys-027",
+      "contractHash": "8d91af266225c4c0f1e649c81b6cc9e817cec8a27299b1193013cde50e7fbda3"
+    },
+    {
+      "id": "tech-sys-028",
+      "contractHash": "08381e324df80a480861ccf9a7b84d73369327f4486a45054db3f2bf9c6c03e2"
+    },
+    {
+      "id": "tech-sys-029",
+      "contractHash": "87dc8acde1224a24716086c78cd0a56e5aff20b7098aba20116faa382c9b9b02",
+      "distinction": "각 계층 최초 시도를 포함한3회·예산소진·중첩재호출이 명시돼 최하위27회 상한이 성립한다. 읽기쿼럼 겹침 계약과 다르다."
+    },
+    {
+      "id": "tech-sys-030",
+      "contractHash": "6479283c588c6d94d94ac434c92afaaa99c3e80943af6d059b6f03acd1465a91"
+    },
+    {
+      "id": "tech-sys-031",
+      "contractHash": "906005dd8a3983940f49872a7ba106f0201ad490352986b7df7738fa21e5cb98"
+    },
+    {
+      "id": "tech-sys-032",
+      "contractHash": "87a91c8e1de514d0c5f3d9d1bdf68cb8920f1d28bbf72001dbeaff139c3dc1cd"
+    },
+    {
+      "id": "tech-sys-033",
+      "contractHash": "ead16f11223909c917be2fb476cbe80244efbaa6c788ac05d4eed711b96b5e96"
+    },
+    {
+      "id": "tech-sys-034",
+      "contractHash": "312dcd845e007592ee943e72db21b834e5508d28899249eaa90b34daaafb04ec"
+    },
+    {
+      "id": "tech-sys-035",
+      "contractHash": "6252daaf5f21dd0f968ba5c2ff3a06a9c5c6afdb6656f9d683987b57ff2bb25d"
+    },
+    {
+      "id": "tech-sys-036",
+      "contractHash": "44099ba8fb0cc03f9e0a6f18f5c5f77e1a49aa790c759d9725e700180ad25d49"
+    },
+    {
+      "id": "tech-sys-037",
+      "contractHash": "26d8057a96e8e4cffb3bfe6dd058b20c912343650f5bff476b6d83b05f57c8ae"
+    },
+    {
+      "id": "tech-sys-038",
+      "contractHash": "3b08b6f78222992240ca04e2c3eba952fe4c58d83d0480d916ffe13b49c5225e"
+    },
+    {
+      "id": "tech-sys-039",
+      "contractHash": "868f13d45831de7ba752308f13dae2074eb949f615b0e6a1a8019dc2795c41b1"
+    },
+    {
+      "id": "tech-sys-040",
+      "contractHash": "cfb319942f0b92a949ec23421347a41afec863ee4d75246e2c85f2d4fc311b26"
+    },
+    {
+      "id": "tech-sys-041",
+      "contractHash": "4eee832e6f5bfa0abc0b693ba216632a1828c1f9b0d8d46bcf3b782fded2801c"
+    },
+    {
+      "id": "tech-sys-042",
+      "contractHash": "383ad800ce7a5ae22decbcdc15eaa5e36daf7137e349cf92e2a20fcebb563089"
+    },
+    {
+      "id": "tech-sys-043",
+      "contractHash": "c0457a54e0b4c6c78c7335837f9186eef135bc2bd390208776530ed80729410a"
+    },
+    {
+      "id": "tech-sys-044",
+      "contractHash": "fa08c7a0d4ade74e9a22189909524558eaa2202d805483225ebdb5432157b256"
+    },
+    {
+      "id": "tech-sys-045",
+      "contractHash": "1e3abba95ccf4c27a1fb0c3e0e524230b6e5f8b24ce2791a16cec7cd60aa0f76"
+    },
+    {
+      "id": "tech-sys-046",
+      "contractHash": "6036a141760089cf79047f7a35c2aba93fe2265cd87bfde183177038f3a0440e"
+    },
+    {
+      "id": "tech-sys-047",
+      "contractHash": "8041f68b2b6c48d3f88abee51df87cb9ade72b03725c9119f3249df149c37a29"
+    },
+    {
+      "id": "tech-sys-048",
+      "contractHash": "869cb34ac5677732fc53eefdbf0dfa61519350eca079a68751ff74f5fae50b28"
+    },
+    {
+      "id": "tech-sys-049",
+      "contractHash": "cb72c28a0efd63a8b8ec336791ee7d8d82fb0281a047850cb692ab9682722ffd"
+    },
+    {
+      "id": "tech-sys-050",
+      "contractHash": "889393fe3c5d3a3a6bf125eb52017d34b260aa5dfc30166f8881744ac8a70b1a"
+    },
+    {
+      "id": "tech-sys-051",
+      "contractHash": "c6c26de96926479b57ff6db51c0cb92b9cfe940f807ec0bf193cd483c85d8a2e"
+    },
+    {
+      "id": "tech-sys-052",
+      "contractHash": "f124ec03d470101e0f4a162081c1f55d9d624d2c7f441fae3748ee1c48affabf"
+    },
+    {
+      "id": "tech-sys-053",
+      "contractHash": "5e31bdc8bf45e9bd2df520ef381a4f4adcca24ee0f09a810ba1c35d682a2ca52"
+    },
+    {
+      "id": "tech-sys-054",
+      "contractHash": "6423bcf9a84552f201a035fde11dc6bd9103877983dd5f413b9f8eb046ede797"
+    },
+    {
+      "id": "tech-sys-055",
+      "contractHash": "3408d04ebdc8ca0c6ff146791187b775486d917fbd5bcc4f70d198374fc150f4"
+    },
+    {
+      "id": "tech-sys-056",
+      "contractHash": "aca02918609e08e6c0715b5e0652bf8d3bc6a90b884fe46c57c04e9414c6d7ba"
+    },
+    {
+      "id": "tech-sys-057",
+      "contractHash": "58a185bce6eb2d3d2da384a5ec612209935ca43ca0e4bd0e54855ef4cd4758dd"
+    },
+    {
+      "id": "tech-sys-058",
+      "contractHash": "c16afba5862fd4a6abe333048affa5408f9a94eb3fba3fe937327ee86a846457"
+    },
+    {
+      "id": "tech-sys-059",
+      "contractHash": "3c6693d1b8d59095a2527297f66362772ce9e1d8a522f92d9de3fafb4e4e4342"
+    },
+    {
+      "id": "tech-sys-060",
+      "contractHash": "7c40089ca3e7d07cde9ae35ef2a31557e9931cb247db2a726e7452a7931a9e8a"
+    },
+    {
+      "id": "tech-sys-061",
+      "contractHash": "f112ab75c0fc985579c3257744d4f7475ab30971bcbe21558f7e69613fb0ac36"
+    },
+    {
+      "id": "tech-sys-062",
+      "contractHash": "eace2e2a4e184ea5ff82cb4bbdd06a33d7f3739d8d5ac22db4884d0c03874246",
+      "distinction": "서버의 단일범위 지원과 이번요청 수락·파일불변이 명시돼206/100바이트/0-99가 성립한다."
+    },
+    {
+      "id": "tech-sys-063",
+      "contractHash": "ba53c35f9804dabe0444ef6684b8ded1e5007411ccc33c9a524843a32a85a0c3"
+    },
+    {
+      "id": "tech-sys-064",
+      "contractHash": "cc64b3a4ca8871d9a695771fe577cd5aa3b42eaa436d1376dccf416969cc80af"
+    },
+    {
+      "id": "tech-sys-065",
+      "contractHash": "5fdf4deee67d938e01c0292abb4f8560c5b99546df1a4c28703b687614f91c1f"
+    },
+    {
+      "id": "tech-sys-066",
+      "contractHash": "cda5e9bed045016f2065bb05c05dad93f3926933e00877cc04d9fc0fc97e92ed"
+    },
+    {
+      "id": "tech-sys-067",
+      "contractHash": "acb5d40dd108dd859a5c4ffc473687423d8f3a95e1e3e0ba1cc8bf1db2887781"
+    },
+    {
+      "id": "tech-sys-068",
+      "contractHash": "c6962e0c09e998e18f06a93cc5bf660412bb676257b36c38df1fa6de51622034"
+    },
+    {
+      "id": "tech-sys-069",
+      "contractHash": "d4cfa6b6339f693fa124f1216292263a86aa66747d33f821a5e0703451b63a76"
+    },
+    {
+      "id": "tech-sys-070",
+      "contractHash": "634ce3f6bf1187b5055b2a7199ff27e9eca1da187115adf24f4873c0b2b0e2da"
+    },
+    {
+      "id": "tech-sys-071",
+      "contractHash": "18354f0be96fe172a5132cb213b838e94e8d91c8aebda23197e3ed1e792fe427"
+    },
+    {
+      "id": "tech-sys-072",
+      "contractHash": "65a65a6f4c18abd8758225aca539123e24a340d48996bbe633fcd55d7a153377"
+    },
+    {
+      "id": "tech-sys-073",
+      "contractHash": "bf5b9e177e6d06757f565cfdd5cfad463c9865a529ab42d3c1f1b3c17d7ba21e"
+    },
+    {
+      "id": "tech-sys-074",
+      "contractHash": "9878f9318d9870a042d8e51e84888e24c24318aa24c8a780a710f9cd534a9302"
+    },
+    {
+      "id": "tech-sys-075",
+      "contractHash": "4d3a1d8725942ffab54e7998f5634feaa76eb06459b0a45b805e1999b5dfccb2"
+    },
+    {
+      "id": "tech-sys-076",
+      "contractHash": "311f087fda404e6218563f76e818d6e90d3b477414f68584e6a94e05c6a57ed3"
+    },
+    {
+      "id": "tech-sys-077",
+      "contractHash": "637a344ec01237ac0e3740d41dd098a450831d5f10bb9c35d08158cce445d104"
+    },
+    {
+      "id": "tech-sys-078",
+      "contractHash": "f482682ae46166d92d6dd8ef7e9202e03fbf7f9cd12a4cc22b9cc95a1f531fdc"
+    },
+    {
+      "id": "tech-sys-079",
+      "contractHash": "a4b41be69fe7b2526fbb3979435b7648fd16b60f77677963c1de0d83f9b930cf"
+    },
+    {
+      "id": "tech-sys-080",
+      "contractHash": "4014e84727668c5c674c4a911dc4878d8b7407796f1472fe742402d0d2904f86"
+    },
+    {
+      "id": "tech-sys-081",
+      "contractHash": "125a2c4ccc549e876d9ebd0f34338d3ceff53c7c81db839fc90b3b158faefc61"
+    },
+    {
+      "id": "tech-sys-082",
+      "contractHash": "004a2945d05379f11061d04bfaa6bd92bd67d218a1faa6acdd2cf5c782166ae1"
+    },
+    {
+      "id": "tech-sys-083",
+      "contractHash": "a6d87da54b7c79691327e237572db6de23353cbf449950c032a5f90b8cc4a0cc"
+    },
+    {
+      "id": "tech-sys-084",
+      "contractHash": "5b3fa07c890d38ac62aa14fa6e5c192ab593eeb363fdb6c5ecb2dbc88f016d49"
+    },
+    {
+      "id": "tech-sys-085",
+      "contractHash": "aa8b1a2ccb8fbc11c1d1891a2ab9dc87796b3319df866f301e35cbd30d87634f"
+    },
+    {
+      "id": "tech-sys-086",
+      "contractHash": "e94de9a37c37131445b792da2a340472a7332026a4edf187b800bacef22a8183"
+    },
+    {
+      "id": "tech-sys-087",
+      "contractHash": "79f81a9ebe604ff7677759ccedc55fdae1e9d4a6c4a8e739bc56d92af3a7dc4c"
+    },
+    {
+      "id": "tech-sys-088",
+      "contractHash": "ab6a73adcb73ce39a2c9d2a5a4ae6341f5aa729a725f9728841871bb5d5a0882",
+      "distinction": "원자적 단일볼륨 snapshot과 앱flush 미수행이 명시돼 crash consistency와 앱transaction consistency를 구분한다. 로그연속성 문제와 다르다."
+    },
+    {
+      "id": "tech-sys-089",
+      "contractHash": "625bc1ec4114bb95f5908489ab1d00b617d3616113eea4a6a020d0633133c959"
+    },
+    {
+      "id": "tech-sys-090",
+      "contractHash": "6245b06eea1644b6543e545b8a5fdc12ebaa50ecfce6adeaeceb767c4294f444"
+    },
+    {
+      "id": "tech-sys-091",
+      "contractHash": "c8824e6e715724a2e4b661b7669a9451f453bcbc5a1c7dcbc907bd1c8a09efaa"
+    },
+    {
+      "id": "tech-sys-092",
+      "contractHash": "ecad27a904f4785011a1ec9e54419f62574713981d3a9608cd813538fe857c22"
+    },
+    {
+      "id": "tech-sys-093",
+      "contractHash": "70f7efe67383d71f836dab63ba2b36f4a3ad0ee19004252158ebb894a28e9171"
+    },
+    {
+      "id": "tech-sys-094",
+      "contractHash": "23e672d5b77a0375eef06da672af4dfcdb6853ac1789ea58adac22f4529bc729"
+    },
+    {
+      "id": "tech-sys-095",
+      "contractHash": "8aecd1806592098b487911e9114b19bc5b8991cac84c8c0283fe578e8fde914b"
+    },
+    {
+      "id": "tech-sys-096",
+      "contractHash": "3b1d5267c5549b58793c89e0636aa007faf304061b2aec5cf47e19046ca60e62"
+    },
+    {
+      "id": "tech-sys-097",
+      "contractHash": "4b1f4121bdb7ab2880cd5fff370cae07bd4d1a0bfc591ddfea9f4139b00aa9fb"
+    },
+    {
+      "id": "tech-sys-098",
+      "contractHash": "aa6837ff087cee648f70f6df117956dbea48eaf5bde1ff566ea462576f54a2bb"
+    },
+    {
+      "id": "tech-sys-099",
+      "contractHash": "7d9d2e3a8977c1d4d7f20fcd88ceb3c3af4530c398c18170810751b347de6fc6",
+      "distinction": "전환중 서로겹치는 두구성 각각의 과반을 검사한다. 단일복제집합 읽기쓰기겹침이나 낡은세대 차단과 다르다."
+    },
+    {
+      "id": "tech-sys-100",
+      "contractHash": "14976fdec164a843254fcd23fed9f14c4ce794f7d07810c3789cee3fd5202cf1"
+    }
+  ],
+  "rejected": []
+}

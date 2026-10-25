@@ -1,0 +1,4342 @@
+{
+  "version": 1,
+  "reviewer": "/root/python_framework_examples",
+  "humanReviewed": false,
+  "scope": "operations 11개 파일의 1,058개 계약을 입력·facts·판단규칙·기대결과·실패조건 기준으로 읽고 산술·전제·행동경계 및 의미 중복을 검토했다. 반복된 합성자료/읽기전용 안내는 공통으로 확인하고, 규칙 외 facts가 있는 11개 계약도 별도로 읽었다. core24 및 technical1059의 실제 계약과 비교하고 business 당시 작성본의 업무목록·의미상 후보25개 및 batch-010의50개 실제 계약을 읽어 교차 비교했다. 모든 가능한 계약 쌍의 무중복 증명 또는 인간 검수는 아니며, 아래 reviewed는 이 검토 시점의 해시에만 유효하다. 이후 변경분은 재검토가 필요하다. 지적된 계약의 교체본은 입력·합성 규칙·기대결과·실패조건을 다시 읽어 현재 해시에 반영했으며, 기술 작성자 검토와 별개의 운영 분야 독립 AI 검토 기록이다.",
+  "reviewed": [
+    {
+      "id": "ops-acc-0001",
+      "contractHash": "0f4c7b38871f779677975d00beb69440a53c8723577a7d620a8234cbaf622d9d"
+    },
+    {
+      "id": "ops-acc-0002",
+      "contractHash": "eeca9738b25e7398c50ac30591d724eba974815efa1fc4bba05b27adab215f4b"
+    },
+    {
+      "id": "ops-acc-0003",
+      "contractHash": "1cd660194f56605d64ec9c77294e9187f7755b7f629d18ed1c91fc2d7fe69cc8"
+    },
+    {
+      "id": "ops-acc-0004",
+      "contractHash": "1399a7f087313ae5f29fdfb369ed84b7cb575b930e102427478f740573063917"
+    },
+    {
+      "id": "ops-acc-0005",
+      "contractHash": "e25da7574d7349777e5b9c4e783df303a90633b74daf44b47eec61bab70c9e7b",
+      "distinction": "전자 제작 계약으로 교체된 입력·합성 규약·기대결과·실패조건을 읽었다. 양면 실장 좌표의 회전 규약의 물리적 관계 또는 제작 자료 경계를 판단하며, 기존의 단순 계산·기준 대사·직무분리 사례와 구분한다."
+    },
+    {
+      "id": "ops-acc-0006",
+      "contractHash": "ffd4764daad3a64a3106ef85999a464ef57b6497b08f7417aaa010df7515d48e"
+    },
+    {
+      "id": "ops-acc-0007",
+      "contractHash": "c90ffd78eddfeff42e8c2a9ed7ec7ce95173abcc826d70c80e57ccb2e5f8cb27"
+    },
+    {
+      "id": "ops-acc-0008",
+      "contractHash": "d8f3dcfb1ea0c73557cf6cc4ffb4e3bb4d516b1bc4d151db5848c194daf52597"
+    },
+    {
+      "id": "ops-acc-0009",
+      "contractHash": "f54a4ef1bbb8a35a86033f82faae32b5907e6d53f0bd263e31b7d3ce2ab18e3f"
+    },
+    {
+      "id": "ops-acc-0010",
+      "contractHash": "389d94d53592fe68419dd53ea3e23beb1d0fb62753104ff069d7fa72d866fec7"
+    },
+    {
+      "id": "ops-acc-0011",
+      "contractHash": "a3967d0d510f9d9388c7ff8b7df79d3f64b05274b9a0f237187d4e54f48901bc"
+    },
+    {
+      "id": "ops-acc-0012",
+      "contractHash": "8d24110fdab560c53fd18ad422a08fb5c243493fe5dec77de191d6d6e2014e17"
+    },
+    {
+      "id": "ops-acc-0013",
+      "contractHash": "13db6be41e1257a10306f0e2c5e31affda6fb0bf5513ba9986deeb3d84d5edb1",
+      "distinction": "정정 취소의 원거래 연결과 대체 입금을 유지하여 실제 현금순증 검토."
+    },
+    {
+      "id": "ops-acc-0014",
+      "contractHash": "2a0644413fa5ca04e7de6e8ae7b1acac3f0e0e08eaf59f2c4f76b3e3008fc1d8",
+      "distinction": "전자 제작 계약으로 교체된 입력·합성 규약·기대결과·실패조건을 읽었다. 방열 패드 스텐실의 창 분할 설계의 물리적 관계 또는 제작 자료 경계를 판단하며, 기존의 단순 계산·기준 대사·직무분리 사례와 구분한다."
+    },
+    {
+      "id": "ops-acc-0015",
+      "contractHash": "cfc3079489f2d18206b8646ce4b411c2298c01a6f7b5abcb1d081061955998ee"
+    },
+    {
+      "id": "ops-acc-0016",
+      "contractHash": "2801567460483ceb48597398efcdd76fd8a2f8153f69b4210286f63225e5088e"
+    },
+    {
+      "id": "ops-acc-0017",
+      "contractHash": "70f0a743ae759b0b610418c2f9671ab713c0c78815dbed8fce0052cec313cf0f"
+    },
+    {
+      "id": "ops-acc-0018",
+      "contractHash": "ddcf5c3e265bd6057b49813aac662551a96ca794b8e31ae9c397092a544acb27"
+    },
+    {
+      "id": "ops-acc-0019",
+      "contractHash": "6b6360fe460462ca0be50b62dc9f57d529f66b0e83f66485be5a5dfac95e2400"
+    },
+    {
+      "id": "ops-acc-0020",
+      "contractHash": "00c2556cac1b78cfc228332f9f9d3e9a6ff4df3c34671d0cbd9eaa23720db569"
+    },
+    {
+      "id": "ops-acc-0021",
+      "contractHash": "4f2839d5439d4501b2bf7445be977c8a897f85ab1c6f6c4d28db4883313e6f8c"
+    },
+    {
+      "id": "ops-acc-0022",
+      "contractHash": "df45746c8eae1e7ca8c1eecd4e61a2a2c5c6a01b33d6fa96b199e40f709a041e"
+    },
+    {
+      "id": "ops-acc-0023",
+      "contractHash": "bbe8a04ba03b8d37b0ec2e3ebca07dc5c2d4fc4400ad223cce6aeaf12fdba9c1"
+    },
+    {
+      "id": "ops-acc-0024",
+      "contractHash": "f218b3cf527dcd8843b766520aef148febee127bf1751e2c91ce6396737c4eaa"
+    },
+    {
+      "id": "ops-acc-0025",
+      "contractHash": "c7264866d01a3d99da500524d93b1e586d9e08a97c58c64262e378aad318bfdb"
+    },
+    {
+      "id": "ops-acc-0026",
+      "contractHash": "c72d7560052248ad098a07ab89f7634e6d00b82ecdf24f76b59eceab4547c8bd"
+    },
+    {
+      "id": "ops-acc-0027",
+      "contractHash": "e3b135aa73b514176bf87dcad5d060b54cb87348ff9c570fa804b6585b74718b"
+    },
+    {
+      "id": "ops-acc-0028",
+      "contractHash": "cd3f9201d0dd3c9b81cb075496c158348a6632bd77fa1ec558a5837c73130844"
+    },
+    {
+      "id": "ops-acc-0029",
+      "contractHash": "f36380a4ccf0c7cfa5bb242253fc4129f46657886008a348cd4bea126bbba33a"
+    },
+    {
+      "id": "ops-acc-0030",
+      "contractHash": "3a0bdf8a3c45adca48ffc1b608e28196f2cd9c4bf294fb408f97e4fe4d65302c"
+    },
+    {
+      "id": "ops-acc-0031",
+      "contractHash": "ae70cab3b6dfe0d58d89020e67d1bc7c4dcd34bf51e9540d4c24d60410fe278d",
+      "distinction": "전자 제작 계약으로 교체된 입력·합성 규약·기대결과·실패조건을 읽었다. 선택 납땜 노즐의 접근 공간의 물리적 관계 또는 제작 자료 경계를 판단하며, 기존의 단순 계산·기준 대사·직무분리 사례와 구분한다."
+    },
+    {
+      "id": "ops-acc-0032",
+      "contractHash": "1d68507f8ee7152a902225f38c47b11516d20df653b0151607bb2ac97825f34b"
+    },
+    {
+      "id": "ops-acc-0033",
+      "contractHash": "d9ccffe5e0ef4f44aa0cf8e5c1c449ae102f52b3ffef81ecf99c9c31dc81152c"
+    },
+    {
+      "id": "ops-acc-0034",
+      "contractHash": "dc939e8d5aa96e3cd3b467ae019f1e712661021166783170758194929f299b5b"
+    },
+    {
+      "id": "ops-acc-0035",
+      "contractHash": "e0bb57a2f2795372353ef74e5299250df5f5a77cb603fb7cb594efc9372e450d"
+    },
+    {
+      "id": "ops-acc-0036",
+      "contractHash": "02f9221a7fb4219e88abf09a12205e3894054bfe18ed099200d705964270fef4"
+    },
+    {
+      "id": "ops-acc-0037",
+      "contractHash": "54ac23348a59d4ff64f275f8a6a34101c20bd80ba4abd40a8e389fd68437fd71"
+    },
+    {
+      "id": "ops-acc-0038",
+      "contractHash": "0cd27979ddf44f90c57b4fdebd5fd1c07d7553f07caa6244c6b66aa0d3347840"
+    },
+    {
+      "id": "ops-acc-0039",
+      "contractHash": "4571ed8e67813d3d4fb612d07f2109e8fbb38e6bd5a4aee3f2b43a68fae888bd"
+    },
+    {
+      "id": "ops-acc-0040",
+      "contractHash": "f0dfddf3d9fd2ea9430a9a937ad035f53fa5234ea08ffe6bf2dae22a7c6d3970"
+    },
+    {
+      "id": "ops-acc-0041",
+      "contractHash": "9b817a3eb059054f61e4771e1437ae08032715de8cd9edc927a836c794003281"
+    },
+    {
+      "id": "ops-acc-0042",
+      "contractHash": "c104341bdf3f67640460ebe8e6705256d76ea1ffcbaf52eb9931e655273461c0"
+    },
+    {
+      "id": "ops-acc-0043",
+      "contractHash": "33525d27b3234313da54eaf0da5d19feffb7606115547da95db0e7498c7f9516"
+    },
+    {
+      "id": "ops-acc-0044",
+      "contractHash": "dfec52f609b352b2c6c474db3e186f366163aa881aa9c5597700201f3db6ce20"
+    },
+    {
+      "id": "ops-acc-0045",
+      "contractHash": "3ac20a1d47cd76c47bfac60d9293046db093eda888aee6f065131b3a34e8dcd4"
+    },
+    {
+      "id": "ops-acc-0046",
+      "contractHash": "fe5c92374379f2d737c2e4277ca57c7fd36a3fade2ec21b5cd9bc4d50ded24ce"
+    },
+    {
+      "id": "ops-acc-0047",
+      "contractHash": "b8310a7de78dff956c6b7e725ea3499e705bbe5ed017eb220dd5e56877811999"
+    },
+    {
+      "id": "ops-acc-0048",
+      "contractHash": "09b65dff57f62f77835abf6eda624025192a68beaa6c9d8ba76837519ecdaf36"
+    },
+    {
+      "id": "ops-acc-0049",
+      "contractHash": "d169cdf03ef476edf333ffebace61b5f39c4800bb62d1fdd745d843b8cae2c2e",
+      "distinction": "전자 제작 계약으로 교체된 입력·합성 규약·기대결과·실패조건을 읽었다. 분할 탭과 깨지기 쉬운 부품의 배치의 물리적 관계 또는 제작 자료 경계를 판단하며, 기존의 단순 계산·기준 대사·직무분리 사례와 구분한다."
+    },
+    {
+      "id": "ops-acc-0050",
+      "contractHash": "c7d16d919164e4e6394dbdd135a3f18c4f4bf5282a357f1e0a48479dd877dae1",
+      "distinction": "전자 제작 계약으로 교체된 입력·합성 규약·기대결과·실패조건을 읽었다. 미실장 옵션 부품의 회로도와 조립표 구분의 물리적 관계 또는 제작 자료 경계를 판단하며, 기존의 단순 계산·기준 대사·직무분리 사례와 구분한다."
+    },
+    {
+      "id": "ops-acc-0051",
+      "contractHash": "063a019446ab9f448d23699b89004cb958d6ddcb4a1a0136c13e796e21c98de0"
+    },
+    {
+      "id": "ops-acc-0052",
+      "contractHash": "f3c7ad7528b76e9302194890282004f31c216cf08d386d163628a4500f9f5bd1"
+    },
+    {
+      "id": "ops-acc-0053",
+      "contractHash": "29c55cccfb6e2d100831fddf632f85394549267719e1acaa6fdfb4c5d75d0910"
+    },
+    {
+      "id": "ops-acc-0054",
+      "contractHash": "2c63f1c9441d66ed47695ca4b46dd137ed79104b40d2d49d3000f572ad7128c1",
+      "distinction": "전자 제작 계약으로 교체된 입력·합성 규약·기대결과·실패조건을 읽었다. 봉지재 적용 후 재작업 경로의 한계의 물리적 관계 또는 제작 자료 경계를 판단하며, 기존의 단순 계산·기준 대사·직무분리 사례와 구분한다."
+    },
+    {
+      "id": "ops-acc-0055",
+      "contractHash": "155e8e60e2314d77865cfd27be3208957e723fc25638846681a98fbb4404cec8"
+    },
+    {
+      "id": "ops-acc-0056",
+      "contractHash": "659789e63e9d69d4ae72689b65f45ada8585f200901ea6cb3068d6a5b68b22d3"
+    },
+    {
+      "id": "ops-acc-0057",
+      "contractHash": "602a85dc187797bfcb81ffc745a74e38ae326664b038d2afeb6935f02a979a1e"
+    },
+    {
+      "id": "ops-acc-0058",
+      "contractHash": "cae68176ccfc9381de33aad3753a385f65e8e586309205b99082e5ed9d81bc64"
+    },
+    {
+      "id": "ops-acc-0059",
+      "contractHash": "a8ad39b2f0051a196f768ca30dc6f1bff883605175d81d05f3b81d7b012fb318"
+    },
+    {
+      "id": "ops-acc-0060",
+      "contractHash": "b812c5cfc25340f83c696023978265fc7737f6dc86dc0f86e0003c71728a378d"
+    },
+    {
+      "id": "ops-acc-0061",
+      "contractHash": "6c11ed806b7277fd05ae12bee7dfad771f7b59957a35d7785ed06db091d8f970",
+      "distinction": "전자 제작 계약으로 교체된 입력·합성 규약·기대결과·실패조건을 읽었다. 임피던스 시험 쿠폰의 적층 대응의 물리적 관계 또는 제작 자료 경계를 판단하며, 기존의 단순 계산·기준 대사·직무분리 사례와 구분한다."
+    },
+    {
+      "id": "ops-acc-0062",
+      "contractHash": "e85b1ec9ef211855da9fffc8ea01df1b81a36d76a135cf0919f64a8196bd247b"
+    },
+    {
+      "id": "ops-acc-0063",
+      "contractHash": "d3566abe58c83e37132b16a3a9f4e56776c17d1f6c545f31ec2555aedd0c9aed"
+    },
+    {
+      "id": "ops-acc-0064",
+      "contractHash": "8325a6f4a0bf3803926b7163e0f2dfafbc01b4a1d487e512e961ab66fdaae34a"
+    },
+    {
+      "id": "ops-acc-0065",
+      "contractHash": "7819db14dd34decd8a4801ab0329f294ad8b282c8600fc0c659711cee875e28d"
+    },
+    {
+      "id": "ops-acc-0066",
+      "contractHash": "803fc392a8db0d06cd11116d267766fba513d23a9db79963f8e138e10149682d"
+    },
+    {
+      "id": "ops-acc-0067",
+      "contractHash": "6f21b3ed0b005a15ac6dc8193c53c58ee828671da1c17db080fbd9e6d9a236c1"
+    },
+    {
+      "id": "ops-acc-0068",
+      "contractHash": "7551385eebbd9bd566460eafe4ca6dcddb64d1d661a44cc30ee8257e329d2219"
+    },
+    {
+      "id": "ops-acc-0069",
+      "contractHash": "d6f8dc1375f7eb0d934a5db87f6012390aeb8f063706654f202debd97359e28b"
+    },
+    {
+      "id": "ops-acc-0070",
+      "contractHash": "0701fdd0a55e19a949c40635ea7d994750acf58729581f28932d396c6d615cde"
+    },
+    {
+      "id": "ops-acc-0071",
+      "contractHash": "4b8bb54a38300af1620a6b023aed91f7beb1d00efada03d3738dc3fd5ee0c47e"
+    },
+    {
+      "id": "ops-acc-0072",
+      "contractHash": "95ff37462b8f0d97f7725988c6c1d1cd461f12eaa6eb390e41bb3eb05ffda717"
+    },
+    {
+      "id": "ops-acc-0073",
+      "contractHash": "2996ff41abd2908b15d79a2869964a481cb9590044ad8f2a76d197a97911a7a6"
+    },
+    {
+      "id": "ops-acc-0074",
+      "contractHash": "4dd263471a868141a4996fed7ba64143f0871c805d9491c227ba60788ec69c0d"
+    },
+    {
+      "id": "ops-acc-0075",
+      "contractHash": "aa891065f67c97d4941ef6e2a428351dd343b60de3a59134aed39e25c8b9e468"
+    },
+    {
+      "id": "ops-acc-0076",
+      "contractHash": "b9f95a297b5ebee06f120c8e56f0e91136ffb432159efd451785e83569b44019"
+    },
+    {
+      "id": "ops-acc-0077",
+      "contractHash": "4872242eac8fbafeb4bb2cb867564e71608dae68c4105fdda942a6a21af0ba62"
+    },
+    {
+      "id": "ops-acc-0078",
+      "contractHash": "b47d818c9a163581d9592dc8cf7483d00f1a294c0ae5564f8bb133ace9ed79ac"
+    },
+    {
+      "id": "ops-acc-0079",
+      "contractHash": "ba736291f670df4a6938ca8478df34b528875aa747b74100a15caa92d90e8d04"
+    },
+    {
+      "id": "ops-acc-0080",
+      "contractHash": "bedef330a867560029463b02627de872bc46abad03efc2e73deb63a5be178ae3"
+    },
+    {
+      "id": "ops-acc-0081",
+      "contractHash": "d38366478a12ff2854f151545d76a67d7e79bc93e17333a1fcf5afb3339d918e"
+    },
+    {
+      "id": "ops-acc-0082",
+      "contractHash": "9ebc024c44edba69bcbd77c3e7f77b4284e9448c460b4fc02e3ac0d4b24bc5c1",
+      "distinction": "전자 제작 계약으로 교체된 입력·합성 규약·기대결과·실패조건을 읽었다. 시험 치구의 공통 접지로 생기는 추가 연결의 물리적 관계 또는 제작 자료 경계를 판단하며, 기존의 단순 계산·기준 대사·직무분리 사례와 구분한다."
+    },
+    {
+      "id": "ops-acc-0083",
+      "contractHash": "48044e759a54e917ddf666bc8673b772c872cdad58bd842bf741f161952c7df5"
+    },
+    {
+      "id": "ops-acc-0084",
+      "contractHash": "2fa5658bfa1339b9e9031a6bd73e38060aedbb816c5989a0aebcedbf462177a9"
+    },
+    {
+      "id": "ops-acc-0085",
+      "contractHash": "fcb4997ce9b687dcdddc216ccda35fb277723fe5770975b1ad166bd8d05a5ec7"
+    },
+    {
+      "id": "ops-acc-0086",
+      "contractHash": "881aa5e3daa37f6cebab16c450e912c400b62d39ffce3224d9c1ab8e13e1f6cf"
+    },
+    {
+      "id": "ops-acc-0087",
+      "contractHash": "8b718a726085210a38cde4d7982cf2378b821e4bc9bf6120e596c192a3b7ed92"
+    },
+    {
+      "id": "ops-acc-0088",
+      "contractHash": "81119bf8c81be82686adb8720b2e443bf6684bfa897f5133ef22f2d626303dbe"
+    },
+    {
+      "id": "ops-acc-0089",
+      "contractHash": "82dc45edb21f853fc5d1b3f96fe6ce5a9c10c0bdac3ccd5185f1acb0963bf447",
+      "distinction": "전자 제작 계약으로 교체된 입력·합성 규약·기대결과·실패조건을 읽었다. 안테나 방사 시험과 유선 포트 시험의 주장 범위의 물리적 관계 또는 제작 자료 경계를 판단하며, 기존의 단순 계산·기준 대사·직무분리 사례와 구분한다."
+    },
+    {
+      "id": "ops-acc-0090",
+      "contractHash": "a5f27ede0edf44401960899d47c0189a2aecf9d4f3fe69758c035b512e9068af",
+      "distinction": "전자 제작 계약으로 교체된 입력·합성 규약·기대결과·실패조건을 읽었다. 보드 모서리 커넥터의 도금과 삽입면 구분의 물리적 관계 또는 제작 자료 경계를 판단하며, 기존의 단순 계산·기준 대사·직무분리 사례와 구분한다."
+    },
+    {
+      "id": "ops-acc-0091",
+      "contractHash": "0359f158d715c2008199e4791c7de852797ceff463eda1d40fdbcf4161e64e52"
+    },
+    {
+      "id": "ops-acc-0092",
+      "contractHash": "13479ee523cd3e51f3cf0dfaa2cd79b6bdddc59355d0048fcfe708306dd25cd9"
+    },
+    {
+      "id": "ops-acc-0093",
+      "contractHash": "5ad9dc3c84fa426cafc69a8cbcfb1d57e4a72ca678f512d11cfe80935fc91b3d"
+    },
+    {
+      "id": "ops-acc-0094",
+      "contractHash": "2b650d7df0e28d0c149bb38af53eb12bd258f12839984c7e8c87b7c58112ea39"
+    },
+    {
+      "id": "ops-acc-0095",
+      "contractHash": "c6cd7ed6491ea9c7ef6611dd252c306f899d31b8d06b86bf096eb2e1f1e749d1"
+    },
+    {
+      "id": "ops-acc-0096",
+      "contractHash": "7a569692c37ba4c063afd3fe25d16e6059f99d7d1a4c132d5cbfc2e91bb4b674"
+    },
+    {
+      "id": "ops-acc-0097",
+      "contractHash": "6184ec5833474ee8bd816dd2cc93f53ff21098aef4aab41daa04a2b82319a295"
+    },
+    {
+      "id": "ops-acc-0098",
+      "contractHash": "e4a185b222e22fd1bfbd9f52b7f0dd628f0bf08334567a1d131b461aa0802bb7"
+    },
+    {
+      "id": "ops-acc-0099",
+      "contractHash": "ade9f947ac4bfef27da10744c5c6548fc1af605be4d2e2571f059246b773afe2"
+    },
+    {
+      "id": "ops-acc-0100",
+      "contractHash": "5eec0e4075b6ffca560ad59e7af14e906b477da4c97d9b5d4f69b2f4ef2b0e44"
+    },
+    {
+      "id": "ops-buyfin-0001",
+      "contractHash": "21a2014952e61d062d0f130aaecb2723d8c29bc99c6fbd2c0220cd26a054024d"
+    },
+    {
+      "id": "ops-buyfin-0002",
+      "contractHash": "0313b8320d5c0c7ed3143251a0f9b015c273f54e54438c1bd7decf7b57bb19bb"
+    },
+    {
+      "id": "ops-buyfin-0003",
+      "contractHash": "b5b80ac4c71a414b4c67c0904659f56725a9764a0a73de83a46072dd724a466f"
+    },
+    {
+      "id": "ops-buyfin-0004",
+      "contractHash": "569dec61b1914d27dcf3ba4492f956df3694815124ce26cccd5bdc9a50448284"
+    },
+    {
+      "id": "ops-buyfin-0005",
+      "contractHash": "56d78684991d52cfa6c020fa35e52cf3e2bfc7c7dc241f1ad7f5d3174107c4f4"
+    },
+    {
+      "id": "ops-buyfin-0006",
+      "contractHash": "653824fff76f0f51476a6ccda0a141bad570ede51e8721007234f67e9b85cf6a"
+    },
+    {
+      "id": "ops-buyfin-0007",
+      "contractHash": "14c2ee79fb91b897987aec80c774f6ce364191dd29809aeeba3b186bc3813858"
+    },
+    {
+      "id": "ops-buyfin-0008",
+      "contractHash": "2665982cd9d3401db5cd027901cd814578053e41e123f7a98b0889057aadb159"
+    },
+    {
+      "id": "ops-buyfin-0009",
+      "contractHash": "dbd6fa1e730df2d66f32343229e83e2c180ba7ce39f49ccdd808d03d23dab650"
+    },
+    {
+      "id": "ops-buyfin-0010",
+      "contractHash": "5680fa8079fcb805b3c2c538b244ddef8a8511a1566ace9444c11b11883178bf"
+    },
+    {
+      "id": "ops-buyfin-0011",
+      "contractHash": "706fb9ac065225bb0d11fab124bb1727feb77bdaf298f671faa0356846ff0dcb"
+    },
+    {
+      "id": "ops-buyfin-0012",
+      "contractHash": "3cd9a7c54c0d593c4884ffcbb664dbb79a9e351bf954c33e75775af719d0b114"
+    },
+    {
+      "id": "ops-buyfin-0013",
+      "contractHash": "99a49d3aab4b38bded73cfd3a3f94a75f0753e627f6c6029aaeaa53ff31630ed"
+    },
+    {
+      "id": "ops-buyfin-0014",
+      "contractHash": "4db51443829d0c9dfffdb481deec1abbb4d5e785359671fbae215555f5c904f7"
+    },
+    {
+      "id": "ops-buyfin-0015",
+      "contractHash": "6e991e79c232ffd1df3c7f03da4678b97fce6102330ec1ff6a83ece6e8f4056f"
+    },
+    {
+      "id": "ops-buyfin-0016",
+      "contractHash": "aabe5503a7f10710f8c0ad918f690c98aa044e4f0ca5c5aaddb31e9f52ba0dcf"
+    },
+    {
+      "id": "ops-buyfin-0017",
+      "contractHash": "fb8847d614f9c40e63b9f857fe2c8da3359353217c040828c133e0eda2006749"
+    },
+    {
+      "id": "ops-buyfin-0018",
+      "contractHash": "85d05d17d4e1752df45dc85013ff03c39cf821548e140c33f3ceef68f420c1b0"
+    },
+    {
+      "id": "ops-buyfin-0019",
+      "contractHash": "f0978ee17717c54840f60676643489f84903ea81a19328a4b7428be97eab437e"
+    },
+    {
+      "id": "ops-buyfin-0020",
+      "contractHash": "f54076a4a77d3206d9f04a50f83fd02e4d81015fdec02c1a7d5fc71440a04259"
+    },
+    {
+      "id": "ops-buyfin-0021",
+      "contractHash": "47975ed63ff2ec028dd5b0a2c3b454e94f6a1182fed39b45a6ef4ce35698011f",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 공급사 연속 납기 실패의 개선 합의 발동의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-buyfin-0022",
+      "contractHash": "48fa60806b9f716d60aee3b90db4635388624e39b6b93d8248edb6e9574ce7b3"
+    },
+    {
+      "id": "ops-buyfin-0023",
+      "contractHash": "e179376c01df38c2ea9f41de192017334756ac251875b36865606c75bbaea788"
+    },
+    {
+      "id": "ops-buyfin-0024",
+      "contractHash": "2b05491d0b058d1a122830729a05b95a044989d3718336c1aa2aecda63cfc723"
+    },
+    {
+      "id": "ops-buyfin-0025",
+      "contractHash": "246716cbf6231820141ab8ef8b35630667b8f18e375ec614db675632f7926b77"
+    },
+    {
+      "id": "ops-buyfin-0026",
+      "contractHash": "387b87d5f056cd09ca5260cbd15a04a31811c83cb5ed67da27d2ac4216aee22f"
+    },
+    {
+      "id": "ops-buyfin-0027",
+      "contractHash": "6182aa3fc2a96bf2366b2231fec2c7853df2acf79895bf31cb37f301d497e5a3"
+    },
+    {
+      "id": "ops-buyfin-0028",
+      "contractHash": "2211186b1e44fb2c427b01b3a1003dc5d1732e58349906ab568effc7152a090d"
+    },
+    {
+      "id": "ops-buyfin-0029",
+      "contractHash": "1e2a79fa9800741aeeb77d7d1e481bd20ddbaa48403a172d7c2393d6d90df07b",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 구매 승인 금액 단계 검토의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-buyfin-0030",
+      "contractHash": "e31dc3c591f6e83ed95115dcfc11e937b21c26d626a690f9097b524fa46d98ad"
+    },
+    {
+      "id": "ops-buyfin-0031",
+      "contractHash": "0d5f45e0f419823a844e9974ada78f4338689a22c19c9363000fba1134169418"
+    },
+    {
+      "id": "ops-buyfin-0032",
+      "contractHash": "f5b5476f7afdf1faa1ac2d3befc9de575a566c6c2416f2e39a7d5aa23e4cdebd"
+    },
+    {
+      "id": "ops-buyfin-0033",
+      "contractHash": "649f2e96d264633ff2629a92ddf89344b467ef6e70904cef26ee3dbf71d06f9b"
+    },
+    {
+      "id": "ops-buyfin-0034",
+      "contractHash": "22f2c9b28789c1b71b35387ed30d31354a804b4403a55e1461c9efe082ed680b"
+    },
+    {
+      "id": "ops-buyfin-0035",
+      "contractHash": "6ae3750103ae8ba1b571aad8488bcdb991d17e3d91d01940a72c840436589ba2"
+    },
+    {
+      "id": "ops-buyfin-0036",
+      "contractHash": "b5f661c8a7aca70e51fe1740bad5a2b32a8039eb08d549ce9711ff82c50218bb"
+    },
+    {
+      "id": "ops-buyfin-0037",
+      "contractHash": "0b3c3ef67452c23e117157bdd722cd29baeabfb6c80c28420adfab1c5d69696f"
+    },
+    {
+      "id": "ops-buyfin-0038",
+      "contractHash": "16a5375c3ab4059cac6e34d6d317c55a0b2a30ca8846ada8f8a313216587a680"
+    },
+    {
+      "id": "ops-buyfin-0039",
+      "contractHash": "04d5572a4be4bd1679e82711542ec835814fca2a15b4acdc88f4ec4557cf1183"
+    },
+    {
+      "id": "ops-buyfin-0040",
+      "contractHash": "562b16c4b2271d3dec3491c383d43421f4f667be35487584158918b6a609de4b",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 견적의 성능 설계 책임 경계의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-buyfin-0041",
+      "contractHash": "ea5d39aa9c647af3b03af602b9a1446fbda507dfeaf9dbc9ee35d175ceec8e20"
+    },
+    {
+      "id": "ops-buyfin-0042",
+      "contractHash": "322ba55ca9901c42a2cd4d61de4eb931b98a53ffe5ef371ebb9c5e21ae13add6"
+    },
+    {
+      "id": "ops-buyfin-0043",
+      "contractHash": "8eba50c8f66024c9427c369dd211997c643a5ead35c89e51cb9f74e751020e2c"
+    },
+    {
+      "id": "ops-buyfin-0044",
+      "contractHash": "3f7c6beab6c2f78352234f0931e9f4418ca2cc080738d0cc6703d880b8e21b3e"
+    },
+    {
+      "id": "ops-buyfin-0045",
+      "contractHash": "9d1f31b9117ac59994576ec2d7823b8fff4e5b69a03b3f8997a9f93dc9275bff"
+    },
+    {
+      "id": "ops-buyfin-0046",
+      "contractHash": "64059ed335abfbf22c3d9e4daa38653209835feffbc0c5cc363efe4501e22f18"
+    },
+    {
+      "id": "ops-buyfin-0047",
+      "contractHash": "ad71ae0df8badac9568c72d98234aa485a26a5b56f20c0a3b04ebc0c012614be",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 취소 발주와 외화 결제 예약 연결의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-buyfin-0048",
+      "contractHash": "b7e4c3cc0c45b346791cebc16a4688bb671ff4aef85187052d3912375c3e90bb"
+    },
+    {
+      "id": "ops-buyfin-0049",
+      "contractHash": "279cea8c65d62e7947c0b920f4ee204116342fd5ba00db69f7e8830503c66aab"
+    },
+    {
+      "id": "ops-buyfin-0050",
+      "contractHash": "86156c775c59f022d67e251652409b8891a31a81fcba1a5354c065c64774fef4",
+      "distinction": "운임 지불·도착·검수라는 서로 다른 사건 중 합성 계약이 정한 소유권 이전 사건을 확인한다. 필수 요건 필터 후 점수 비교와 구분한다."
+    },
+    {
+      "id": "ops-buyfin-0051",
+      "contractHash": "7cb01688351108e05cd0ed710a62b829b954a1e358649e50c333f1f49ceabab0"
+    },
+    {
+      "id": "ops-buyfin-0052",
+      "contractHash": "5cfdbb445823514c0345a7e16c595a54fd2f1b227162f5fdc8587627a78caac5"
+    },
+    {
+      "id": "ops-buyfin-0053",
+      "contractHash": "19af5836dbf0de9b0846650115d569d99d15c41b2f0df7e92681dfdee3f60813"
+    },
+    {
+      "id": "ops-buyfin-0054",
+      "contractHash": "4ca9ab3ca97d99b39728d10fbfe687d7336acc1d5b5324d8ab882ba333b86e91"
+    },
+    {
+      "id": "ops-buyfin-0055",
+      "contractHash": "4f6d3d21f9e19fd96e47b18ea59f4d7963cbe08fe778103b80247925b754ab64"
+    },
+    {
+      "id": "ops-buyfin-0056",
+      "contractHash": "b90be2cdf83283345a6ec93dd8b0d52aeaf8d588a5deb878e8d75406ee8ab200"
+    },
+    {
+      "id": "ops-buyfin-0057",
+      "contractHash": "2ca796713c472687b27e63d00da4b2ff0d47de6ebf749c3d3ce97b8e128cb3ac"
+    },
+    {
+      "id": "ops-buyfin-0058",
+      "contractHash": "2fefcd6079f2d084cdfe77be0ff3bc44cbd422072273356f784b1a61fca09838"
+    },
+    {
+      "id": "ops-buyfin-0059",
+      "contractHash": "f810f52c33d09424c3d59a5bf9aed337dfabf379f3f3b66459607f77fcd6dcaa"
+    },
+    {
+      "id": "ops-buyfin-0060",
+      "contractHash": "e6f5eae6ca4ed272e091a923a37775f7ca76323b6505b55de5314f77dfe192b2"
+    },
+    {
+      "id": "ops-buyfin-0061",
+      "contractHash": "9121369077a0c83c4fc8ae39d64bb75521f0069f871a98b263c6da2ed42fbaa3"
+    },
+    {
+      "id": "ops-buyfin-0062",
+      "contractHash": "8f8819e0e1304f15318d362115ef0e23f60ad3346e55d3394b2017e4b6e9992c"
+    },
+    {
+      "id": "ops-buyfin-0063",
+      "contractHash": "81792efaaf029572e5af983cdfb5efd1af9d30e49a6c8d1999a841c6310cf1ad"
+    },
+    {
+      "id": "ops-buyfin-0064",
+      "contractHash": "f5db6fb620e12c6f54fd847e695e6faf3b11714571cb88322bdb31940da1ffac"
+    },
+    {
+      "id": "ops-buyfin-0065",
+      "contractHash": "655d78f3d500cad088b29d11c21c95a37a122f03254a7503df10d9bec2b33f23"
+    },
+    {
+      "id": "ops-buyfin-0066",
+      "contractHash": "aaa7516f7a04185403367d0c95ebe4ed298aa2251b19218d8db345e0b2e4f7e0"
+    },
+    {
+      "id": "ops-buyfin-0067",
+      "contractHash": "6d1f5b7e188a92d66284b7da5ba20d65410be94803a11bc4106a1e01993fe20d"
+    },
+    {
+      "id": "ops-buyfin-0068",
+      "contractHash": "4f23c3d156f25b791195fc96a737d1ca31640ad8b0b22e45e069ef07f21aa320"
+    },
+    {
+      "id": "ops-buyfin-0069",
+      "contractHash": "f24474fe17890b506e78172d151a63a2bfd9618cdf046374c5b8caf340162405"
+    },
+    {
+      "id": "ops-buyfin-0070",
+      "contractHash": "3e8f79910eb052f58aad7ea0ac6e0df001f099f84f3927b00d062aa836cb9b91"
+    },
+    {
+      "id": "ops-buyfin-0071",
+      "contractHash": "7c1014d5459e22bb1c40a6786797eb80cfb3c2f6f5ddafb6ec33dda801ca73cd"
+    },
+    {
+      "id": "ops-buyfin-0072",
+      "contractHash": "ce8b726290bc16c0b12945afcb61dc117c5765610239b96ad4def88ffb17c1a7"
+    },
+    {
+      "id": "ops-buyfin-0073",
+      "contractHash": "7f1b9818ad33b7bd54d2b335f54705f15658a73bb5bdb1b92806e13ed9783ccf"
+    },
+    {
+      "id": "ops-buyfin-0074",
+      "contractHash": "32e9e26acba6cffa253fc6f481765df9764f1261be15d3e048f28c26ae124fbb"
+    },
+    {
+      "id": "ops-buyfin-0075",
+      "contractHash": "c40e238e90cbe5cd006982110f017cba0231002bd63c887ac448d763d6c049b5"
+    },
+    {
+      "id": "ops-buyfin-0076",
+      "contractHash": "90b4c457ed1e46faa0078bbc6d392c69d3700352b97f2c0833df459f43240af5"
+    },
+    {
+      "id": "ops-buyfin-0077",
+      "contractHash": "26b11090e56026a0add160d5852877cd52eb03cb60179a1d5381a6c78dd4ca58"
+    },
+    {
+      "id": "ops-buyfin-0078",
+      "contractHash": "8707a5561722512d5adc0e33c6946aabe4cca683f7fdf15d39e83a4a011a3edb"
+    },
+    {
+      "id": "ops-buyfin-0079",
+      "contractHash": "93ee8f163b4d3b4db6d358b3da6576f6a239a9c9a41dea8a7c0b18ea83efe834"
+    },
+    {
+      "id": "ops-buyfin-0080",
+      "contractHash": "f65651f3fd0c0191f9217215d33eb26126b94d2d6642286d6dd70c93727115e9"
+    },
+    {
+      "id": "ops-buyfin-0081",
+      "contractHash": "a7a07c45dd783baed20b62b8eba3abb3949bf49430005ebb29b07b8f155f23e5"
+    },
+    {
+      "id": "ops-buyfin-0082",
+      "contractHash": "0bfabdf4072cce07180753f5186cd31380f8277754e9f4396d09c7553a01e18c"
+    },
+    {
+      "id": "ops-buyfin-0083",
+      "contractHash": "d3ed12e1969fc0224a2562ae7ba62e5d6610df33267d6d74e8f0e1846e51def2"
+    },
+    {
+      "id": "ops-buyfin-0084",
+      "contractHash": "79e7114947fa46850871abe5405bc2e796bfcc630dc3bce63914d54af09ab8b1"
+    },
+    {
+      "id": "ops-buyfin-0085",
+      "contractHash": "06ea920e5d8e7c0c2be4ea5ee808f05a4a650c098c52d24687fbba1bce460d0d"
+    },
+    {
+      "id": "ops-buyfin-0086",
+      "contractHash": "efeac09772e108ad865d184b6c6a9215fe01f57066f1bd8cca99f1ce2ba852e3"
+    },
+    {
+      "id": "ops-buyfin-0087",
+      "contractHash": "316b23fdb9fac9a6e9204b60cd033c2a7061cb8d1e379b174cca6f1f4d33e1a2"
+    },
+    {
+      "id": "ops-buyfin-0088",
+      "contractHash": "0ff9198c7e59fd096fec10adfc7919c1068f4fc0eb2248b2b954fdf5680b75f9"
+    },
+    {
+      "id": "ops-buyfin-0089",
+      "contractHash": "124be0bc28ae10734d2a590719f61fccf4fe30c9147b9bb9ae4e259f7b9ba460"
+    },
+    {
+      "id": "ops-buyfin-0090",
+      "contractHash": "dd979682b4c6e18bf42dc99c6e61108b92ba30e95c6d18f3ea255870b49b76d2"
+    },
+    {
+      "id": "ops-buyfin-0091",
+      "contractHash": "39888d13e3d2a91bd79361cab3cca3d9fef6e94d0567709928ccb8281725e17b"
+    },
+    {
+      "id": "ops-buyfin-0092",
+      "contractHash": "4182d9c0b594d5e550957f5d678f4462b0f085fa635e151b92673aa1b1cb1885"
+    },
+    {
+      "id": "ops-buyfin-0093",
+      "contractHash": "48d626b2edcb3e164ef65b1fc406bb39cbe0b897c2df083e1ab141dcab280c7c",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 공동 영수증의 분할 청구 잔여 한도의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-buyfin-0094",
+      "contractHash": "bf835b2aef206b89630de85dcf2068504ccfd33f3f892fabe9f2ac1916505dea",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 출장 취소 환불 바우처의 회수 상태의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-buyfin-0095",
+      "contractHash": "6ca0b5156150adc8ec407c4379efb16af785189dc6c9129d1b3a7f5050101929"
+    },
+    {
+      "id": "ops-buyfin-0096",
+      "contractHash": "ae2517bf29ab78d258156f79c3192a4bd012bcc3e3ba3562e105c37a29ac0f2e"
+    },
+    {
+      "id": "ops-buyfin-0097",
+      "contractHash": "46e35d93b938277b3f597c61a01862c4b17303888117a5c709281cac4035fa04"
+    },
+    {
+      "id": "ops-buyfin-0098",
+      "contractHash": "08daa3d4012b213d55c1ba33ee4f3f22cea78cbdc2f6e1a1f32acbae8ba9e564"
+    },
+    {
+      "id": "ops-buyfin-0099",
+      "contractHash": "21129d20c95e4f4c85df46cd785246cd8bcad80356d77ec3a21bc43701a987c8"
+    },
+    {
+      "id": "ops-buyfin-0100",
+      "contractHash": "d81cfe5be1d7c1fcb85c690af095747c594575a1153638f7784835929bbd93a2"
+    },
+    {
+      "id": "ops-buyfin-0101",
+      "contractHash": "1a9ee123a090b5051e27719ad7e72440563d7b9e4918e3646647e89f5c702fb0"
+    },
+    {
+      "id": "ops-buyfin-0102",
+      "contractHash": "bf5e8b157acb7789ec0761a2f5a74af6f8d78565455f34dbd7700097d8bcb3f2"
+    },
+    {
+      "id": "ops-buyfin-0103",
+      "contractHash": "4c11f8425fb4b9c7f5519735266003b3f44f74802947fcbfb2bf0ab0c7e0caa6"
+    },
+    {
+      "id": "ops-doc-0001",
+      "contractHash": "32732f589a0f93e42d7a3d2213400ef17032505f799b34c36780303951232156"
+    },
+    {
+      "id": "ops-doc-0002",
+      "contractHash": "ec229bbed53180464d3499b4f5a78b4c93903803b9644defa6d501b74c57d766"
+    },
+    {
+      "id": "ops-doc-0003",
+      "contractHash": "7c2b25fcb8fc44aff944c5125e11fffd5d2e7701b12c78bfd05855402487fce4"
+    },
+    {
+      "id": "ops-doc-0004",
+      "contractHash": "5072983e5e903d0c79ea2f71bea2aa3f44a34793ebcd8d2c293c487778a14c4a"
+    },
+    {
+      "id": "ops-doc-0005",
+      "contractHash": "bb2315df7425cc434779c763e0e915ea20449c8df65dd87dd143dd1f9dafeafd"
+    },
+    {
+      "id": "ops-doc-0006",
+      "contractHash": "5c7c76dcee69b51adda0c30a8865f6d96606766349f8a6f81d12d508fafa065f"
+    },
+    {
+      "id": "ops-doc-0007",
+      "contractHash": "912bd9f7518f9f2cfb7f00b3ed7792803ea21fc1dfecc45935ebeda30ccca892"
+    },
+    {
+      "id": "ops-doc-0008",
+      "contractHash": "72a671022a3624c38b3048afc187178e07ccb7c64ca4170cab977a86ab79635b"
+    },
+    {
+      "id": "ops-doc-0009",
+      "contractHash": "e0e3a1dfbfa1c9ebcdb064a65554ddac0d8868022b32ff648e37a9547477c4d1"
+    },
+    {
+      "id": "ops-doc-0010",
+      "contractHash": "635a61707648e60f01f13209c5aba63203af3404f805db5e8681417175966bf1"
+    },
+    {
+      "id": "ops-doc-0011",
+      "contractHash": "4588748275127093b06539c22a5bc6a06da32e935892e3e00569c732885bbe62"
+    },
+    {
+      "id": "ops-doc-0012",
+      "contractHash": "d76ccd54835bf2fdf5b571e95f0750d8a6c50358e3f7765960075b53e21f2f4c"
+    },
+    {
+      "id": "ops-doc-0013",
+      "contractHash": "a73916d36df42acb30d6b665a3fcd6b9419e3840e23e531b226c9cd91b1ee22d",
+      "distinction": "수정된 입력·자료·판단규칙·기대결과를 재독했다. PDF 양식의 화면 표시와 저장 필드값의 독립 목표로 교체되었거나, 입력에 없던 사실을 단정한 오류가 수정되었다."
+    },
+    {
+      "id": "ops-doc-0014",
+      "contractHash": "1b471c3319e3536908b3ec358567c40d2b85c9f318e47ce888cc66fd8eabc866"
+    },
+    {
+      "id": "ops-doc-0015",
+      "contractHash": "27c6030e2bf62fca46b9689bbcd2db360abc8b1ff8d8ba8b055d62f6a3b51922"
+    },
+    {
+      "id": "ops-doc-0016",
+      "contractHash": "fd4bd3331327d9f3c6784483dbd2832c41a34ebab977d61199dbcb7bdd09e54a"
+    },
+    {
+      "id": "ops-doc-0017",
+      "contractHash": "5e3eea4c61abc334e6aa4facf9b032dfb2a1378b5518644aebdb497722847a51"
+    },
+    {
+      "id": "ops-doc-0018",
+      "contractHash": "47abb59898fe75dde71dc764f9b0e44a99fc712af35c373367255f02a6399bda"
+    },
+    {
+      "id": "ops-doc-0019",
+      "contractHash": "8b1685c9a10c2ac4c4009a3c16afa6ac6336b4fd06c7c06c8732649d9b01754a"
+    },
+    {
+      "id": "ops-doc-0020",
+      "contractHash": "7fb0c82470f9ac0f61d38f792557559c7f6c4085c3a512ace89ec270fed6301b"
+    },
+    {
+      "id": "ops-doc-0021",
+      "contractHash": "49fe37fc02fb6fa4f9a66d78ccaa6425452a94f8784070938d055e66ef816091"
+    },
+    {
+      "id": "ops-doc-0022",
+      "contractHash": "6e7eae4a92a2c6446eae772dc819220c0534d8b6f498cb7293439a5dcbc04f07"
+    },
+    {
+      "id": "ops-doc-0023",
+      "contractHash": "e4f0640cf9e2226d1607a2c4cf8d72805f1bec683711514ced84e07924de275b"
+    },
+    {
+      "id": "ops-doc-0024",
+      "contractHash": "8247f402da8343c78ad324b5ce1d4afae8e59ddf38b4fc3ab9156e0186343622"
+    },
+    {
+      "id": "ops-doc-0025",
+      "contractHash": "10e43b5bc86ed6313eb98b8f7fb4dca3b6b062e71ec77c0b8463e372b24f14cd"
+    },
+    {
+      "id": "ops-doc-0026",
+      "contractHash": "cbcba6950b06e9363e25737f4e5a98725b3c33eaf5dc8b34adfb0f8c8cb0bd9a"
+    },
+    {
+      "id": "ops-doc-0027",
+      "contractHash": "af7120f46f1cc25895158e901026374abaf84e3b7d84d47ec50c520ab4958ef2"
+    },
+    {
+      "id": "ops-doc-0028",
+      "contractHash": "b7ef147d967ad59a771f35f3099babfce770e034f580173f6ff43ce69732a67a"
+    },
+    {
+      "id": "ops-doc-0029",
+      "contractHash": "08fafb2ebc52c1973862ed9835b056e4de762109fead1100236084b7498e91d9"
+    },
+    {
+      "id": "ops-doc-0030",
+      "contractHash": "4baba06e9d73cbd898986a224595fa6fb3afcfe9a1452f9236ca4fc52d58c19d"
+    },
+    {
+      "id": "ops-doc-0031",
+      "contractHash": "429240d34a91f8bcfb7bfef36696fde819aebd52017823d63db03412beaebf38"
+    },
+    {
+      "id": "ops-doc-0032",
+      "contractHash": "7bc2e957c2b093ce4526279d5ec1ccc39ad1e5cbf7b8e845f9a88ca84d9b4c7f"
+    },
+    {
+      "id": "ops-doc-0033",
+      "contractHash": "976b6547da23216c732de94ee4528c952d1c7ab1d4eb3bad2109217cfe55c414"
+    },
+    {
+      "id": "ops-doc-0034",
+      "contractHash": "c2a6b3230f5411de6abaefd4760e05327a03b2a01f7748669e3ec58007730d74"
+    },
+    {
+      "id": "ops-doc-0035",
+      "contractHash": "16770ec319ecfbb11856942055cec1e90177b75ded428de08ffbcd80bb563776"
+    },
+    {
+      "id": "ops-doc-0036",
+      "contractHash": "0a94b32c5ca8166aae1d66e45e6c19df0215f81a4621eb6f519643b5007bd592"
+    },
+    {
+      "id": "ops-doc-0037",
+      "contractHash": "91347b54735e6adb439d4f1ad488673a14b378d8dcbaf081c00923d43204257f"
+    },
+    {
+      "id": "ops-doc-0038",
+      "contractHash": "09c421727f91141601093b2957fc91749377e9a0abc979b4c87b251958503b72"
+    },
+    {
+      "id": "ops-doc-0039",
+      "contractHash": "457b75cbcae3379f92afacec05afdead90411b130dd7b2124d7a952e68398045"
+    },
+    {
+      "id": "ops-doc-0040",
+      "contractHash": "129385c88ce7180306adc5ee497d06671ff65df27fbf6814adfebf1b6ec5602a"
+    },
+    {
+      "id": "ops-doc-0041",
+      "contractHash": "87267c98b3b739592ac16c06c8f1c431ca99ca83bbbac1f47b0ce3c8f682e577"
+    },
+    {
+      "id": "ops-doc-0042",
+      "contractHash": "3581eecead86e557c9c0a6a03c302162629dea77cc22673009381321eb29d7eb"
+    },
+    {
+      "id": "ops-doc-0043",
+      "contractHash": "11cc21608bcdec1a7bc077e6d133063e75b0643f392700b325b2cbd196f1a088"
+    },
+    {
+      "id": "ops-doc-0044",
+      "contractHash": "9f0d46ae89f17cae508436b258ad79d493d2c4c66f923371a8cf5094098dd2dc"
+    },
+    {
+      "id": "ops-doc-0045",
+      "contractHash": "cba569164a6d7b222994f70876e0fb10199a30870dae98aeb8743fdaaaf5ebed"
+    },
+    {
+      "id": "ops-doc-0046",
+      "contractHash": "4ddbfdc8d3a3a02417fd8db04e0cb46b8dbfe01607f6ab9b966e6b5a30f7ca97"
+    },
+    {
+      "id": "ops-doc-0047",
+      "contractHash": "716b9b88d14f9440641892741d1b03d074ee7b70cc9d37a81af58e0588fb6984"
+    },
+    {
+      "id": "ops-doc-0048",
+      "contractHash": "516ba232df8c731433a021b590d5a34fb4206904382f0767ce1055aa33451010"
+    },
+    {
+      "id": "ops-doc-0049",
+      "contractHash": "13c0ec52109755768530827e6194ba155b8243c068556a1cd889e0c67be75c10"
+    },
+    {
+      "id": "ops-doc-0050",
+      "contractHash": "e4671a2b1839b6644a57ccf9f532707a1c4cc260827e0ef1448bf102fe263a3c"
+    },
+    {
+      "id": "ops-doc-0051",
+      "contractHash": "5c3ce29ea3f8db231eee0ede99059751987e2233bcf187e5ca9af9fe34be7bcc"
+    },
+    {
+      "id": "ops-doc-0052",
+      "contractHash": "60e590d4832d0ce43797b9c17af4fd44642a65878cb685b0507aa2f2c7cff859",
+      "distinction": "수정된 입력·자료·판단규칙·기대결과를 재독했다. 종이 계약철의 간인과 낱장 교체 흔적의 독립 목표로 교체되었거나, 입력에 없던 사실을 단정한 오류가 수정되었다."
+    },
+    {
+      "id": "ops-doc-0053",
+      "contractHash": "f48100fbb993ae8cca8e663597cd8219ff8ec65ad2163c60583cd4ea31640b91"
+    },
+    {
+      "id": "ops-doc-0054",
+      "contractHash": "705be66924299dd77f6bbbca471cdd0107030c9309388fee0c27a6ae782e1ce6"
+    },
+    {
+      "id": "ops-doc-0055",
+      "contractHash": "f9fb6ef5bd77e8a818a5be9c23df2dd9b838009be976d9eb031560583ea102b9",
+      "distinction": "전자 제작 계약으로 교체된 입력·합성 규약·기대결과·실패조건을 읽었다. 다이오드 극성 표식과 조립 도면의 물리적 관계 또는 제작 자료 경계를 판단하며, 기존의 단순 계산·기준 대사·직무분리 사례와 구분한다."
+    },
+    {
+      "id": "ops-doc-0056",
+      "contractHash": "08c0bc7cd82647e03303fa52e3a3fb410e676902f5d032cf185dcee2fa192373"
+    },
+    {
+      "id": "ops-doc-0057",
+      "contractHash": "7d2b76dbdba479e6b3bad180ccaaeb9dbe790b1bfdba6acb894cc64a7cc10a57"
+    },
+    {
+      "id": "ops-doc-0058",
+      "contractHash": "bf3c7bbef52f50ed5b4a4adb90d06e01e846e04a70b3c9799258f735beba382a"
+    },
+    {
+      "id": "ops-doc-0059",
+      "contractHash": "7fbcbe6c5ad30c24b57820291dbd1b7954993ee3c4df4d942ac90a11038d96e1"
+    },
+    {
+      "id": "ops-doc-0060",
+      "contractHash": "7bf290a04ef0dd7c0b3889b132b2939c99433e3e2ecd258bafdc4b1e9fea9e6a"
+    },
+    {
+      "id": "ops-doc-0061",
+      "contractHash": "a00132f275c3b8ee218641e364cfba80043b43d355a5af6163b3b623b33f33d2"
+    },
+    {
+      "id": "ops-doc-0062",
+      "contractHash": "d8c8365dad157a05b12e0ace7339ba48f11797f17642f1a610903086326de9c7"
+    },
+    {
+      "id": "ops-doc-0063",
+      "contractHash": "ddd688de05a4bf78e8f344153e8d96ddcb4e976e5e5bd9a8ec244660bab69d94"
+    },
+    {
+      "id": "ops-doc-0064",
+      "contractHash": "c4cb60ced3b59d8e07627d65c273bd6a8bc00b474abb0f22b0d45f2465892f35",
+      "distinction": "수정된 입력·자료·판단규칙·기대결과를 재독했다. 변경 추적 표시와 최종 계약 출력의 독립 목표로 교체되었거나, 입력에 없던 사실을 단정한 오류가 수정되었다."
+    },
+    {
+      "id": "ops-doc-0065",
+      "contractHash": "2b2690d8659dc644cebe2d63387a1a8dcbae1174c14b12ae7c70ef4346356f93"
+    },
+    {
+      "id": "ops-doc-0066",
+      "contractHash": "a640c6f9f418a94228abb1192305667d3e198cc77f31d67134118de9852f1d7a"
+    },
+    {
+      "id": "ops-doc-0067",
+      "contractHash": "af063e7655acfb33f7f9124a9c492f80fe2d1391fd4d49e0acab9d3e9d0de8b1"
+    },
+    {
+      "id": "ops-doc-0068",
+      "contractHash": "194de4acdee4f8003654ddfc0705a14a5a018f88a91922189d02a1913f63419d"
+    },
+    {
+      "id": "ops-doc-0069",
+      "contractHash": "34e8a99d2efb58b7f0dd6ba307e9ce07c2b8fc1d0d4a94d83bc9d3c5ae173e61"
+    },
+    {
+      "id": "ops-doc-0070",
+      "contractHash": "2e406ae16c935db7449d872ce5f8d008950c1941d55657bc7ae267af9a7549c3"
+    },
+    {
+      "id": "ops-doc-0071",
+      "contractHash": "e08c8e181220ef07a75de21e613d318828128ad6a9162bcd92cb294f5d2854a2"
+    },
+    {
+      "id": "ops-doc-0072",
+      "contractHash": "8976c46ddfa391e9da4d66fb958cbf7bd20e1075e8f8b7c3f53c08f3c90c6fb2"
+    },
+    {
+      "id": "ops-doc-0073",
+      "contractHash": "c46e9c656a7d0b92137fb15c58d477689a433b5f732117853c0f124c27686aa1"
+    },
+    {
+      "id": "ops-doc-0074",
+      "contractHash": "b449e7f6adce4f67cde88e40fec53b21c427ae68350afd3a73cd6a744622b39e"
+    },
+    {
+      "id": "ops-doc-0075",
+      "contractHash": "4dc845c0f1d8cf61b7e253a53d3e39e77b1ae2e6c2f4b001fefb42540262a30b",
+      "distinction": "수정된 입력·자료·판단규칙·기대결과를 재독했다. 해지 통지 철회 요청의 처리 상태의 독립 목표로 교체되었거나, 입력에 없던 사실을 단정한 오류가 수정되었다."
+    },
+    {
+      "id": "ops-doc-0076",
+      "contractHash": "b6862dd4daffcb729618a7c07f28844467ec311985b2c1bfd0976dee2089c531"
+    },
+    {
+      "id": "ops-doc-0077",
+      "contractHash": "71e279050e5850648ccbee4e26e7e049d5772433940ff6a00105ea39609015c0"
+    },
+    {
+      "id": "ops-doc-0078",
+      "contractHash": "7531e7d06ba56ef219b8b4fa80919d39548753770a372ef639ccb35367401f17"
+    },
+    {
+      "id": "ops-doc-0079",
+      "contractHash": "b6a9487453684e4ffda78e9668d0799e12f731ab55c6301594ddbc86b336e7ca"
+    },
+    {
+      "id": "ops-doc-0080",
+      "contractHash": "038bc838cc1d72dbdaa4ba2721bd1ed2d525b45c17d00648c5307cfce16d1f8d"
+    },
+    {
+      "id": "ops-doc-0081",
+      "contractHash": "83a92c5b65fef616d744fa62d28466b67ce7081b91ab6dc1a5958c980834b361"
+    },
+    {
+      "id": "ops-doc-0082",
+      "contractHash": "87bf85033cd99ac135588c6c4e2bb674d827b514900a4b873794ec11586883a6"
+    },
+    {
+      "id": "ops-doc-0083",
+      "contractHash": "5dbd4d80c782d73dc24d9d2397384c38316e126446eb84984ccccf152a4c951c",
+      "distinction": "수정된 입력·자료·판단규칙·기대결과를 재독했다. 분쟁 금액과 계속 이행 의무 구분의 독립 목표로 교체되었거나, 입력에 없던 사실을 단정한 오류가 수정되었다."
+    },
+    {
+      "id": "ops-doc-0084",
+      "contractHash": "b763c1a6e73bd08d34756e6139dfd5525d5ec0229afaf6bf205ddb368330adc4"
+    },
+    {
+      "id": "ops-doc-0085",
+      "contractHash": "388dc425618635fe46c36baa0fe2065eb429606cad327992676aafa0f60137ce"
+    },
+    {
+      "id": "ops-doc-0086",
+      "contractHash": "4066528d73a4f7819b660765d09563847b33aa3ca396e7095bf2e374ff884a95"
+    },
+    {
+      "id": "ops-doc-0087",
+      "contractHash": "a9fd99fb2ab6d64e8364a8dc09d8541ce6ca34e3da2e26c784cab6cc8884d7fb"
+    },
+    {
+      "id": "ops-doc-0088",
+      "contractHash": "888d9d5eb386821011751b79cfdea9c8a7c9640546c5b81976855f3525cdd494",
+      "distinction": "전자 제작 계약으로 교체된 입력·합성 규약·기대결과·실패조건을 읽었다. 비도금 홀과 도금 연결 홀의 제작 분류의 물리적 관계 또는 제작 자료 경계를 판단하며, 기존의 단순 계산·기준 대사·직무분리 사례와 구분한다."
+    },
+    {
+      "id": "ops-doc-0089",
+      "contractHash": "a60145ce4ea98e2790492f65332b8b66447dfea81e89f968a536c49d97899c3f"
+    },
+    {
+      "id": "ops-doc-0090",
+      "contractHash": "51c76f16cc0d8951a0c8cb8a6a584839ea11d76d079109ee4013aa90288fb9f5"
+    },
+    {
+      "id": "ops-doc-0091",
+      "contractHash": "829748e6de59583b4aa0c3fe82cdbd98eb72eeeee6c671878cf984c5d41600cb"
+    },
+    {
+      "id": "ops-doc-0092",
+      "contractHash": "e0bc858e7287cab93b3af7181802e6f97e9f587453ec5325f93d2d20229f8d8c"
+    },
+    {
+      "id": "ops-doc-0093",
+      "contractHash": "5071d2849325c6ed2bd0dc2d069d93d16569b021ae576d36b63b20a6b7410291"
+    },
+    {
+      "id": "ops-doc-0094",
+      "contractHash": "77231da36c02a4607f4cdc04dd7e13e5c08c1185884018917f23d9ba33b4fcec"
+    },
+    {
+      "id": "ops-doc-0095",
+      "contractHash": "eeebf6a578b2b3ea889240809b90c3af944842c0d55cc8cb95b9b225ad6ba139"
+    },
+    {
+      "id": "ops-doc-0096",
+      "contractHash": "857352a43079062dccbd06869f5af7dffdc42b37ca5185fbbeb08442770b569c"
+    },
+    {
+      "id": "ops-doc-0097",
+      "contractHash": "f4f82deb6bd999bcffe35e485449b4cd41ec83ed4fd65a50928f804a77ef55c9"
+    },
+    {
+      "id": "ops-doc-0098",
+      "contractHash": "d534b9d2202456e60b747de2508534d97ef4c696f15476210c7cb719d0ceada1"
+    },
+    {
+      "id": "ops-doc-0099",
+      "contractHash": "f8d0679a4521c83fdddee0962f1519ccc0b10a4357e93ba79902d24b97abad43"
+    },
+    {
+      "id": "ops-doc-0100",
+      "contractHash": "01d45525d1cab660a8dfb68aef6fee308d55415423cda50363ab483d5f74bc76"
+    },
+    {
+      "id": "ops-event-0001",
+      "contractHash": "ce681e30c1e4a5b0e5328dfceea5c51032046f7baf255eee33d63e46b25b9639"
+    },
+    {
+      "id": "ops-event-0002",
+      "contractHash": "66d273cc4c51fdd47b147ca23803cfaac736cb79c466cc3e6485494c4b4ecfea"
+    },
+    {
+      "id": "ops-event-0003",
+      "contractHash": "59ee407a08595c2122f841f441744805830336fe8ee9cfb8ae0ee13a83fce055"
+    },
+    {
+      "id": "ops-event-0004",
+      "contractHash": "79f84911e9257a0f1f74f88dc6764e0bb8c0dc3189097ba664b8e185010212bd"
+    },
+    {
+      "id": "ops-event-0005",
+      "contractHash": "cd4068985dea34e88873ecf35906b7f19504b2c256da35401495be42beca9965",
+      "distinction": "자기 음성이 원격 회송 버스에 다시 포함되는 입력 경로를 검토한다. 시간 교집합 및 단순 음량 피크 검사와 다르다."
+    },
+    {
+      "id": "ops-event-0006",
+      "contractHash": "97c6b3b344efb2781a0f5da9e18966b86bdc7587e9961efe65f8284dedc11a9a",
+      "distinction": "공동 발표의 미공개 수치 질의를 근거 보유 담당자에게 남기는 업무다. 이동 시간 계산과 다르다."
+    },
+    {
+      "id": "ops-event-0007",
+      "contractHash": "59856eab1dd6806a5b4b29007350b731ed676c93ab49142e9d043faca644a025",
+      "distinction": "언어별 필요한 물리 수신 채널 개수 검토. business의 채널 번호 안내 매핑 오류와 별개 목표."
+    },
+    {
+      "id": "ops-event-0008",
+      "contractHash": "b09ccf3de1109aed618a3ba350ede07fe784f304595bbaa198773c632265ee0b"
+    },
+    {
+      "id": "ops-event-0009",
+      "contractHash": "5339dd3a2bb376ed8268a579ea18abb870bbd4feba1d7c9ea3bce94d9c173d59"
+    },
+    {
+      "id": "ops-event-0010",
+      "contractHash": "e235122c05f45b5468db60edb75f8b69ee0c8ad72dc9a8d737aab9375bf70a8b"
+    },
+    {
+      "id": "ops-event-0011",
+      "contractHash": "0ffaa52231c4d9fb43c469666cbad0c13424212908c5c8f8552a0ecc0485dd1e"
+    },
+    {
+      "id": "ops-event-0012",
+      "contractHash": "fd795e0266e841500f724292b052fe65585a7df20ba6ce4b34e5f9f9eb6e2c3e"
+    },
+    {
+      "id": "ops-event-0013",
+      "contractHash": "20d27f41e52d615c3a553ee0cfa6483eec3961a289679912356913cb82f55b45"
+    },
+    {
+      "id": "ops-event-0014",
+      "contractHash": "471a7097d77e09831ced43e68db6f849c6cf8ab70fe9d67ad17ab188dd3a93e3"
+    },
+    {
+      "id": "ops-event-0015",
+      "contractHash": "07f895a9c90d89f3f34fb284826e6d6b1ced517811fee3eb89be586a9dff72bf"
+    },
+    {
+      "id": "ops-event-0016",
+      "contractHash": "ca52b4bde0d5b663e27f82c228b87fba8d12be1cc31413221dc75e357f7bbe34"
+    },
+    {
+      "id": "ops-event-0017",
+      "contractHash": "e5f1f80e32489f03ecdfd9f23c62b528f2732bc81d0abf263f6ef5e7c68b3af0",
+      "distinction": "과거 행사 기록의 당시 직함을 현재 약력과 분리해 보존한다. 날짜에 맞는 정책을 선택하여 답하는 사례와 산출물이 다르다."
+    },
+    {
+      "id": "ops-event-0018",
+      "contractHash": "bd4705c7605d9a3ad77f72fa0a0aa660ea4ebdf64e7cf2e102af9e5cc0024fd5"
+    },
+    {
+      "id": "ops-event-0019",
+      "contractHash": "b56663f06142a3ddd5d9221535bd3098512cd710a3e4993fb8a2f7e7a508460d"
+    },
+    {
+      "id": "ops-event-0020",
+      "contractHash": "5d52e4da57da9dee8832c3f5413c3906c9d5b9700206d089564180ad364d2cc1"
+    },
+    {
+      "id": "ops-event-0021",
+      "contractHash": "335e212aaa8223ce7aaa3aced5e19b27b51ec22d8125ccb8757ed0404637b92a"
+    },
+    {
+      "id": "ops-event-0022",
+      "contractHash": "375bcd41dbf812406f00728419370db247683e39a1716e6891582e97c42c1a21"
+    },
+    {
+      "id": "ops-event-0023",
+      "contractHash": "8d2cc0046604e2ca24db24c8fcc6dc77862de08f42090d683345104330e9fefd",
+      "distinction": "직접 연결된 등록ID 때문에 익명 주장이 틀린 사례. 공개 이메일 해시 사전대조 공격 위험과 구분."
+    },
+    {
+      "id": "ops-event-0024",
+      "contractHash": "0cf6c33e8058b2919ef38d90c11be497ff2afa84e6283ed4d8b75b322c00be38"
+    },
+    {
+      "id": "ops-event-0025",
+      "contractHash": "28919a363fb6ac15d9ab01e2a3841f8fa4c64efe075d9baae323903664d30ae8"
+    },
+    {
+      "id": "ops-event-0026",
+      "contractHash": "cfbc116b080507aacac17818a3fd6f34d65363f7ea62038da883e16de0e17177"
+    },
+    {
+      "id": "ops-event-0027",
+      "contractHash": "a8b6726d97b2ca629d0d5431b26f32861227afbfae245d2f2e38895823bb0665"
+    },
+    {
+      "id": "ops-event-0028",
+      "contractHash": "f86662ea707e62cb5b816b64a85f61c819bd77f9a86873545ac69756fee443e7"
+    },
+    {
+      "id": "ops-event-0029",
+      "contractHash": "680e408ea84c373d2f182f673da917a9fe4ef831c4d6a20345283709f376654e"
+    },
+    {
+      "id": "ops-event-0030",
+      "contractHash": "7f68b52f66c7869bf0f489a3d04305eb7cf2ca501429d223b8d853cccbe8c7ce"
+    },
+    {
+      "id": "ops-event-0031",
+      "contractHash": "a16228290f0f955fa757632bb964b87009452c0a31182f3a71a38a0b7cc9c8c7"
+    },
+    {
+      "id": "ops-event-0032",
+      "contractHash": "ee2d5ce7b8cffb9eb8cc0e43c1fe0608e5676e072dfac27dedc922cc648a2c7a"
+    },
+    {
+      "id": "ops-event-0033",
+      "contractHash": "c36b70ca9465ba300737529906484993e1c4c18103b01bcce121ae80c7878cc3"
+    },
+    {
+      "id": "ops-event-0034",
+      "contractHash": "67f010165d2d9a42f4ba22c4a6ce23b21c4cf91d4f04d6029cd122a982f2d665"
+    },
+    {
+      "id": "ops-event-0035",
+      "contractHash": "36e3da542b74740f58d387eb6a7eac142751e5ad47469dbaa5cb531e7047d32e"
+    },
+    {
+      "id": "ops-event-0036",
+      "contractHash": "5e75077695c96e9c7134f7084f929ea0298225988e6f566e75d26494869c55b0"
+    },
+    {
+      "id": "ops-event-0037",
+      "contractHash": "d95a167d3ee480ec4704e3e7311cbb9525fdd495302cb0e822098ad0d72504dc",
+      "distinction": "예비·VIP·일반의 총 수요와 공급량 대조. business의 선착순 공정 배분 순위와 별개 목표."
+    },
+    {
+      "id": "ops-event-0038",
+      "contractHash": "c869a9281006eeef0f31327e6dceb84001ae9ce754101853ad7ae83b8d9f04a3"
+    },
+    {
+      "id": "ops-event-0039",
+      "contractHash": "e70f0a086df6b42b7c6549a258dbed271f0522db88b923152e0700a31046f830"
+    },
+    {
+      "id": "ops-event-0040",
+      "contractHash": "81ff970f3a84f1f9d6f65d815c65f36b37c54f3e2bd4c4d58d21da5748f2df37",
+      "distinction": "사전 약속한 경품과 협찬 대체품 사이의 참가 조건 변경을 검토한다. 인수 대리권과 구분한다."
+    },
+    {
+      "id": "ops-event-0041",
+      "contractHash": "86d98df9121a7ed91467295f8be1c81344a9bc41c2f92a5698479b7f5e4ff308"
+    },
+    {
+      "id": "ops-event-0042",
+      "contractHash": "8eed92df236d3e7b92efc7940f505903584f6322e941a6985d9e4f022c62c767",
+      "distinction": "대여 본체 반환과 계약상 주최 보관 매체 인계를 분리한다. 대여 손상 전후 비교와 다르다."
+    },
+    {
+      "id": "ops-event-0043",
+      "contractHash": "a254b5cb78d71d20600cfbb39b0cc72e9b033354329968b4a20df1229f9c74c9"
+    },
+    {
+      "id": "ops-event-0044",
+      "contractHash": "3c14ab7b49b64be8ba7ae4864c7d6b83e925f55ccd0df9cbfd7770aafcb37dab"
+    },
+    {
+      "id": "ops-event-0045",
+      "contractHash": "ffbf74449d5a545e3bb6c726a386649536a18416d78e8fb548491347ba497176"
+    },
+    {
+      "id": "ops-event-0046",
+      "contractHash": "6b693b3ff20507bf7959469644bb5e3aa3ac5ee2d96a3db5331fd7d6ec0a5d01"
+    },
+    {
+      "id": "ops-event-0047",
+      "contractHash": "f8086f97d5a63657b33b5b867ede4a6012e37c80fed7e0b0b0d14242c40aac61"
+    },
+    {
+      "id": "ops-event-0048",
+      "contractHash": "7b4e5164fd1079a1e408906f5868a958e56dae46eeb2a85d6ff57f665bf7227a"
+    },
+    {
+      "id": "ops-event-0049",
+      "contractHash": "85831bea0ff9d6031f667b165d0497f04195344ff7ed49a35d30531b9d32277d",
+      "distinction": "백업 연결 성공과 콘텐츠 재생 시점 연속성을 분리한다. 공유 장애 영역 검사와 다르다."
+    },
+    {
+      "id": "ops-event-0050",
+      "contractHash": "7e77dc223fe29d155fa1b20aaea136107f0ec908d43c2533fb353e34350551ff"
+    },
+    {
+      "id": "ops-event-0051",
+      "contractHash": "39dd7468acba1d4cb51fbcd33a4fef9c0214cb9ee4ab52be29f03324532173ed"
+    },
+    {
+      "id": "ops-event-0052",
+      "contractHash": "89a5bd329843296f82772a3f0f3ebeffb9f2ad2dfcf1c1716b04108fd83bd725"
+    },
+    {
+      "id": "ops-event-0053",
+      "contractHash": "cd6cb53ac19ed2e1428863090c954a27726f9ebe3b2b22561c1311e072e00521"
+    },
+    {
+      "id": "ops-event-0054",
+      "contractHash": "8b23836b3c9dba9cd1026f1db1c152a3f509a2ef0d8fafc35bb26e186aeb0d46"
+    },
+    {
+      "id": "ops-event-0055",
+      "contractHash": "90a09208d83850cafa27ff253cbd06fcfdef6adb43e57ebee49f4c738cad4bc3"
+    },
+    {
+      "id": "ops-event-0056",
+      "contractHash": "e630bcd0b5014cdb73a000b58ad139ea818b06df67edb2aa945171ce9827c38b"
+    },
+    {
+      "id": "ops-event-0057",
+      "contractHash": "990ae4114d8355ec6ff09cdc6f00f928fc7b168fbcbdee79e931cdae2e81433a"
+    },
+    {
+      "id": "ops-event-0058",
+      "contractHash": "3a02dbe9d5a414d9f75a9bd45b53b9cfe937e327707e80ecad23f63a75431445"
+    },
+    {
+      "id": "ops-event-0059",
+      "contractHash": "cb8f3d012d02bdac08aca94875be7ed40691aa56ab75acd8d2f5d002aa929881"
+    },
+    {
+      "id": "ops-event-0060",
+      "contractHash": "c0725d9f2ae61bde6a20390d9d97e0f81bcab21317d50bd5e635864e4e53279b"
+    },
+    {
+      "id": "ops-event-0061",
+      "contractHash": "2234da7b9e0c0a8470b670c6fe9c0c54626905730d89ee7ef112fbd6ca4c0c6d"
+    },
+    {
+      "id": "ops-event-0062",
+      "contractHash": "0509af0db69f7c0aae2ca3d902a49b5ce7a7076ef3c777b7a3c16edd5d090b18"
+    },
+    {
+      "id": "ops-event-0063",
+      "contractHash": "79acc8a23d50e4d1f22bb121b1bba23027cfe178261eb59418830926ebff73d4"
+    },
+    {
+      "id": "ops-event-0064",
+      "contractHash": "f56da922950955ac154e6eedd82e863343d5b8de9fe55ebba8cebddf9da01782"
+    },
+    {
+      "id": "ops-event-0065",
+      "contractHash": "66533edae6cfeff7e387b3ce620fb932cbab1eb44554a6b9d27a0c66ff7e4dae"
+    },
+    {
+      "id": "ops-event-0066",
+      "contractHash": "ebea91f2a8871d8b9a5e1c9a3d304167c3b5b4d4d4fc69ae795d76970083bdd0"
+    },
+    {
+      "id": "ops-event-0067",
+      "contractHash": "dec76a7845921ce52e3378373adfac6db1f32e9dde1cfcaf2313e433dbfefc70"
+    },
+    {
+      "id": "ops-event-0068",
+      "contractHash": "59efdcac52d670521e4db5ec6f594a76be2ac2e1cca08c78e03db309a9871a7f"
+    },
+    {
+      "id": "ops-event-0069",
+      "contractHash": "c056e6b3d92040ac58c22e5ee0684cf582f81f9c701d9c16216a2870e82f1380",
+      "distinction": "변경된 무대 행동의 촬영 프레임 포함 여부를 재확인한다. 개인정보 보존 기한과 다르다."
+    },
+    {
+      "id": "ops-event-0070",
+      "contractHash": "bc7bbec3c6c104c83034678dff8d60aac8ca8db10d80ece2e6f598d312327f1c"
+    },
+    {
+      "id": "ops-event-0071",
+      "contractHash": "e29458cab8639cffd0ad1cef3a7d7b5b5020a4907c1034ab6f479754ff18a277",
+      "distinction": "출석 분모가 세션 수인지 시간인지 미정인 상황의 정의 검토. 이미 정의된 비율의 단순 합격 계산과 구분."
+    },
+    {
+      "id": "ops-event-0072",
+      "contractHash": "97d12b1923ad7541f869f299fc6ca630bc871f1e34286f4d659705b6824be8d0"
+    },
+    {
+      "id": "ops-event-0073",
+      "contractHash": "8df2ee1adde80f1a7f4ba90b7f9596f375cfc5bcf4717a644f2d5c8215ec357c"
+    },
+    {
+      "id": "ops-event-0074",
+      "contractHash": "4f6f6b814b86efac7110f9bfb4f97e12063d378babaecbd7f95d3b4482bf3f64"
+    },
+    {
+      "id": "ops-event-0075",
+      "contractHash": "2a504d9c6c2a4384b40ffa3410d19bb87e78103019479daecc4cc69b7ebb850c"
+    },
+    {
+      "id": "ops-event-0076",
+      "contractHash": "526e45c923fe6596fa847efbe9b35bcd99ddbe976958ecd1674acb2c2cae9d71"
+    },
+    {
+      "id": "ops-event-0077",
+      "contractHash": "0b281e4f21e64119e6aae3c8f18907510cb72917c7f8d5903883c6a0e77c913c"
+    },
+    {
+      "id": "ops-event-0078",
+      "contractHash": "46ad873a794c2ed16fb0e16429f190d1a1fababe9f8616ed8e397952d55a0e66",
+      "distinction": "설치업체의 완료 서명이 시연 전 두 계약 당사자의 공동 개봉 확인을 충족하지 않는 단계 차이를 검토한다."
+    },
+    {
+      "id": "ops-event-0079",
+      "contractHash": "70f1ac8b44db8db52904f789cb2e9ea5ac2af9a12f45f9417ae30145d2898612"
+    },
+    {
+      "id": "ops-event-0080",
+      "contractHash": "f230b4096b8e6d121205b23a89b60d1e2925b0a28666bbbb59cbf70d657cd359"
+    },
+    {
+      "id": "ops-event-0081",
+      "contractHash": "01c69d1dbbb6e6f6ab3208ac8f194302216a80adc5bb3e21069434b0b24e6622"
+    },
+    {
+      "id": "ops-event-0082",
+      "contractHash": "a42e4c8e504322b38f9e267e34807e5b0ac20d02f2146b1cd1c5ae0fa100340e"
+    },
+    {
+      "id": "ops-event-0083",
+      "contractHash": "ac9e6b812ba2d0eb55aff900e4ac50b69bc2e7bc12378af775369f774d1a7926"
+    },
+    {
+      "id": "ops-event-0084",
+      "contractHash": "336f69b39b93ac266c147ac18bd6d2d98773fb70e05ba83158b4e35aa739ce6d"
+    },
+    {
+      "id": "ops-event-0085",
+      "contractHash": "057415ffd0750d2ae5fa5fc1c6330e0b1c1a09a589627f83e38949837c4cd14b"
+    },
+    {
+      "id": "ops-event-0086",
+      "contractHash": "6d1c1c53d29dc666fd3e3ba35853d9e9edc9c0de706aeeecc9d5733f8fc864ce",
+      "distinction": "만료 후 재배정·수락한 B의 자리와 뒤늦은 A의 응답을 함께 검토한다. 미사용 초대 링크의 만료 계산과 달리 기존 확정 배정을 되살리지 않는 상태 충돌을 다룬다."
+    },
+    {
+      "id": "ops-event-0087",
+      "contractHash": "64917248d6805c52a3da01003432cb53a22999393802340654f9f345aa8fdbb4"
+    },
+    {
+      "id": "ops-event-0088",
+      "contractHash": "a932fdeaf2eaf501ae0546c229ad8705799e5b72de63749b5c363a9273f9aca4"
+    },
+    {
+      "id": "ops-event-0089",
+      "contractHash": "7d4969d2ec999cf59a4bacdc9e31b500c585d11f40271aaaafd1828e9969862d"
+    },
+    {
+      "id": "ops-event-0090",
+      "contractHash": "7f45d11c5edf3ad22bda7ae3cc894cc26c927648dfa727dc5c040ddd803a798a"
+    },
+    {
+      "id": "ops-event-0091",
+      "contractHash": "4ed39f92360304130b407f5be8276946b4f115adcb3eebff802627e74c42a88f"
+    },
+    {
+      "id": "ops-event-0092",
+      "contractHash": "729231d398ccdf3a4c8c1f5d62b6e415f13dd9d4d0d5b3ef43866c944e7c4e65"
+    },
+    {
+      "id": "ops-event-0093",
+      "contractHash": "3191480fa4bed20796337e4219db81928b15aac932a016aa1cd5088a5cde876c"
+    },
+    {
+      "id": "ops-event-0094",
+      "contractHash": "3baa131ed7bb3c5207fb05bf5adad9295ec54cc4f0f59136647122da6beefed2"
+    },
+    {
+      "id": "ops-event-0095",
+      "contractHash": "f0052b6886096f9804cca87538bc165801e272a4a91c271a553ac5a7ba408e09"
+    },
+    {
+      "id": "ops-event-0096",
+      "contractHash": "712b487fa19dcd1f5df0629a51808b0829bc7addfa4c3ebbce1c713eadd92ff9"
+    },
+    {
+      "id": "ops-event-0097",
+      "contractHash": "df170c563ab78e693441dd80f4087f1272fb0afd7c0b61d2ddb275588052d772",
+      "distinction": "회수 자산·대여자·보증금 영수증의 연결에서 타인 보증금 반환 오류 검토."
+    },
+    {
+      "id": "ops-event-0098",
+      "contractHash": "8335b9fb9128d3d393fbf80c60974d200807bab83dc013fc5b57b51ba93b81ff"
+    },
+    {
+      "id": "ops-event-0099",
+      "contractHash": "ce399fc9616af929092a3e5a544a7158f8401a76aa23a7dc389275b13d26c291",
+      "distinction": "총수 대신 동반석의 실제 인접 관계와 점유를 검토한다. 단순 식별자 누락·추가 집합 비교와 구분한다."
+    },
+    {
+      "id": "ops-event-0100",
+      "contractHash": "95641f6faa66a17726790bce788e67301ca73d2ac330136e626ce89e38d4aa5a"
+    },
+    {
+      "id": "ops-event-0101",
+      "contractHash": "76b6610367e81298b1d552dda00b377bb99db5ba235a5d019992d38c091bdd17"
+    },
+    {
+      "id": "ops-fac-0001",
+      "contractHash": "ef9b4303d0d726826a33201ca6ec200e23171d7384a63591c8e8fcc41fff98dc"
+    },
+    {
+      "id": "ops-fac-0002",
+      "contractHash": "5595a42f2b562c7e9c170689f5e303c75771beb4271c04d96c7da2cb5bb8624f"
+    },
+    {
+      "id": "ops-fac-0003",
+      "contractHash": "a819b867983eadb9f951414f524c821377eb4e9d394275e3cdb67f47568e665d"
+    },
+    {
+      "id": "ops-fac-0004",
+      "contractHash": "2751480686368cbcc8d765cb0ef1125c18d6e3bea549715279b18e4a319667cf"
+    },
+    {
+      "id": "ops-fac-0005",
+      "contractHash": "285775f357b69844a5a54e334c2d24ecac8a106cc85baba46162992a04e60fab"
+    },
+    {
+      "id": "ops-fac-0006",
+      "contractHash": "8aac2b11e52a0618bfae7258077ea8840f1adae51d04856e72bc60977341dd18"
+    },
+    {
+      "id": "ops-fac-0007",
+      "contractHash": "aae45b6c4b8e323603e6c8698cdc77a18278d3ce26c233840dc5647d4c0939b5",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 절감 성과 보증의 계량 경계 변경의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-fac-0008",
+      "contractHash": "42968bf267457c78c9d589a94adbd50f77d63c8788e837121207919f01f983ae",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 난방도일 기준 온도 혼용 검토의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-fac-0009",
+      "contractHash": "77d0ec32d436cdb56d7bca4915b9023cb73e810f929da326a90fb520bd1de935"
+    },
+    {
+      "id": "ops-fac-0010",
+      "contractHash": "eb2fe15f78c6e324aa14620d91832746f5fb02f1de7e06154558db70771b52b3"
+    },
+    {
+      "id": "ops-fac-0011",
+      "contractHash": "2c7b0e3f0906e77ea8541981b9a11af63b1b5fcce1dc78a7dba85d220fca6cef"
+    },
+    {
+      "id": "ops-fac-0012",
+      "contractHash": "c7393859af66b3e5948c8d6f851c7c2f7aaa7be008b77e4d18fab8643a06ef9e"
+    },
+    {
+      "id": "ops-fac-0013",
+      "contractHash": "d32441537dcc4147950cbd8a0c721ded91a9e2059ace4efe600d50682c7c062e"
+    },
+    {
+      "id": "ops-fac-0014",
+      "contractHash": "d111c756d0d31b4aecdb431195140fb089353dc9527ad0e44746840b3774906e"
+    },
+    {
+      "id": "ops-fac-0015",
+      "contractHash": "6faf56044c5641b4b96a2b01ba62ca5928db9859de03fdbde1f0013d051d29f2"
+    },
+    {
+      "id": "ops-fac-0016",
+      "contractHash": "03354250c1a06d3b5bc7888d3c3d0c85cb7efb7ab11dd703b35f05c3d9ec970f"
+    },
+    {
+      "id": "ops-fac-0017",
+      "contractHash": "297345798df9e9d9c64bf8a98994d125b0cd1cbdeb2cc010b132243b326ae160"
+    },
+    {
+      "id": "ops-fac-0018",
+      "contractHash": "d72a43ab6c3a73c5b945245ddf0f7e586118b0132d347bcfc6ad8057dd27f491"
+    },
+    {
+      "id": "ops-fac-0019",
+      "contractHash": "27d94d52a510d3e724f0e3cc28b312cc14dd612aa1b4a8edc06d729e095d0dbd"
+    },
+    {
+      "id": "ops-fac-0020",
+      "contractHash": "54ee32ce4efdd8de90729f3b029bb3fca37dc1faca4fe0e5aa2adcd916c9c8c7",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 시장기반과 지역기반 배출 보고의 구분의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-fac-0021",
+      "contractHash": "871105e463e851e38c893a6a81b2fa7c3a5b1a51f577818933c8f4715b85c4f6"
+    },
+    {
+      "id": "ops-fac-0022",
+      "contractHash": "918e7321cda2972fc07a0539b4e6e0a62989fbc2e3620b48cc5066a2d7644e7b"
+    },
+    {
+      "id": "ops-fac-0023",
+      "contractHash": "e8dd9a61d839c6f4a3cd733ddd4eaf641c56474e52198ed633334ad3bff4010c"
+    },
+    {
+      "id": "ops-fac-0024",
+      "contractHash": "9aebf8247d40a556fa6db2010152ff8861a74e0c83b5d388908ca81a9c6e6fda"
+    },
+    {
+      "id": "ops-fac-0025",
+      "contractHash": "deada16aa91fba5fb4173e10cd3be24c9ebeb563083a2f2be6cdee919fff094a"
+    },
+    {
+      "id": "ops-fac-0026",
+      "contractHash": "4388eeb2508f8e8f91f02925aed57cde47098325453ab4ee7b66d8d646256e0d"
+    },
+    {
+      "id": "ops-fac-0027",
+      "contractHash": "b563c8ce087a4afd11b932c5bd80363ad2f0be335d0cb0dfe1243dad9babbe4c"
+    },
+    {
+      "id": "ops-fac-0028",
+      "contractHash": "b81a0ee57ee73f14109a13174feec8ec3fb93f8997890863965a432593fafffb"
+    },
+    {
+      "id": "ops-fac-0029",
+      "contractHash": "5593c0b7399f3dd1af946b8f75bf78bf110d084086e16c3d60e617b07be135e0"
+    },
+    {
+      "id": "ops-fac-0030",
+      "contractHash": "63ca0eb9c986b7aefa3357b483c44cf1c4fa2a6a432cfab4dd033c4fa31bddd4"
+    },
+    {
+      "id": "ops-fac-0031",
+      "contractHash": "a3b38f03231b4301fcf73db31bb2c8b11f77d29577a3fad00609c5ac7854931a"
+    },
+    {
+      "id": "ops-fac-0032",
+      "contractHash": "072902aa6ed23ffea46a4aa8595509c5a68a93431a8df8adbd5591d5ba0dd214"
+    },
+    {
+      "id": "ops-fac-0033",
+      "contractHash": "ed11ba01507902eae8a18c9127a2c6844f00df599e7a6be5a337222b1b1d25a8"
+    },
+    {
+      "id": "ops-fac-0034",
+      "contractHash": "445b3d9209f4868f1409377cfd2ffbda4e1568c4d00c25e42b1c250d952f6b4c",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 공조 실외기 정비의 실내 구역 영향의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-fac-0035",
+      "contractHash": "35a47691112be3b34a5e7400dc406908a87183177a27820e4349897cc91a9683"
+    },
+    {
+      "id": "ops-fac-0036",
+      "contractHash": "32ee2187b3797142ad83d67907d6456ad4e0ee4b7b5348d55702cfdfb8d89181"
+    },
+    {
+      "id": "ops-fac-0037",
+      "contractHash": "88dda64beaaf6cc694014c7952d5765285b61ccca978359314f7a4fa9c6b805b"
+    },
+    {
+      "id": "ops-fac-0038",
+      "contractHash": "c5b9f94bf5fb764ecd6c0b5d8ef248acb2116ee786d53b6556702d74a98b605c"
+    },
+    {
+      "id": "ops-fac-0039",
+      "contractHash": "958c8342455791042ec774d977398f0706f238f0dcfb7985aae6361dc40627e0"
+    },
+    {
+      "id": "ops-fac-0040",
+      "contractHash": "15cea180aa4f59113806d84e446668439cdeee3c6f64d14cc0d1485fe8d5ceb3"
+    },
+    {
+      "id": "ops-fac-0041",
+      "contractHash": "0fd972cfab14a373f8c52f99e44e6ccd170e7edb70a15a2da2680e7f7b3b2a3b"
+    },
+    {
+      "id": "ops-fac-0042",
+      "contractHash": "62d2060fb26ae1d4ae21d90206b590d78cb2070d728f281bd778f0c5712ce014"
+    },
+    {
+      "id": "ops-fac-0043",
+      "contractHash": "6f633f0b1499b2e6d6104ba9916002db67279c7918be80c9b7ff5f3aefb0be35"
+    },
+    {
+      "id": "ops-fac-0044",
+      "contractHash": "39b6a0d4ae5cfc17fe089fa6f447a91e4fad3d2153c70e70b097e4d05823452b"
+    },
+    {
+      "id": "ops-fac-0045",
+      "contractHash": "55bcc616950e83f04423e9323b220469a9c89b532d7c440f33abc9fc8bef9770"
+    },
+    {
+      "id": "ops-fac-0046",
+      "contractHash": "66d2baf12bd19c191bdf7dd3206b878bca706580d05462db34158fca76330d76"
+    },
+    {
+      "id": "ops-fac-0047",
+      "contractHash": "a1aeabfd5afe9e1f61dafb942f991bf63114fd628a00f65f1d23f63a09857131"
+    },
+    {
+      "id": "ops-fac-0048",
+      "contractHash": "5d20b981aaadbe319b4b84cc5fa2ffa007bbc564d19436ca5c7622daac6512db"
+    },
+    {
+      "id": "ops-fac-0049",
+      "contractHash": "2eed4f9f7bfab9493b79d323f9354600bc2af29ee411a47213a01f535c307521",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 임시 칸막이 이후 온도 제어 구역 분리의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-fac-0050",
+      "contractHash": "24a0884006d277a0579a6658236b9428aaa70f0d8575b31c93e0abbe9fab374e"
+    },
+    {
+      "id": "ops-fac-0051",
+      "contractHash": "a58308461190744dda359126fc5ddcc432b123bcf2000cdaa5078a6795955e12"
+    },
+    {
+      "id": "ops-fac-0052",
+      "contractHash": "df10a42782f078451c9c60045bcbef06956f348860ef16f17dcab8f94ab12eb4"
+    },
+    {
+      "id": "ops-fac-0053",
+      "contractHash": "ee88b0dd697b232100a8ddf44435104fadb996c53bb0877d91cdcc83e0b04702"
+    },
+    {
+      "id": "ops-fac-0054",
+      "contractHash": "db9cf17976f594243f1a1cb1c2d1dafcddf51ddcdc0d5ce0924219b3624a719e"
+    },
+    {
+      "id": "ops-fac-0055",
+      "contractHash": "2e69b8ff3f428e85522ca2364661e27fa467746fb0f4c6e382619b2655a6ae79"
+    },
+    {
+      "id": "ops-fac-0056",
+      "contractHash": "24ab85edfa4294968070b927b68c142b4425758459547254cbf332dce861429c"
+    },
+    {
+      "id": "ops-fac-0057",
+      "contractHash": "fe03d256d8be85d3cf90ecf9a78e2dd2272d27f337e3f28f678fbc05737716c8"
+    },
+    {
+      "id": "ops-fac-0058",
+      "contractHash": "be8b40dabf003f134d735eb8cfab6e900c55cb2548a112bb276e1e392b7a28d3"
+    },
+    {
+      "id": "ops-fac-0059",
+      "contractHash": "eccea9d29f7e5cffd400d99585f78afac811bb7c44a2913d70d907223593c44c"
+    },
+    {
+      "id": "ops-fac-0060",
+      "contractHash": "46f6dbbc143aa13f026501d2dd8522be2975a00234124d70dde679e73cc55269",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 신재생 설비 가동 중단 검토의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-fac-0061",
+      "contractHash": "36e2cc02f01664c6720730b3397ed562dd96cde647e8d1ceebcace0af5cc9b9f"
+    },
+    {
+      "id": "ops-fac-0062",
+      "contractHash": "ab9b7e6e836645a5e862fd92a83a177346154bff0cfc029ab94eb85f351b2937"
+    },
+    {
+      "id": "ops-fac-0063",
+      "contractHash": "2784b504c0ebd31e8be55d3f8db86d5f6c8fa0bba4c8cc8e647379eb7a3c43e6"
+    },
+    {
+      "id": "ops-fac-0064",
+      "contractHash": "18ac1c055d2cefe19ce42836ba39c36945acd17e653570ad188cd4a8450a2f33"
+    },
+    {
+      "id": "ops-fac-0065",
+      "contractHash": "ab88ced8c6568c12d81dde8216ce70e46a0c77f3f027da70590bf1ffaf115ee8"
+    },
+    {
+      "id": "ops-fac-0066",
+      "contractHash": "92375f945b2905295e0ba6fa116a026ac822756865f5e518cb8b8fe7bd410ef2"
+    },
+    {
+      "id": "ops-fac-0067",
+      "contractHash": "895521fe21041186f06e0ee1899816fd7ebb22b59090114c226173f340e3cc3f"
+    },
+    {
+      "id": "ops-fac-0068",
+      "contractHash": "0c174fc2fd6f3fd2f74909ff1e11697d0fea5bb1e9bf5bd7de043bc39344de84"
+    },
+    {
+      "id": "ops-fac-0069",
+      "contractHash": "fb59100f00058e8c2cdc3c29b59e86493b4045833eec01b87990aeaa9e4de086"
+    },
+    {
+      "id": "ops-fac-0070",
+      "contractHash": "327f669c6b5bbfaa9cd1ad10e3f6d1412ac04b786936e6998f2860c0b7be41f6"
+    },
+    {
+      "id": "ops-fac-0071",
+      "contractHash": "36f18909a344e39e7f7e90577290ecc189d741509cadbe59810063d4625c8ed8"
+    },
+    {
+      "id": "ops-fac-0072",
+      "contractHash": "1b7032fd0489a5eb6698fb57721d40fa0f3497bbaac41d1c0fe1e807c34b0fb5"
+    },
+    {
+      "id": "ops-fac-0073",
+      "contractHash": "1c19317bd21bb9fa2ad1c3789e7f83dc0dcbd6210f98de19a1a6761e027d4d8f"
+    },
+    {
+      "id": "ops-fac-0074",
+      "contractHash": "6d1baa266f75576ce60cf053af65cda4bef2a9d6f8c484b4264b63c228026613",
+      "distinction": "수정된 입력·자료·판단규칙·기대결과를 재독했다. 배수 정비 이후 운전 전 복구 상태의 독립 목표로 교체되었거나, 입력에 없던 사실을 단정한 오류가 수정되었다."
+    },
+    {
+      "id": "ops-fac-0075",
+      "contractHash": "da8877e188e257d27fcb43e02c444541a2ad2c006a50392b36a2e3729352d795"
+    },
+    {
+      "id": "ops-fac-0076",
+      "contractHash": "c3d23be1e5ee1267c88bcb9fc0fccd3d717a04dc28d37f3153cda065ff14adf5"
+    },
+    {
+      "id": "ops-fac-0077",
+      "contractHash": "fb8f255256c7b99dcb88e26c67559e8352e00537d58e2b712280aa2ecd354d0a"
+    },
+    {
+      "id": "ops-fac-0078",
+      "contractHash": "626e86a849c54e9691bc139bcb632007b9b8e541dcd7b47ea3980341fd6a53da"
+    },
+    {
+      "id": "ops-fac-0079",
+      "contractHash": "3dbeddcfff0cd4e32a790e3126fb2b020bc4bf809de651ebe6b5decbfbc80ce9"
+    },
+    {
+      "id": "ops-fac-0080",
+      "contractHash": "d73f981a5541a9b0c4e7daef50fc0b9b09c0c631d9ff6faee4c3e1b25d5341e0"
+    },
+    {
+      "id": "ops-fac-0081",
+      "contractHash": "6f96b04bcaf094ebde2e2c69b1c9f1c269e6ca9c139407724a9b03fd84916442"
+    },
+    {
+      "id": "ops-fac-0082",
+      "contractHash": "12c0015da47c2f980e3e57387ae9052b60c41b1ca7977a60818be5ee2767d72e"
+    },
+    {
+      "id": "ops-fac-0083",
+      "contractHash": "a3dab2f8123a7d06d551ad63b26f28c90dceb00c247adc166faaf76fc5c71d60",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 폐기물 중개 인수와 최종 처리 증빙의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-fac-0084",
+      "contractHash": "5a67c5b46173848172b9cdbfbbbf165ff6ab16d0ab191b704602387eeb969eb5"
+    },
+    {
+      "id": "ops-fac-0085",
+      "contractHash": "75acb17eefbb957536a0a0cae6e2bd252727f305e823cce2ffc600290d943f5d"
+    },
+    {
+      "id": "ops-fac-0086",
+      "contractHash": "cd49f98b72345c14d15812b2f5e670ef4191a166d436945517105e3bbe741ded"
+    },
+    {
+      "id": "ops-fac-0087",
+      "contractHash": "f8af46f7c59762bcd7acba6d0076ab08328647230e6ffe8711a31b4d67d60cfd"
+    },
+    {
+      "id": "ops-fac-0088",
+      "contractHash": "3feff99f612fda628742d798e7970985fec726e4ecf747cdbe7e01fa2bdf117f"
+    },
+    {
+      "id": "ops-fac-0089",
+      "contractHash": "d5bbf391ce0cc705d607aecea44242a23f8140f4b62348bb158b7d0a389a0c64"
+    },
+    {
+      "id": "ops-fac-0090",
+      "contractHash": "39367fd33a683372fd662d19a111e8112c49ddac0cc695663672b1563edb1cf9"
+    },
+    {
+      "id": "ops-fac-0091",
+      "contractHash": "c11491072192e938873decdc6cf074c1f0ba58597bdd5097c1008070f96e5b09",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 일괄 소등 그룹에 포함된 독립 전원 구역의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-fac-0092",
+      "contractHash": "09b351f75c0a0702b32d742e9b89bd98dedc27da54528eea5049155a8ba97300"
+    },
+    {
+      "id": "ops-fac-0093",
+      "contractHash": "706012a3cc250b5720df9efe3970cf165f6b2d492bc6cdd9dbd3671d184104e4"
+    },
+    {
+      "id": "ops-fac-0094",
+      "contractHash": "26d383dead2b1ff82b7a188a20057f99d0c7f5efbc6ccca59d20400ec237593d"
+    },
+    {
+      "id": "ops-fac-0095",
+      "contractHash": "0c7c07d3ecde6e175b1845d6fcc14f43153dce1bff4329ac62df98291549751f"
+    },
+    {
+      "id": "ops-fac-0096",
+      "contractHash": "f3866af6eb530d882bf52a9e94bf297fce74de40447d6b31043b6de5b0f769f8"
+    },
+    {
+      "id": "ops-fac-0097",
+      "contractHash": "718bbd496fad041eb5fe431b2da7436be9f86fcd5a7dc26b202a793c9a737e49"
+    },
+    {
+      "id": "ops-fac-0098",
+      "contractHash": "19bf1cc429048d62713a2f5ba5b86230d1f39b97bc4e75711266ea2aa5c9d62c"
+    },
+    {
+      "id": "ops-fac-0099",
+      "contractHash": "848250bcab8712f532eddb0cf8f6e83bb15d321d1167123eb5c0cff0467ea4ca"
+    },
+    {
+      "id": "ops-fac-0100",
+      "contractHash": "a4827c130defe2b8274d70516d93ff111b1141f0533502d216ca422562db7987"
+    },
+    {
+      "id": "ops-food-0001",
+      "contractHash": "aa0a2df3489895c7c24948e361486ed57d550721011d3adba82d316b93cd9cf4"
+    },
+    {
+      "id": "ops-food-0002",
+      "contractHash": "e76f10942af359eb23b05099751039a6bd1240c232a26ad49923df309019c6d6"
+    },
+    {
+      "id": "ops-food-0003",
+      "contractHash": "51fb2fddddc0d600d160b9f726f91bdcfdda565275eafde02f4764dbb547ec69"
+    },
+    {
+      "id": "ops-food-0004",
+      "contractHash": "8b873dc10e072bff8a28ebd676395ec57cce3054d7d9b1ad06b14fb6cd60df11",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 백색 오브젝트의 오버프린트 사전 점검의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-food-0005",
+      "contractHash": "4645636c53a95b1f26132a91bcf85a3f693bbacbd020eb3dbb7db5a579eebfa5"
+    },
+    {
+      "id": "ops-food-0006",
+      "contractHash": "de1e58b48b15fd0b726625c7a1cd0881eb509b1ba644ef479a1d841400d04b05"
+    },
+    {
+      "id": "ops-food-0007",
+      "contractHash": "94c74fdc7b9548e5c506b4aae46166d14a40cc1acf394a719e13dcb3d63e3715"
+    },
+    {
+      "id": "ops-food-0008",
+      "contractHash": "a46ffeb6c00ace7c94bc09ca1e18c2bd4a4f80841acd393707d12732362d381f"
+    },
+    {
+      "id": "ops-food-0009",
+      "contractHash": "2f2dce57672d3310758a2aef58a13309f8a56a6e93e0f3efc8c6f3b725a548c9"
+    },
+    {
+      "id": "ops-food-0010",
+      "contractHash": "b8065d416d00d4721f911c88b171261feb37aeb4ef4a9b714154ec70135dd9a6"
+    },
+    {
+      "id": "ops-food-0011",
+      "contractHash": "b5c48828f42f35861646a7b723b49c7b6e86af84a90c95cf52f89fc62cbab0c1"
+    },
+    {
+      "id": "ops-food-0012",
+      "contractHash": "7f02892b94b8d4407d1d25fa425bded4a9e97308b308d3c673b4448ec30e81ba"
+    },
+    {
+      "id": "ops-food-0013",
+      "contractHash": "d65a318b9f6300cb3b57ec200e033922fe5a7657f710f56c51710986f268e80f"
+    },
+    {
+      "id": "ops-food-0014",
+      "contractHash": "d02c9699eeb6e17556027a442aca8acb4f3a9a3e8bd0cd08401a3ab512206e37"
+    },
+    {
+      "id": "ops-food-0015",
+      "contractHash": "f161e47b083bbc04af453d83e5900ab28878eb09febe43e898e59ccef90fdde8"
+    },
+    {
+      "id": "ops-food-0016",
+      "contractHash": "f10dfc99524bf9e28921230a13b93e5817d6e550af01a2c95e14737b5e18e7a3"
+    },
+    {
+      "id": "ops-food-0017",
+      "contractHash": "9e67089d122bcffb95243a6855f2bea20754c27d86f2f0ad3fbf269bd94b86b1",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 접착 영역과 부분 코팅 마스크 충돌의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-food-0018",
+      "contractHash": "108e53fe3c337b775243e64c382c6a7247302fcf0f9151d0f18a9e9b510da113"
+    },
+    {
+      "id": "ops-food-0019",
+      "contractHash": "16d7c5e5f64a59d70e3377ed3c95d58117ba51c6039feda07ef7368e1131a8e3"
+    },
+    {
+      "id": "ops-food-0020",
+      "contractHash": "532ad9c97a621c1172df99dbd8f18f00d822ef36ed11bbe54b3f821223c92286"
+    },
+    {
+      "id": "ops-food-0021",
+      "contractHash": "8763d9f5756dbbe1fe4a24771281e46e7e8c9f5eea222773d32ff9466c3a315b"
+    },
+    {
+      "id": "ops-food-0022",
+      "contractHash": "78d26d2a343789a218521b64e6cecfca900477ed7358439150e66f42fc9562a2"
+    },
+    {
+      "id": "ops-food-0023",
+      "contractHash": "944b41933040986de97c349b6640b4d4c26b43b4785fff77faebe3b7444943f4"
+    },
+    {
+      "id": "ops-food-0024",
+      "contractHash": "59badb0276e995d223cc4d4b719c5f4295afc556f8ec191bf77017db64f20172"
+    },
+    {
+      "id": "ops-food-0025",
+      "contractHash": "0fbcfa6133483233ff1db17504858c5d32808937f26f9d35a51b7b1676f8ed4c"
+    },
+    {
+      "id": "ops-food-0026",
+      "contractHash": "6b5dda4fb7286315e05e06841884ab46ea4655867ef180a9f396fc1ba294aea2"
+    },
+    {
+      "id": "ops-food-0027",
+      "contractHash": "2785a2825573e71c01f76c3816ff2b8ffc47412e15641824ebe0352042d77a7e"
+    },
+    {
+      "id": "ops-food-0028",
+      "contractHash": "f2bb65ca2075ec4d1183a9edccdef7eb63910b000e43a92037751ff6a1cbff3f"
+    },
+    {
+      "id": "ops-food-0029",
+      "contractHash": "7a7113a37c6459aac8c69e9a368c513b3ee793ed6d366371a9d04b613044db6a"
+    },
+    {
+      "id": "ops-food-0030",
+      "contractHash": "c16d0d949ab0885594496ca1e98e75ed09235fbd354afe378e39145a94dc50bd"
+    },
+    {
+      "id": "ops-food-0031",
+      "contractHash": "00438b4b66a4d674c188924ffa729486d3f581c96a9a492bf8d56cf52895b6ff"
+    },
+    {
+      "id": "ops-food-0032",
+      "contractHash": "41ba84d1a6bcbb2e6a81409f0233a16b7e6108802dd4d76bc6fa8d905f3eae94"
+    },
+    {
+      "id": "ops-food-0033",
+      "contractHash": "20ed2e0fe5b9dc9d674f02c22bca64bb05217d3ca0a2133baf5d6f800503d83c",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 접지 인쇄물의 안쪽 패널 폭 배치의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-food-0034",
+      "contractHash": "916885c136839c126879b70a034b2fe7dd72e1dbf7a5e22ee366f195f922442d"
+    },
+    {
+      "id": "ops-food-0035",
+      "contractHash": "79ac276a7829220e5cda2df02c12cd356297d9a334189e1975093b6941851194"
+    },
+    {
+      "id": "ops-food-0036",
+      "contractHash": "97fae0e1a9e74c524119804b75e3ff3292ca211b97762b602d5f697a3a1d1791"
+    },
+    {
+      "id": "ops-food-0037",
+      "contractHash": "622ad7db11a3083d3bff49c1e104f1ec3f7abb3574b13de3759d6b77665aa099",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 양면 인쇄의 넘김 방향과 뒷면 회전의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-food-0038",
+      "contractHash": "be30992d53b4b419c727cd264b26adaae6ddaa421e75a926df0282b0bc841986"
+    },
+    {
+      "id": "ops-food-0039",
+      "contractHash": "16260cdf4b0b10714a2941d3b1514be4cc70da168144bbd13216165759a44001",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 접착 제본의 펼침 영역과 중요 내용 보호의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-food-0040",
+      "contractHash": "585467fd9b377f41f401d4a2eb3a8ab88977ab41466a17fb8306080d92682664"
+    },
+    {
+      "id": "ops-food-0041",
+      "contractHash": "49ee6a325198646e5460b27f2d0fad9c60f522af0d1e8a8df25e1284c838d0ab"
+    },
+    {
+      "id": "ops-food-0042",
+      "contractHash": "66e7015ea2fedfefe5825829b90dad60aacbc9f0f2e2bab99e45905f08565d89",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 별색 판 이름 불일치에 따른 판 분리의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-food-0043",
+      "contractHash": "f257111373d6643f8f2d52ee0fdb43f14660aaf3b3a47ce18e43268f2530e7ea",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 인쇄 시트 그리퍼 영역의 재단선 침범의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-food-0044",
+      "contractHash": "584ff692fc0d84f1ed071971fbf1f93d6abadb08b07a48c507aad2efb7cd6d0c"
+    },
+    {
+      "id": "ops-food-0045",
+      "contractHash": "20acca4e73cf3ded18687ba1345e0be62ef3fe1262e5c7fc5259611e0dda836a"
+    },
+    {
+      "id": "ops-food-0046",
+      "contractHash": "fc1bbb339fa8547db5fe0bcd9257ae2fe081ed6eb60cb7cde3f4797b97ef71ba"
+    },
+    {
+      "id": "ops-food-0047",
+      "contractHash": "8a8b25c2242ff1862a9c2257ad5e720fad8282d8e593a5201dee64284f115029"
+    },
+    {
+      "id": "ops-food-0048",
+      "contractHash": "333843291c73b4382077912aa4c6dc15ea09aceb1cef519e4c925cb9842bd375"
+    },
+    {
+      "id": "ops-food-0049",
+      "contractHash": "ca56f639f8ecfc60a1789ff132a431f0014698b63c7421cfff5a13beb6ecebf4"
+    },
+    {
+      "id": "ops-food-0050",
+      "contractHash": "6fb74b5fe7387e79a0b4a7b66a6ad403edc2b98cbff10e11d19371a750cc4b25"
+    },
+    {
+      "id": "ops-food-0051",
+      "contractHash": "adbaa7ea03bfabb60ca598a3c8426bbacfda42bc7b8e6e33e72304d56188fc57"
+    },
+    {
+      "id": "ops-food-0052",
+      "contractHash": "49ef08d3f7028c84ea46b86ad6ca224c256623b9c9cb7e21b068854801435b68"
+    },
+    {
+      "id": "ops-food-0053",
+      "contractHash": "434fd8bc766114dbc91d7d97f63851b3693c0be6842b987ac062ae5b94b12c75"
+    },
+    {
+      "id": "ops-food-0054",
+      "contractHash": "69474e3568415ce8ad5ac15a23d09d6f4e9cf18f030a468ebf5e11b6a3b21099",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 후가공 도무송 선의 인쇄판 포함 여부의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-food-0055",
+      "contractHash": "b9024321d23e146f58b5d9799d056e5da9fc782ae14f3ffa0a619ef51e48e0c6"
+    },
+    {
+      "id": "ops-food-0056",
+      "contractHash": "bbb7dfb154a1363f6ec121b8a39a23ad40b2fad9c988d2a6f7de6e87cc4de57f"
+    },
+    {
+      "id": "ops-food-0057",
+      "contractHash": "266e7b63a33cd32cb0de07b6122c6b126c4b3474fbf98cca416f03ffcf437a24",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 봉투 창 위치와 주소 가림 방지의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-food-0058",
+      "contractHash": "eb3e99f301e67cd36f69f2adf171b81818413791eebf45d431cbc7f2ace68e9a"
+    },
+    {
+      "id": "ops-food-0059",
+      "contractHash": "abdfe19e2238fa3af7ef96ddc22c21b80cddf3ade3fece63d85056d81445e4f7"
+    },
+    {
+      "id": "ops-food-0060",
+      "contractHash": "7090b0eaf456e2e7eef8ddba13ffc87b6bbc3e70f56dc2f127d67558b19b753d"
+    },
+    {
+      "id": "ops-food-0061",
+      "contractHash": "a9656fcf8928194ab9818d36bdfbbc47763e642d5ab21a2a927f82b22277dc9d"
+    },
+    {
+      "id": "ops-food-0062",
+      "contractHash": "6ab68417e74bf99ae23e348fa18a67475b330d8a013c5880529783b3642e9d37"
+    },
+    {
+      "id": "ops-food-0063",
+      "contractHash": "44b507e1af92633aa958d3581f19d64fcb6d5f3ddcc42fd742c8bc9b0a0fdb3a"
+    },
+    {
+      "id": "ops-food-0064",
+      "contractHash": "7784578fe8f25f9d2a2d9ed59a284c5739ab14a425ab5c96f6fa6d375e2f8fbe",
+      "distinction": "부모·자식 배양 이력의 세대 증가와 다음 계대 한도 적용. 단순 보관 기한 검토와 구분."
+    },
+    {
+      "id": "ops-food-0065",
+      "contractHash": "ea86f412cf68719bbf8708c51405e41f1724f76a00af1a9b8ae66231039d0927"
+    },
+    {
+      "id": "ops-food-0066",
+      "contractHash": "350501f7ad22431bd036852712a0a5cf68003e19ef3e8af5c2ca1b904729931c",
+      "distinction": "수정된 입력·자료·판단규칙·기대결과를 재독했다. 한정판 번호와 교정 시제품의 판매 수량 분리의 독립 목표로 교체되었거나, 입력에 없던 사실을 단정한 오류가 수정되었다."
+    },
+    {
+      "id": "ops-food-0067",
+      "contractHash": "22e6f7e12c73b2ca7fe5dccbcc3f5ab01882834b2d7c2af4177ea0b8365fec8e"
+    },
+    {
+      "id": "ops-food-0068",
+      "contractHash": "1d01e4849d897068d0dc34615ab2952de503f97b5c2d5932556638d009ca391e"
+    },
+    {
+      "id": "ops-food-0069",
+      "contractHash": "774b4a0e299af4605bc93eb18147bfbe69ad8d1d3d6876821e05b920d606ce56"
+    },
+    {
+      "id": "ops-food-0070",
+      "contractHash": "74fc0a32e123b8e28805adcbfa24548a2e8edd6d66b8f3e7d6513537076ed800"
+    },
+    {
+      "id": "ops-food-0071",
+      "contractHash": "b0dd39e5a40e64086f714c7934c4f4f2c3d67b41ecbac9338d9e60ad6dfe57ec"
+    },
+    {
+      "id": "ops-food-0072",
+      "contractHash": "85ad5ce34b85ad2464919edda4983bb51548612873c7a01809252fd64c7fcf2f"
+    },
+    {
+      "id": "ops-food-0073",
+      "contractHash": "e7c318c692c14d498371cb46ee067374e3915e3a6088ba45e46cc232000fa1fd"
+    },
+    {
+      "id": "ops-food-0074",
+      "contractHash": "76cfdebbf06022ed5e3c054681f1ba9a9994fd2fb81602a7bd75a9305f2742ca"
+    },
+    {
+      "id": "ops-food-0075",
+      "contractHash": "9b9cef0db9734ae6a8d23aad1fb3b6fdcde3bbdf775515f4cd1b343ff73e1348"
+    },
+    {
+      "id": "ops-food-0076",
+      "contractHash": "bfacb81ae4b707399b18e2c9b8f72a71064ae2f95ec3f62f9edf35bef3f4916e"
+    },
+    {
+      "id": "ops-food-0077",
+      "contractHash": "fc19156ae1386e4c6ac04337f1af11d7d7dfda4083e792998d73fadb3d906f8d"
+    },
+    {
+      "id": "ops-food-0078",
+      "contractHash": "c757ecbdef2f538df32024755050712349fbaa2602f5330f81f88896b9a27b08"
+    },
+    {
+      "id": "ops-food-0079",
+      "contractHash": "bdc783536aa7da839ccf67fca779583050c2fc088e068b063c7530733089a965"
+    },
+    {
+      "id": "ops-food-0080",
+      "contractHash": "9a17be6f76af3c20d3d3ba4e8c378eb378e397cd2cf30ce8094bd0543cfa4eb9"
+    },
+    {
+      "id": "ops-food-0081",
+      "contractHash": "558b4756f10661930c53436a890ee5c2642d727aff77951c5bcae67f4340cad7"
+    },
+    {
+      "id": "ops-food-0082",
+      "contractHash": "0ec4b5f614aa9844c00b0fe02a8a990c4e312ad20f88d5c371889d0826fe7151",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 인쇄 정합 표식의 페이지 귀속의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-food-0083",
+      "contractHash": "2d4363cc0d74888c0e9ca71927431c0b634e91e773eeaf3b71426096ae036473"
+    },
+    {
+      "id": "ops-food-0084",
+      "contractHash": "2f1079247b2a15937bb8a8067464a0aa9794af120dbb2727558aa4e8e5f89709"
+    },
+    {
+      "id": "ops-food-0085",
+      "contractHash": "9c3ac48f03233c0d6506428e8b47eae71cb0d4aa55d6f6afc703f22527a63393"
+    },
+    {
+      "id": "ops-food-0086",
+      "contractHash": "00b57334f28daca6ab55ebf887b23945b5b8761bd89b3df29e41b6010300f0f4"
+    },
+    {
+      "id": "ops-food-0087",
+      "contractHash": "8ed7e6425318b25105cbebc2df786ceca78f0532a8e87440edbeaeba38bd93d5"
+    },
+    {
+      "id": "ops-food-0088",
+      "contractHash": "11abf544b17f600cd7d8706b25a441d60a7040bebf2817fe9167c345dcd1dac2"
+    },
+    {
+      "id": "ops-food-0089",
+      "contractHash": "d4b82f54efaa9af51b442483a86cbdec3236e681805ae9fe9d9a495f5bd36b11"
+    },
+    {
+      "id": "ops-food-0090",
+      "contractHash": "2dd52904a2445a516e22b6875e724644f6379fbf0a11c26e947b9683d623f1fa"
+    },
+    {
+      "id": "ops-food-0091",
+      "contractHash": "e396fb041ddc5007ad19b7470c1a2eb42e21c63d26733ce0ee1710a2d78c0f57"
+    },
+    {
+      "id": "ops-food-0092",
+      "contractHash": "e1757a3d651235607c9e71184bfdba8b553613da6e434e37575eee8132eaa981"
+    },
+    {
+      "id": "ops-food-0093",
+      "contractHash": "e03739febc0728436fac1e92d3b05a0ac7a7457bca395e927c801a061511feb9"
+    },
+    {
+      "id": "ops-food-0094",
+      "contractHash": "11c0cdf87f1bf8a61b6eebf752bab8e85ef31b0a08ac55026999cec0d8d41aaa"
+    },
+    {
+      "id": "ops-food-0095",
+      "contractHash": "cfaa9c2213f7d87e1c6c74d269f9e81cffa21d56a65eae6a0625b20f89fdacee"
+    },
+    {
+      "id": "ops-food-0096",
+      "contractHash": "45f795e4e428658853463f21038076fead18671c576d66231381aaf984b1011b",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 재쇄 원고의 교정 승인 범위의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-food-0097",
+      "contractHash": "02533d69361f8267bc7d796aab56eac06f3ec3928700237d7d2a3469a3c36674"
+    },
+    {
+      "id": "ops-food-0098",
+      "contractHash": "43564e08bc3196174aba78c02388257da6ed27a5976eff88ee1e7c67b96d419a"
+    },
+    {
+      "id": "ops-food-0099",
+      "contractHash": "318cb367bf145b86a12fbca0f7c165df1be418260dd97c91a1a3638e3eedaf70"
+    },
+    {
+      "id": "ops-food-0100",
+      "contractHash": "40e0a9bb418ea271eedeba2a8d368aac3a6790ecd4a53836eeccc508f4629ea4"
+    },
+    {
+      "id": "ops-lab-0001",
+      "contractHash": "27dc17ebbf90df058ed61a5f50d9a9e1bf991cba3fea515c88450b12fe390ec6",
+      "distinction": "교체된 제작 계약의 입력·규칙·기대결과·실패조건을 읽었다. 원목 상판의 움직임 허용 체결의 구체적인 운동 경로·재료 면·윤곽 역할 또는 설비 구성 조건을 판단하며 지적됐던 통계·시간·수지대사 계약과 구분한다."
+    },
+    {
+      "id": "ops-lab-0002",
+      "contractHash": "cf60d50fb4815c4990aca31e458be74af1c1e6d3ebcc39ad72074336b638d008"
+    },
+    {
+      "id": "ops-lab-0003",
+      "contractHash": "2474c377a1e31a0a3d80a810cff83fee22891353994a7f6288e33432dc15f4cf",
+      "distinction": "교체된 제작 계약의 입력·규칙·기대결과·실패조건을 읽었다. 언더컷 형상의 금형 탈형 방향의 구체적인 운동 경로·재료 면·윤곽 역할 또는 설비 구성 조건을 판단하며 지적됐던 통계·시간·수지대사 계약과 구분한다."
+    },
+    {
+      "id": "ops-lab-0004",
+      "contractHash": "abcf1e1072d5c38ea0f05d404ae23d249acac68c10f0cfdb185344c6894cddf8"
+    },
+    {
+      "id": "ops-lab-0005",
+      "contractHash": "5887d2141b697af9322505c3c56524504d01d19c13e0b4e830d43d9dcf70b97a"
+    },
+    {
+      "id": "ops-lab-0006",
+      "contractHash": "eea66022d166b3be7fb05856cd6c10615fb682ecd0808365989120c17ad34d69"
+    },
+    {
+      "id": "ops-lab-0007",
+      "contractHash": "8e110a1dba775dea20520cb2427b9f73f6d658cf7faf665180b6321d692b6b38"
+    },
+    {
+      "id": "ops-lab-0008",
+      "contractHash": "db8689dd84a134fabad74976c08bfc8cc727009814e696d64ab11097a263b2a4"
+    },
+    {
+      "id": "ops-lab-0009",
+      "contractHash": "750092b85b9adab7c5cbf1792ec09611d67d3791cee3a5353df557af4a2c0506"
+    },
+    {
+      "id": "ops-lab-0010",
+      "contractHash": "4d9edf2cbbafe452369bea714f344c9d6703a74965c94c43a7cb03c486ac8468"
+    },
+    {
+      "id": "ops-lab-0011",
+      "contractHash": "c58b042cf621e7444c46008da5ca9a684a2288f2e566c6b3d0c9532c0e7c1d4c",
+      "distinction": "교체된 제작 계약의 입력·규칙·기대결과·실패조건을 읽었다. 막힌 장부구멍의 전면 관통 여부의 구체적인 운동 경로·재료 면·윤곽 역할 또는 설비 구성 조건을 판단하며 지적됐던 통계·시간·수지대사 계약과 구분한다."
+    },
+    {
+      "id": "ops-lab-0012",
+      "contractHash": "1ca09ebf7b138f85b6af33dbbf51fee7df1783e8f64758ff124cdfdc736db523"
+    },
+    {
+      "id": "ops-lab-0013",
+      "contractHash": "a565caa2dfccbecd8aad0fcd800305221efc1144285889c0a9b70a0abb710f5f"
+    },
+    {
+      "id": "ops-lab-0014",
+      "contractHash": "5fb8d22aa9dc9e6453fd4d3c160ff8b8b60c17d06bb3b51a982f7210b6d56ca7"
+    },
+    {
+      "id": "ops-lab-0015",
+      "contractHash": "52a332ac339690bbcb6f5e4ff9c71e665abf3625ed3659e8de666435fec51353"
+    },
+    {
+      "id": "ops-lab-0016",
+      "contractHash": "73685e689cc59ba25dfa2697d0a11909dab3505f0f8334a27215bdaf7164960e"
+    },
+    {
+      "id": "ops-lab-0017",
+      "contractHash": "1ca17b75515e6d5c305b1e859553dc5522b84bc593fbb58b701433f2afbfbbab"
+    },
+    {
+      "id": "ops-lab-0018",
+      "contractHash": "89b98c16a0523780594bc82ef8c011f35b00a8c45b1936cd850397610af07395",
+      "distinction": "교체된 제작 계약의 입력·규칙·기대결과·실패조건을 읽었다. 무늬목 북매치의 연속 잎과 뒤집기의 구체적인 운동 경로·재료 면·윤곽 역할 또는 설비 구성 조건을 판단하며 지적됐던 통계·시간·수지대사 계약과 구분한다."
+    },
+    {
+      "id": "ops-lab-0019",
+      "contractHash": "66fbc3200321b33e78b3d3924f1895a21fc105c7d7149ad4adbf6579238ad4ef"
+    },
+    {
+      "id": "ops-lab-0020",
+      "contractHash": "3da28d801bc41efaeb75dfa8b3e075fa35454c3c0d2079f98361a007806f79e9"
+    },
+    {
+      "id": "ops-lab-0021",
+      "contractHash": "829d7fcd80cfb812a8b9071a4a61438d7e9cfa608ed7f1ff39d20563e9c7eb57",
+      "distinction": "교체된 제작 계약의 입력·규칙·기대결과·실패조건을 읽었다. 서랍과 인접 문짝의 동시 사용 간섭의 구체적인 운동 경로·재료 면·윤곽 역할 또는 설비 구성 조건을 판단하며 지적됐던 통계·시간·수지대사 계약과 구분한다."
+    },
+    {
+      "id": "ops-lab-0022",
+      "contractHash": "0ebbab3d97ff74965f2aa8ca35c2b6a047d4616b4eb503ad966ca2e5da789606"
+    },
+    {
+      "id": "ops-lab-0023",
+      "contractHash": "5f3ada74d274cec2f5d0da2e6b6aac2a67b829a38d0aec8c360ddaa9089f31de"
+    },
+    {
+      "id": "ops-lab-0024",
+      "contractHash": "eab41162b1e1bb51be52a3f164658aec07f824343f68429933e16780a07921ad"
+    },
+    {
+      "id": "ops-lab-0025",
+      "contractHash": "56b61ffa4395b842ffcf58ee0b234cd2f075ebac3afbd2551689c7beea033344"
+    },
+    {
+      "id": "ops-lab-0026",
+      "contractHash": "cde86c615b426e5dddb5d41a743bbfd3070aa7cc81c4031485c7250950493be7"
+    },
+    {
+      "id": "ops-lab-0027",
+      "contractHash": "a9ee2f3c5183e6ac70a0ee614de31d3410c3396d0fd8741dce295b6ce5819319"
+    },
+    {
+      "id": "ops-lab-0028",
+      "contractHash": "5b9d9fd1e9fee48e47fb1310fe58fe3bc3e75b347ecafd9c78bfcf17259edb42"
+    },
+    {
+      "id": "ops-lab-0029",
+      "contractHash": "23855492265451d3392647b1a63e7eb6b9d24326949f730d3abb5b95a8182758",
+      "distinction": "교체된 제작 계약의 입력·규칙·기대결과·실패조건을 읽었다. 벽걸이 가구 배선 커넥터의 조립 통과의 구체적인 운동 경로·재료 면·윤곽 역할 또는 설비 구성 조건을 판단하며 지적됐던 통계·시간·수지대사 계약과 구분한다."
+    },
+    {
+      "id": "ops-lab-0030",
+      "contractHash": "b738dbae0e8cd72bfc1e7ad8a171cca55ecb90f3b03323223785f7175def10f4"
+    },
+    {
+      "id": "ops-lab-0031",
+      "contractHash": "35e30b0e7893025db220bc3cf271463ab0d4af0b413e25dddd53bf602a8ce93e"
+    },
+    {
+      "id": "ops-lab-0032",
+      "contractHash": "ab530d971bab7993a3a71f0d90bdead055075bc9ff341a2ee0a6dc311d880f80"
+    },
+    {
+      "id": "ops-lab-0033",
+      "contractHash": "c1898ccfb8d985c5bb1771d8011eb8d922374d06a784e50ca296e227eb7f740e"
+    },
+    {
+      "id": "ops-lab-0034",
+      "contractHash": "4e03b0956aac16e2368cc7b5a26a31abb8d90dddb7f8c77da33c3c6dd3759555"
+    },
+    {
+      "id": "ops-lab-0035",
+      "contractHash": "2ee9a9fbca1c4516d1f0f6b4feb0fa69ee88767a52dc16906d299eacac220d3f"
+    },
+    {
+      "id": "ops-lab-0036",
+      "contractHash": "28858232853d21089b352002b22540e4f0d2d6e5fe5440cc016042d69eaa5c3c"
+    },
+    {
+      "id": "ops-lab-0037",
+      "contractHash": "715df821c7a162662750d302b41db6df4d5e4ee53849f89ea090fbbc91252bd9"
+    },
+    {
+      "id": "ops-lab-0038",
+      "contractHash": "b4abc01e53d1c1b7c6d5b2e24e93a9992736bcf513b3032148373e02d59dd366",
+      "distinction": "교체된 제작 계약의 입력·규칙·기대결과·실패조건을 읽었다. 자동 복귀 경첩과 열린 상태 유지 요구의 구체적인 운동 경로·재료 면·윤곽 역할 또는 설비 구성 조건을 판단하며 지적됐던 통계·시간·수지대사 계약과 구분한다."
+    },
+    {
+      "id": "ops-lab-0039",
+      "contractHash": "5c5c04486e36c1f91505e407b3ffe4fb888549139423773cdad4981098299973"
+    },
+    {
+      "id": "ops-lab-0040",
+      "contractHash": "8f1320f9c4c216df78cbbe90438f3c616b3d5e9bdbe368f6aea24228b15446fe"
+    },
+    {
+      "id": "ops-lab-0041",
+      "contractHash": "d19c29b00c7450a9f08bfd5452e86b726a05e4eb68d92058ad7acbfbad6aa647"
+    },
+    {
+      "id": "ops-lab-0042",
+      "contractHash": "21259eeb1d07b4d02a6a6266b4b2ee5923e9bece30a64d20b1842b8ce38f3837",
+      "distinction": "교체 계약의 실제 연결 관계 A→H, B의 막힌 경계를 읽었다. 각 내부 공간의 외부 연결을 판단하는 도면 과업이며 임시 보조물 제거·정상 인계 상태 검사와 구분한다."
+    },
+    {
+      "id": "ops-lab-0043",
+      "contractHash": "1a481d0c81aab736c7f5b0d55475f09c91a63c3ae91ac30b92bb5d868fe6a08c"
+    },
+    {
+      "id": "ops-lab-0044",
+      "contractHash": "2246e2bff2d3c758122a14e1d3c77242293bf5b3fadd952765fca86345861156"
+    },
+    {
+      "id": "ops-lab-0045",
+      "contractHash": "4f3d916aab90fbc4ae043a682f3de38c78e609851f0c4b097d666b1aaa13b28d"
+    },
+    {
+      "id": "ops-lab-0046",
+      "contractHash": "220812c91fc93028b94b6f9516d8cdb7a524e060b3563b2a0fbe6ed50d5464bf",
+      "distinction": "교체된 제작 계약의 입력·규칙·기대결과·실패조건을 읽었다. 기능상 개구부와 손상된 메시의 자동 수리의 구체적인 운동 경로·재료 면·윤곽 역할 또는 설비 구성 조건을 판단하며 지적됐던 통계·시간·수지대사 계약과 구분한다."
+    },
+    {
+      "id": "ops-lab-0047",
+      "contractHash": "49efcf82c592f0bf0c9ce55fe0e323475146be36337e653a319f5cb0852aba0b"
+    },
+    {
+      "id": "ops-lab-0048",
+      "contractHash": "f3c69a8632cff5a32108a1f2922735c927a184ab02f72c6e6048f35dc6dd4f44"
+    },
+    {
+      "id": "ops-lab-0049",
+      "contractHash": "26f156315a42b59ff40ba84a4a2bf8e4ba0e3e5e8d580881d2fc59426d3635de"
+    },
+    {
+      "id": "ops-lab-0050",
+      "contractHash": "122d884115adf766242b31df788ca4595bf18d143d619b9ffb1df4154ee72d95",
+      "distinction": "교체된 제작 계약의 입력·규칙·기대결과·실패조건을 읽었다. 레이저 절단 내부 윤곽의 절삭폭 보정의 구체적인 운동 경로·재료 면·윤곽 역할 또는 설비 구성 조건을 판단하며 지적됐던 통계·시간·수지대사 계약과 구분한다."
+    },
+    {
+      "id": "ops-lab-0051",
+      "contractHash": "6553fe59f91c64b00eb92896b79b78b51c889a774ee4c2f6a9bcd5e9a8acf57f"
+    },
+    {
+      "id": "ops-lab-0052",
+      "contractHash": "7aad7f43ceebf68fbd2fbe1173e7d02e971019abdc434f9bc310b6afddb578c0"
+    },
+    {
+      "id": "ops-lab-0053",
+      "contractHash": "a4f32cd286b70ac730f3b78457e4a222901acacbc51aa82a59c0a3af0f8ce6b9"
+    },
+    {
+      "id": "ops-lab-0054",
+      "contractHash": "cc4969ce7e43a7c94f8a52c6ed8e7c06d95a01bd4a94c5d312d0e9f3576f3a9a"
+    },
+    {
+      "id": "ops-log-0001",
+      "contractHash": "6990e8586f61ed393df1147830ef45aa427385ecba64a5711a07bb8043d3d727"
+    },
+    {
+      "id": "ops-log-0002",
+      "contractHash": "42ddd32878f7eaa6360bfb4b38489db366bdc6473c9465860c84e78169dabeb7"
+    },
+    {
+      "id": "ops-log-0003",
+      "contractHash": "2c3179fca32c2207c8f96785c628bc930e2399fe70d2f5af2655d7de1b015ff7",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 도크 상차와 하차 작업 유형의 예약 전환의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-log-0004",
+      "contractHash": "ef031d67b58e129851daad59f74ac12573682f9e943e2f2484acdebf9f70452f"
+    },
+    {
+      "id": "ops-log-0005",
+      "contractHash": "bc953ebc2f551ab8cb779b8a6fe33b946c30a5da3460e1912d1a21ff0b8e5fa4"
+    },
+    {
+      "id": "ops-log-0006",
+      "contractHash": "431a629444d4d6ae7e3c5526913d1225bff68b9e05399163eca27c0e75102908",
+      "distinction": "상품 대금과 운임의 수취 주체를 분리하는 정산 검토로 바뀌었다. 인수 대리 권한 확인과 구분한다."
+    },
+    {
+      "id": "ops-log-0007",
+      "contractHash": "71bde91d0e4d2ca8ab6ce094777d44e6bdb101427b6bab92d3d6cb699a2bc804"
+    },
+    {
+      "id": "ops-log-0008",
+      "contractHash": "dc950b4d59edf30f4509ac16d803454ea90fe69ae93b3c548f247df87794f8ca"
+    },
+    {
+      "id": "ops-log-0009",
+      "contractHash": "7ba7bb46a7642942e7a36465fc1d40520c04aaa694ba8e2ae6514bc120c45fef"
+    },
+    {
+      "id": "ops-log-0010",
+      "contractHash": "425f0efb32558af6cd35c891b791941753b717138790d93d0044cf7428e8e2b2"
+    },
+    {
+      "id": "ops-log-0011",
+      "contractHash": "e8bed80643983747d17e44f19b7a929817fce4d4894b1122c9f506555c137f58"
+    },
+    {
+      "id": "ops-log-0012",
+      "contractHash": "f8c2534671c3368e998632afa53a06ef3cf673d3247714b00e6c3c57e40cdb54"
+    },
+    {
+      "id": "ops-log-0013",
+      "contractHash": "ff40d8b1eba9a626703776939ce888cb25948de5676856193766775e8dbc0e32"
+    },
+    {
+      "id": "ops-log-0014",
+      "contractHash": "4f2dc45e1d7a0e9e88a60cd36cb12f0ca95bf966fa7e10226e353aafac5e82bb"
+    },
+    {
+      "id": "ops-log-0015",
+      "contractHash": "70b22a38ee534d07ade8d9492f0082f8504be90487566cb5f6c6a916f4975e75"
+    },
+    {
+      "id": "ops-log-0016",
+      "contractHash": "5740e5265d3a35f824b23d88a4ee1506106e9c183a76a0628ba9f29f402fcd19"
+    },
+    {
+      "id": "ops-log-0017",
+      "contractHash": "44ad7174878aef312b969d50d68cd87d467527cc6a71b1ec480f81d5f18eafdb"
+    },
+    {
+      "id": "ops-log-0018",
+      "contractHash": "7ab5e90a76fdd552fca87f949e49b096a10c2e31e5a2eb64851b9770d6a5241c"
+    },
+    {
+      "id": "ops-log-0019",
+      "contractHash": "a93064e2733a445e7e3b1efb80d4ad8c56d1adf1cebb205ef9bd0363a56096eb"
+    },
+    {
+      "id": "ops-log-0020",
+      "contractHash": "814b26bb83493d7ea8c54a2abaaad096f638d60d8f9760a2bb6bfcce554d9a7a"
+    },
+    {
+      "id": "ops-log-0021",
+      "contractHash": "892b489ce4bd2894bac59adcabdf609780c55055ca4b719c771411729fec31c4"
+    },
+    {
+      "id": "ops-log-0022",
+      "contractHash": "038616b3d46a5ce66e8214859af9903081723a8c2e09a4ff14a4168c5b0dd305"
+    },
+    {
+      "id": "ops-log-0023",
+      "contractHash": "e6fcfebccd253085edcfc829c4ca80f51bf5904f0a8df8f9b137b1c5e87f1491"
+    },
+    {
+      "id": "ops-log-0024",
+      "contractHash": "a9f7e1946d8a97e8e77a76f70765428634e5f5cf5764b47e33dc24ac7db11cb3"
+    },
+    {
+      "id": "ops-log-0025",
+      "contractHash": "4ce7504a9e3b578f793011884890206fb620666c0b747e9f9312d1723e1ea197"
+    },
+    {
+      "id": "ops-log-0026",
+      "contractHash": "12add1f141ee989e6f4027f2d813199545601b190eb6e4355dd42384418ee91b"
+    },
+    {
+      "id": "ops-log-0027",
+      "contractHash": "5dfb9cdaef044664b50dec77696a4280bd8645cbd8b612c2518e4e390eade2ef"
+    },
+    {
+      "id": "ops-log-0028",
+      "contractHash": "141250c4bfdd2194bee0f1aa1a9aa54c9571aeb5d6a856fcb47f8472afa78e4e"
+    },
+    {
+      "id": "ops-log-0029",
+      "contractHash": "11937d172d3dd06787c2405007ea395ed5884725438b24fdc801afa7c17ddaea"
+    },
+    {
+      "id": "ops-log-0030",
+      "contractHash": "9c6bb1679e2170a7fde995edc55365059e1e7c79ba91e86f31677ac421fd743b"
+    },
+    {
+      "id": "ops-log-0031",
+      "contractHash": "49021f019f37d6ba5f114c1b6de9fc0641adda1b27a7d6976cb2ef6ef22a9aba"
+    },
+    {
+      "id": "ops-log-0032",
+      "contractHash": "c5b8199d8367227a2d927dd94de2a9f4a792881ca5b15076f8f505a502560e6b"
+    },
+    {
+      "id": "ops-log-0033",
+      "contractHash": "b1e0bd6af1d0142c145db6f70f491b05c328914747363711873a330e0acb0d55"
+    },
+    {
+      "id": "ops-log-0034",
+      "contractHash": "9cd539e052f2fce081d5bef36832079d5e66aff111543dfe45eb3500e30ffe62"
+    },
+    {
+      "id": "ops-log-0035",
+      "contractHash": "d029e2a5fb6ca1028dde1a54f826aa87c0b0f35fa399b0f230baaa394ec8dc84"
+    },
+    {
+      "id": "ops-log-0036",
+      "contractHash": "7fa86832d9b2c6d3a278457ce9678a8ba6d0957f74cf36cfd11a5c82107fe9ad"
+    },
+    {
+      "id": "ops-log-0037",
+      "contractHash": "3e8b45d94c4678e65642f8365d3486cb447a0f2d25eca6556841e7a5fbf5cefd"
+    },
+    {
+      "id": "ops-log-0038",
+      "contractHash": "b129ba0a0f99ceb7857fd06153c0e49b1a0dbd254f45960518f4cafb942f9429"
+    },
+    {
+      "id": "ops-log-0039",
+      "contractHash": "ccb995885c5ca26684bd3626c7c12c4e061cde993b72ddec08c73d420d0b0e59"
+    },
+    {
+      "id": "ops-log-0040",
+      "contractHash": "fc5e048f7ba04a93d6a4c46f0c6ca10b464cc505acfbbadf83a03fa462d893e4"
+    },
+    {
+      "id": "ops-log-0041",
+      "contractHash": "a559294f2f81528f28542a531abef729b19078d3fb81dccf678856fa971aa5da"
+    },
+    {
+      "id": "ops-log-0042",
+      "contractHash": "9e54d8f61bd679cf6ef9d61b24b82fc4a0e6e2518174d065cc7455d38c5172f5"
+    },
+    {
+      "id": "ops-log-0043",
+      "contractHash": "b4de254fe1d7938dbadcd1be3202303bf41fdbd9061948c0226238bfca944890"
+    },
+    {
+      "id": "ops-log-0044",
+      "contractHash": "5a303430f4b5a1b8a6820af51cd18f66e44bf9892f031d9c6b3fd80731f2bab0",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. ASN 중복 예정입고 검토의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-log-0045",
+      "contractHash": "1dc50b3f591f49ed62825828b0ab2f93dcb70fb318686bf070db94309267e252"
+    },
+    {
+      "id": "ops-log-0046",
+      "contractHash": "c295d3bcb1fc6be8366dff52c0bb680604e70a34717a6809e54dee84a63aa350"
+    },
+    {
+      "id": "ops-log-0047",
+      "contractHash": "8b2bfb67bda0b5541f508b089ed2138a63cefeb2c7775a5a0c49426c0744f2bd"
+    },
+    {
+      "id": "ops-log-0048",
+      "contractHash": "a47e6421ac4b719fdf25566e27856e345f6d8dbeb9ca138a444a37cacba84d9a"
+    },
+    {
+      "id": "ops-log-0049",
+      "contractHash": "e815284809df97512a2a748464c5a2f8bfe2e0079953fbb4c10a0708f015f3da"
+    },
+    {
+      "id": "ops-log-0050",
+      "contractHash": "e55b3787d4ccc9aa1a5596e5973f3f9179a3b8218d16741a97a64d25897f3fc3"
+    },
+    {
+      "id": "ops-log-0051",
+      "contractHash": "2e748e57e9c13aabe082367318c74fc48125271e58e751a9845ea59fee697ed4"
+    },
+    {
+      "id": "ops-log-0052",
+      "contractHash": "34ac030043ced811c471daa9fcd8815c2fd18a787d73d20dbd29d83a71f01e23"
+    },
+    {
+      "id": "ops-log-0053",
+      "contractHash": "db735b72588c45eeac42a08205f8344ce19c95026b19a516ca5833d6ec9e87d0"
+    },
+    {
+      "id": "ops-log-0054",
+      "contractHash": "7c95ee51ead737f85c6946eb70154338188bab6c5af070877a408e82f4dd377e"
+    },
+    {
+      "id": "ops-log-0055",
+      "contractHash": "d5ab8c76fed394da027c19ba5119baf1df8d7f36f0d143631e88ed603301c2a3"
+    },
+    {
+      "id": "ops-log-0056",
+      "contractHash": "5d613b069496194c4651173fde37f8ea6269a3c8033c0c30f7859b42972931e3"
+    },
+    {
+      "id": "ops-log-0057",
+      "contractHash": "68f257bad5b74aa40d463c572371252afcac723e0ea74d3b31d86ec2a0e557b3"
+    },
+    {
+      "id": "ops-log-0058",
+      "contractHash": "7eecd80095ca2edcf4e6e13f96e174c7bdc1ab0f1244ee35681cdb6e83a43481"
+    },
+    {
+      "id": "ops-log-0059",
+      "contractHash": "90682199b213aef7bf77091c61699054264bfd59f45caed993b28704d301692f"
+    },
+    {
+      "id": "ops-log-0060",
+      "contractHash": "a4a3393026a17c7de52dffcba46f86231d214adf9326615da99d69ac066c2f35"
+    },
+    {
+      "id": "ops-log-0061",
+      "contractHash": "847c95a0f7e94269b0008f178b5d271f7b089055213fc1156200585d283a9a85"
+    },
+    {
+      "id": "ops-log-0062",
+      "contractHash": "25fe7af1db58ca34b5de9e9d340f7041b27c5f54bda635644ea5327720c25822"
+    },
+    {
+      "id": "ops-log-0063",
+      "contractHash": "59bfd17c97e76892e1e9c51150e37db3807356f5b86ccac6248a50516e88d8c3"
+    },
+    {
+      "id": "ops-log-0064",
+      "contractHash": "1ae1061bef4eb162ab7fe35fea174440ab8c65d5b04bd3a3b3d4f22702e1c6a6"
+    },
+    {
+      "id": "ops-log-0065",
+      "contractHash": "89b22b065f73770219036ad3c0e4ba2ac78dd8b252c46e7b32c4eb19790328e1"
+    },
+    {
+      "id": "ops-log-0066",
+      "contractHash": "2d3b76696ce977ca98a1f3cc1d01f270833a44b3979d760a7428a3b0db7b933b"
+    },
+    {
+      "id": "ops-log-0067",
+      "contractHash": "ee30070d62b513e4da426e2b2f15006c1ae34d186955c4963964987c3312dc3d"
+    },
+    {
+      "id": "ops-log-0068",
+      "contractHash": "70d418716a984229764f5ca10d21f9842d55fba401c0c85c1156e510e24b063e"
+    },
+    {
+      "id": "ops-log-0069",
+      "contractHash": "c137307dab7c26e0c57ea7306c5f78839ee4a091aed42cfa95d3a1d6a4ac35dc"
+    },
+    {
+      "id": "ops-log-0070",
+      "contractHash": "6c80970c18a78a408459d446ca15b0dd0a089fe6e0651735c51ee61e68a7e7b1"
+    },
+    {
+      "id": "ops-log-0071",
+      "contractHash": "dc91f867b5cb134bbf17e316b564d8b9a773888297f7951a97b52f9606c707ae"
+    },
+    {
+      "id": "ops-log-0072",
+      "contractHash": "c9a831b32e441e8cc52f80ed9bc877abd4b5f134d36c7d51cc3f1d9d2804c5e7"
+    },
+    {
+      "id": "ops-log-0073",
+      "contractHash": "6e4f0e535b54e134218154d0b1554d45c6a9fbbe81627878b613e9b08c6ffca7"
+    },
+    {
+      "id": "ops-log-0074",
+      "contractHash": "50345325c966ef8d562ef3775ca0dab59ba219bdc091a1b4c199d85f12b6d34c"
+    },
+    {
+      "id": "ops-log-0075",
+      "contractHash": "8fefdfd9509d63b82416930b64610c40a365fc0510d7d9818631b6128e512ff8"
+    },
+    {
+      "id": "ops-log-0076",
+      "contractHash": "7d295ae822b7e04c3692368a770581671c545e38c503771af8bb1cc4cc0fb3fc"
+    },
+    {
+      "id": "ops-log-0077",
+      "contractHash": "3e1c0c73fe4e959caa826552b874f654dd72072d3c1631ee86d9ea1d13a4cd68"
+    },
+    {
+      "id": "ops-log-0078",
+      "contractHash": "6edfd21682c1cfd049f5fb9d9bc517d4f26ce576a832b246ef109a2d1ec6dab4",
+      "distinction": "수정된 입력·자료·판단규칙·기대결과를 재독했다. 반품 운송장의 원출고 사건 재사용 방지의 독립 목표로 교체되었거나, 입력에 없던 사실을 단정한 오류가 수정되었다."
+    },
+    {
+      "id": "ops-log-0079",
+      "contractHash": "529c3ae8a325071162776cdb8330f19d858af4d1444f4618d89804ac7ee67727"
+    },
+    {
+      "id": "ops-log-0080",
+      "contractHash": "86e244d9ed273e450d6e640df8fa2a5ff314d7573e1d58e497be352db2262e89"
+    },
+    {
+      "id": "ops-log-0081",
+      "contractHash": "210e6408638c2b5a03ee9b339fb8bb42e5e1f68738aff7566cfe75ac6f136adb"
+    },
+    {
+      "id": "ops-log-0082",
+      "contractHash": "51070b419026b9ba78a89c2b43ab2156dac4af2df35133ed4a31fbd03dccaab4"
+    },
+    {
+      "id": "ops-log-0083",
+      "contractHash": "116fa8afd82dd663210a21ee905ecfdb75a96544ca7dc83dabbd623afd44c2ec"
+    },
+    {
+      "id": "ops-log-0084",
+      "contractHash": "0185575fccd3eccb5d6549be84c43151cc182d84ce07a44acd2563f188336e40"
+    },
+    {
+      "id": "ops-log-0085",
+      "contractHash": "8ec1b10248e1555687a8e6a2882e92a761a78f2b8562e877bdcb95562e8b1a14"
+    },
+    {
+      "id": "ops-log-0086",
+      "contractHash": "0a5b3d73d57d3450334708b50474135694708461639a6eff96464bd71bda617c"
+    },
+    {
+      "id": "ops-log-0087",
+      "contractHash": "3203ad8db08d29d3aef335c59840b47d8a47e010b145386835d37c2051fbc211"
+    },
+    {
+      "id": "ops-log-0088",
+      "contractHash": "5eba1e9f7efd4348a86020e5e2657d794b30e1b81c1c2568f42eb59dbe5026d8",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 반출 승인 범위 검토의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-log-0089",
+      "contractHash": "6201ba9806a7f24bdb8932e1a03a9f486af876685071aa9b3bf280e6ab73a98f"
+    },
+    {
+      "id": "ops-log-0090",
+      "contractHash": "d754a93335c8cf15cc39b742cf7d1840aea77ca4b3f43972c633f1e0f5851419"
+    },
+    {
+      "id": "ops-log-0091",
+      "contractHash": "c83869f82ef73c6837db0a4c08abafc2680c5370184185714e01ea508e27928b"
+    },
+    {
+      "id": "ops-log-0092",
+      "contractHash": "b90bdee2285655bc98086a9d0d219be1a3294c928eedf97fed704b60534469c8"
+    },
+    {
+      "id": "ops-log-0093",
+      "contractHash": "aecbbcaf3dc404e6cb7ad127498f40d59ed3f0893d5a2a7864a72ae6c805a52d"
+    },
+    {
+      "id": "ops-log-0094",
+      "contractHash": "58bd951a22e518f394d3ed35e0dcc0fb062999e1f38ef39a232b66f547aa2eaa"
+    },
+    {
+      "id": "ops-log-0095",
+      "contractHash": "8ccf507d476405c830ccbd3df6c0dc22338fc066c8b3b1f6060127d1bc336eec"
+    },
+    {
+      "id": "ops-log-0096",
+      "contractHash": "bb52ee2a8c3e48609fb83aa814139bea23f717b3bb0e63463c96b61551c1afaa"
+    },
+    {
+      "id": "ops-log-0097",
+      "contractHash": "e47bf3ae469f11553cdf2131ffb1596996d82c8d8f7e7f11c8a8a1c678af31d8"
+    },
+    {
+      "id": "ops-log-0098",
+      "contractHash": "b18b4a84ba28d50275f3781100cc5c666e8491555aea8d68da7bc8040322fa21"
+    },
+    {
+      "id": "ops-log-0099",
+      "contractHash": "951a14aac5f8111e91537525592cfc701fac7612c8a0c733a27af2f20659baeb"
+    },
+    {
+      "id": "ops-log-0100",
+      "contractHash": "9ecf4ebe391012cc2d75124a473bcf6e12a1676c8b9aca5ca405f03ef05a1122"
+    },
+    {
+      "id": "ops-log-0101",
+      "contractHash": "21a29782216e757892cba76a39a80a485cc8d08292eb69b649e7b22bc21ddc57"
+    },
+    {
+      "id": "ops-mfg-0001",
+      "contractHash": "30b0910756d4ddd6b39b4eb75f05783e9a0cdaa7aebc35fbffb56f98a85b378a"
+    },
+    {
+      "id": "ops-mfg-0002",
+      "contractHash": "9fc8a4c6830ae7e2cf03dc8267eb3d64821431cc90785e1f32039caea4b52ac2"
+    },
+    {
+      "id": "ops-mfg-0003",
+      "contractHash": "aa2f3baf3f6fa8c30347f7ddb283640b2fb3563e5af719202f3100a6afe51a33"
+    },
+    {
+      "id": "ops-mfg-0004",
+      "contractHash": "f81ad25abe340b6b119b96ed452e58c10c1d1674a32cecde0032bbf3b9f281af"
+    },
+    {
+      "id": "ops-mfg-0005",
+      "contractHash": "20614851085c5e8fd3ac8f1ef3ff26d0187e3d8b0db441d5f48e42cfc462e9e9"
+    },
+    {
+      "id": "ops-mfg-0006",
+      "contractHash": "46767abbce206891f049f41224b52adc71abdc64618b709cad66997320ddcd18"
+    },
+    {
+      "id": "ops-mfg-0007",
+      "contractHash": "6401210549b950e84d0233dab0c85a77596b573224609f7c6a7d16dc0d096c3f"
+    },
+    {
+      "id": "ops-mfg-0008",
+      "contractHash": "5a085aeda71a435b4e3d3ca12f408210210939d99f28ae2359a84c425ae99c55"
+    },
+    {
+      "id": "ops-mfg-0009",
+      "contractHash": "8912bba1b6c7c699be396edc5e9cf21056afe8ea86fa305d868591568c9675e2"
+    },
+    {
+      "id": "ops-mfg-0010",
+      "contractHash": "75d16ffd7eb01ff156b3ec09e3219b3e67bd66a3c7313015faae3bb43cdcf20e"
+    },
+    {
+      "id": "ops-mfg-0011",
+      "contractHash": "13a19897d5a9b6847a06d01366449b8bef21809c10987b2d7a0cba8931fe65e3"
+    },
+    {
+      "id": "ops-mfg-0012",
+      "contractHash": "fed58f52473daf6a7d56c8aff36ecf8eb7aba818905e2ff67520fc0ee261a180"
+    },
+    {
+      "id": "ops-mfg-0013",
+      "contractHash": "98553b7e58ae43091f8743d22652776c3de2ab6f763a3edbd4abf5838f2525ef",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 설계 변경 후 기존 재공품 처리 승인의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-mfg-0014",
+      "contractHash": "a742144b6c7af7e98e974950929e826a027a773a4fc8a37480c739582b2421c5"
+    },
+    {
+      "id": "ops-mfg-0015",
+      "contractHash": "5b468242c7203dc204cd217c28fd2ad1e7ac995ae11ba61b71f61d1807a65189"
+    },
+    {
+      "id": "ops-mfg-0016",
+      "contractHash": "4d5a8282f4bf8f0ebb7025491ec3f975099aa813c76ca3f8915c95e5a2296706"
+    },
+    {
+      "id": "ops-mfg-0017",
+      "contractHash": "216605587cb703a51a6bd7c2b71dd18ab59a5daa3262bc4a2326aefcc4d20ba1"
+    },
+    {
+      "id": "ops-mfg-0018",
+      "contractHash": "5db5cdf47ea21aaea021202e8e8936e21906e83573fb030500317d73f47a9535"
+    },
+    {
+      "id": "ops-mfg-0019",
+      "contractHash": "589f07f6d6ef3e2a8ea03ba6445ca0a6f48be24af859a5c8829368a66670d9f4"
+    },
+    {
+      "id": "ops-mfg-0020",
+      "contractHash": "c34db63aa52bbb4e4efd78444f89adb1c4e9a9526025c5aba94d7d199fe53299"
+    },
+    {
+      "id": "ops-mfg-0021",
+      "contractHash": "e014f82884bc6865ff972ef0aa8611a88f3171c796f0e9e9319d3f0967ed567a"
+    },
+    {
+      "id": "ops-mfg-0022",
+      "contractHash": "aac01b5a41a29687e102a9cf46d8444278ce4304455c77e21a86b9d4c667c694"
+    },
+    {
+      "id": "ops-mfg-0023",
+      "contractHash": "200235cbe5a6c921757c14f8c9ff3519b5d90eabf628e211b8c684c2b2eaec16"
+    },
+    {
+      "id": "ops-mfg-0024",
+      "contractHash": "06e2187649e788f58970f2a00d39f7de57ac28ca5dbb14984ca787fa3531368c"
+    },
+    {
+      "id": "ops-mfg-0025",
+      "contractHash": "c2aab7bf0705669069729c77aa20c30e248975e1764d2e837042de65ad52b663"
+    },
+    {
+      "id": "ops-mfg-0026",
+      "contractHash": "d148c976ae5ff507b7505f81d0cccb81538dc0a9bbdbaf1f6596266afe0bbea8"
+    },
+    {
+      "id": "ops-mfg-0027",
+      "contractHash": "d5d242e3450fd080af70ed9ea284c01ed95306aef1ce2216cc7bec67b9cfc712"
+    },
+    {
+      "id": "ops-mfg-0028",
+      "contractHash": "59b474ca4175ffb81ed6e226eb63cf724c79146d71f0bde223a3088e023454d6"
+    },
+    {
+      "id": "ops-mfg-0029",
+      "contractHash": "954cf3e042e2c9cd1b9a1974076ac9efcee597f0e54c5101b8df09a6cf644076"
+    },
+    {
+      "id": "ops-mfg-0030",
+      "contractHash": "b7470e1285c1b015a2acb2bbb108b5c18951aedac04f1ab29d1cbcba5a8e310d"
+    },
+    {
+      "id": "ops-mfg-0031",
+      "contractHash": "d3239611474a25e159926d768e67a0fb0206378dafaa5e8c09594169e6de08e2"
+    },
+    {
+      "id": "ops-mfg-0032",
+      "contractHash": "aace559848101445bafedfb249a8a2cfa904d0de140eb4c16e16fc2fc91b9d0f"
+    },
+    {
+      "id": "ops-mfg-0033",
+      "contractHash": "0c0801fdf3ef9adfee7dc129c0dfc25d5bac59696977687d3d533acf30ec86d6"
+    },
+    {
+      "id": "ops-mfg-0034",
+      "contractHash": "153cc94b71bdc8738d25cc0ab5dba9dee053e87ef01b3e3eafd255c5f0b517fe"
+    },
+    {
+      "id": "ops-mfg-0035",
+      "contractHash": "fdbb097bd70f021cb85f47a4d33cf03e90ab5e06075cedc715b9380dcfbd4686"
+    },
+    {
+      "id": "ops-mfg-0036",
+      "contractHash": "f9ad19a189da51ec1e8ae3db2207b2d3d6ce7dff9ef06f5f64da4ef3e7776dc1",
+      "distinction": "공여·수취 설비의 부품 일련번호 연결과 누적 수명 승계. 열린 요청 중복제거와 구분."
+    },
+    {
+      "id": "ops-mfg-0037",
+      "contractHash": "569bb8367ec5309f12cbb97d731052df08df6002437f31efc10b7c214981dad6"
+    },
+    {
+      "id": "ops-mfg-0038",
+      "contractHash": "db7fc2962000bfb626ddfcabbd83bb8ad6902bc8ae34d7179e4cd325c3cee3d6"
+    },
+    {
+      "id": "ops-mfg-0039",
+      "contractHash": "51cd2962d16858ee70bee989f130eba58946701f709215b7e2f632c9800f2d1c"
+    },
+    {
+      "id": "ops-mfg-0040",
+      "contractHash": "d29a2c0e6e7bb567f07bdd27dda42809d03be4531958074edb82e95380130e3f"
+    },
+    {
+      "id": "ops-mfg-0041",
+      "contractHash": "125e0ae9dcb43dcf651d84222e38dc800550ebff744564ff8145f79d49cd0279",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 이송 간격과 광센서 응답 시간의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-mfg-0042",
+      "contractHash": "b95c4f0f9e897953416bcb61c78c2fd63a3665426474adf1d892df97c172f449"
+    },
+    {
+      "id": "ops-mfg-0043",
+      "contractHash": "f23f77a50604ae113485113076ddb91e9bdb32518f589ad0489651860a12dfaa",
+      "distinction": "수정된 입력·자료·판단규칙·기대결과를 재독했다. 기하공차의 기준면과 측정 대상 구분의 독립 목표로 교체되었거나, 입력에 없던 사실을 단정한 오류가 수정되었다."
+    },
+    {
+      "id": "ops-mfg-0044",
+      "contractHash": "62197bdcb7478a9ffa8b0792ccd718c8d8f9a1d830f81e825065c963a9f8b48a"
+    },
+    {
+      "id": "ops-mfg-0045",
+      "contractHash": "b25a9286bf957ebb8de289e12476a19d0232168c8299805cd0e60767942fb550"
+    },
+    {
+      "id": "ops-mfg-0046",
+      "contractHash": "0d961fe7076349b12c7f76d9db19286644b98909c08d956760585e56eaaa08af"
+    },
+    {
+      "id": "ops-mfg-0047",
+      "contractHash": "401e244df7f53caaa47222e56b3bf9f1c35b2f7e30dc00a313f308de3644df6c"
+    },
+    {
+      "id": "ops-mfg-0048",
+      "contractHash": "2109e9f3b0fba4fdb78e3abbaf2097d7a9dc2f3ded12b78b39abd4daffd15a9c"
+    },
+    {
+      "id": "ops-mfg-0049",
+      "contractHash": "782e062587b19ee6009d25619189cd47d6a00bb58e69c22fa321775370b9aa7a"
+    },
+    {
+      "id": "ops-mfg-0050",
+      "contractHash": "af2b89cc43bd2a608e2c2329c908873771ca92ed20c61cbc96ab90ca3c1084db"
+    },
+    {
+      "id": "ops-mfg-0051",
+      "contractHash": "e5d9db9df5ad1160d88f04513a52278580bc4605854d3f54ed4de42a98f14c6d"
+    },
+    {
+      "id": "ops-mfg-0052",
+      "contractHash": "95ec2fb6536ae0b80972a79b975f48f355c3bb102ad8dba5b53422b939285966"
+    },
+    {
+      "id": "ops-mfg-0053",
+      "contractHash": "26af77afc160daceb5542290a4a67aac148a1269e0a9102865ed078387422fcd",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 반제품과 완제품 생산실적의 중복 단계 합산의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-mfg-0054",
+      "contractHash": "32f7bf54f8779ab9483abd5ddd6176908525e7c08dc46232540e69b190b1e893"
+    },
+    {
+      "id": "ops-mfg-0055",
+      "contractHash": "2dbbba11d9d10480e38034bbe85df00a45050a6bbd5a8757a883c75f2f065a0a"
+    },
+    {
+      "id": "ops-mfg-0056",
+      "contractHash": "8921e64c209111387966209f6c847e2ce853e5867f9428ba6775acac8168e57a"
+    },
+    {
+      "id": "ops-mfg-0057",
+      "contractHash": "41d49e8f651b5f3114b2316daea970f02153c41af15b94e69a08a3b4065bba6f",
+      "distinction": "수정된 입력·자료·판단규칙·기대결과를 재독했다. 로봇 용접 경로와 아크 작동 구간 구분의 독립 목표로 교체되었거나, 입력에 없던 사실을 단정한 오류가 수정되었다."
+    },
+    {
+      "id": "ops-mfg-0058",
+      "contractHash": "6e8bc83106e6dc423531037721bd0e4fc2a5656877a0d6c635a420d08bdc5021"
+    },
+    {
+      "id": "ops-mfg-0059",
+      "contractHash": "61544916c970612e23d8d5582d94be5da99d1f566fd9248b5b573ea2e9faf955"
+    },
+    {
+      "id": "ops-mfg-0060",
+      "contractHash": "9f614f18bbcf1c3886b5fcdc036ee004ddd02287e41f9b35e722d5d9e2054d32"
+    },
+    {
+      "id": "ops-mfg-0061",
+      "contractHash": "72f734909809118a164262e6ed94a1eaacdf200cf6d2dc9fe6a5f503779f184a"
+    },
+    {
+      "id": "ops-mfg-0062",
+      "contractHash": "70336f011ca4c7c16638fdea7fcef7e1135aa5ef61895c024b069a489727cc4a"
+    },
+    {
+      "id": "ops-mfg-0063",
+      "contractHash": "88837acbee77bb1836d0978e3051bde65842ece1c2d0bb7da366d71d90d4d792"
+    },
+    {
+      "id": "ops-mfg-0064",
+      "contractHash": "7c1516f6dc40920027ffff0f70fc03e1ffbd73e5af8accf358504f847e67f83d"
+    },
+    {
+      "id": "ops-mfg-0065",
+      "contractHash": "d78f7676b617e112e78152a369c177733a0310c7384325c9fd2bdd192ca384c2"
+    },
+    {
+      "id": "ops-mfg-0066",
+      "contractHash": "f991d6eb4c130af62885423aac3dfbb5e84e2cb5dfd2e733a7e5eb0666ac5504"
+    },
+    {
+      "id": "ops-mfg-0067",
+      "contractHash": "6cb67801d6eb398ea0c16137c75c1d90c015d8b80ebc093e7976531234e6fb4c"
+    },
+    {
+      "id": "ops-mfg-0068",
+      "contractHash": "f38ec344c9c5320a38b797851ebd4266c0ce12c56b190c137f8d722732548ecb"
+    },
+    {
+      "id": "ops-mfg-0069",
+      "contractHash": "79370a95db3cf2a56eafa3b7f6b06fc83ae3cdebf5715274546f5a4d1d5378e7"
+    },
+    {
+      "id": "ops-mfg-0070",
+      "contractHash": "dbae17e379bff74f176d6227acb39345fbe6305787b73b74577e1730ae55d633"
+    },
+    {
+      "id": "ops-mfg-0071",
+      "contractHash": "8132d6deb7d53461e885f2ece45a46869d12731af2fa2bbb49d690a024a5768d"
+    },
+    {
+      "id": "ops-mfg-0072",
+      "contractHash": "98718e300222b5d878bda1370bf5c5423a11b6b8d4195ce818ee4f2e3d9eb326"
+    },
+    {
+      "id": "ops-mfg-0073",
+      "contractHash": "3889e74441a3583339357376694a31b3328ab8afed56a10bc6fd5ee09c4c7011"
+    },
+    {
+      "id": "ops-mfg-0074",
+      "contractHash": "2ac4c1b3b6d83172b2abd1eb374bbdec59cb39609453ea90686e636b9aa36c4c"
+    },
+    {
+      "id": "ops-mfg-0075",
+      "contractHash": "5b2d11e1946ec863e84d1c7c7117d7415217f9c853ebea1280bf97a8b811176b"
+    },
+    {
+      "id": "ops-mfg-0076",
+      "contractHash": "feddf950dc42d441034ebd0b049e63e064263f6b7ac2c9a963928b84a3e38744"
+    },
+    {
+      "id": "ops-mfg-0077",
+      "contractHash": "78ed7a0617ebac14da8132286da0e8e9db83d6ecc5d93f4855b2d54d648821e2"
+    },
+    {
+      "id": "ops-mfg-0078",
+      "contractHash": "939ab0cb54b6fa50362dfb9df9cc4a98abb6a7cd26e72c058b9e616d1925b00e"
+    },
+    {
+      "id": "ops-mfg-0079",
+      "contractHash": "ca0a87d1f3770cb53cee91b287614fef75f6fee9bb3cf289a303e1896cb090ee",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 파괴 검사 시편의 출하 가능 수량 분리의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-mfg-0080",
+      "contractHash": "24fa157dd4591dfaec222682f355edd1e24c7b8c1c5187281982b4010c160dd9"
+    },
+    {
+      "id": "ops-mfg-0081",
+      "contractHash": "0b3c0f299788f8425a87cc857edf5a223b5c84a4bfc500e1c8ea9fc281c8282c"
+    },
+    {
+      "id": "ops-mfg-0082",
+      "contractHash": "a9f4de89bb023a68b158142c39c87edeeee044f73706ddddcde156cdec18df39"
+    },
+    {
+      "id": "ops-mfg-0083",
+      "contractHash": "b8fe95feb1f4a1afdba76b8558706c63356123770f2fe0e785af54b4d48d7f17"
+    },
+    {
+      "id": "ops-mfg-0084",
+      "contractHash": "4ef5dae74054f2a827965cd88cad0be2b7673138c42df249160b5f4f23844521"
+    },
+    {
+      "id": "ops-mfg-0085",
+      "contractHash": "660c1ae3e5c0c4773a952ab31bd8ebaf14db9d281b0d33257e100dc16a4e50f9"
+    },
+    {
+      "id": "ops-mfg-0086",
+      "contractHash": "d66adcd97b948cf52092dc63a88565f90e0a0fcd66c90663de5ba3414eaec4ca"
+    },
+    {
+      "id": "ops-mfg-0087",
+      "contractHash": "7db82993f2bf98b52dd5719b501512960c7bf4b9833afef6a78185859a41f44a"
+    },
+    {
+      "id": "ops-mfg-0088",
+      "contractHash": "8efe6b1bdf934048743d435b3da5ce45eb08b96bfeb0abd5bc4a90b497c6be41"
+    },
+    {
+      "id": "ops-mfg-0089",
+      "contractHash": "96d27acfcb92e3a66a5fb886594c453b6def6703d9bf07b5e9b34c2babf91e98"
+    },
+    {
+      "id": "ops-mfg-0090",
+      "contractHash": "3e165b9c4cd465aa54eb725cb8efdcc80defbd7237aba8c5ba241cd362dd36f4"
+    },
+    {
+      "id": "ops-mfg-0091",
+      "contractHash": "fabd2ed6ae169e3d9f376ed6fa11d4258b66758dc01b034aa52fd432cee67542"
+    },
+    {
+      "id": "ops-mfg-0092",
+      "contractHash": "ae8b459ed991de9dcb3aba69714c73d6c16bd3dbc42c49f1436ca1010085e288"
+    },
+    {
+      "id": "ops-mfg-0093",
+      "contractHash": "5908d9163769be3eaa07f213d3a20573a67c7f0640a4b90668f5d026c816c202"
+    },
+    {
+      "id": "ops-mfg-0094",
+      "contractHash": "8fad5d27652c99ffa403e156bd43eb8646896b28b4f41dfdbdf588b89fc0cb19"
+    },
+    {
+      "id": "ops-mfg-0095",
+      "contractHash": "5d412b1dd28e2a65d3e2f64f88c441f144b9f5b581f858dd31d0b6f24ce8058e"
+    },
+    {
+      "id": "ops-mfg-0096",
+      "contractHash": "3a229feca14d7868805b1e96903d57c5b9a1f495eccb6e76f709d8fcb250dbb6"
+    },
+    {
+      "id": "ops-mfg-0097",
+      "contractHash": "4d1330e8e3dbb21fb5c02f23866cee535e79c608300c77590af40cdc6a9f2359",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 원자재 시험 방향과 요구 방향 정합의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-mfg-0098",
+      "contractHash": "a41b1da112a9357b7afbc2cafdd9e8b93c5dd58f7d1cab887c35b9acf3b20455",
+      "distinction": "교체 계약의 입력·합성 규칙·기대결과·실패조건을 다시 읽었다. 선택 조립 부품 등급의 짝 구성의 판정 전제와 산출물이 기존에 지적한 상대 계약과 달라졌거나, 지적된 수치·근거 오류가 수정되었다."
+    },
+    {
+      "id": "ops-mfg-0099",
+      "contractHash": "218d43cf43e34d13b73c16d40d734750b8bff9fc5414c73af45686a51b3a38ef"
+    },
+    {
+      "id": "ops-mfg-0100",
+      "contractHash": "d9f35aaea412803babbf0679fc3057157deb37c66a2590191d338ec68651bf89"
+    },
+    {
+      "id": "ops-plan-0001",
+      "contractHash": "de87f96ad9463f1de7df0b30233a8c323b8ecb1ed69613318d21ae393217f959"
+    },
+    {
+      "id": "ops-plan-0002",
+      "contractHash": "f9a0f97d163df0bd03b22265ee9f527828dba72719cf2fe8def803be0569853b"
+    },
+    {
+      "id": "ops-plan-0003",
+      "contractHash": "48bf6c243d45c4941c2fea7701593b1f2dbc4e4687a8a7bc9d79270e2e01f797"
+    },
+    {
+      "id": "ops-plan-0004",
+      "contractHash": "1bc2aaeda5fde9bdabf54ea3664c761673d406da8db21344f69719a541e2c4f2"
+    },
+    {
+      "id": "ops-plan-0005",
+      "contractHash": "a5b8bbcc951cb270d9f05e01c69a363da90ff9714fbd39565f9e6eb03466caa0"
+    },
+    {
+      "id": "ops-plan-0006",
+      "contractHash": "cba7db5bd5fe58bbfb4ba27939812108d84831a6edcce253511c4b8528f12de2"
+    },
+    {
+      "id": "ops-plan-0007",
+      "contractHash": "c9b3e2dfa962d8e50aca5eb7af29c40d50656fec16f9cb13e3d7302a4f0ffa80"
+    },
+    {
+      "id": "ops-plan-0008",
+      "contractHash": "d118731940bfba9bfe92c7153316b875ec6376adf991e0a5b647b43ebc95a4ff"
+    },
+    {
+      "id": "ops-plan-0009",
+      "contractHash": "0f47dbfd4229ddbbfbfaf68397eca80039de7015a418e9e62c33f564138c272d"
+    },
+    {
+      "id": "ops-plan-0010",
+      "contractHash": "fb1a15950c2352022fc6aa377b028912491ed840c65df27c7d348035d00aede1"
+    },
+    {
+      "id": "ops-plan-0011",
+      "contractHash": "bf7fb7f571538244c341f1cf9a28b2e132e0909cc6374400e3445e66b7e17fde"
+    },
+    {
+      "id": "ops-plan-0012",
+      "contractHash": "f5f7b6afdf99a9816261643938497785210ca212713eb147b3aa2af18e6ac352"
+    },
+    {
+      "id": "ops-plan-0013",
+      "contractHash": "92f273976edef064f66e6843c48f35e9ec59d2faba1b8e2c5328881e37bdb10c"
+    },
+    {
+      "id": "ops-plan-0014",
+      "contractHash": "96b8e74b1a4af8761e4ee0b08ed20a070c859abc3c68568c37c46d35054edf12"
+    },
+    {
+      "id": "ops-plan-0015",
+      "contractHash": "92dbdcc8ae8acb7b960050a77db70915196321b3d902f585537a334de65fd4ea"
+    },
+    {
+      "id": "ops-plan-0016",
+      "contractHash": "db9e7362189c8bb2a5a04d92f7d3f7744d02a9149408157e7c94a7ff44332fef"
+    },
+    {
+      "id": "ops-plan-0017",
+      "contractHash": "ed681c3b2212d73b135b1a2899979deb0a7a9433952f53b01e2f1be001574491"
+    },
+    {
+      "id": "ops-plan-0018",
+      "contractHash": "a889b8ee05980e1e2fb200f1a3cf99d31ab1078fd5948dda3cf06f25f563b7f4"
+    },
+    {
+      "id": "ops-plan-0019",
+      "contractHash": "0c9310ba94ae472e0292ec275c98d986c61ec0a3afb9a23e4b5998398f90f6bf"
+    },
+    {
+      "id": "ops-plan-0020",
+      "contractHash": "156b8aade4a1165d49fcc44e383de724afbec50d0f902f159e9c3e606bf9e0f5"
+    },
+    {
+      "id": "ops-plan-0021",
+      "contractHash": "2dd5b9c7dfb561e982c9420cb60e4186336663910e48bb8c5b9baa4dd3c45dd9",
+      "distinction": "교체된 현장·봉제 계약의 입력·자료·규칙·기대결과·실패조건을 읽었다. 한 쌍 제품의 좌우 재단 패턴의 물리적 기능 또는 공정 관계를 판단하며 기존의 수치 계산·문서 목록 대사·일반 시간 계획과 구분한다."
+    },
+    {
+      "id": "ops-plan-0022",
+      "contractHash": "6eca6da4506423d6747bcdddf82e24095fb26b15a0b33d719ab564d8bbe2395d",
+      "distinction": "교체된 현장·봉제 계약의 입력·자료·규칙·기대결과·실패조건을 읽었다. 분리형 지퍼의 끝 구조와 제품 개방의 물리적 기능 또는 공정 관계를 판단하며 기존의 수치 계산·문서 목록 대사·일반 시간 계획과 구분한다."
+    },
+    {
+      "id": "ops-plan-0023",
+      "contractHash": "eac73b9f80211164a1eb2c66882184b8fda8a3863caa5eceabc9422c8b7594e9"
+    },
+    {
+      "id": "ops-plan-0024",
+      "contractHash": "092913b35270e954db6d12f64583cbdb862490d06d6cce15e21e2cc014a51480"
+    },
+    {
+      "id": "ops-plan-0025",
+      "contractHash": "aef94a6916888ad485866657bfecfbb838988c83d8e90382470353f645aec191"
+    },
+    {
+      "id": "ops-plan-0026",
+      "contractHash": "2263441336c3c07aae31f5924b616a9a856079609051cbea4a74deef2353d1fa"
+    },
+    {
+      "id": "ops-plan-0027",
+      "contractHash": "ae2f8c1e54889355b8fec4195df2adf1adcb84273da1ab5afce2b9df22760d93"
+    },
+    {
+      "id": "ops-plan-0028",
+      "contractHash": "6feff1758f280f656e95f6ae0d33ef9757672b758af88eaf870c5db13445dd7b"
+    },
+    {
+      "id": "ops-plan-0029",
+      "contractHash": "8f7cc291a873eff22b598883edb9db8f9290b4c8427c4fc499b852e216adae6f"
+    },
+    {
+      "id": "ops-plan-0030",
+      "contractHash": "3b66c3c0d6c112d1b1be91411ae95ef26d6c2f07d91fa68fa60a20ba0c93e6fc"
+    },
+    {
+      "id": "ops-plan-0031",
+      "contractHash": "649b06a9972be788700e7fe7950f2a2b3151a0bbcd472ca739bc95c9944201d1"
+    },
+    {
+      "id": "ops-plan-0032",
+      "contractHash": "ec76043738e0491f03f63ba4a786becb1efb4cbc53c1cb958ff1b5a018d93b3c"
+    },
+    {
+      "id": "ops-plan-0033",
+      "contractHash": "a7bb1bfb7bb65bc56b9110df8c13fd7182f5c04dacb8d263df2f1af67bfe34a0"
+    },
+    {
+      "id": "ops-plan-0034",
+      "contractHash": "dd3008bae6ab2c0453347f51bd52ba02d90dfed65babde7c75b8523c71959104"
+    },
+    {
+      "id": "ops-plan-0035",
+      "contractHash": "c4459bdd322751de4ae5097ee222af7d6ff58dc24d28b882c37cf74b27b11466"
+    },
+    {
+      "id": "ops-plan-0036",
+      "contractHash": "d0668ca063cf8dbec1d94f17d9c207abb35ede950dcd40bc3824fb68a3def7fc"
+    },
+    {
+      "id": "ops-plan-0037",
+      "contractHash": "e6b77dc89bcfad8d1a17d4222e72bec2cb353a0249d2115084347c47a5d322c4"
+    },
+    {
+      "id": "ops-plan-0038",
+      "contractHash": "fbd394fa19bde4c85502284158abe3a96916b610739ccfb0592e90835915a985"
+    },
+    {
+      "id": "ops-plan-0039",
+      "contractHash": "a8a3c4985d8a47077720be14f0d80a62507cba02ac9240e747a164ba244cea8d"
+    },
+    {
+      "id": "ops-plan-0040",
+      "contractHash": "6771ce0c29da470fda1e6a6803df7cd9647c9e22a84a0e6b88b34455eb97c6f0"
+    },
+    {
+      "id": "ops-plan-0041",
+      "contractHash": "c44384dc05891be87aefa3f370df89328e00281577f0070acaca1ba2e47ded1b"
+    },
+    {
+      "id": "ops-plan-0042",
+      "contractHash": "f78ce45362739a84dc15a5cf309b598d97733f7c9673982e0a432f8211a84cb2"
+    },
+    {
+      "id": "ops-plan-0043",
+      "contractHash": "7aa88c3879e3f66807d55b57e362b86d9cb7dd82b7917371b24cfb5902cb519a"
+    },
+    {
+      "id": "ops-plan-0044",
+      "contractHash": "26476e7ac8b29583e58def697a04b9ded898e735386526e28de1f56dd86ba0d2"
+    },
+    {
+      "id": "ops-plan-0045",
+      "contractHash": "6b51344218849e0e9869975c3f74d08b17adf4333da6b9ad6bac779b69cdce7a"
+    },
+    {
+      "id": "ops-plan-0046",
+      "contractHash": "c98e2652fd43b5bd15e737bcd7affa518cb4a85e0b5549e27fbe69c3782b4ad4"
+    },
+    {
+      "id": "ops-plan-0047",
+      "contractHash": "3a1a1cd9037016d8806b77f017d14697442b8d94de83be48cb6a3a7ba19dd160"
+    },
+    {
+      "id": "ops-plan-0048",
+      "contractHash": "88a2d0b2d90d22b02cb0e8466b6b78407fc279803d97f68e80b911535885b0e6"
+    },
+    {
+      "id": "ops-plan-0049",
+      "contractHash": "31084a85ecf4095e320fba1a5109625378216690b933ef1828c3eb5e850f1235",
+      "distinction": "교체된 현장·봉제 계약의 입력·자료·규칙·기대결과·실패조건을 읽었다. 봉제 기준 노치와 재단 여분의 구분의 물리적 기능 또는 공정 관계를 판단하며 기존의 수치 계산·문서 목록 대사·일반 시간 계획과 구분한다."
+    },
+    {
+      "id": "ops-plan-0050",
+      "contractHash": "514e32c8d4f683c079bd0aa6488ebdca2a9c52de1e7c9959655b91e44373fd6d"
+    },
+    {
+      "id": "ops-plan-0051",
+      "contractHash": "710aed31b0fd65553e46fe703c5d40642a2a4e89154934d2d678e876957629a7",
+      "distinction": "교체된 현장·봉제 계약의 입력·자료·규칙·기대결과·실패조건을 읽었다. 안감 조립 후 뒤집기 개구부의 보존의 물리적 기능 또는 공정 관계를 판단하며 기존의 수치 계산·문서 목록 대사·일반 시간 계획과 구분한다."
+    },
+    {
+      "id": "ops-plan-0052",
+      "contractHash": "835a1e0be2dcf4dfef76a2250cfdae7895d936d02228cdcebd4cb70b41e8590d"
+    },
+    {
+      "id": "ops-plan-0053",
+      "contractHash": "79726df19e0f66ce8dbb908fe1fc4ae099be1374cad4eccb8484d7267f427310"
+    },
+    {
+      "id": "ops-plan-0054",
+      "contractHash": "6f1385e89574a9d1b88cae924d1c2b0c941a02294a87b3647e14a56035af838c"
+    },
+    {
+      "id": "ops-plan-0055",
+      "contractHash": "b53cf119ea8c0529be2638aa86ab19c4c85d9ded94ec5be08b616f33342e5395"
+    },
+    {
+      "id": "ops-plan-0056",
+      "contractHash": "a3e42bd1ef3ab31e9335a8681789344ef21947d60a26916f762b6baa15caf252"
+    },
+    {
+      "id": "ops-plan-0057",
+      "contractHash": "c2a2ca13bd1d72207e643d2ba5e7ea6879295841508ee488fab551431d3d4908"
+    },
+    {
+      "id": "ops-plan-0058",
+      "contractHash": "3d44e9726ab20b48448788efb9564ab1fdef5f75c332601af8a04bf89a7eb985"
+    },
+    {
+      "id": "ops-plan-0059",
+      "contractHash": "37ceddc3a48a21cd1b074e0f86e87ade9a562fd42b3623ee6e33dc71cfe7baf8"
+    },
+    {
+      "id": "ops-plan-0060",
+      "contractHash": "f14ff033182e66feb29393b79582f554a3e467a18d3703022cfb8f9873c9acbd"
+    },
+    {
+      "id": "ops-plan-0061",
+      "contractHash": "d8e7096676c980942d74a295a8fbe5fe648e743515c8665e1a38abafadb5d8e0"
+    },
+    {
+      "id": "ops-plan-0062",
+      "contractHash": "6ba7069e76319f8c205010cd5cc0a684674c76a16159b6e19630970df78409c2"
+    },
+    {
+      "id": "ops-plan-0063",
+      "contractHash": "ad4fece52109748f9eab6ee8546e013d7c9bd9028cd07c629a1e5c1954fbb1f5",
+      "distinction": "교체된 현장·봉제 계약의 입력·자료·규칙·기대결과·실패조건을 읽었다. 자수 글자 사이 점프 이동과 실 끊기의 물리적 기능 또는 공정 관계를 판단하며 기존의 수치 계산·문서 목록 대사·일반 시간 계획과 구분한다."
+    },
+    {
+      "id": "ops-plan-0064",
+      "contractHash": "8990de563de444fd8a7cd591e4f74cbe57b9f0f21afff9ef1e1f51dae4d4e32b"
+    },
+    {
+      "id": "ops-plan-0065",
+      "contractHash": "4536b5fcc8a905f68c345555d66a05d7f1e4182719a24f4749686c260b3f2956"
+    },
+    {
+      "id": "ops-plan-0066",
+      "contractHash": "d4fe651652784e45efaa29f5acbb61dbd6bc8dd0f92761b8ff8ec56fd42bfd32"
+    },
+    {
+      "id": "ops-plan-0067",
+      "contractHash": "3014650fe9050c1e4e0476d0ca5c60dca4072b0e75044dc3db3f6478c2fd20b8"
+    },
+    {
+      "id": "ops-plan-0068",
+      "contractHash": "52e53c28d1078187253eeda2cb14dea13fea3d00309312431462aa002426fa06"
+    },
+    {
+      "id": "ops-plan-0069",
+      "contractHash": "f1fd943722563281ccf7d93a2853454b9e54f3e94d14f29b0282ebef219bf848"
+    },
+    {
+      "id": "ops-plan-0070",
+      "contractHash": "d39b6f8fb7f916cc42cb01064dc8f8906590cc079410edb76b81a15176867a31"
+    },
+    {
+      "id": "ops-plan-0071",
+      "contractHash": "aea49a7b0f1f0207a028dc7cf38ab91d09ce41085b0a56919d81f3a9ee64568c",
+      "distinction": "조립도 필수 수량과 의도된 예비품을 구분하여 서로 다른 잔여 부품의 의미 판정."
+    },
+    {
+      "id": "ops-plan-0072",
+      "contractHash": "b4a04a925a4b08ac16c18fbf9bd7d51e70aeb1d3e1b407a8c11a24572d3c781f"
+    },
+    {
+      "id": "ops-plan-0073",
+      "contractHash": "001526891923efeca9c17b635f89c0277289bb960ed1fb570fc39324978abd8d"
+    },
+    {
+      "id": "ops-plan-0074",
+      "contractHash": "0e2a14e3276b2ebe70f77adf4bb845d18da03712fa488b2c7dc35ba42a45f915"
+    },
+    {
+      "id": "ops-plan-0075",
+      "contractHash": "1834d9590da063d959887dd6c53baa73c821901486ecabe572f9c4bca87ba090"
+    },
+    {
+      "id": "ops-plan-0076",
+      "contractHash": "1edd4b05e8a5e0937d34d6684014c8ad07eeeb8cd3bfda4ccc36c8cf63b8ba3f"
+    },
+    {
+      "id": "ops-plan-0077",
+      "contractHash": "35b2a67dbbe3dec0b6ea72f632bb6115425c22b5f8823d2c79ba181669e0c15e"
+    },
+    {
+      "id": "ops-plan-0078",
+      "contractHash": "23508a1d4a45c951e4951caef79de73d4b07aa76a8e7e6ea1e59f6a4b9dcde18"
+    },
+    {
+      "id": "ops-plan-0079",
+      "contractHash": "2c89a8adabf734f099a6e4050f1ca412cc388b1dc14934517111cb44f1523819"
+    },
+    {
+      "id": "ops-plan-0080",
+      "contractHash": "5029b1e9f5bfe93c26dbeb7afe7108f4e1d9fed8c3b62b3d10f72c5b8bbee68e"
+    },
+    {
+      "id": "ops-plan-0081",
+      "contractHash": "cae584e5519b6dcbd9fb21f62e86367ba31eb9fe33407f397d13e0af0ed9900c"
+    },
+    {
+      "id": "ops-plan-0082",
+      "contractHash": "0059d2cb2ceede8b6a75dc72d6c9c722528837981370db522547a766e692d3a6"
+    },
+    {
+      "id": "ops-plan-0083",
+      "contractHash": "30035c6a66d6d526a149701066f5581bf5a6f791f3bd550f6db12558900688fc"
+    },
+    {
+      "id": "ops-plan-0084",
+      "contractHash": "cf7ea2a91ac6c0ad4e4d79776befa71177b0a1a20b3ee0ec355c7ff9548a2b51"
+    },
+    {
+      "id": "ops-plan-0085",
+      "contractHash": "2539271c1a1c9d771fcb6488cf8036ba007ae524738d25ec285b434a62a033e8"
+    },
+    {
+      "id": "ops-plan-0086",
+      "contractHash": "38d8cd7d032d768f641cc00cd82ae4801e5c285dc7ff680932becba41537e4df"
+    },
+    {
+      "id": "ops-plan-0087",
+      "contractHash": "e1b4bd9241f29d03d4e333f9c10bb07adcc2ce3eae1417287673ed473d7efc25"
+    },
+    {
+      "id": "ops-plan-0088",
+      "contractHash": "1037b968f8402812a7afcc34ae1712077edbaa0a18b3d6c381c8dff02b1e9991"
+    },
+    {
+      "id": "ops-plan-0089",
+      "contractHash": "7255e3cc623de744481abba84dbe0759e5204811e98477298f62579fc774d69f"
+    },
+    {
+      "id": "ops-plan-0090",
+      "contractHash": "3854bf301124f53087815d24fa56c47f8e9bf0432b1a482483d28a880867ccfd"
+    },
+    {
+      "id": "ops-plan-0091",
+      "contractHash": "caa1c459ed08bde4f8bb240b2b8fef4c7d1fd4aa6a766a1e2663dafd907eb20f"
+    },
+    {
+      "id": "ops-plan-0092",
+      "contractHash": "4b572164b351ca277aed01902a198787091dc1d8768aa74b79e756fa69861d92"
+    },
+    {
+      "id": "ops-plan-0093",
+      "contractHash": "c0e1e44f05ca062ec247d1ec90daaa313cc6091a6924bf860cf3d94d1bae96a4"
+    },
+    {
+      "id": "ops-plan-0094",
+      "contractHash": "6cf2eaa434a7db99ec05f5854fc2be64423990c6e8f6dc7743536f8e768cde7b"
+    },
+    {
+      "id": "ops-plan-0095",
+      "contractHash": "82e8263f5e710530d1d35a084d5a02081e10e829f4bc95fd1a0ecba38cfeee5b"
+    },
+    {
+      "id": "ops-plan-0096",
+      "contractHash": "6c7a726e01a20b5438f1fe55e640736ea5e4ba517428467ca924c74b699d5ce3"
+    },
+    {
+      "id": "ops-plan-0097",
+      "contractHash": "a24749edbd9c1a2fcaa4866469bca4a78f8bc9a27750cef244415f04dc3ea4c8"
+    },
+    {
+      "id": "ops-plan-0098",
+      "contractHash": "c3f09585e4c6ca07d1467fe1bb1a08b32b2d07f77e58d8a5cdf054582bb5b30b"
+    },
+    {
+      "id": "ops-plan-0099",
+      "contractHash": "ecccd322a920373807f28428a8a13721804a220354cf60a7cd523327cc77beb4"
+    },
+    {
+      "id": "ops-plan-0100",
+      "contractHash": "200aa76064b2cb8a49b2a554d77d345227305817fec34c1db89679e425d6321e"
+    },
+    {
+      "id": "ops-site-0001",
+      "contractHash": "a07e2276fc32cb4a62a24721e91e457e0f57663f5975dde5242eb03e4c34acaa"
+    },
+    {
+      "id": "ops-site-0002",
+      "contractHash": "8f470907b2ea6d686e5eb82da140407ff44d4842fba195d0d9cbda005dd0024b"
+    },
+    {
+      "id": "ops-site-0003",
+      "contractHash": "233fb7c4be7a6eb0ad12f056b48c11ac17d17304bcb69978166e6111a600a4f9"
+    },
+    {
+      "id": "ops-site-0004",
+      "contractHash": "c40a3011c8565f7c45204832e060ae6e76b7ff987cc24c8338ecafbf8781eea0"
+    },
+    {
+      "id": "ops-site-0005",
+      "contractHash": "ffb99545934b9dc77013aac762f05fb74ff3a7832a5cec963a6f85f0f5c9e6bb"
+    },
+    {
+      "id": "ops-site-0006",
+      "contractHash": "b7ba358be3065adef1be8392ac53e36a988228b54e01527b6adefd7166637b82"
+    },
+    {
+      "id": "ops-site-0007",
+      "contractHash": "cf3256bce2937ce8b5c843a47b1a8240e44819002cac3918cbd03729c75f7439"
+    },
+    {
+      "id": "ops-site-0008",
+      "contractHash": "feb1903296940bd407fbc1e2b01cf788ed1af4e6f285701cfd22b6a7369706f2"
+    },
+    {
+      "id": "ops-site-0009",
+      "contractHash": "3d7ddf872209eea8d3e7b08c6e34b118204ef20f99e196a13a951c3a38709589"
+    },
+    {
+      "id": "ops-site-0010",
+      "contractHash": "3ddbb83bf9202e172b392d85096ebfa86e6ad149e9819d88e340338ae12fbe47"
+    },
+    {
+      "id": "ops-site-0011",
+      "contractHash": "22de92d871bd21d5d3251f1ebb97c05b3f5b14350105d122eb855966b5ad8da8"
+    },
+    {
+      "id": "ops-site-0012",
+      "contractHash": "55db6d77d047c892a5850a6a59d5006b2f13fcd59cda09e9d20bb6ae22876638"
+    },
+    {
+      "id": "ops-site-0013",
+      "contractHash": "f8d32354371c7240f33359a82c0f50fc08002312db2e4cbcf4224f1a5683722f"
+    },
+    {
+      "id": "ops-site-0014",
+      "contractHash": "d548c35ddd462b547a87b5b245dcd56e042b6b6d50e53ef3300888c28ad36fa7"
+    },
+    {
+      "id": "ops-site-0015",
+      "contractHash": "1be51630afe96311a49c09f69fa891dc39d583322440978879117349005cbbc2"
+    },
+    {
+      "id": "ops-site-0016",
+      "contractHash": "d299322fc8899da8737dbbef92a7adfddd7dca256322fdde57509ca5f6f4f50a"
+    },
+    {
+      "id": "ops-site-0017",
+      "contractHash": "b38aff2aa0de4da2bc43056033757f1b4d9b367516753db8c0311ae239c217db"
+    },
+    {
+      "id": "ops-site-0018",
+      "contractHash": "b48092e24dadfd505dc884bf7683b5594fb6557ee9e3d79d9a40ebf4bdd44f18"
+    },
+    {
+      "id": "ops-site-0019",
+      "contractHash": "f8432185255d464493be137be636f813da559f08db8782bb9b70c0ddfb8c474a"
+    },
+    {
+      "id": "ops-site-0020",
+      "contractHash": "2c41fa5bdf54ed608c6923f517a2e1508339a4a10fad1c37afd8e80ff4768e58"
+    },
+    {
+      "id": "ops-site-0021",
+      "contractHash": "9f124ebb97cf326ef5365280f100fccdfb66f345d0b2e801cacb275333b8c59c"
+    },
+    {
+      "id": "ops-site-0022",
+      "contractHash": "efba64fc4f4a24f9def72cb4e6a079e2f3d24f5c6ae1386a32c573f687936813",
+      "distinction": "교체된 현장·봉제 계약의 입력·자료·규칙·기대결과·실패조건을 읽었다. 콘크리트 타설 중단 경계의 승인 도면의 물리적 기능 또는 공정 관계를 판단하며 기존의 수치 계산·문서 목록 대사·일반 시간 계획과 구분한다."
+    },
+    {
+      "id": "ops-site-0023",
+      "contractHash": "390309661032a29316288b392955aa531b0e5531a3212176208247a0c9ef6bcf"
+    },
+    {
+      "id": "ops-site-0024",
+      "contractHash": "421d73ad472b124ff1b9fc69fc1cbf0bb6d508e0fba763b57049231ee2178194"
+    },
+    {
+      "id": "ops-site-0025",
+      "contractHash": "f5ad7a8f46f5fe7abe48333bd69397bde4d9e1e34e49cd695ff28adfa7600343"
+    },
+    {
+      "id": "ops-site-0026",
+      "contractHash": "ce61d7afa8a8e5e214d079857e8c3a00553390263398a27fb9bdbc78da4cb4be"
+    },
+    {
+      "id": "ops-site-0027",
+      "contractHash": "1b94f24f40695ebb5c4f7ce02d17fa8ebe726884212c423d2eafdc7d5f9628b8"
+    },
+    {
+      "id": "ops-site-0028",
+      "contractHash": "7f0b1bf1e87a1276eb98cb4c6dfd16b4692c73267748d2b84d1e5f13b4871c38"
+    },
+    {
+      "id": "ops-site-0029",
+      "contractHash": "7048741c4d1709734e3dab4057036231c6ec5d00cef63605505843bcb14c9c50"
+    },
+    {
+      "id": "ops-site-0030",
+      "contractHash": "c274a74095c4df83f68bb7ff92fd79b400a8a21118e2935dc866128bcc173494"
+    },
+    {
+      "id": "ops-site-0031",
+      "contractHash": "1928e516b90e4497a1ee720538175d1568194e1484f06978482748e830f2e50c"
+    },
+    {
+      "id": "ops-site-0032",
+      "contractHash": "9639fe6399277927be85ea57e34e0e096be4f9fd81f55e39a39a0fd64865299c"
+    },
+    {
+      "id": "ops-site-0033",
+      "contractHash": "115bfda43af3e77a5bcd22a64a9d0111990d42efc0ddcd7444bfb199951bfba5"
+    },
+    {
+      "id": "ops-site-0034",
+      "contractHash": "627aa691ab19e40f80f0a5eaba3a64d92bc6d69d4540e52da6938b8ddf22f306"
+    },
+    {
+      "id": "ops-site-0035",
+      "contractHash": "e4f7d611a3787fee771718a57a761163babdfdcde5166c3692d07346150a4ca7"
+    },
+    {
+      "id": "ops-site-0036",
+      "contractHash": "e5958c3c807efc90000abfbd4eb1f337b1dafc666b4f60338cbcbae7d4a6220e"
+    },
+    {
+      "id": "ops-site-0037",
+      "contractHash": "847f027bec2478222ffe90a2eca57c9ca45b599baee71b8c14f14bb5a42569d6",
+      "distinction": "교체된 현장·봉제 계약의 입력·자료·규칙·기대결과·실패조건을 읽었다. 우수와 오수 배관의 미승인 합류의 물리적 기능 또는 공정 관계를 판단하며 기존의 수치 계산·문서 목록 대사·일반 시간 계획과 구분한다."
+    },
+    {
+      "id": "ops-site-0038",
+      "contractHash": "7e078df4f2215a5571634e4c60d716a23b595bfc6fce8fb9eef2bdaefb363021"
+    },
+    {
+      "id": "ops-site-0039",
+      "contractHash": "1c19b3972c4b9cc4c3b1cbe17d58f3cd4d5cbc5fa28bdd8887a79c5e535f9c07"
+    },
+    {
+      "id": "ops-site-0040",
+      "contractHash": "297a34f196a5ebb87ab5a9e98a8e6d389f0106ad7cc95791ccc1bb1ddf978a8b"
+    },
+    {
+      "id": "ops-site-0041",
+      "contractHash": "8d7da7b21e3103df8cd200d5caaeef7695057470d4c0796ec24c03611aaff2e7"
+    },
+    {
+      "id": "ops-site-0042",
+      "contractHash": "de71fcf5497bed0251c0b37e1c453617c8635c5d9d7e3488543021d97679fb86"
+    },
+    {
+      "id": "ops-site-0043",
+      "contractHash": "eff81ca3885d113479123bd7b6d47a8b7c75b28491e0bef0a9a3d6dd56612da0"
+    },
+    {
+      "id": "ops-site-0044",
+      "contractHash": "8fba4b6f4870755c9cb3baeaa2efcc7ea1212f830ddf8e72f6b99d031e524a13",
+      "distinction": "교체된 현장·봉제 계약의 입력·자료·규칙·기대결과·실패조건을 읽었다. 철골 접합의 공장 용접과 현장 볼트 역할의 물리적 기능 또는 공정 관계를 판단하며 기존의 수치 계산·문서 목록 대사·일반 시간 계획과 구분한다."
+    },
+    {
+      "id": "ops-site-0045",
+      "contractHash": "349c3d4f730c953084244e131e49f6ac42d01f317397b4a9f322a8e399124499"
+    },
+    {
+      "id": "ops-site-0046",
+      "contractHash": "dedb5b34c040ff73e1b74452146a857bca7ad77be1ee3465b4b1fd7f9cd76434"
+    },
+    {
+      "id": "ops-site-0047",
+      "contractHash": "87351b1d936d46d1b2331380eb5ad7161af6a4f7ddb12dc450f48dbda5b2f446"
+    },
+    {
+      "id": "ops-site-0048",
+      "contractHash": "59aa8f03843b26de243e6bd25e59016f51d6030c577a6321b6b483c2a3fa03fb",
+      "distinction": "교체된 현장·봉제 계약의 입력·자료·규칙·기대결과·실패조건을 읽었다. 굴착 예정 구역의 지중 탐사 범위의 물리적 기능 또는 공정 관계를 판단하며 기존의 수치 계산·문서 목록 대사·일반 시간 계획과 구분한다."
+    },
+    {
+      "id": "ops-site-0049",
+      "contractHash": "cbe4acc07a33b5b62fc81acaeac189cd27398d813645ab47b42811dc6997aa9a"
+    },
+    {
+      "id": "ops-site-0050",
+      "contractHash": "5704ea2e5f223858ecc3b82d6f7cf24609457269b6623de8e872417b3aa1f90d"
+    },
+    {
+      "id": "ops-site-0051",
+      "contractHash": "6190be795587721ff49c233ad7f43654071d5c24fdca4cee25633cf4f12910f8"
+    },
+    {
+      "id": "ops-site-0052",
+      "contractHash": "29a26cda1d5028e43416dd2dde4dd072502e52d3e3c9bbf585466fccf67b9dfe"
+    },
+    {
+      "id": "ops-site-0053",
+      "contractHash": "12dd3acec053960abb21db5c956949e3df942edd0bc1f9d0ddb601baab457983"
+    },
+    {
+      "id": "ops-site-0054",
+      "contractHash": "6042974ae9635b0a9243888ef2c5a8cc7060496cd08717b43d6ff88518e59c22"
+    },
+    {
+      "id": "ops-site-0055",
+      "contractHash": "db030862148c235514e6305986dd3c8aca00065f5f32184e59014e4bf6428627"
+    },
+    {
+      "id": "ops-site-0056",
+      "contractHash": "e3220c3ad261cdfd0d3f75c767f7748c9f19a416768b509914fd2ea5d4782aa4"
+    },
+    {
+      "id": "ops-site-0057",
+      "contractHash": "f9340878d44b9c25bb8ce26f8b1e98415b607f629112559e333cdd81a1bde007"
+    },
+    {
+      "id": "ops-site-0058",
+      "contractHash": "70ca613592ce6d9f89581ebb84c824e1f7c9712f11531381e6d0561fabfb3d30"
+    },
+    {
+      "id": "ops-site-0059",
+      "contractHash": "56b5650c86be1fa2f1c8ba38d139f9eac44b8291828075d48f9e0b320bc95aa6"
+    },
+    {
+      "id": "ops-site-0060",
+      "contractHash": "714fe1c2c71b20131e97da85869c1812c1386994ff9dc9c03aea696d6c03fe39"
+    },
+    {
+      "id": "ops-site-0061",
+      "contractHash": "c2e87c5c1d834f4562ba253fabbd779cd7d4e7aab4995d7d3f54bbbfeba6378f"
+    },
+    {
+      "id": "ops-site-0062",
+      "contractHash": "342f667dcda20b154b18e5ca0a34e7ae180be01561a3158890898c6f64a2cfb2"
+    },
+    {
+      "id": "ops-site-0063",
+      "contractHash": "acf961a95a1ec791cec8479fa2546b7d369e8f493a181c66e07e1eed1ad2943b"
+    },
+    {
+      "id": "ops-site-0064",
+      "contractHash": "233ee879ad6156874c5d17761d770d36984143b1d9dc9bcf052b2e5d46e379a4"
+    },
+    {
+      "id": "ops-site-0065",
+      "contractHash": "36c7c14accf6de43babbd8ca971afb38e0cca6877cdeb9facd68fbbd7ac44b29"
+    },
+    {
+      "id": "ops-site-0066",
+      "contractHash": "401ab8f586aa91ea7733e9ec457db1f03086ff9264847181246e84fdd80c1ad0"
+    },
+    {
+      "id": "ops-site-0067",
+      "contractHash": "b70be086a64ecfe85d4114f4e070e6fcb7bdb5e3c41a5a0a1a86657f0c8ab176",
+      "distinction": "교체된 현장·봉제 계약의 입력·자료·규칙·기대결과·실패조건을 읽었다. 현장 양생과 표준 양생 시험체의 적용 범위의 물리적 기능 또는 공정 관계를 판단하며 기존의 수치 계산·문서 목록 대사·일반 시간 계획과 구분한다."
+    },
+    {
+      "id": "ops-site-0068",
+      "contractHash": "b0fe36327ad899fb65dde653593de06a38c69762b8e8c5ba750961d52995ecce"
+    },
+    {
+      "id": "ops-site-0069",
+      "contractHash": "bf50c9451860d10148b36a846c1688be1286dd5bc6ac078b799f7e1d12edf5f9"
+    },
+    {
+      "id": "ops-site-0070",
+      "contractHash": "baa1ceaa16f3a29586692a0ef6f67a454a4cb48c699708ad4557bada61b89d19"
+    },
+    {
+      "id": "ops-site-0071",
+      "contractHash": "c44ae2acf1c3bddaf5ce6fc8a5eb45899364853920848a77118cc3c0e0ecbdd5"
+    },
+    {
+      "id": "ops-site-0072",
+      "contractHash": "36d9347ac7a52f094d5a0c77bdf4cdfd637186a0675bad9cc92338d4d18e6dde"
+    },
+    {
+      "id": "ops-site-0073",
+      "contractHash": "c68bdfc7214714716c7c25e696e8a055bb20ec26946b7874d4883deb305363c3"
+    },
+    {
+      "id": "ops-site-0074",
+      "contractHash": "2fa434394d7c1a078a880e8beb9005a6d4af1ce13572fe61135bb6bf49594db2"
+    },
+    {
+      "id": "ops-site-0075",
+      "contractHash": "70fc0aaa38a4e7323ee1b9de4faef0a5f24659134b318bdaefff86b6f77cfaad"
+    },
+    {
+      "id": "ops-site-0076",
+      "contractHash": "5219b2dbf4365fb5003b6a15871aceae5a96c93679f989b57e39dbd36c692005"
+    },
+    {
+      "id": "ops-site-0077",
+      "contractHash": "74d923f07e84876b81da044619fe98b6e091aa8a0c099437650c592bcc46d128"
+    },
+    {
+      "id": "ops-site-0078",
+      "contractHash": "d971572a8e47d210566196bb0cbae2016ff2c24cda567a3f4badaf109a54f922"
+    },
+    {
+      "id": "ops-site-0079",
+      "contractHash": "8a644f6c8559333b8f2214ff00e110a0083b7b2b89e22f452367dadcc08c914d",
+      "distinction": "교체된 현장·봉제 계약의 입력·자료·규칙·기대결과·실패조건을 읽었다. 설비 단독 시운전과 통합 연동 시험의 물리적 기능 또는 공정 관계를 판단하며 기존의 수치 계산·문서 목록 대사·일반 시간 계획과 구분한다."
+    },
+    {
+      "id": "ops-site-0080",
+      "contractHash": "86147db54497b0604a31c4c3232c4202cc4eee892357927ecda2582f09136db1"
+    },
+    {
+      "id": "ops-site-0081",
+      "contractHash": "2d7874de00b9fa2e16e722ec58a7d1a5e92ab3f96027aa93ec08b292aac1e0ef"
+    },
+    {
+      "id": "ops-site-0082",
+      "contractHash": "716fe0aff5873a3b4d86d81c611cf1c08e89b402bb0a1a7fed2b6fdd78a99b49"
+    },
+    {
+      "id": "ops-site-0083",
+      "contractHash": "136e98a382c5322a8bfbfd96352fbc556a7d27cbbca791946428a17b8960b308"
+    },
+    {
+      "id": "ops-site-0084",
+      "contractHash": "6bb323484d1d0dd5f8c875dc6a29619755107af6bcb056c81382b398a75ce219"
+    },
+    {
+      "id": "ops-site-0085",
+      "contractHash": "a259167ebd03821426cd0f50e732a7904beeaf7045bfb72b9b135e8a834ff26c"
+    },
+    {
+      "id": "ops-site-0086",
+      "contractHash": "fd25678d0f396745f7b31e0883ed206b1be4b600f5f97e305afd735f88172517",
+      "distinction": "교체된 현장·봉제 계약의 입력·자료·규칙·기대결과·실패조건을 읽었다. 바닥 마감 증설과 문짝 개폐 여유의 물리적 기능 또는 공정 관계를 판단하며 기존의 수치 계산·문서 목록 대사·일반 시간 계획과 구분한다."
+    },
+    {
+      "id": "ops-site-0087",
+      "contractHash": "5a1b7743f6fb7c9f0be09c75a93a71c500bf0e632c09079ed46da84aa5a0a81a"
+    },
+    {
+      "id": "ops-site-0088",
+      "contractHash": "998fea9819eeecfba39e4b05c5c4c476ee30ed7238dcdcdeee2ec5c7d2ed0450"
+    },
+    {
+      "id": "ops-site-0089",
+      "contractHash": "48915bf28a2d184d4af876ce692592ad13e2181a0be3a89edcc85865ebee7354"
+    },
+    {
+      "id": "ops-site-0090",
+      "contractHash": "f9210863ec3a1e1f7f5de457e737ce0fbc4b5c30fbadc15abf631b0ffb9b9435"
+    },
+    {
+      "id": "ops-site-0091",
+      "contractHash": "a690cb5bc16316e661dc52c24482c4bef28565f8b4d7254a943048f63aa4f60d"
+    },
+    {
+      "id": "ops-site-0092",
+      "contractHash": "99b6094a4aab837549838b292b28838eb94f8e258aebfe1ee2a3b2a68a804e49"
+    },
+    {
+      "id": "ops-site-0093",
+      "contractHash": "38041ccbb270fd0ae2f06c7b5941c2c201d6a7e1f45c6dddb41f7f12184d8916"
+    },
+    {
+      "id": "ops-site-0094",
+      "contractHash": "617111071f34495fbe1ebd8aacd1e1d8eb4052ec3b2239719907a4e1280b1d2a",
+      "distinction": "교체된 현장·봉제 계약의 입력·자료·규칙·기대결과·실패조건을 읽었다. 공정 사이 보호 필름의 제거 책임의 물리적 기능 또는 공정 관계를 판단하며 기존의 수치 계산·문서 목록 대사·일반 시간 계획과 구분한다."
+    },
+    {
+      "id": "ops-site-0095",
+      "contractHash": "cbe918874ebd51a673406c4c5ab93da9e1b3d2b8b21e466194fe74617ce0b666"
+    },
+    {
+      "id": "ops-site-0096",
+      "contractHash": "cedb8a8bb6d6f64bda4b9d97d78b27b057ca920f4395f3713151de3dea824b96"
+    },
+    {
+      "id": "ops-site-0097",
+      "contractHash": "87b0649629b9ee23153cf6fa143d9b41522c441d95af1e2d854329c2d4b0d8ca"
+    },
+    {
+      "id": "ops-site-0098",
+      "contractHash": "f7d5ed64f955b0367095c6a5776d914b32e985b616452e8a0661c8abf5ff7010"
+    },
+    {
+      "id": "ops-site-0099",
+      "contractHash": "4d4144ed3b1aeeda5937b9dcf9c6fe108812969ebbfaab51b025a9a54fb1de0a",
+      "distinction": "교체된 제작 계약의 입력·규칙·기대결과·실패조건을 읽었다. 승강기 실내 마감의 고정 하중 변경의 구체적인 운동 경로·재료 면·윤곽 역할 또는 설비 구성 조건을 판단하며 지적됐던 통계·시간·수지대사 계약과 구분한다."
+    }
+  ],
+  "rejected": []
+}

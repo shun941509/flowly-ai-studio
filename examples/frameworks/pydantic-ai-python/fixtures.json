@@ -1,0 +1,1 @@
+{"license":"CC0-1.0","synthetic":true,"policies":{"meal":{"id":"EXP-01","limit":30000,"currency":"KRW","receipt_required":true,"over_limit_action":"담당자 검토"}}}

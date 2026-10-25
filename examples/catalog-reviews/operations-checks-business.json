@@ -1,0 +1,4110 @@
+{
+  "version": 1,
+  "reviewer": "/root/independent_review",
+  "humanReviewed": false,
+  "scope": "독립 AI 검토 기록이다. 최초 /root/typescript_framework_examples는 업무 예제의 제목·입력·합성 근거·기대 결과를 직접 읽고 수치, 근거 정합성, 업무 차이를 확인했다. 규칙·실패 배열은 수정 항목과 여행 전체 등에서 추가 확인했다. 본 재개 검토자 /root/independent_review는 미결 14개와 지적된 대응 계약 전체를 읽었고, 추가 소책자·여행 중복을 포함한 16개 교체 계약의 모든 필드를 다시 읽었다. 관련 용어를 전체 카탈로그에서 검색해 발견한 후보와 판단 구조를 비교했으며, 투명층 교체안의 재중복도 찾아 암실 부분 노광 사례로 다시 교체한 뒤 검토했다. 변경 없는 기존 승인 해시는 앞선 독립 검토 범위를 승계한다. 다른 저작자가 만든 biz-revision-* 38개는 root-checks-business.json의 독립 검토 대상이므로 여기서 제외했다. 현재 대상 1,021개에서 미결 지적은 없다. 인간 검수, 모든 가능한 쌍의 의미 중복 부재 증명, 실제 모델 답변 품질 검증을 뜻하지 않는다. 내보내기 실행 검증은 별도 증거이며 외부 API와 모델을 호출하지 않았다.",
+  "reviewed": [
+    {
+      "id": "biz-a11y-auth-memory",
+      "contractHash": "a64aa4a4905bf9d3386863072805b2540f3b3944215bafb980b0de42eff660f1"
+    },
+    {
+      "id": "biz-a11y-auto-change",
+      "contractHash": "212b182acdcfcde92531389125ecdb2612110eb7ef0288f763c5264a96e49291"
+    },
+    {
+      "id": "biz-a11y-autoplay-audio",
+      "contractHash": "541087fc719860588d2e66e269027f34045fbb4fb2ee550e0fcc8d21b75cdf55"
+    },
+    {
+      "id": "biz-a11y-calendar-keyboard",
+      "contractHash": "c60f1c31331477bdd9ec11b2779f427d1ecdc8f2b76360f756d95907024ab42e"
+    },
+    {
+      "id": "biz-a11y-captcha-alternative",
+      "contractHash": "b67218235a23de051083a0583255894917e041fdfcb261766f82458956f1cda6"
+    },
+    {
+      "id": "biz-a11y-caption-speaker",
+      "contractHash": "9f8e125361b2804634cf95f414381af9222c4d212abaa1270c871233ace31f34"
+    },
+    {
+      "id": "biz-a11y-checkbox-mixed",
+      "contractHash": "0bfea08a6da98e2763cc211a0caaab68d1e9491465e19ec77c69613e2cd4ea9a"
+    },
+    {
+      "id": "biz-a11y-custom-control-role",
+      "contractHash": "5480f67550717a764656f37852dc4a991750acf03db1c70d83f003269f03dbba"
+    },
+    {
+      "id": "biz-a11y-data-visualization-alt",
+      "contractHash": "e555119e11eb9d899b7e9799f3828b8edfbeabe995cca8a2a0a0f2b064e62ffc"
+    },
+    {
+      "id": "biz-a11y-disclosure-state",
+      "contractHash": "b8657a1b1f3cc87441b4bbe782902e89602e8181542e091f0f036c199ec3184f"
+    },
+    {
+      "id": "biz-a11y-download-type",
+      "contractHash": "44ed2e8365c073eb3a134f2646f78972333f1c517021a593741728d6e45cef2d"
+    },
+    {
+      "id": "biz-a11y-drag-alternative",
+      "contractHash": "64f0f177d5fc835d1e982fd625e848e4ea8849e971a1bdf45d85e96e983aa923"
+    },
+    {
+      "id": "biz-a11y-focus-obscured",
+      "contractHash": "52848217457aee76211f14f876cd2a27995d9b5007d74251def857e00a3fec7f"
+    },
+    {
+      "id": "biz-a11y-help-consistency",
+      "contractHash": "0070b55c16e50792c99fdeccb5ba8da6157e685dd668ff24c07594c442e37d00"
+    },
+    {
+      "id": "biz-a11y-hover-content",
+      "contractHash": "61b839af1456a1d2612af0b10a673b0cfdffd7c3a2517582b9ab3af42edc7ce3"
+    },
+    {
+      "id": "biz-a11y-image-text",
+      "contractHash": "0c807d6241c5e2447797e024c2c4e3a45d85575da4b9f44cfcb8b9c48ae7c1cf"
+    },
+    {
+      "id": "biz-a11y-instruction-senses",
+      "contractHash": "4ad84bc3505d677a01d77ee67d1387c27a6a89d20918fce67d1a7ca3221b5526"
+    },
+    {
+      "id": "biz-a11y-label-in-name",
+      "contractHash": "2acf5ebc4a96b6dd200f0a0d3fa6627d4f2cd8b4d8f9d5710f5251fdfe9a5b36"
+    },
+    {
+      "id": "biz-a11y-landmark-names",
+      "contractHash": "f476fba983d135fc01bf151bfd18a69d6b294e9ec306d2cf8ca7a82960291321"
+    },
+    {
+      "id": "biz-a11y-language-switch",
+      "contractHash": "0665cda010a366c5275f9557a946ab0dbbe4c5d9d65c6a27b69849d0432f7a47"
+    },
+    {
+      "id": "biz-a11y-live-region-noise",
+      "contractHash": "c70aabcf786e8808b99308842df0cf0f4a91979d918580d98866ab54f0f22c22"
+    },
+    {
+      "id": "biz-a11y-menu-escape",
+      "contractHash": "1eba1bb8f7a1908e534010b153c3e0c5b1e7f2b3eecfd0a56a57bb625e1f2680"
+    },
+    {
+      "id": "biz-a11y-modal-focus-trap",
+      "contractHash": "4938d4154754330a425053e9e17776616bc586a01a34da3d9bfe514cead686df"
+    },
+    {
+      "id": "biz-a11y-orientation-lock",
+      "contractHash": "fb9ff48e1d25163e87c2a7b6ce43341f2dcd6f1637424cdb2d00b0fb9666192a"
+    },
+    {
+      "id": "biz-a11y-page-title",
+      "contractHash": "4a29a0820ded3c300a94a3fa30a7f1d82952bb928f128f0c885d7957e534c720"
+    },
+    {
+      "id": "biz-a11y-path-gesture",
+      "contractHash": "69208390f35fa8c8133723c225d1cdbb800782f7ef44da73109dec16f582de23"
+    },
+    {
+      "id": "biz-a11y-pointer-cancel",
+      "contractHash": "fe1c1c8271fc6472adf56ad9955159037dd1898e79beb0239101b368befd6472"
+    },
+    {
+      "id": "biz-a11y-progress-steps",
+      "contractHash": "6c5abe648877900b6a12a1263cf716e60057d3922d4a0332d54fbda73b042030"
+    },
+    {
+      "id": "biz-a11y-radio-group",
+      "contractHash": "9a5d5b626f7c1375286d9825dc8e5faffa6e886441c75f0ea6b9b262cdccca69"
+    },
+    {
+      "id": "biz-a11y-reduced-motion-persistence",
+      "contractHash": "81ed9c67f66079a4d7cbdd155a8020839bc0e5ab50b03700e743024c8e304d21"
+    },
+    {
+      "id": "biz-a11y-redundant-entry",
+      "contractHash": "a41e8406d513deda2c95614a272c7f01a23ac2b831fe24a4e2dedc712ff69c88"
+    },
+    {
+      "id": "biz-a11y-reorder-announcement",
+      "contractHash": "096523ea8400cb982ca723dbba92ba0ba1e6bc0dfa510b4aa979937a7b456944"
+    },
+    {
+      "id": "biz-a11y-required-error-summary",
+      "contractHash": "4ae3c10e8dbe592b45671d5ca76866fd9f52aaa5a5c671fccc1e65a03daf0781"
+    },
+    {
+      "id": "biz-a11y-required-fields",
+      "contractHash": "bbd46b58b69454e7cf3d43e3a1c6bcbd535bdb059658a44ba5bf5e8ce31fee87"
+    },
+    {
+      "id": "biz-a11y-search-results",
+      "contractHash": "43180ee505b058dede63b3943d85832a0a8904b30c295d68d8fbf8bcf9bd6fe7"
+    },
+    {
+      "id": "biz-a11y-search-suggestion-focus",
+      "contractHash": "0d864ac85c030f0e6f1bc00af4eed07bdc5cde51e7811dc11906088d8126f82b"
+    },
+    {
+      "id": "biz-a11y-selected-current",
+      "contractHash": "bacba40e5d2b991de0bdb43b090a9ec1bae117d5e64cb6cdafde34912302f151"
+    },
+    {
+      "id": "biz-a11y-sensitive-announcement",
+      "contractHash": "726dfe656243789526815953fc80d500273e1d26bf94452497eb2623d0ff1fbb"
+    },
+    {
+      "id": "biz-a11y-single-key-shortcut",
+      "contractHash": "bc079124d2b6055534d23b9a95db99065ae33e6a4b1f8aeecee30419dc6145fe"
+    },
+    {
+      "id": "biz-a11y-skip-link-target",
+      "contractHash": "05963a5f71d0d21fa607a49a3aa760676c8704feb3eb6646cce9ca450357b85b"
+    },
+    {
+      "id": "biz-a11y-slider-value",
+      "contractHash": "10b6f0c8d5d99a9adc29b9537dfe8deb9a0d2b8c435ff7586c3dee5ff8c69fa2"
+    },
+    {
+      "id": "biz-a11y-sort-announcement",
+      "contractHash": "347914009c2108ec575bc6a4b7e949dc694d74f7345a8acc08bcf72efa5ef9cc"
+    },
+    {
+      "id": "biz-a11y-status-announcement",
+      "contractHash": "741f6f12538b16e7358a25a771249a21750666d2cff2c602cab2446daaf8c0a0"
+    },
+    {
+      "id": "biz-a11y-table-cell-navigation",
+      "contractHash": "574210919d37a9a3d81738d5ed3a0dda70635560027f64b9edd75506ea2d8f6f"
+    },
+    {
+      "id": "biz-a11y-table-summary",
+      "contractHash": "39da156a515287e1473dfdad06a9e51fe34b3526a5369fda9d7d1d27a5821314"
+    },
+    {
+      "id": "biz-a11y-target-spacing",
+      "contractHash": "a3f206c1341a82674e80d7049bdb0d5bca7c6d79f2b8f37c869eb2718fde4af2"
+    },
+    {
+      "id": "biz-a11y-text-spacing",
+      "contractHash": "8d7071e6272c28eca18f98f4b34be4aff07499f30bb778a75945710bb8dd2c06"
+    },
+    {
+      "id": "biz-a11y-toggle-state",
+      "contractHash": "7098e113f82ec2efa74b1e43872878a55de8c3c8b06caf869d451cf747f902f3"
+    },
+    {
+      "id": "biz-a11y-transcript-structure",
+      "contractHash": "9a1732ebaa1abd2bf26662f6ee580c7399b7b8d087c6091e85f57325d723efbf"
+    },
+    {
+      "id": "biz-a11y-zoom-reflow",
+      "contractHash": "8fe26fac62f4e80bd5df37ab0756d5933d50cf7299c812683bfed1b825ce73fb"
+    },
+    {
+      "id": "biz-accessible-alttext",
+      "contractHash": "47e33cc93c5948c1f6ebbc5e541b6951363800d1c06433c016dbc5eb8476b580"
+    },
+    {
+      "id": "biz-accessible-audio-description",
+      "contractHash": "dc1f398ea893a12ee3d8fa7d75906e03a67eb85528088c14c04cdd03740d7b51"
+    },
+    {
+      "id": "biz-accessible-caption-sync",
+      "contractHash": "ef238e3f76f4c671e87570a1fe764639bd9c00b8bd6bdf44da557f717bf31128"
+    },
+    {
+      "id": "biz-accessible-focus-return",
+      "contractHash": "e876b600c13eb48d0220777a4b39f8a8317039eba1f473af8602a12a62e955ad"
+    },
+    {
+      "id": "biz-accessible-form-errors",
+      "contractHash": "7188888c6840a59a1178561cb481eaa228260e75774d1ac5db0dcca87b18273d"
+    },
+    {
+      "id": "biz-accessible-link-purpose",
+      "contractHash": "e129a945ede03f0fe10591ef824f71e038ca00c2a48aeae648c97775bd7213e3"
+    },
+    {
+      "id": "biz-accessible-motion-choice",
+      "contractHash": "8f8af6784a7ae32fa2d1160a38bbc616398f3fa8e26e04cf443b1258927cd033"
+    },
+    {
+      "id": "biz-accessible-reading-order",
+      "contractHash": "cb5f4370b49df1dfc8caa4cfe25b5b2c1607d572f2fede84426e51de64092e57"
+    },
+    {
+      "id": "biz-accessible-table-headers",
+      "contractHash": "3285d7fa5b3a0a0558d6148744b7da5edd625142c52738c72bb04c9f0f02034f"
+    },
+    {
+      "id": "biz-accessible-time-extension",
+      "contractHash": "47a627a0eeacdb3ae2f9fce7629a16aab0fef3be6cd565883c3cefeb7a61b4a6"
+    },
+    {
+      "id": "biz-account-comment-resolution",
+      "contractHash": "60f698e22ab61a116136ae85cf4587c806c9b821ed8093b772dda58883858ec2"
+    },
+    {
+      "id": "biz-account-deletion-dependencies",
+      "contractHash": "ba8690f9c6d930e20c1462cb71ff28db6448d8d2a4de4009fda05a3368ceca98"
+    },
+    {
+      "id": "biz-account-download-format-loss",
+      "contractHash": "cbbac7ee1b3db87809b0c5b4936b883702008e8760f4d4d78d4d5abd737f5b6f"
+    },
+    {
+      "id": "biz-account-email-change-state",
+      "contractHash": "013612a7c9906bdca6bc0be11ad4ffcfadc5554fe3268f5faf86994c6804c9ea"
+    },
+    {
+      "id": "biz-account-export-scope",
+      "contractHash": "142f63bca1fcc76fe7d9ae8b921f15a1898a0e5a503dcc1cbfaa6b0c82435fab"
+    },
+    {
+      "id": "biz-account-import-conflicts",
+      "contractHash": "04ed66860928821d336daa0ad9649b76c9e99d56425cbc0c0790c36413d195b0"
+    },
+    {
+      "id": "biz-account-invite-expiry",
+      "contractHash": "beccf9cf170a9e140a87e89c77f16467bb0abcdef0e13778a9ccb76e1ebd8545"
+    },
+    {
+      "id": "biz-account-notification-precedence",
+      "contractHash": "4ba0e615d1992d90d8b0788fc4f00160815f9fa6b8262b17dccecbc85d3f284c"
+    },
+    {
+      "id": "biz-account-offline-sync",
+      "contractHash": "fa383332c0ab9cdab59cad09f21481f60d90b310147dae731c5ae31fb7b31294"
+    },
+    {
+      "id": "biz-account-profile-visibility",
+      "contractHash": "c6dbb8790a90a8873fd01da42a9586d5de3c0f21b9e8375679cd8d316fc730df"
+    },
+    {
+      "id": "biz-account-recovery-methods",
+      "contractHash": "f22a661fb9d25dd57a458f9b97a236fa12da20ce7f62c706d05b7ac4be241218"
+    },
+    {
+      "id": "biz-account-save-conflict",
+      "contractHash": "ecdd23180ce82ff566ef92f2da89ff91e67ca2b5bbe46075c17603b266c9a4f9"
+    },
+    {
+      "id": "biz-account-seat-transfer",
+      "contractHash": "eb3c8545e59aa37012c320e88ff3f0ab68d1621a7d3c8854ec50166fcb64565f"
+    },
+    {
+      "id": "biz-account-session-list",
+      "contractHash": "8eaf1e317810ec731f4e596d3060293cd4e04a1f17e319a18d90814944e3c286"
+    },
+    {
+      "id": "biz-account-shared-link-scope",
+      "contractHash": "2e191ce1e7600304240708900b8bdc76f37aff3efac081a9771de1fe542eca5f"
+    },
+    {
+      "id": "biz-account-trash-retention",
+      "contractHash": "1141842f88a75829a933d52f614c7a18ff2ac07cec898dc3cc6f2a62f713cf06"
+    },
+    {
+      "id": "biz-account-username-collision",
+      "contractHash": "72f6e6269c1e620e95d33a45016b5d492c6fefce0b4abbd5c601227aab22b5a1"
+    },
+    {
+      "id": "biz-account-version-label",
+      "contractHash": "8e18aaa7a87f7006621986eec4d0858800f8bad27475f140160da417ba533e45"
+    },
+    {
+      "id": "biz-account-workspace-switch",
+      "contractHash": "effb8274532ddc4e0d0f88e37c7d5463559f9f33e83fd80be615d9398e4ae7ab"
+    },
+    {
+      "id": "biz-acknowledgement-gap",
+      "contractHash": "8aa83c6b761b517c93ae83f01c23d893ce56af62613c8ec6c94b5734e8b1f9d4"
+    },
+    {
+      "id": "biz-action-aging",
+      "contractHash": "4290df0a18155b31ef14fc2476ca9955edd46eaa60999aba56cd317fa4b286eb"
+    },
+    {
+      "id": "biz-agenda-timebox",
+      "contractHash": "695fd2817aa3a3ccb903d9fd011aa3ebd59b821e925ca987e1d6cdb74773e16c"
+    },
+    {
+      "id": "biz-announcement-embargo",
+      "contractHash": "ecfc9e65857c67042b97db1a1d34e2775494b4367d575e1416b8ded0d93906c2"
+    },
+    {
+      "id": "biz-brand-logo-clearspace",
+      "contractHash": "6bb65d5c6fc6706312faa2769565534ed222dcd3f6708687efa792ca10e300b4"
+    },
+    {
+      "id": "biz-brand-parent-subbrand",
+      "contractHash": "38fb366a0420d88334368a88a74917cbd29e6e15e991140c0c3df29d20a4a048"
+    },
+    {
+      "id": "biz-cancellation-fee-stage",
+      "contractHash": "fb4bb7967a2614793ece062cff1f7d2174003b06a185ca3fda49b314436c5875"
+    },
+    {
+      "id": "biz-career-accommodation-request",
+      "contractHash": "02325b577b764cf15bb004b8e60da22cb63d3665b86b9069136496f8c43d75d7"
+    },
+    {
+      "id": "biz-career-achievement-baseline",
+      "contractHash": "6183b23ef1764e2e0285035e46f60216103a70434fd73cfa7358d581e3e61def"
+    },
+    {
+      "id": "biz-career-application-consistency",
+      "contractHash": "2494359164fbe5e32ac5a9c52c941beaad00f5a05e7878e9ab1cc5abc45b3297"
+    },
+    {
+      "id": "biz-career-application-target",
+      "contractHash": "9a9962a93cdae80a8bd449d5a5227f7ded1767031d25ae7818408bbb7d56bf7c"
+    },
+    {
+      "id": "biz-career-availability-answer",
+      "contractHash": "31949075261d787ae3a1611e567d27f41a6bb0050fa24aca296a5a43cbbbddc3"
+    },
+    {
+      "id": "biz-career-credential-status",
+      "contractHash": "d55d495c8b70cb48a4b866ed152e5f5a80a66007d50d2ee48f6869036c55485f"
+    },
+    {
+      "id": "biz-career-feedback-application",
+      "contractHash": "c1166ba8cc940b103ea90f9dd62e148a7a0fa51744fa44d0fccf71d5954f9d4a"
+    },
+    {
+      "id": "biz-career-interview-notes",
+      "contractHash": "3cfbb7047f9bf1a4dc46aa446d64bdcb13dbf4ad6ec96d8de3603cc7b4033954"
+    },
+    {
+      "id": "biz-career-interview-question-boundary",
+      "contractHash": "f693b9f3b37679815b2a3040d0202d7ce77297a4a4d1d6b550bce389ab28f56a"
+    },
+    {
+      "id": "biz-career-networking-context",
+      "contractHash": "d40ba8d4e6b46ce53b993e39c847ef95c229b70afc6c761d560bb0f0f8c5b1cf"
+    },
+    {
+      "id": "biz-career-offer-components",
+      "contractHash": "bea4f3b0609a1f7035f9b08a28cbe595b16940194f1305be87c119c56fde281e"
+    },
+    {
+      "id": "biz-career-portfolio-confidential",
+      "contractHash": "ba8a5f05695c4c9b9b167175d5f4d151437173cd2b1fb27faa827bdcd96442e7"
+    },
+    {
+      "id": "biz-career-portfolio-link-permission",
+      "contractHash": "fb1366ea4b4388afb50d17220556d84dd495d0e93f9b20d3ff0e1cd6cd965aa5"
+    },
+    {
+      "id": "biz-career-project-anonymization",
+      "contractHash": "de4fae30975d68dcbce8a09b2188d6511b3cf95667e49cdb53fde76a8815e638"
+    },
+    {
+      "id": "biz-career-reading-order",
+      "contractHash": "fb1861b1ea3e10a26f370fc70f74b4596f33626df2bcc31d01371eeafa0e9336"
+    },
+    {
+      "id": "biz-career-recruiter-reply",
+      "contractHash": "14360c02e81e5d58cd9f8a8afcc57e83777fe39575de3b511216b033abd2ccef"
+    },
+    {
+      "id": "biz-career-reference-consent",
+      "contractHash": "9be2ea273e26f0d72a8348ea78e3ba85ae162173624231451bd4b4b97905fe98"
+    },
+    {
+      "id": "biz-career-required-answer",
+      "contractHash": "2d197788c9de2425e123815832274ac1d7b3c0f73cc0f9ec2473a8f9ff9c6b1c"
+    },
+    {
+      "id": "biz-career-resume-timeline",
+      "contractHash": "7d0204df3bde21ce5f72df2512d0f71a10b30dd40ffd5eb5c2fa80eccc958868"
+    },
+    {
+      "id": "biz-career-skill-evidence",
+      "contractHash": "4589be13b4ed11b8318c333d1517329685f408b6e9a7d79fba0221798fe97c50"
+    },
+    {
+      "id": "biz-career-star-result",
+      "contractHash": "6dce6d4150193a81cece4eee83c57704df89ca43c6117d0f2f78d45570d2cffd"
+    },
+    {
+      "id": "biz-career-withdrawal-draft",
+      "contractHash": "3fa43030e1bf58438352ebfa9cb1b2afceccae6ed0401aee6a3dfbfbbf92e770"
+    },
+    {
+      "id": "biz-career-work-sample-instructions",
+      "contractHash": "ca6679ca46f1534873de06cc47a396fa5a6d6a1fe7ccd18342e1cc8fd1c9b4e7"
+    },
+    {
+      "id": "biz-cart-incompatible-addons",
+      "contractHash": "b737f84be569c59e135275a0c83491358cf64e43d914ecc454d0986abaddd927"
+    },
+    {
+      "id": "biz-cart-increment",
+      "contractHash": "ec3b6032eb1cf1f447f9cf459beee3e144a3900914a4be6d7b35ecbeb52e9cbb"
+    },
+    {
+      "id": "biz-comms-ack-vs-approval",
+      "contractHash": "69b92819ec08796917825c0c0a72b0bf420bd1fd7f531eac7bf16f78878402b5"
+    },
+    {
+      "id": "biz-comms-actionable-error",
+      "contractHash": "fa7035a7c6b7c15387266c8cda763c3c13cb03b540150a486446250230f6292b"
+    },
+    {
+      "id": "biz-comms-attachment-mention",
+      "contractHash": "5500e18fcde5aa1e2a319c0374cbdc1a7eed363b8e6c838a86d70fa2d9284a09"
+    },
+    {
+      "id": "biz-comms-bcc-privacy",
+      "contractHash": "59a49bf0dc6a75f413eceea16b7e1d1479023fb570788c231bb35eeec56b5cc3"
+    },
+    {
+      "id": "biz-comms-briefing-question-order",
+      "contractHash": "06f317d9888b0876957dce984668a047816b653e97671f98f0617b23979b427f"
+    },
+    {
+      "id": "biz-comms-deadline-ambiguity",
+      "contractHash": "2614d655df8e0cc1a00530efc086336d688350938f0553cb4f251e1423e15360"
+    },
+    {
+      "id": "biz-comms-decision-log-link",
+      "contractHash": "7364ebc49812cb3032fdf676f01a4d72036f3b42ca549bd6ce445affdf2fb2c3"
+    },
+    {
+      "id": "biz-comms-digest-importance",
+      "contractHash": "b61a709a375d386ef65e001d07d23cdc2f6bd2b6cfc9f5ff7cf7530c93b92942"
+    },
+    {
+      "id": "biz-comms-forwarding-context",
+      "contractHash": "1b348f119ac233d9c9874af99bc002df636b4c4fdf1dd58bf19cfd4c4b535809"
+    },
+    {
+      "id": "biz-comms-invitation-purpose",
+      "contractHash": "b0c0c0d6d655c2c86007d6766a61971d287eaa7b81f0e400693c9c76372db01d"
+    },
+    {
+      "id": "biz-comms-meeting-timezone",
+      "contractHash": "dcea200376a7d9e18bbc6a903362acc06b1b7b60ec84b6c261ecdb962dac8484"
+    },
+    {
+      "id": "biz-comms-message-expiration",
+      "contractHash": "e78b263fd6aae2614010b2c03adeb4d7a9d592ff91ab72e8378db69b9bd3f2fb"
+    },
+    {
+      "id": "biz-comms-name-pronunciation",
+      "contractHash": "a51a1de2905fd604bb08c14a63a5b2a8bb5a200746d4c2ec036b7945389dcd71"
+    },
+    {
+      "id": "biz-comms-out-of-office",
+      "contractHash": "7a7c27d8359e9b6893813311d10ac14e7d9081f8e85a86dbcb89531f3993041c"
+    },
+    {
+      "id": "biz-comms-phone-script-consistency",
+      "contractHash": "c82a1717d21ea2497f3cbae00aec69a190e16df10338a1c0cf9d718d283661d2"
+    },
+    {
+      "id": "biz-comms-replyall-audience",
+      "contractHash": "f65e20c07f1ad4a677c927b1def71995d85ba047e08ca3f82cbbbd1f20e81292"
+    },
+    {
+      "id": "biz-comms-request-vs-fyi",
+      "contractHash": "f98aaefc850211f093174d80c3b714752b38789083320ca4394b777bdbe17803"
+    },
+    {
+      "id": "biz-comms-retraction-scope",
+      "contractHash": "cf13b5b8014b91c10d19270aabe098888b2c33863edb1495dbb9fe2670d6a8b0"
+    },
+    {
+      "id": "biz-comms-shortlink-label",
+      "contractHash": "5fb1f808369f2c07f395a9a2dd6288f0615063ba777b1ec2835d17025c4c73e8"
+    },
+    {
+      "id": "biz-comms-silent-mentions",
+      "contractHash": "379628993452032313fbb7cdb7df703e08a488d5a2389d8348693db037457301"
+    },
+    {
+      "id": "biz-comms-status-color-text",
+      "contractHash": "1588e90ce840aa9ee3620a5c8437545c09abaf5a4052c260a539d4a207ced22d"
+    },
+    {
+      "id": "biz-comms-summary-action-owner",
+      "contractHash": "85dcc6409592eea94d87ffaec78b18735db271de398877a4253ef18c2d9b942f"
+    },
+    {
+      "id": "biz-comms-thread-latest-version",
+      "contractHash": "ed19405de591b4d38cff4e3bc3a2f7ccc9a40b3f92d225beba86266cc8453d9b"
+    },
+    {
+      "id": "biz-comms-translation-names",
+      "contractHash": "22579e591291740ab827b1bd35e707c68190c7d464f1f6f9e9d0f85379bca0b1"
+    },
+    {
+      "id": "biz-comms-urgent-definition",
+      "contractHash": "e84fad21dbfe4aa3b646aacebc030a63b10b43cbf5091e784ee7711372d496a9"
+    },
+    {
+      "id": "biz-community-appeal-new-evidence",
+      "contractHash": "d1f0d68cff42c6e9ae8875a6f886be0b55b92e719f5db6cbdedd04530e02c471"
+    },
+    {
+      "id": "biz-community-badge-criteria",
+      "contractHash": "a8f2b54625857110be1dae50724c6d68e6ef1ed166497d9a270e507d9bb24691"
+    },
+    {
+      "id": "biz-community-crosspost",
+      "contractHash": "25212b502397e183d6fad867be0d58e8a6e171be81f2ca176030e6dc9ef8a1f7"
+    },
+    {
+      "id": "biz-community-event-permission",
+      "contractHash": "598d69d2d017108f47ae8e4adeefcb780ba4333c2ffbf918d924de0b30f8fc99"
+    },
+    {
+      "id": "biz-community-faq-candidate",
+      "contractHash": "fecc173ee32f2f50a8c69d4d315f2a9d5474f98b57cb01a05ac83a8011ffe7a5"
+    },
+    {
+      "id": "biz-community-live-thread",
+      "contractHash": "864d44c05283ab1c37d315388811d6741e36315cef3bab56fc08376490cdc967"
+    },
+    {
+      "id": "biz-community-meetup-capacity",
+      "contractHash": "ecff312cbdadb047411faee73676ee116b51c545bcb5bb38d4b6ce1dfd7b1cb3"
+    },
+    {
+      "id": "biz-community-message-boundary",
+      "contractHash": "c3b688f5f44df2cdf97cdba6913399763550b295e4abe79f78f5587abdef153b"
+    },
+    {
+      "id": "biz-community-moderation-evidence",
+      "contractHash": "e6ee81b68845b5ea02e7375b3dff45cbb6bd7de9d9ca50be9b237e74660606c4"
+    },
+    {
+      "id": "biz-community-poll-options",
+      "contractHash": "0fa6219e8c8ca9fb21d45b79c1e1f828a2cf6839bd24b5708637cdfec3a29f31"
+    },
+    {
+      "id": "biz-community-question-title",
+      "contractHash": "912d7363e832aa3252178ff62d1d8ba38cfcb875936cebdce331000d1400a800"
+    },
+    {
+      "id": "biz-community-reply-coverage",
+      "contractHash": "831111790e1a5720184c57ab9272014776e2fa8371b13e13ca134693baa24f00"
+    },
+    {
+      "id": "biz-community-resource-credit",
+      "contractHash": "00b167047d258a9f42ea454b4e7ef5d4ff4bfb84b6b1cd7853e08c6dd2a9ea36"
+    },
+    {
+      "id": "biz-community-rule-change-impact",
+      "contractHash": "14fcfd9ab28911d65e5a2a467c5f0be64e64cfa7cdaafcec1ab53b7a0d8b8629"
+    },
+    {
+      "id": "biz-community-topic-placement",
+      "contractHash": "b530c85455ff77e80be9b7d7a1ff6e3f08b7ffbc9c07fd92e37dc091afe3d75a"
+    },
+    {
+      "id": "biz-coupon-minimum-basis",
+      "contractHash": "2eb4050bdfc2df3a1ecd54ad882425e176445bd90823d82bddccfb6457a29afe"
+    },
+    {
+      "id": "biz-coupon-one-per-order",
+      "contractHash": "015d3e500f9d396517dcece7eeb7c7109467fc253bf4262c9bf3111a70d5091d"
+    },
+    {
+      "id": "biz-cover-roster",
+      "contractHash": "157cb5ebea55aac5ebc02a072c88313638e9d29154fa7b102a3b0c0559d37eb4"
+    },
+    {
+      "id": "biz-craft-bead-direction",
+      "contractHash": "30c9b75e65dc74b52e1e3cc20074fdacf213e0df6a90ac4f20ac2e222e27758c"
+    },
+    {
+      "id": "biz-craft-buttonhole-direction",
+      "contractHash": "f3b43d4f51c728eba31a03b9dba69f28661117a6ae32347dc23d119f7af1060f"
+    },
+    {
+      "id": "biz-craft-chart-side",
+      "contractHash": "3fe53081dc9b58992e36b7ad1d9135d72a3a86e4049eab3c912be3abbdde17bf"
+    },
+    {
+      "id": "biz-craft-collage-edge",
+      "contractHash": "cacaf76f4cc2567c0b3cd602dcb07629828e09303c938bfe166eb8cf7ee510dc"
+    },
+    {
+      "id": "biz-craft-crossstitch-count",
+      "contractHash": "921d8cf0a7414dba4c697a101890bfed7f899323e28a6ad58cb584a3d589df63"
+    },
+    {
+      "id": "biz-craft-embroidery-strands",
+      "contractHash": "1a68d45b600b30a8a50a53bef1fa5702d9cb75def56f5f14fcf3fbf0f65b7aa9"
+    },
+    {
+      "id": "biz-craft-grainline",
+      "contractHash": "e85b4753299edee93c2fd184136bb31491d2989f67baf15d2eae1396da964ea9"
+    },
+    {
+      "id": "biz-craft-nap-direction",
+      "contractHash": "9d5bd0adbdc1c791322c592f30bd6455a7f12d20bd22f3432d1789332dfd8ccd"
+    },
+    {
+      "id": "biz-craft-opaque-glaze",
+      "contractHash": "f5f5a5cea8049bcaba2b869f84d86adc07bc026cc0dd4a644d4d1ab149805704"
+    },
+    {
+      "id": "biz-craft-origami-fold-sign",
+      "contractHash": "c56296ff07467f08267efa1dc037d7b32c6061d4587e6aff87c14db4febe4d09"
+    },
+    {
+      "id": "biz-craft-paper-assembly-access",
+      "contractHash": "727919645e50aee195d58f4ba2734785d6e726ed0b28cb4990716453e1537a81"
+    },
+    {
+      "id": "biz-craft-paper-scale",
+      "contractHash": "152c92b2807edcdacd1c2def400ce433565022e5f8b98e16eab2488e257c96b7"
+    },
+    {
+      "id": "biz-craft-paper-tab-side",
+      "contractHash": "a9761e2a76c6db2d465122bb8f7c2fda20389f7acbbcca673ce4c817f0128d1d"
+    },
+    {
+      "id": "biz-craft-print-layer-order",
+      "contractHash": "e3fdcd274da013dff49e941abb9083184ea95745505afd6fd4546eb45c50d827"
+    },
+    {
+      "id": "biz-craft-print-match",
+      "contractHash": "8848e1e305d9b822067c022d3ab0f78434367dbfad624263aba3a88891cd8af0"
+    },
+    {
+      "id": "biz-craft-round-marker",
+      "contractHash": "262b0b234645ee9eef02d3201838305d54393a14517adb0b22f3839b5be2f95b"
+    },
+    {
+      "id": "biz-craft-seam-allowance",
+      "contractHash": "c6b77aab53083134fbd6c369b4f6b6fefb1bb86ca2f210e00ad6395cbaf75963"
+    },
+    {
+      "id": "biz-craft-stitch-balance",
+      "contractHash": "cd2cda190a52d4199f3a04b3f09f31e7870632ee4419574e5ded62f26d1caf3b"
+    },
+    {
+      "id": "biz-craft-watercolor-white",
+      "contractHash": "0a4bb897d91f7e6b233664c3328f00b352e0600635773898a173a93f77f6e23a"
+    },
+    {
+      "id": "biz-craft-weave-alternation",
+      "contractHash": "8671bdfa2de23471bd379984386f7538d67bc9a4a69491de12ee97a9281136ba"
+    },
+    {
+      "id": "biz-craft-weaving-selvedge",
+      "contractHash": "8669c55f5cb32f3ce9f549e68126adf18c9d510da4f2068053909a9af6ffb468"
+    },
+    {
+      "id": "biz-creative-acrostic-check",
+      "contractHash": "926b97edaf7dbf7846087af93b86cf435071af65272fd90ccda2f9926e8096c2"
+    },
+    {
+      "id": "biz-creative-adaptation-medium",
+      "contractHash": "84f885954bcd408a9f953033be77976fbfe1a3e2d198e4189c6e1ae2a0a6c46b"
+    },
+    {
+      "id": "biz-creative-animation-hold",
+      "contractHash": "2d78e839c56dc5e102efdd9ba37f637aafe518a0ce7c25e4ac07d295d3de3796"
+    },
+    {
+      "id": "biz-creative-animation-loop",
+      "contractHash": "41a4fbbc1f6796072dce3cd822a76b7dbfbcd8476082103f36fe991cb2ea26ab"
+    },
+    {
+      "id": "biz-creative-art-reproduction",
+      "contractHash": "52b1a3067fedb74dfe5d132587cc937d1db01d7c1b9dc1757929b2b8e30a966f"
+    },
+    {
+      "id": "biz-creative-balloon-order",
+      "contractHash": "c5348c5b54cbec9bd71b3f777051c594077c4ca9124f2da781f11c61d2a5f9e9"
+    },
+    {
+      "id": "biz-creative-boardgame-turns",
+      "contractHash": "57933801816939db3fec567166d170f3f062f61c2ac53d35f61e4266666da98b"
+    },
+    {
+      "id": "biz-creative-character-voice",
+      "contractHash": "12ac85874c07d7cf26fc49bac6922a3d924a67102e2d8ec94c563811886f53b1"
+    },
+    {
+      "id": "biz-creative-chord-transpose",
+      "contractHash": "43506b5190c31ebbe249693a75bae4dbe09abc3a5484d458ffcec7c97f5cbb2c"
+    },
+    {
+      "id": "biz-creative-chorus-reference",
+      "contractHash": "8ec7f2b3bc68fe5804cbea86f76ed164061ef22b82ad14bc3a0b6b47add8fc54"
+    },
+    {
+      "id": "biz-creative-comic-sfx-source",
+      "contractHash": "1ae988583cd9cc6aa076f705e53673e6dbc24c99bfd3aece6cdd8aa829d36482"
+    },
+    {
+      "id": "biz-creative-comic-time-scale",
+      "contractHash": "538074b6ff71e337d72a276a058d3b78c5b4a5eadbadc4019df1a592a5981d29"
+    },
+    {
+      "id": "biz-creative-commission-brief",
+      "contractHash": "e4dcc80390ba87e7d84f83f7c630bb525afd94c423da798b75a1dcd02555d66b"
+    },
+    {
+      "id": "biz-creative-credit-order",
+      "contractHash": "da966b127059eb2ec65b8439f32a185416e077b7598713121a8feca6abc6f85b"
+    },
+    {
+      "id": "biz-creative-dialogue-interruption",
+      "contractHash": "f1651006592fb2a1c5b2b91b6254191253bd73e47a01e6a81b1e5d60d35ed18f"
+    },
+    {
+      "id": "biz-creative-dialogue-overlap",
+      "contractHash": "8210f7eb69b6b1c4511a157aa6a5a432c83b62634e1625c1c64d9bc6a3359bbd"
+    },
+    {
+      "id": "biz-creative-edit-duration",
+      "contractHash": "b0ea5ff8bc4cc44d250d2f1eb4d8140b5f2423affa94f770a9d784938338d261"
+    },
+    {
+      "id": "biz-creative-exhibit-sequence",
+      "contractHash": "3bbc455c4f4b878ad5bcfbbffc92faa1a400b28a3763c15db302d54a47ea912b"
+    },
+    {
+      "id": "biz-creative-game-economy",
+      "contractHash": "860b419495a1273331d48fdd9b9f3750cfecd2e09621c3d42e41625b0626b61d"
+    },
+    {
+      "id": "biz-creative-game-victory",
+      "contractHash": "4e87ed5acccd9d97805e8fdcac01ce21903d32d7258355dc90d6f1b6fac0843b"
+    },
+    {
+      "id": "biz-creative-hint-ladder",
+      "contractHash": "8db944d8c9b34c89d0596704363ea5f30b20875bffda7ece8d3b7dae116a2f3b"
+    },
+    {
+      "id": "biz-creative-installation-instructions",
+      "contractHash": "fe8edcc6540e7f7764f1899bca6ad5889f97c15af38f7bbc54cbcad4b78f1b3f"
+    },
+    {
+      "id": "biz-creative-instrument-entry",
+      "contractHash": "34c4445fe3397569e664d3baab87d713d1701eef9d4055ba096d821df9731cde"
+    },
+    {
+      "id": "biz-creative-lipogram",
+      "contractHash": "6ee14d2f7b1491e35f943c0ea59ed04dfa93db521ebee7e1b53f7ddc68cd93b1"
+    },
+    {
+      "id": "biz-creative-mirror-lettering",
+      "contractHash": "d775a392e5d0c44bd080fdba563e33950787f25e62fc802d9602d52918372648"
+    },
+    {
+      "id": "biz-creative-music-bars",
+      "contractHash": "9f2cfd7528a928e6abe391779df97ef2ec64a7f20d124403b2c4a4d376eed763"
+    },
+    {
+      "id": "biz-creative-narrative-distance",
+      "contractHash": "5ad4110cf54f20b8eac963a158802ae0f4b2e517c768dc09bcf80e397c58a847"
+    },
+    {
+      "id": "biz-creative-palette-roles",
+      "contractHash": "4b50182b4c0c134f8b16117a2423c49386ed9d5a5b6e76fc40edb1721fab7c6b"
+    },
+    {
+      "id": "biz-creative-pattern-sizing",
+      "contractHash": "8a73a14c6c0c1ca12f598552ce1718ab3d28376fbc53eb8c92358bf706d8322f"
+    },
+    {
+      "id": "biz-creative-photo-contact-sheet",
+      "contractHash": "7d5ffbc194cb487edc2774eee635522c078d1566c836467e626f6005cad4c71d"
+    },
+    {
+      "id": "biz-creative-photo-sequence",
+      "contractHash": "f1feaedfb4a39475784a06448c115c4c71d00ab2214c2bed94ef5a33f8b6ea56"
+    },
+    {
+      "id": "biz-creative-podcast-feed-order",
+      "contractHash": "1ed228b03da1f8765bd963e586a70784033fff2f1688313f2163b3e18fa9ffd2"
+    },
+    {
+      "id": "biz-creative-podcast-readtime",
+      "contractHash": "d14f4398f26efcb2695448e627653c5cafe7f68c669c0c7807966e04109a94e1"
+    },
+    {
+      "id": "biz-creative-poem-meter",
+      "contractHash": "a216bb5aa278809a78c2be3751d3b20b2a63a6125feb4d91b8a52adb0c521e06"
+    },
+    {
+      "id": "biz-creative-portfolio-balance",
+      "contractHash": "8197a5742675c23f8ee9fd23f22c2cdafeb2635ea26aaec177246cfed61dc3a9"
+    },
+    {
+      "id": "biz-creative-portfolio-caption",
+      "contractHash": "86d085149ea5c5517bdb5b53c0de840d90d2bf8b2c6c0bf1ccc6e365f72dbd50"
+    },
+    {
+      "id": "biz-creative-rhyme-scheme",
+      "contractHash": "fe4857a8993276f59f1d08339b7d4f1b2038e274bb583906b31ab3d7a277557f"
+    },
+    {
+      "id": "biz-creative-score-range",
+      "contractHash": "51305e2b3e703e403b37407885b8a845396fa2f2150a45385b0d1581148c4999"
+    },
+    {
+      "id": "biz-creative-score-rests",
+      "contractHash": "d64a29d20d5b4a3e0119a5129ce6e08f5cbcda99bb85df79d01fb68e210be0c6"
+    },
+    {
+      "id": "biz-creative-shoot-light",
+      "contractHash": "5ff510e430329f79afbaa737c0c15133f652d941a6154cb39fc177229611fdb7"
+    },
+    {
+      "id": "biz-creative-shot-list",
+      "contractHash": "49221eece8143836b870f137dba07218e96e38ca94c71a6fa0f7277cda5df30d"
+    },
+    {
+      "id": "biz-creative-silent-scene",
+      "contractHash": "a79d109c318fbc14704e051793ff86466a19457846dfb2881cf11243cdc3ffcd"
+    },
+    {
+      "id": "biz-creative-stage-cue",
+      "contractHash": "94120339698eaa41cd16bf2ca0d293def86962932f8b0e002fa6b3652f864179"
+    },
+    {
+      "id": "biz-creative-stage-prop-reset",
+      "contractHash": "7037d4829e241bfd00b3b51ad16401f8d1b01e942b39f45ee8c1a74aaabe715c"
+    },
+    {
+      "id": "biz-creative-stage-sightline",
+      "contractHash": "3912b23d778b61c1e11d9c315c71af5d9d94f7a53c550b3fd044082693edba46"
+    },
+    {
+      "id": "biz-creative-stopmotion-movement",
+      "contractHash": "1b3db190ab17f8f2c00aa07de2fe26938b6b409cebcc1a489d69c1389348c656"
+    },
+    {
+      "id": "biz-creative-workshop-materials",
+      "contractHash": "ac3ef45891ffcc3364a18403a1b0cc9dc5a4a5f4c916ad9c4a33dbf43bf30654"
+    },
+    {
+      "id": "biz-creative-zine-fold-order",
+      "contractHash": "5a06ad883a80ab25d3cd35f572cd1098e3531539e13660c3c7979df89630afec"
+    },
+    {
+      "id": "biz-decision-sunset",
+      "contractHash": "115b92da2622ccd397e1bc206cab2799dde82d2ff10a5b6f7ace56aebb4fb4f3"
+    },
+    {
+      "id": "biz-delivery-instructions-conflict",
+      "contractHash": "56243557ff3cea0d935e6a660cf2fb819b6f79e3427cb3ba2cefbc6ffcfc9c5c"
+    },
+    {
+      "id": "biz-design-card-sort",
+      "contractHash": "966fbaad4af912572e83a7ecff7f4d982de166ad2100fc2c2ee7d289c11219fa"
+    },
+    {
+      "id": "biz-design-dark-launch",
+      "contractHash": "4cc8be5768ec83931640529a7e4d143b88887d48c8606b597917d0d9135df61d"
+    },
+    {
+      "id": "biz-design-diary-missing",
+      "contractHash": "6ea44b1c1dd66697b1a72e30c64d3cf195f6c91e8bd1f5b271b6935b62def857"
+    },
+    {
+      "id": "biz-design-first-impression",
+      "contractHash": "2cb689fc1e4c5306d8f6fc4ee27c570aa235ecbb5a61f572e5acee3495e218aa"
+    },
+    {
+      "id": "biz-design-frontstage-backstage",
+      "contractHash": "0893496ee4c5447473941655a52cf7a395574c4c65b425f83a4881d7e9b57e11"
+    },
+    {
+      "id": "biz-design-incentive-neutrality",
+      "contractHash": "9930c387d3d8f1bb99b35197673c1a67fed30d65a93979e068b59b389e1d3d3d"
+    },
+    {
+      "id": "biz-design-insight-opportunity",
+      "contractHash": "db4f6745f586e6edca552d2ba90cbf8710c40630653132df8ce51fb627fe634a"
+    },
+    {
+      "id": "biz-design-job-solution",
+      "contractHash": "bcc7325a3f148f63db4116f0d23bb4935367b2462cead83d721e6d62539331b0"
+    },
+    {
+      "id": "biz-design-journey-goal",
+      "contractHash": "a672412bcb99074110b699b63135bc4b3ad326f4e288c93824be07a2661c9cf8"
+    },
+    {
+      "id": "biz-design-onboarding-skip",
+      "contractHash": "d1e9e8a37057aa22efc657cf347f13dde3d64bde84ce40472d6a005b7aba08c5"
+    },
+    {
+      "id": "biz-design-persona-evidence",
+      "contractHash": "5102d97299b6d1ef355d427eb4eb8b4456cddc399c034be514857b9ce2fd6918"
+    },
+    {
+      "id": "biz-design-priority-frequency",
+      "contractHash": "1a6a3c46dfb8679f17e2495d79bcb4aeb35df62f507ac46a4b50f3c95f071939"
+    },
+    {
+      "id": "biz-design-progressive-disclosure",
+      "contractHash": "23ccbd0d154aaa9e050b3b8063b88a846fe6b86994f8a7f659444d0025d631be"
+    },
+    {
+      "id": "biz-design-prototype-interactions",
+      "contractHash": "2e3645ba38232ebc095fe585e9052aa53fc6af52e689698468dcd492f0eefd0f"
+    },
+    {
+      "id": "biz-design-research-observer",
+      "contractHash": "618a81a5fb72322af66504aab15c2706c71991d8c0f6cb943ca85e6d3c35ec06"
+    },
+    {
+      "id": "biz-design-research-recruitment-source",
+      "contractHash": "96680901897338366c14136d7c1cbea3a4afc2351c3ead2bbd5a1f2e6f1f6484"
+    },
+    {
+      "id": "biz-design-research-stopping",
+      "contractHash": "a2c162111d5ae31ce801e91b5e3ed8c4124fa5a95b2470da6fa5770ea4e1335b"
+    },
+    {
+      "id": "biz-design-research-translation",
+      "contractHash": "f537bde11b8fa557a5485bd2d12c919495c52317590ee4d135cd79e8f6b5ecef"
+    },
+    {
+      "id": "biz-design-screener-conflict",
+      "contractHash": "f7b774db667fe1d3f5c5da6879120b6d96099003c08c9d60dce6076a174f71d6"
+    },
+    {
+      "id": "biz-design-service-blueprint",
+      "contractHash": "2268258c44523eda4f22832fd90360914b0103734162263e10c8897baa24a6c3"
+    },
+    {
+      "id": "biz-design-touchpoint-ownership",
+      "contractHash": "e24792c7c232515835dc6b0a1ebb4208012cb52619c232d4ca3d0b42829cc1dc"
+    },
+    {
+      "id": "biz-design-tree-test",
+      "contractHash": "c67adf0c01436d07eca6fa91275b1f17bc9a65d5c744b44dffeefddc348ef318"
+    },
+    {
+      "id": "biz-editorial-cover-metadata",
+      "contractHash": "6aceb4959df7ac16d9862a3344500332761c30ed14ce37acfd3073415cf89640"
+    },
+    {
+      "id": "biz-editorial-edition-diff",
+      "contractHash": "d3ec03b7ea3641703305b9f403b55cb9dd16af2b7da7cd000f9a9f158fea29fe"
+    },
+    {
+      "id": "biz-editorial-figure-refs",
+      "contractHash": "1fb4dcc080ccea902358dc341402534e3d6f8cdfbb9ab7321c2493739cb2544c"
+    },
+    {
+      "id": "biz-editorial-footnote-placement",
+      "contractHash": "ad3b5411dd8e075976dd2fbca8c6d41715c142901d6eca59696ee5c6946b8189"
+    },
+    {
+      "id": "biz-editorial-heading-hierarchy",
+      "contractHash": "8fee975d63be850aafde58acbb177ea6e1cbf4c1db6fa429995c162a92c8458a"
+    },
+    {
+      "id": "biz-editorial-index-entry",
+      "contractHash": "e257fe1bb57abf0464da18be64d62b0c711bd6b8c82446f7b117985722342aa0"
+    },
+    {
+      "id": "biz-editorial-number-units",
+      "contractHash": "bca8bd1156891739192570d1c0486056a14a6bee20528f615c86bfba4c87b110"
+    },
+    {
+      "id": "biz-editorial-proof-rounds",
+      "contractHash": "8d1110f361c556db5eeb32a0eb0c111a6c9ad57d52b80356fdf17d96ae7f434e"
+    },
+    {
+      "id": "biz-editorial-quote-boundary",
+      "contractHash": "6fafb65ef9e6e9c0f30b499f37bd2e084a52bc21626e725a28f23abb9be16add"
+    },
+    {
+      "id": "biz-editorial-secondary-citation",
+      "contractHash": "9b5e9d51f95add743995f6022aa7f498cc59c7c68101cfe4ec9c0f53704a2441"
+    },
+    {
+      "id": "biz-editorial-spelling-style",
+      "contractHash": "0fe83d44979a346314c62420080d3143fa9aa5c40b972fbf531d95fd3c2240e0"
+    },
+    {
+      "id": "biz-editorial-spoiler-label",
+      "contractHash": "b111dbd4f3d967fbf739c2944ff81be921af587a84de4d391d02f44b1c6388c4"
+    },
+    {
+      "id": "biz-editorial-term-glossary",
+      "contractHash": "d8f6c9b76dda2e82ae2c1946da98c6d55098bb273a04500f701a98ab9e016fa9"
+    },
+    {
+      "id": "biz-editorial-title-body-match",
+      "contractHash": "d550e516d14853d75c2dd0fd8f3238a75c853b3eb0b6feb7140cdbb5e5b2d35b"
+    },
+    {
+      "id": "biz-editorial-word-budget",
+      "contractHash": "79fc480cac6bdb71b2208f17d3b12ed9696d42b5e93129f225d03dab320f5d84"
+    },
+    {
+      "id": "biz-equipment-booking",
+      "contractHash": "9712644ab3366437a04c7ed8c0329bdb8acd522c1fb628a352421f6fea36bda4"
+    },
+    {
+      "id": "biz-equipment-return",
+      "contractHash": "096cdd114d0201eace8ca21886463d7007134345d41bc0c358facf3285cec055"
+    },
+    {
+      "id": "biz-event-attendance-certificate",
+      "contractHash": "aa2d7e989d2627747419bd8c2fa48af5f30b2961fe723d7e79285cefc30d377b"
+    },
+    {
+      "id": "biz-event-catering-labels",
+      "contractHash": "9dd48dab35eac8106a5a9f72a6553704825125fdcd62d3e9f676acb115d1203b"
+    },
+    {
+      "id": "biz-event-giveaway-allocation",
+      "contractHash": "5961aa5cf48a947fb8ad7c5b1553e061c7777f379a9dd019372af28656597c69"
+    },
+    {
+      "id": "biz-event-language-channel",
+      "contractHash": "ab853e3e835ed12f3e3a7b36668e962c665c017070146644a473955859451814"
+    },
+    {
+      "id": "biz-event-name-badge",
+      "contractHash": "93934457e78444e93ff0e606cbdc30ee7cdc2f5fa7e54b30530688c95c51586d"
+    },
+    {
+      "id": "biz-event-postmortem-causality",
+      "contractHash": "ef5f7a5be74db10265b7373dce5e4014c141a9dce3b80d77fc031f56fc25cea9"
+    },
+    {
+      "id": "biz-event-qna-time",
+      "contractHash": "718b304050e06456bdbcb74ecf785679676c223ff21a62b862b472ed792c2732"
+    },
+    {
+      "id": "biz-event-remote-backup",
+      "contractHash": "8377c16d2c64abf8ccd961264304a9beae5ba76e035c045f65d259ce6c74f18d"
+    },
+    {
+      "id": "biz-event-running-order",
+      "contractHash": "372c915f67f671fa5f04397e1aa869f16fa2b99cac1c3f0653285bbb19e2c775"
+    },
+    {
+      "id": "biz-event-session-dependencies",
+      "contractHash": "30f57fb41a76f8f1add8d2c17f7bc4aeab2fd6b2bb3500cfba7f4ffa2ff80604"
+    },
+    {
+      "id": "biz-event-signage-wayfinding",
+      "contractHash": "f458e2dc7e2d99ce94b74789b03d117911d8b7583ba31103aee2ac1e167913be"
+    },
+    {
+      "id": "biz-event-speaker-consent",
+      "contractHash": "111b2c20758c1b68f86f52735af4289274a56502b89f4ccefdcbd79891bc7a66"
+    },
+    {
+      "id": "biz-event-vendor-delivery",
+      "contractHash": "911506944e9f1cee80a9df7c69b99a8efe7d8fd9a7a88b80338538604ccbd921"
+    },
+    {
+      "id": "biz-exchange-difference",
+      "contractHash": "b4c63363532d4f1c4ab967f15c92f9f414358cad547971b707627a772b7c633c"
+    },
+    {
+      "id": "biz-feedback-coverage",
+      "contractHash": "05e3e89983921d847e3b1a232bf2a27ebe4fb4c7fbcf06fa848c64840b90ba85"
+    },
+    {
+      "id": "biz-game-action-refund",
+      "contractHash": "4bcf8a64dde9e2e45882a83a1b2983cff1a56eb7399555c1b205fb8319f77ccc"
+    },
+    {
+      "id": "biz-game-area-majority",
+      "contractHash": "6c3db9e2de4f2720d369c585e3bafbfafc4f8fc5065e6ccc9bab4270c32889dd"
+    },
+    {
+      "id": "biz-game-auction-commitment",
+      "contractHash": "272909c95616db63715a8afb552966ae20587fb49302b7484d92740a50b2c05e"
+    },
+    {
+      "id": "biz-game-board-wrap",
+      "contractHash": "bd3eb01fc3acc507fd2b750296ca21de369c7eea48930c2cc8dca8d4c86a3fc3"
+    },
+    {
+      "id": "biz-game-branch-convergence",
+      "contractHash": "3b3d779e1771c3a14996631a64046ff9b81cff6eb9054a6c16088ba39e49dd12"
+    },
+    {
+      "id": "biz-game-campaign-unlock",
+      "contractHash": "705612e299831b0bae4f72a8e3101e2a7a671e825281a9ab618aeba3ba3cc029"
+    },
+    {
+      "id": "biz-game-choice-agency",
+      "contractHash": "276faa690bd608e87d61164fef3ba1af8620348c050f53e19986c934a37db85c"
+    },
+    {
+      "id": "biz-game-clue-order",
+      "contractHash": "871efcd443770e194ec577836c91fc46b808ef9283f1a7e2faa5400eeedd9966"
+    },
+    {
+      "id": "biz-game-collection-unique",
+      "contractHash": "a04685bf757a50534876cf12891a668e90f00325ceabfd683fc3df6224ac3337"
+    },
+    {
+      "id": "biz-game-coop-loss",
+      "contractHash": "cd7ef4165afe5e115f6304dab4eed97a9c156c1c36804955753fd2fd8d62be85"
+    },
+    {
+      "id": "biz-game-copy-characteristics",
+      "contractHash": "9d923fc7219434cbb3d66117dbbe1d3ede73b9806d71ec3da51e979db4ef304b"
+    },
+    {
+      "id": "biz-game-cost-vs-effect",
+      "contractHash": "1fb7b6d81dcf02858b96ce98fc339a3d0f2a84108f03608b1b6c76a71b9446ea"
+    },
+    {
+      "id": "biz-game-damage-redirection",
+      "contractHash": "057776e261ec5a0a5e45fe5f50564f5b15d867f418330aae9e63790393c8806c"
+    },
+    {
+      "id": "biz-game-damage-shield-order",
+      "contractHash": "e00dc1d3b66e42d07570371f19e4c7b6c8f9ef0f712cdfb87ce005851d776e8e"
+    },
+    {
+      "id": "biz-game-deck-exhaustion",
+      "contractHash": "500bac9421d20863ca7c1f27605ae674e0fa2d2a77e11c2f4ca6475cad6675b4"
+    },
+    {
+      "id": "biz-game-diagonal-distance",
+      "contractHash": "eb2372a49e9ba01a398c3f07f515995be22341b9238ca950bd4d7df3bdb9eeac"
+    },
+    {
+      "id": "biz-game-dialogue-reputation",
+      "contractHash": "7e1a26981f330b5ee440914a9484cd3dead98ad5d1c95dd8d11b378cc920d756"
+    },
+    {
+      "id": "biz-game-discard-choice",
+      "contractHash": "b867400ac50b15c03df22b2d3afa650b1e99a9dd76c56db0a2e7dc6c9f520208"
+    },
+    {
+      "id": "biz-game-effect-priority",
+      "contractHash": "7b9f5abcab19857d586e1a403eb3c7e09c624968b443a8d1d69390ff7ae2c543"
+    },
+    {
+      "id": "biz-game-elimination-participation",
+      "contractHash": "b7a9d382c9809f009e3c04ee2e0fae2d8dd4fa7565d453e4b1d51284ca602be7"
+    },
+    {
+      "id": "biz-game-ending-exclusivity",
+      "contractHash": "3a4fe7898603ab591d7437bc20e5d11ecde63901a7897c1cf548f45224858f9f"
+    },
+    {
+      "id": "biz-game-hidden-information",
+      "contractHash": "206b0d8e9589b3878ab707ab5a4b858abceb59e113974a1897cc1a12ef3e808d"
+    },
+    {
+      "id": "biz-game-information-sharing",
+      "contractHash": "a0683c30de56a655faeb88816e839636175ddb5fefeae2ef8220fe459d2f06f4"
+    },
+    {
+      "id": "biz-game-knowledge-reset",
+      "contractHash": "d003cc6f6b2f88f05c63c1135af002d25c3546a98ad420fbac8f3dd683b39b19"
+    },
+    {
+      "id": "biz-game-limit-per-source",
+      "contractHash": "a052e28e566734aa46120e13eabe7bea3a5708b166af36ec90f0a1e3fb5e4dc0"
+    },
+    {
+      "id": "biz-game-movement-adjacency",
+      "contractHash": "f5d512699f50d08c203663f20a60ad1a48bc29b564d706b66bc944bd3da44432"
+    },
+    {
+      "id": "biz-game-negative-resource",
+      "contractHash": "8ce3bb346b2d718b4d4e92a9c0d6e8985469ea0e5062b2b4780b4efcedbf1821"
+    },
+    {
+      "id": "biz-game-no-legal-move",
+      "contractHash": "1d582c0df26dd38e31efdda279ee5d5c1437d7b13ced1f566494053dda7ad536"
+    },
+    {
+      "id": "biz-game-optional-trigger",
+      "contractHash": "9120bfc83fb1fc10c684192fffd26153f3c9786e4ca366de732f9f965d64542a"
+    },
+    {
+      "id": "biz-game-owner-controller",
+      "contractHash": "f75fbeb456b6f5dbdbd310977987c8b9346d76a1e29d8efbfe2f86dccede9b51"
+    },
+    {
+      "id": "biz-game-public-randomness",
+      "contractHash": "ac565c64e8d6fe4b17530d84741595fac79c138f41273ebdbb62d92e7ba56082"
+    },
+    {
+      "id": "biz-game-quest-state",
+      "contractHash": "437464980677d7e04ff45d47b07fb33139816916d1dcce82bbfc361ed447c506"
+    },
+    {
+      "id": "biz-game-resource-cap",
+      "contractHash": "0a68f97f16efb3a4aee9564c49ace0522438955e51054ffd8a0329330000fe10"
+    },
+    {
+      "id": "biz-game-round-boundary",
+      "contractHash": "1406d3fb97b83a82f1250644ad67c6455d577595465c6d046135bcf159dee162"
+    },
+    {
+      "id": "biz-game-savepoint-choice",
+      "contractHash": "b007621fbca258953a3a9653219efc9e09eb2682a48bb6a63fe53f4a1b8b4b88"
+    },
+    {
+      "id": "biz-game-scenario-reset",
+      "contractHash": "d9dccf9e0c6cfdcd76b117e7a2f80734217c68ef957a1543454898c4092703ea"
+    },
+    {
+      "id": "biz-game-setup-components",
+      "contractHash": "389a0900dbcd24347880d7611e1fbaa087c17df42449c28247f1b6b2631d476a"
+    },
+    {
+      "id": "biz-game-simultaneous-actions",
+      "contractHash": "42a6b31e13561290cbdcabbac5a5e6d516ee134e3a8704516e6cef7360d1ebb4"
+    },
+    {
+      "id": "biz-game-stack-order",
+      "contractHash": "2ae071ceaca4e3c87389122d8fa94dc9bbeb3f01de18959a658ea95a675c2eba"
+    },
+    {
+      "id": "biz-game-status-immunity",
+      "contractHash": "c1676fbccbe4796dadbce008c0b8ff7b950c4339bddc62ced78547f91004a930"
+    },
+    {
+      "id": "biz-game-target-legality",
+      "contractHash": "35583ab269a521842f0e9b04d739ea25082f88d33ac31c568abdd463205f6203"
+    },
+    {
+      "id": "biz-game-team-score-transfer",
+      "contractHash": "270e61573e90b5369bacb815233639d6771a67b52d1e6ade576bf7d165a5c948"
+    },
+    {
+      "id": "biz-game-token-return",
+      "contractHash": "d62179959c78601191c6c96b42b463b197ce90bebd3a11c1b2aa5fa63f44bec2"
+    },
+    {
+      "id": "biz-game-trade-timing",
+      "contractHash": "3769f695c3fb1fbddcfbed21a57c2e634d792ef529b90e16a5248bebcbdd8d02"
+    },
+    {
+      "id": "biz-game-trigger-once",
+      "contractHash": "306a6f7ab0270efd6734adece007cea535d194edfb9b66165b5f763c667f98f5"
+    },
+    {
+      "id": "biz-game-tutorial-failure",
+      "contractHash": "563f3a443413cdba05ba4519b2785e2e2caa4e5b00bb3e53c11d989c0b34dda6"
+    },
+    {
+      "id": "biz-game-tutorial-rule-order",
+      "contractHash": "ebf95556ababd7348b0cdc1da4ed707e07674e77fbc93926cde51fe7dee41ae4"
+    },
+    {
+      "id": "biz-game-voting-abstention",
+      "contractHash": "13ef456f478adfc7a2f2302858b7a4a11976141c3a258e931f0cc60dd020eb9d"
+    },
+    {
+      "id": "biz-game-zone-identity",
+      "contractHash": "2de260079c8cc74b95b022ae52f24b18615217b9e252e0af4ef28e786f5051bd"
+    },
+    {
+      "id": "biz-gift-message-privacy",
+      "contractHash": "ffdf733c40fd6a739849aeb921a56a524d8c7d66d7f4e1dfc9ce1ddf726625a2"
+    },
+    {
+      "id": "biz-giftcard-partial-payment",
+      "contractHash": "8f75789a879016f88f50c7cb3510e8d298b03748102db607b8ad0b3175ba5272"
+    },
+    {
+      "id": "biz-handbook-link-health",
+      "contractHash": "5904d29089b7b998d6655b16fb0a2a80f183388ef05257fe7ab999fa048cc527"
+    },
+    {
+      "id": "biz-installation-site-check",
+      "contractHash": "f6017cd53c2a4519f46154ed8f0732c3c5d46ca87c8bc35ddf2badcc6d50e2bb"
+    },
+    {
+      "id": "biz-instalment-total",
+      "contractHash": "1806f10c40c19ab8b4a7062d4f14ab6d8568f305a835b8a108385eaddd8e014c"
+    },
+    {
+      "id": "biz-interest-recusal",
+      "contractHash": "e872178c628c90abb96fae5f88ca48f20fd129feff820ce7769a7a1e7952f91f"
+    },
+    {
+      "id": "biz-l10n-address-fields",
+      "contractHash": "85218dd491fd205aaaac2f23c519de9766eacd9d9e50e9c7e958307aec0a988b"
+    },
+    {
+      "id": "biz-l10n-approved-terminology",
+      "contractHash": "bf937e72b3af76510cc81fa887db4c659221fe64d01a99ed809213cf4687e5d3"
+    },
+    {
+      "id": "biz-l10n-bidirectional-code",
+      "contractHash": "b5dcdbcb02d846f7afd5fe842379debb73f02da539289c7051527b37586e684c"
+    },
+    {
+      "id": "biz-l10n-calendar-weekstart",
+      "contractHash": "0ede5ea529a1ddc9a245310f8bd04ba3ba604867ef37dad211150391dc40c631"
+    },
+    {
+      "id": "biz-l10n-count-forms",
+      "contractHash": "2ed9998f121ed343a0f21a7f0f4c7bd68051577b3f779e3e407c9ff8c4bab242"
+    },
+    {
+      "id": "biz-l10n-currency-symbol",
+      "contractHash": "9572bfe4e8367b39dee8d9b14e5ba49a8f0297da1127e2db43caca4b50f56c02"
+    },
+    {
+      "id": "biz-l10n-directional-icon",
+      "contractHash": "11b794cddd76126e02a50c4f4bd894aa299638e43ec5883ee866addf34ce386b"
+    },
+    {
+      "id": "biz-l10n-do-not-translate",
+      "contractHash": "2ee2bb6e0f885d11de1aabf0495721d48db5deb4a53d02b76ed490ebaafd5160"
+    },
+    {
+      "id": "biz-l10n-fallback-language",
+      "contractHash": "b37265cd6e194a911a98d543d19ce7aa58765f7dc0355b4a6ac14a3a9a186136"
+    },
+    {
+      "id": "biz-l10n-gender-agreement",
+      "contractHash": "31a032391c9c19bc44e2b0cc71844419b13d501685b8865da94b9dddd6161716"
+    },
+    {
+      "id": "biz-l10n-keyboard-layout",
+      "contractHash": "5d392703c0d8344ff4dbce6529ffffb96b8a6eaee1f0ae831d65b1c2d8f3ea78"
+    },
+    {
+      "id": "biz-l10n-language-persistence",
+      "contractHash": "de8ae757f956bae5195270f7a71b9325ca1942cf88b9fb44f768b92c3775badb"
+    },
+    {
+      "id": "biz-l10n-measurement-order",
+      "contractHash": "15821ae284bccc70752153ee04c60ed605638466ac3050605b031b1b71420431"
+    },
+    {
+      "id": "biz-l10n-name-order",
+      "contractHash": "c91a4448bc6fe551e8dc6cb704028f80385547445ddd3a0dede1034d6fad4ba6"
+    },
+    {
+      "id": "biz-l10n-placeholder",
+      "contractHash": "871234ed58e58911d17d31101cadfa766be011ae7509386280268931a60f33c1"
+    },
+    {
+      "id": "biz-l10n-punctuation-break",
+      "contractHash": "80c60b56ffc736c14e86ae328b0878ae30aebcf315ad2f0d424761645977eb6e"
+    },
+    {
+      "id": "biz-l10n-regional-example",
+      "contractHash": "ccfe6bf60c6825e26820ca11da86ca21d75343aa96d0a0f01f66abe11c170965"
+    },
+    {
+      "id": "biz-l10n-search-normalization",
+      "contractHash": "af518d335fb729af8adc96dececaf4a35a993cafba922c1dc5c7084a1f89c2d3"
+    },
+    {
+      "id": "biz-l10n-shortcut-label",
+      "contractHash": "50f5a88bfad8dd8b7a984cf542e64a0b4cd246088befa244e3473ed89f8efdb3"
+    },
+    {
+      "id": "biz-l10n-sort-key",
+      "contractHash": "90db0cb6706325e2b44b0ea5940f4f8c9cdc22bd70caf19d2083cceff3d39497"
+    },
+    {
+      "id": "biz-l10n-string-context",
+      "contractHash": "5dfbf643628e7c420a2f50994e77dcfa0d1040f38e6f7ea50daf3a25e4e1eec0"
+    },
+    {
+      "id": "biz-l10n-time-format",
+      "contractHash": "f788016b569050e9231e9085040579be1fe0694ef02d868423e67e2142db6fe7"
+    },
+    {
+      "id": "biz-l10n-translation-revision",
+      "contractHash": "1141e2a27a4eef5593c6e1e10bc50fa7acd48e2508366d8c55d1488327adb25b"
+    },
+    {
+      "id": "biz-learning-concept-map",
+      "contractHash": "7baf73c021cf5a0ecc348c6c0dafc3359110c43c426f1e30529e0dd3b3340c21"
+    },
+    {
+      "id": "biz-learning-discussion-evidence",
+      "contractHash": "5014f22de97405f18d25cd290e9c1d410789e2c3b7ba20e3b9df88c91be19596"
+    },
+    {
+      "id": "biz-learning-example-nonexample",
+      "contractHash": "76ab991ab0248a611aaa730018b00fa645df5e33c94e44644129da225cf2ae23"
+    },
+    {
+      "id": "biz-learning-flashcard-atomicity",
+      "contractHash": "7293fe1ffdb86f3daac37b08cdd2fee494279a31f1612eb83b28f1e3060955b5"
+    },
+    {
+      "id": "biz-learning-homework-load",
+      "contractHash": "02b7f60f49b1bab22e2c315700d60ae69834319b724637af241a33cd08f9c4de"
+    },
+    {
+      "id": "biz-learning-listening-keywords",
+      "contractHash": "a1a0d6b382b714e118cb7ac3d00bb552846214d1a220bec09bf63d7549145bcd"
+    },
+    {
+      "id": "biz-learning-measurement-resolution",
+      "contractHash": "c81056b70838dbc6e47aa5b5998123724fe6190aa029b4845290440f7ff732e7"
+    },
+    {
+      "id": "biz-learning-peer-review-scope",
+      "contractHash": "36722c3fdddcc6f347a2a4baac4e91328fe60b1e7ad9975c97cf05fed074e01c"
+    },
+    {
+      "id": "biz-learning-practice-variety",
+      "contractHash": "7f852368e15ef0125a2f9f01e49b57dc2924b30f59bf03afb0a40df10a40be65"
+    },
+    {
+      "id": "biz-learning-reading-inference",
+      "contractHash": "08d75bc9e78e4de6b94e167ce780bb05ef0b29ac71d5b3c6aacca5abfa1b97aa"
+    },
+    {
+      "id": "biz-learning-rubric-alignment",
+      "contractHash": "cbeb8ff871af657e15cc74e7853ded01cdae37d96d80a382d99e2296889d6156"
+    },
+    {
+      "id": "biz-learning-self-explanation",
+      "contractHash": "2aa667310cc5379c2dc83eb1050c72bb7cceb03ce76dfe0f623380148cdc8a35"
+    },
+    {
+      "id": "biz-learning-simulation-assumptions",
+      "contractHash": "8cfa0fb713a13f3b8fafc1aeda4bf7abf082714fa5ceec0fbaba3f27cb7ec045"
+    },
+    {
+      "id": "biz-learning-solution-step",
+      "contractHash": "e1b737cf42249e9877f0a5a3ea077db07ec27b181d5dfbee1e99edd01ab15296"
+    },
+    {
+      "id": "biz-learning-source-paraphrase",
+      "contractHash": "4489571706cd56a92323bf076e93cdd969f84befc2ecb40ff3d01b57a6b4c85a"
+    },
+    {
+      "id": "biz-learning-spaced-review",
+      "contractHash": "07c6d9c72e99f4f3d91cb4c1b3b9d87faf43b99430df2305f407aece332745db"
+    },
+    {
+      "id": "biz-learning-unit-cancellation",
+      "contractHash": "101d320d202ec21297ebe7f5e61c6351092d5f35abee36ed531611cefbd32b96"
+    },
+    {
+      "id": "biz-loyalty-expiry-order",
+      "contractHash": "049ed16f2c6f0de959b351fa4880ec17dcb2b81d40b1128de15bdcef2841a2c2"
+    },
+    {
+      "id": "biz-market-brand-bidding",
+      "contractHash": "e3658a5851e62e915da57d5d3ae795d899a026fe1f29694290bce55c864856c9"
+    },
+    {
+      "id": "biz-market-brand-search-noise",
+      "contractHash": "a32519048d6204c5ec8915fad056c52049db39fe109a61bc90e2e7ef07ab0621"
+    },
+    {
+      "id": "biz-market-campaign-reentry",
+      "contractHash": "954554f8c04772fb7d23829f99aa4687f3a297cade1e5eba646d5e34fcd6a1cb"
+    },
+    {
+      "id": "biz-market-campaign-window",
+      "contractHash": "eba8b9a0455a9eca3cbc2b598df7715b8da32b4f16ba6b5f608de816bdcc6dff"
+    },
+    {
+      "id": "biz-market-community-question",
+      "contractHash": "7c9cac95a0e1f627562e38637415dd302750cc0cb6989d5703235e3279675b18"
+    },
+    {
+      "id": "biz-market-coupon-distribution",
+      "contractHash": "ffc751763c3814d697b60a17f0cba513072eccfa04d9874d2d7ae7ebcdab476e"
+    },
+    {
+      "id": "biz-market-creatives-rotation",
+      "contractHash": "ed8a6ca79e0b8a07d19402e5d06c2b375484801a538e5ab7ed3c516d3240263b"
+    },
+    {
+      "id": "biz-market-email-unsubscribe",
+      "contractHash": "a1eeb7dcb4884673c5913a11bcd1882e72070a96875dfe494ec99f10e7e3a204"
+    },
+    {
+      "id": "biz-market-frequency-window",
+      "contractHash": "da3f79c80ff9e2385ca8049db18127fb99454dc8ea8ed63ef3067f02bea26d65"
+    },
+    {
+      "id": "biz-market-geo-presence",
+      "contractHash": "60ea09fe1e638db7a3d180379a609c9b87addbc7f662d0894ca715b23e1b2214"
+    },
+    {
+      "id": "biz-market-language-region",
+      "contractHash": "b3d96fecbe878f6105d2ca2e36465c114e884bfec3d3f5901c749176446e34d7"
+    },
+    {
+      "id": "biz-market-lead-stage",
+      "contractHash": "6eb1780a8b8eb957556ea40a9703cd4ed88bd66a3631ad831c3d664117be2888"
+    },
+    {
+      "id": "biz-market-leadmagnet-access",
+      "contractHash": "aed0796b5b9c985ab5f4a06447b3077ab079ae51ef238eb14672d4777da0baa0"
+    },
+    {
+      "id": "biz-market-link-destination",
+      "contractHash": "0b7f9dc28e0361ce4697fb3bf5bce2f2acfe385e375faedd7c175fb476cedb79"
+    },
+    {
+      "id": "biz-market-negative-keyword",
+      "contractHash": "194e3ae89e989e504bb389c615357d604614907cc83f5f61e6dc0ec1fcca30fb"
+    },
+    {
+      "id": "biz-market-newsletter-correction",
+      "contractHash": "cee8d68fcb8c5fdccaddd40e5e513ee44477a65600eaa0c43a0c241f5ca79a3e"
+    },
+    {
+      "id": "biz-market-organic-paid-mix",
+      "contractHash": "97fbe85c6fd879ee449b71a72e18d529b6d3137d20aecf7671ec7cf7cb251eab"
+    },
+    {
+      "id": "biz-market-owned-earned-paid",
+      "contractHash": "d22ff8c2e0f8a97aba6719e0517bede554669b2028a2ea7e7d644d61605dfc5e"
+    },
+    {
+      "id": "biz-market-preference-topic",
+      "contractHash": "912746b022490b77f0abb195c540ad9f62c74955714f1976c9dc55593f0f0eee"
+    },
+    {
+      "id": "biz-market-reach-frequency",
+      "contractHash": "250551c86b0dcd6ed63fe524f5e7c2c62f013fa8991da4c18d493c8927fda1ed"
+    },
+    {
+      "id": "biz-market-seasonal-reference",
+      "contractHash": "54162040592355dcff24b18d652d8c77ffb3cd3a5282b653014d71f141a52975"
+    },
+    {
+      "id": "biz-market-test-cell-leak",
+      "contractHash": "6c861fa38800ab08d4106b8616ca1759e97435748444158fb37f9207f5db3603"
+    },
+    {
+      "id": "biz-marketing-attribution-window",
+      "contractHash": "63624cf211c37804b906e971bb10c923ddb5df90c4735dccc43f89f5a5edb968"
+    },
+    {
+      "id": "biz-marketing-budget-pacing",
+      "contractHash": "8bd10b412d9dafceb6002f25d4f5c5946fa873c76de6a39f50e88df921ebc072"
+    },
+    {
+      "id": "biz-marketing-calendar-collision",
+      "contractHash": "7ecc39c630d9b2690c832c69c34e32d61168cb9e7d6cfd26e206e44a2fef418c"
+    },
+    {
+      "id": "biz-marketing-claim-substantiation",
+      "contractHash": "aa88c84650be876f62c551016fb660bcd6650b57854b89ca467b3800f43a04a8"
+    },
+    {
+      "id": "biz-marketing-content-rights",
+      "contractHash": "3c9763a4690c147fc61dc8611c389ffa491aeb06929fcd33184536cf08fb169a"
+    },
+    {
+      "id": "biz-marketing-cta-friction",
+      "contractHash": "a47b39cb8e778aa9761ef29cdc7b1902db6166c5dcd2f87ffbe2d415b546ea39"
+    },
+    {
+      "id": "biz-marketing-email-preview",
+      "contractHash": "92d7d073d9b25865c5bccd4c311d9195e21c83845fe06793bf58ec14131abafb"
+    },
+    {
+      "id": "biz-marketing-frequency-cap",
+      "contractHash": "df707cc9489917ff2ddd8efea85d9b7f040af20c97f83deb3858a2320a4248c3"
+    },
+    {
+      "id": "biz-marketing-landing-match",
+      "contractHash": "ce5fd5dad124980a1e18125ccd280c29a171c11b6901e8e1636b58c1aac2c1d9"
+    },
+    {
+      "id": "biz-marketing-localization",
+      "contractHash": "e0ac5d0b8b4339adc283a1f49d6ddd169fb1493439c8e5a9a9e3c9fbcb7c1524"
+    },
+    {
+      "id": "biz-marketing-offer-terms",
+      "contractHash": "a4d705e9b80e271dd55fa4cea722269d86d9668e10bae347f7839a0ded44abc3"
+    },
+    {
+      "id": "biz-marketing-segment-overlap",
+      "contractHash": "80b94afbda367e6b553f4cd28f27c3625f6209635452429e6358dc0ce97cb569"
+    },
+    {
+      "id": "biz-marketing-sponsorship-label",
+      "contractHash": "125ae483148c1d4eb14120e53eaedf107c834c582bf6b5c837840ddbcb0c1729"
+    },
+    {
+      "id": "biz-marketing-test-isolation",
+      "contractHash": "cde59ab64ec7d17f2f1a0d47f4e9dd5e45616b5c4fe33e42570a6f0522a56b43"
+    },
+    {
+      "id": "biz-marketing-utm-consistency",
+      "contractHash": "cc3cb1d4298756a76f7f6529fb72485c0c269f759012a2b577abb22fefb152f7"
+    },
+    {
+      "id": "biz-media-audio-crossfade",
+      "contractHash": "1b29d07d1a4a8239ac6bad9045cc15f8b5d7ab91814efd7a474657743e2932c6"
+    },
+    {
+      "id": "biz-media-axis-crossing",
+      "contractHash": "f2979fd57ed3f601aee5b6de959144b784e505b1e3fe93ff8effc1dbf44d086e"
+    },
+    {
+      "id": "biz-media-broll-claim",
+      "contractHash": "3247e155011520a42485b3bbe1fa001606db0d47b56db0a9dfe416d1f7656c26"
+    },
+    {
+      "id": "biz-media-credits-role",
+      "contractHash": "bc1a81a72b92c91c962878fff6bd4d56f26675e804ec1073c9753c32431e6a39"
+    },
+    {
+      "id": "biz-media-cue-monitor",
+      "contractHash": "c703cfe2ea8bab3dc5238d251ff7438d8978df89c0f0da8d77bbf3a304545912"
+    },
+    {
+      "id": "biz-media-documentary-reenactment",
+      "contractHash": "19fd0e03ffd6c96659c6fdfdee18ba1f19543fe381a754c5931ead21ea0fab28"
+    },
+    {
+      "id": "biz-media-ducking",
+      "contractHash": "86cf8e0261fe7f6016f6cd45a342c52fb7d515d53079fcb5133296d2b3c90329"
+    },
+    {
+      "id": "biz-media-export-safearea",
+      "contractHash": "3fe2e5c61673864658363d66f18b629c177216588c9474cb02612aaf8b77649d"
+    },
+    {
+      "id": "biz-media-eyeline",
+      "contractHash": "d96e692ea1982499e74535328dbc13bbb4faf834c72220c86442754030653760"
+    },
+    {
+      "id": "biz-media-frame-rate-conform",
+      "contractHash": "199e58da74cbfa857d4162a2d80a859581059082c25549d0085b1e6d820381b2"
+    },
+    {
+      "id": "biz-media-intertitle-tense",
+      "contractHash": "33049bd16e47e1e670b259da384d9b24727c4646a99e83658307e2a3ceb92f4c"
+    },
+    {
+      "id": "biz-media-loop-music-tail",
+      "contractHash": "1023d5f21b9d5a60cf2eaee1650ab31a4cb23f6b0b57b7d5bf8c744efd9c10ef"
+    },
+    {
+      "id": "biz-media-match-cut",
+      "contractHash": "9e94fae3f80c6cc089f7f2b92e38b3238e4e2ce35420d4ec94353fccbd36286e"
+    },
+    {
+      "id": "biz-media-narration-visual-redundancy",
+      "contractHash": "6fddf5a8f7a0bf1124603a59fe9f183426c6eabe13c76c934ed70367273d7a19"
+    },
+    {
+      "id": "biz-media-reaction-shot",
+      "contractHash": "b293eea85f91da29fb0d2191bc06af964c4c260f7cdaf5dc291d17eb9e720ffb"
+    },
+    {
+      "id": "biz-media-rights-version",
+      "contractHash": "3c6c604ba3ea7cdded8d4f5fd85bee0f383872ad7c38ce85dc7d8f5a0c14da45"
+    },
+    {
+      "id": "biz-media-room-tone",
+      "contractHash": "3ae740191060595ecbe565391fe057d21c38a9bed3c4e249e01906d03ec943c8"
+    },
+    {
+      "id": "biz-media-screen-recording-privacy",
+      "contractHash": "1cb54b290f55684d297f2e56ee3849ddcce070587c816dbdf31ec4a5495d216b"
+    },
+    {
+      "id": "biz-media-shot-duration-purpose",
+      "contractHash": "03acf2ed2f5d4512c78b04f21fe08e26bc35f9e9d7fdca70810404fb77fab1a6"
+    },
+    {
+      "id": "biz-media-slating-take",
+      "contractHash": "ad24cca16c2b9291a15bf2f801324d6b927403f4d08844c619ea2cd091107672"
+    },
+    {
+      "id": "biz-media-take-selection",
+      "contractHash": "43740f6fa25a7c8169e9efd22fa77f009568ccfa0535bbba965d5640e39eec82"
+    },
+    {
+      "id": "biz-media-thumbnail-spoiler",
+      "contractHash": "88bec9f6b71c6954476efbefbebc7268b76a18d22fe8a24b3486a8eaf9e143eb"
+    },
+    {
+      "id": "biz-media-voiceover-label",
+      "contractHash": "1fc6fbe7322291c86ffc2267823989aa10cd41f41a1a12e33d3efc94af560487"
+    },
+    {
+      "id": "biz-meeting-frequency",
+      "contractHash": "a39037804ee1f885267f46b68e207f21bb8373b666c1dd6a8b930228194ead81"
+    },
+    {
+      "id": "biz-mentor-availability",
+      "contractHash": "b80ca9a2bb1a57f7a3bc643c002b2c917448600670ff99842a69592d308fc06a"
+    },
+    {
+      "id": "biz-music-accidental-scope",
+      "contractHash": "a9e9623611d09b6dcfa19c83cc71fdf5de5896bc90eb23b100da40e243e98f2f"
+    },
+    {
+      "id": "biz-music-articulation-duration",
+      "contractHash": "019ccb547416ddc87a96efb04c0f77b8b5bb8cd8b27534a60af5aaacbcc255b6"
+    },
+    {
+      "id": "biz-music-breath-mark",
+      "contractHash": "1fbfef13034bcd593f75cc7d2fe92d5a8e095ffbe54efc1ee232fb0bc51107f7"
+    },
+    {
+      "id": "biz-music-click-countin",
+      "contractHash": "419a4c2882084559c4360ee19e903059b499b0c4db989706bc952acf4aebd48a"
+    },
+    {
+      "id": "biz-music-da-capo",
+      "contractHash": "614b73449e1a0080ca8f66d0d2cbb901d44b99ba65758b353ae30a07e40ff6b3"
+    },
+    {
+      "id": "biz-music-dotted-value",
+      "contractHash": "5a7be7f16617354174f096e4e222a9c6397315fd09e6c558024e74163ccbfec8"
+    },
+    {
+      "id": "biz-music-dynamic-endpoint",
+      "contractHash": "17a706a0249d31117f746f6dbc9daca91ca45770fef14c620343338e33865699"
+    },
+    {
+      "id": "biz-music-grace-note",
+      "contractHash": "99b0b85f11a76b194bd74bbb01f4804c244115904af1fc47734e8903b5a89f82"
+    },
+    {
+      "id": "biz-music-key-change-cancellation",
+      "contractHash": "7b8e9a672492ae0f0371030b3ec38980c5efbe725bf27aa1c4efb2def31a585a"
+    },
+    {
+      "id": "biz-music-lyrics-hyphen",
+      "contractHash": "d6fb9a6df9b30770049f0a0dd0747180d3f44ee465fc897a33cda856ad6d2414"
+    },
+    {
+      "id": "biz-music-lyrics-melisma",
+      "contractHash": "81de3f82158fda8632a13b2ee1860655d07c9610ad8f39533c380a3d9f50e72c"
+    },
+    {
+      "id": "biz-music-midi-velocity",
+      "contractHash": "b66ae49e3b9c1d466aa07f9126f6de33d931d738a092ea9b7497da6e46117a07"
+    },
+    {
+      "id": "biz-music-muted-technique",
+      "contractHash": "4c6a66b0edba637d255710a632a6bf2203268b936d8167c622b0f93a8a3c2527"
+    },
+    {
+      "id": "biz-music-octave-line",
+      "contractHash": "214b41104ca766c108f3cb826f10e62542daef1daa74c4fe359f4ac6a9b736b7"
+    },
+    {
+      "id": "biz-music-page-turn",
+      "contractHash": "8a54005764fea223009420cac65a779054064fbf5ffcaedd64fb960787010256"
+    },
+    {
+      "id": "biz-music-percussion-map",
+      "contractHash": "3ee70044336aefd552fc046c88098902cb9138af6725bbaff6fdbb9428bcb696"
+    },
+    {
+      "id": "biz-music-pickup-bar",
+      "contractHash": "5394452893d69888e8d80e963cbf22023a3b7b8cdc37da691b089c61c66944f7"
+    },
+    {
+      "id": "biz-music-rehearsal-cut",
+      "contractHash": "325dd0e4872aacaf4b535b71772ab372c850e3bbe80df629739525a5a24a9ac6"
+    },
+    {
+      "id": "biz-music-repeat-endings",
+      "contractHash": "e59d0ddbf9ea50094a1e40c767f7080476e5e2af0f0f2b29728bd1441450e6ff"
+    },
+    {
+      "id": "biz-music-silence-cue",
+      "contractHash": "c248195a86f545efd8a6543db712f2dbd34154ab5d6348339bd8936674df9fc8"
+    },
+    {
+      "id": "biz-music-sustain-release",
+      "contractHash": "a1f32dcf400d83cdce412a6b39bc9bd981edd52d4a7f8504c292d76c146a385a"
+    },
+    {
+      "id": "biz-music-tempo-unit",
+      "contractHash": "33aef07c43c429485f59751135961c95e21416eebedf878194efcc07d7b15c85"
+    },
+    {
+      "id": "biz-music-tie-slur",
+      "contractHash": "4afd55fe91a543f065f9be4e3fa11a42945c7850faf8a911941f3d45c3929370"
+    },
+    {
+      "id": "biz-music-tuplet",
+      "contractHash": "643fd2936fa4566fd97ddc3732956b2d93d91835c87e3b14a775195a8d03596d"
+    },
+    {
+      "id": "biz-notice-audience",
+      "contractHash": "82fca4f6e7b4859b0f03a9ad91134ca75ab4a7a7bb8c39cdffa0d8d1cded3e26"
+    },
+    {
+      "id": "biz-office-lostfound",
+      "contractHash": "c862cb8f0d95ae8bfe982502d00479995b999e92f4058a05bba15a776005fb83"
+    },
+    {
+      "id": "biz-onboarding-blocker",
+      "contractHash": "303c0792676eb4bfd2f731da512f86fab6e19c69d410f4653ccb56faebb01da4"
+    },
+    {
+      "id": "biz-order-amendment-freeze",
+      "contractHash": "dbd5930fd427cc8e4169b3c8f6576cbc66549916c906bff3ea615ece6d71236c"
+    },
+    {
+      "id": "biz-order-document-recipient",
+      "contractHash": "e0ad1f3d7e87efdeb42e4903367dc44d065765ca34d3a40c83cfaa7dcf951ca7"
+    },
+    {
+      "id": "biz-personal-appliance-filter",
+      "contractHash": "254c13cbfe282853241725b1ad82d4a0fc5b072b5191aebebb2a78b983658c6a"
+    },
+    {
+      "id": "biz-personal-appointment-buffer",
+      "contractHash": "889a5587331071009925cde9882da487427e0d1c70357612095738efe627fe66"
+    },
+    {
+      "id": "biz-personal-clothing-care",
+      "contractHash": "faf9758eaa69b547b848196e6095e2dde9600d2edc3c95e7fb2fb872782ac3d6"
+    },
+    {
+      "id": "biz-personal-event-rsvp",
+      "contractHash": "3d63a33e725ab56be147e83b4cd6bcec244304f38ab9629730fd45506fb5545a"
+    },
+    {
+      "id": "biz-personal-gift-budget",
+      "contractHash": "3915d2e53c41b56944f7eea31fac8cce8cce60a2dcfacdfe6a61135fb0af0d8a"
+    },
+    {
+      "id": "biz-personal-home-inventory",
+      "contractHash": "ced013419488e9c161a3ea2911626669f6459e4824c5f02582c686655a0e0531"
+    },
+    {
+      "id": "biz-personal-library-due",
+      "contractHash": "5e80bb74cd04a5a277715a1ae8586442e3afc7f03a09b7238e219d9dad512853"
+    },
+    {
+      "id": "biz-personal-menu-variety",
+      "contractHash": "a13464dfb70d5b58a3ce5df126abfb349ceecfc4ddd7107b92474e1e2ea4b3ae"
+    },
+    {
+      "id": "biz-personal-packing",
+      "contractHash": "eeaf3a521359892b8dbbb3ecfd478bbabb8be7f422eed2e18360f2e7697e7eda"
+    },
+    {
+      "id": "biz-personal-pantry",
+      "contractHash": "fbeaa7ca78557a5bd67fe663e503a6a5f4c82201464b9589316a0c91d57e3efe"
+    },
+    {
+      "id": "biz-personal-photo-dedup",
+      "contractHash": "3274599186a26c4c02e55d534bcc972f479b20d2a4a903150595a44d88293a1c"
+    },
+    {
+      "id": "biz-personal-reading-goal",
+      "contractHash": "f73a051babc1b417304a970a9f0346bde683b605b592c9df679d772819de26f3"
+    },
+    {
+      "id": "biz-personal-split-expenses",
+      "contractHash": "c1c1eb71dd21a3c0191aab21b9ac7856267a6398028c9ece7fca7ed766d95224"
+    },
+    {
+      "id": "biz-personal-subscription",
+      "contractHash": "4a1b867cbbe90f50f09fefc9478440e93c0ff245156cbbb1a08cb70d31b93f48"
+    },
+    {
+      "id": "biz-personal-wish-priority",
+      "contractHash": "1cffe3b2a2c92c51396769b6d6ef5a8c49d20b9f1e15eacf7b61e657d67f2499"
+    },
+    {
+      "id": "biz-personalization-preview",
+      "contractHash": "0bb3c03a95c956d0313c63a4c8896ac1fa16f0db34597ad9f3caaf463426c635"
+    },
+    {
+      "id": "biz-pickup-id-requirements",
+      "contractHash": "19d42f5f648014a428f4164f7bf021a61b7d62b0593bef644a45c078664c7706"
+    },
+    {
+      "id": "biz-preorder-mixed-cart",
+      "contractHash": "32c55545f4f63af3fadad8ab8e1bfa65aeee30f990302302177fd4d6c0286f8f"
+    },
+    {
+      "id": "biz-procedure-owner",
+      "contractHash": "0d7300fc06a716ed7d4517a5a57467e512d6bc84e68c3976a1acd54f723c8998"
+    },
+    {
+      "id": "biz-product-amount-preview",
+      "contractHash": "b2a0bfa62aa782d4f2918742765376b68599d44ede500ebcdfe90e66005093d2"
+    },
+    {
+      "id": "biz-product-autocomplete-commit",
+      "contractHash": "f91ae4c6671f24017901917835df4698e1bce4375ad5b1227975699a205264c3"
+    },
+    {
+      "id": "biz-product-bulk-partial",
+      "contractHash": "c61303045677809a2f2a1aaebda7cceac837cd1827367e0e7b0c629144fa3ced"
+    },
+    {
+      "id": "biz-product-comparison-units",
+      "contractHash": "fbca4fe382c7ba9862286257374d58efea25835a33fcb0c818e909826ee23fad"
+    },
+    {
+      "id": "biz-product-confirmation-id",
+      "contractHash": "940ca0abf75bf03ff84005facf98c6003f082d82a3a17f340a67e1c7a49daaa5"
+    },
+    {
+      "id": "biz-product-copy-feedback",
+      "contractHash": "5151a8df95f285b1b34bba7647a31ab1ac47bdfe750361e13d9ee61320129e1f"
+    },
+    {
+      "id": "biz-product-date-range-order",
+      "contractHash": "52583790b1967bc46d6bcc5a0c064605843412b12a5635cd70dc0f7a2121cc04"
+    },
+    {
+      "id": "biz-product-default-choice",
+      "contractHash": "92b38356e122c7a0a796b595e87932217f3b7b4ea10d5b8ca242f45a7c940b0f"
+    },
+    {
+      "id": "biz-product-destructive-copy",
+      "contractHash": "677ad7b2d4ebcb59b07b48d45cf3e0428cc04fef92f188bfc340d538d70d53f4"
+    },
+    {
+      "id": "biz-product-download-filename",
+      "contractHash": "50e1ef2ad989d5f11ca2bab1e75cd049d5b23509ff86688ea7bb5869941b721a"
+    },
+    {
+      "id": "biz-product-dual-language-input",
+      "contractHash": "a6de6a06b09d36755d3b778c3ea9b6962965c974d2cf3e4e9517e95e5e69f41c"
+    },
+    {
+      "id": "biz-product-edit-lock",
+      "contractHash": "9e328a79b53e2f31b62e47810062a8d59db977856a0a03542f96497688f7f14e"
+    },
+    {
+      "id": "biz-product-feature-disabled",
+      "contractHash": "8966e8d431fbfd2bd5a94bbe74ba95dc63c310887a23e848d178cef124fe6f8c"
+    },
+    {
+      "id": "biz-product-filter-empty",
+      "contractHash": "11c7e3617e8b2cd8adfb4824d9f75daba0b52b13a066936c6df7116c289a152e"
+    },
+    {
+      "id": "biz-product-infinite-scroll-footer",
+      "contractHash": "41c79030fc3c90e53ba2d2ac0b403d2ab93470a24b9a660da748c04ce84f33c9"
+    },
+    {
+      "id": "biz-product-input-mask",
+      "contractHash": "74a5fffa2418c9355ee4234032155550c1299a4d846a84bce4807d083616234e"
+    },
+    {
+      "id": "biz-product-loading-timeout",
+      "contractHash": "82850e7b595657acc890595f1690911d6075080df0a463db419ed38c1bd383cb"
+    },
+    {
+      "id": "biz-product-pagination-selection",
+      "contractHash": "0817134576a0672e6def1f218ac5cbb368e82f63a560cdbe8cbd55edba92c20a"
+    },
+    {
+      "id": "biz-product-preview-staleness",
+      "contractHash": "044e35e93c7fdb32fbdac4f7e057643cbd483900c2d9f31972b81dc34de96274"
+    },
+    {
+      "id": "biz-product-recent-history",
+      "contractHash": "ec230a140251602d47087169bc10ca8f5898b69e3d69bd5c558e336961190d5a"
+    },
+    {
+      "id": "biz-product-save-dirty",
+      "contractHash": "c784915c12f15b00d247956b3b6955739dc72d3799a271fa724e3b9c21c81c0a"
+    },
+    {
+      "id": "biz-product-search-query-loss",
+      "contractHash": "16de9e5c260da0242a7e625f92b23b2adad17f918515f6ecbe7bd3e4bd74802d"
+    },
+    {
+      "id": "biz-product-state-reset",
+      "contractHash": "c099f8710b9d3869cb2ab1ed86d2da77bf68549a1b116acc200b92b127286c28"
+    },
+    {
+      "id": "biz-product-transfer-ownership",
+      "contractHash": "d0dbc4208cc98ddde5b593a5bdd15f40aaf5e1af35b7e86a33598a3a100cb37f"
+    },
+    {
+      "id": "biz-product-undo-scope",
+      "contractHash": "2698722a01af6c43b44b332d48312572ef228b33cd3eb0e19e0fa34858d394f9"
+    },
+    {
+      "id": "biz-product-upload-progress",
+      "contractHash": "20130bbf1b64b1a1d8bb4099424b2269091c9cc51abaa7af2aa09e3a0295f3ae"
+    },
+    {
+      "id": "biz-promo-stock-reservation",
+      "contractHash": "37b1146ceb5d326c02d0432b2e9367b32ffaa435465892bc8f3b9f2a1c9cbcb8"
+    },
+    {
+      "id": "biz-proxy-vote",
+      "contractHash": "1dbdf6c29b59509d47983c189b9bea095de3f4cf8f37b1d7ba26541256b37669"
+    },
+    {
+      "id": "biz-publish-accessible-pdf-tags",
+      "contractHash": "f25e631355b93f5b63219dbb771c0c4c32958883cab25ded9e6d34521a3c81b9"
+    },
+    {
+      "id": "biz-publish-bleed-safe",
+      "contractHash": "12d28953c9fffd278b564cf208e4312c18d34c263a533a4e3c45d36f79c78874"
+    },
+    {
+      "id": "biz-publish-caption-nearness",
+      "contractHash": "cadec3bcb8c0e15a9d83a7e343463dc5aaaafdcc6194b59f74a13218d2b76c99"
+    },
+    {
+      "id": "biz-publish-color-profile",
+      "contractHash": "fd41f5c01ef89251907e423434fe499342117e409054787aeb7cb0b5e19584d6"
+    },
+    {
+      "id": "biz-publish-cover-spine",
+      "contractHash": "d072005c2c1e9a7c2f613bdc383fdbc205b6cf756af31b453ff0c8bf5d7e3dc3"
+    },
+    {
+      "id": "biz-publish-edition-notice",
+      "contractHash": "8c398b5cbaf67c21825ba2fc128783ab18857667d2d626079830e2b3e949986b"
+    },
+    {
+      "id": "biz-publish-errata-location",
+      "contractHash": "77128613627caa8e3f06ec1961bad8ccb326daa95458557ebf2992a4a6bd8262"
+    },
+    {
+      "id": "biz-publish-font-glyph",
+      "contractHash": "d6ec037e4d2b25e5b3666c103a8c27a918a7d99628589faa58521ac41cbce5a6"
+    },
+    {
+      "id": "biz-publish-frontmatter-numbering",
+      "contractHash": "2d097ec739f7cc97e4bae2ac48311bb1ccd9795f47fc147043cd031fdf656976"
+    },
+    {
+      "id": "biz-publish-heading-keep",
+      "contractHash": "eed5cf9330acbf7aba4ab5a4cbe164e703aa673afaaadcfae7ff80053bb5b359"
+    },
+    {
+      "id": "biz-publish-hyphen-name",
+      "contractHash": "ba23aaedef331cf50d6c4cd0ddc60efd9dd8b5b5643f7a7f3c94ebc33ae7285e"
+    },
+    {
+      "id": "biz-publish-image-density",
+      "contractHash": "3311bec048a534c75eee1d75cdaedf26d084a4992236629adf656a66a3035725"
+    },
+    {
+      "id": "biz-publish-index-range",
+      "contractHash": "d9100ddd07c2dda3e30e434d8e504ba8bc9fd6d28dde7b57ed56353699833414"
+    },
+    {
+      "id": "biz-publish-index-synonyms",
+      "contractHash": "fda5a7c029c48b5cb043582778c132429b42fe57fb11b0bab24242f42e90dfc5"
+    },
+    {
+      "id": "biz-publish-interactive-toc",
+      "contractHash": "4aaca3596958f448f5526da84bf91fff9bfbd7a43eb09e568f24ce49948be59d"
+    },
+    {
+      "id": "biz-publish-nonbreaking-unit",
+      "contractHash": "13d9bb71b8ad325ed51ff67b51612cb8e7119ea1efb17a1ee6d983dd6afbe252"
+    },
+    {
+      "id": "biz-publish-proof-annotation",
+      "contractHash": "83327f592ec1d2acfe49bd22f2203357487337cdd943d60eb938ee38edbc0751"
+    },
+    {
+      "id": "biz-publish-recto-start",
+      "contractHash": "cb7f154ee1da80df459e8ac508bac8356591531a53f1d20847551673550ff474"
+    },
+    {
+      "id": "biz-publish-running-header",
+      "contractHash": "51cfdce2148dc37b34ecc203e69cf5419d49aa685282cb880d9b8de2581ddd0c"
+    },
+    {
+      "id": "biz-publish-tabular-digits",
+      "contractHash": "307d1a988ec4082e00dd740fe341b096f5692a4c1ce4f37206bebe8438eda8e0"
+    },
+    {
+      "id": "biz-publish-translation-layout",
+      "contractHash": "945dc3917d08038ba27ce79d70d24b8957014f69e737ec3b425c7a11141c443e"
+    },
+    {
+      "id": "biz-publish-widow-line",
+      "contractHash": "11f2728d8e44841fab5c5caafdb090d0842d4ad081fe289873b79dbec9b68f69"
+    },
+    {
+      "id": "biz-quorum-check",
+      "contractHash": "e7bffea0f22a19449db5911b838ae6c0540e69d20b1660e011ff3947a3305544"
+    },
+    {
+      "id": "biz-referral-selfcheck",
+      "contractHash": "efadee21b8fe462f632201a362b6ba8c20431221551e4aa71f8627ab4dae4ff8"
+    },
+    {
+      "id": "biz-rental-extension-availability",
+      "contractHash": "2d5fd5b2f38d15bd030e04771467cae27c1badfe4475aaf44b8a83ea94bb9d99"
+    },
+    {
+      "id": "biz-replacement-accessories",
+      "contractHash": "90446b33d171a7c6fbea13eaffd387a2a27f3a25178ab96cdc073344e11c54a2"
+    },
+    {
+      "id": "biz-research-behavior-intent-gap",
+      "contractHash": "6409d7b661a81efba34a9cd0bceeba1e4983fadb60ed07bfa91b217ba967489e"
+    },
+    {
+      "id": "biz-research-concept-vs-use",
+      "contractHash": "a142a59b592a69a610d90567983654fb35df1fa50dd4cd713baf1800339fa45f"
+    },
+    {
+      "id": "biz-research-consent-recording",
+      "contractHash": "9152e16a347412eafbb9ece00c92ca9d7f1d73d75acc710f8fabfe12f3282848"
+    },
+    {
+      "id": "biz-research-double-question",
+      "contractHash": "a638151c390407b3e97ae260e635eeac2c6f5f98baedce30fdacf03d2fac65b7"
+    },
+    {
+      "id": "biz-research-interview-sequence",
+      "contractHash": "c2a75511f4cf45a2e3e2362603942dc21dda7d234cee750363412c6818754dbe"
+    },
+    {
+      "id": "biz-research-leading-question",
+      "contractHash": "a8f78c874500f5ef2bcd5a7932b504f941d56ccac5734724fbc24b99f2bf15a3"
+    },
+    {
+      "id": "biz-research-moderator-help",
+      "contractHash": "c7f2ecb7a1d56c66791905e79a14eb59570c36764ee00c03d4ef45ca77173a18"
+    },
+    {
+      "id": "biz-research-note-observation",
+      "contractHash": "7d8d579164f29b31b769ff91c2cd3ebc4093c4a721528c717965eb442479268f"
+    },
+    {
+      "id": "biz-research-priority-evidence",
+      "contractHash": "d6b8ff6a247a2f65e627aa1c9d024d5d00c7676b135b52d0ac084f2904632a95"
+    },
+    {
+      "id": "biz-research-prototype-fidelity",
+      "contractHash": "4a0a583068585e2fb14a611a6bb8b5e1fb502bfbfb87a2e20735dc19479b3abc"
+    },
+    {
+      "id": "biz-research-recall-window",
+      "contractHash": "44fa7beeea4027d11fbffc1122f2321fdbbbe465e0c1522fa2a15e937231439f"
+    },
+    {
+      "id": "biz-research-sample-coverage",
+      "contractHash": "b401c1e72cd5c9416717526505be385ada24f27121410d4257ecfb93767e80b0"
+    },
+    {
+      "id": "biz-research-scale-direction",
+      "contractHash": "e0ecb89b1c13a8935e9b8fd15ab018dbe0be6bd9c53ce641049933d92e129457"
+    },
+    {
+      "id": "biz-research-survey-branch",
+      "contractHash": "642770277e48e0cbbb84891639de2da681ca5a280aa36dbdb401201638d30520"
+    },
+    {
+      "id": "biz-research-task-success",
+      "contractHash": "9bf644c757a49edc6e6451e5c99440c8fe1cbe43f20c63a9c0f563d6f15fe9bc"
+    },
+    {
+      "id": "biz-room-capacity",
+      "contractHash": "644fe9bd6e9e3d9f98deffe6a84509c7b078fb35c7c995c16cc29cd768576dae"
+    },
+    {
+      "id": "biz-root-culture-arrangement-credit",
+      "contractHash": "009876ee186e1fa1ddb24d8e62ee4d12b3e6bcfe00e0e4cba4abab8f5099fc04"
+    },
+    {
+      "id": "biz-root-culture-artist-book-object",
+      "contractHash": "2952792091405c366472aa9054ef5ccf908f2d66e61772d6d3d636005e0c8a18"
+    },
+    {
+      "id": "biz-root-culture-artist-presence",
+      "contractHash": "93df1443ac554450e5d50f5872f0fe8dcf2baa28c5dac191668dae3da02e07cf"
+    },
+    {
+      "id": "biz-root-culture-audio-description",
+      "contractHash": "786487c0c5017383b8c0db763866dc76e2e1c28ee1b63c8c488cc92cdfceacce"
+    },
+    {
+      "id": "biz-root-culture-book-signing",
+      "contractHash": "d4b30cfa6c922d49870673b10940799bcb32b03993377ef83645ffcc29489ce8"
+    },
+    {
+      "id": "biz-root-culture-bow-direction-vs-pitch",
+      "contractHash": "9782a3a2d948e40d02b8992ed95ffb9b79f4361875ad06e2388cf0da844b5a1a"
+    },
+    {
+      "id": "biz-root-culture-cast-recording",
+      "contractHash": "f360b3f54c277c693ff0902431e0a1cdb8097530d293b1c7828ae4f16c119f2b"
+    },
+    {
+      "id": "biz-root-culture-collection-invitation",
+      "contractHash": "ec2c5cf10d6dc33e296206a99174389ec6d118482dbef3a24431b362e7cadda2"
+    },
+    {
+      "id": "biz-root-culture-conservation-window",
+      "contractHash": "16dfeed56a210733d5e3947d764f811e1cdb1d5726640c954a726abbfa5f8277"
+    },
+    {
+      "id": "biz-root-culture-cross-accent-meter",
+      "contractHash": "a8cc4cb50de998038c0aa7fc6ec4edf093634dab4e67126526822493fc6da269",
+      "distinction": "국소 강세 묶음과 기본 박자표의 층을 구분한다. 음가 합계나 단순 박 수 계산과 다른 해설 판단이다."
+    },
+    {
+      "id": "biz-root-culture-digital-facsimile",
+      "contractHash": "ea36f9730cb1a1ca055ecd1bc94d9b01ea1475e2d2cf8a2587ae14f392291b07"
+    },
+    {
+      "id": "biz-root-culture-double-cast",
+      "contractHash": "9cd99aacf172ee83d0522a818125e034726588126f8746cb0cecaad6dfd1dcbb"
+    },
+    {
+      "id": "biz-root-culture-encore",
+      "contractHash": "3f5f7c0102c2b281637f5e6e8f95df8e30361852cc45b730a92ded02d0497bfc"
+    },
+    {
+      "id": "biz-root-culture-excerpt-program",
+      "contractHash": "715b1bd9b6f9683763761cc0b0e8c497edb8f9026c0bd35d644b37e51315b76a"
+    },
+    {
+      "id": "biz-root-culture-gobo-gel-distinction",
+      "contractHash": "1c193e9d344ae48b9effce3013c13fae1c2895d13555e7d46f2fb81f0ee52d01"
+    },
+    {
+      "id": "biz-root-culture-immersive-route",
+      "contractHash": "f0b470457c72a5c81bac9a4cf3a0d2a56d63045e0ba8729bda7e619700d4e576"
+    },
+    {
+      "id": "biz-root-culture-in-the-round",
+      "contractHash": "2937735f25f34eb5481e7622c2919c4b746bc7dc5c478af7324604881677f35d"
+    },
+    {
+      "id": "biz-root-culture-installation-time",
+      "contractHash": "75c21165f27e2649f098e73727a06d75ec8923dd446c8ff0eb5061f94564f451"
+    },
+    {
+      "id": "biz-root-culture-intermission",
+      "contractHash": "97f8d32d84b4358b73bc0fcb85db9509bdcc93972963edb2ff9cdc6de44adbd6"
+    },
+    {
+      "id": "biz-root-culture-language-dialect",
+      "contractHash": "a06d8e76d344bd9376b57c57eefecfff33121aa6960781a927ff01702a4f917c"
+    },
+    {
+      "id": "biz-root-culture-lenticular-view-angle",
+      "contractHash": "aac47e94030078ece2209a6439e36188e08e84366eb29abc77d14235eb61b15c"
+    },
+    {
+      "id": "biz-root-culture-live-accompaniment",
+      "contractHash": "12e2415ea3a8d0b1c885842d6cb61bac66263783363cf8b8d029749b325f7e1c"
+    },
+    {
+      "id": "biz-root-culture-loan-not-display",
+      "contractHash": "54f7041ff4863a0fc713592eb2c8798a87dc48bfb9fa98b4a09a23c0e7ee2276"
+    },
+    {
+      "id": "biz-root-culture-membership-household",
+      "contractHash": "0950cbceded67c0d086e8751d3eb98bd46d268abc36d89f4499d28bcc84563f6"
+    },
+    {
+      "id": "biz-root-culture-music-listening",
+      "contractHash": "cb4168c443ce5f4d2598deff3df99d26fef60a55ff1170017b79468c0f933586"
+    },
+    {
+      "id": "biz-root-culture-open-caption",
+      "contractHash": "af723d30e444366759212541b4fae2e1bbdd27c03d47760171d3918ff3852ef2"
+    },
+    {
+      "id": "biz-root-culture-open-rehearsal",
+      "contractHash": "51dbe369e10bf42748f681cfa74b7f36d863333393d9bfa6b129800cb500c964"
+    },
+    {
+      "id": "biz-root-culture-oral-history-anonymity",
+      "contractHash": "4ed2b2bd79a5e092eefe4aca185f82859e80f862b3f0eb484752dbe2b663bc24"
+    },
+    {
+      "id": "biz-root-culture-participatory-exhibit",
+      "contractHash": "5c6b0c611da0b5381b1415786dc918d39a6680771e1b6238137ee470c0f74bb5"
+    },
+    {
+      "id": "biz-root-culture-preview-sale",
+      "contractHash": "acd96e786b5140c260e79b3407beaa328c6a006a00ac2057df875adcc8dd78fb"
+    },
+    {
+      "id": "biz-root-culture-print-edition",
+      "contractHash": "64ac8b42c1c5c15ed683649ad892dc8e34448a796001d718040a2c425a1de623"
+    },
+    {
+      "id": "biz-root-culture-program-bilingual",
+      "contractHash": "c4a2b0e4d998f626ecf6b6e26f4f9f6b6205e2b26cbda6f4c52d959b6f793d3a"
+    },
+    {
+      "id": "biz-root-culture-promenade",
+      "contractHash": "5730ebe4dab2f92acc29254b28a0ce69b5ad965738a9cecc5fa01be398bf5163"
+    },
+    {
+      "id": "biz-root-culture-reading-version",
+      "contractHash": "1361a20dee2bbed7e75f6265606f6b282bb6846d8476e36af957d3917e04f382"
+    },
+    {
+      "id": "biz-root-culture-relaxed-performance",
+      "contractHash": "87fe5fc694932dd430b97a5b7d374209b5bab40210d476d9fbae018a9998424d"
+    },
+    {
+      "id": "biz-root-culture-religious-visit",
+      "contractHash": "65b36c27fd4ac738a2316a80a8a1d842c762e2ae7ef604ebd40f5aa7e330abb5"
+    },
+    {
+      "id": "biz-root-culture-restored-cut",
+      "contractHash": "ac425f7f18b439e4288f1f031856b4d4b85446fd45ad8bc35c33f4567b7873f0"
+    },
+    {
+      "id": "biz-root-culture-restricted-view",
+      "contractHash": "2ac83b69488a09fccb67ec864a1db9b8ac77d1e258c5f2627653b1d04e26a4b9"
+    },
+    {
+      "id": "biz-root-culture-route-theme",
+      "contractHash": "61b5ff57169edd266503401ab3e9371ae9e32e2b497667d1a56675139f543fbd"
+    },
+    {
+      "id": "biz-root-culture-sensory-map",
+      "contractHash": "2a3ae3acba9977389316ebfd9c8cc2abd0b80fac876d9895026ee18f6cca0fee"
+    },
+    {
+      "id": "biz-root-culture-silent-screening",
+      "contractHash": "724072e0f66b213aebe19095c82a5365d44c45bb1ae259c85e2120ae6df75fa6"
+    },
+    {
+      "id": "biz-root-culture-subtitle-version",
+      "contractHash": "7881302a4991c386332e61502b5357a6f2af7abd7717ca352970530891c0d584"
+    },
+    {
+      "id": "biz-root-culture-tactile-copy",
+      "contractHash": "820cf4cd88820b068bad4e5175514a66e3a94382c934ff0a3b2f84c74222b39e"
+    },
+    {
+      "id": "biz-root-culture-talkback",
+      "contractHash": "fe8ddf67edcf2d05e4dd14cc11c483b3f9d5ca01c3b9c7c9de3abae12a5dccf8"
+    },
+    {
+      "id": "biz-root-culture-touch-tour",
+      "contractHash": "d4cb92c44fcc6ac2f181c844943c5d9259742d0da4e197965e7d75cadba3bcb6"
+    },
+    {
+      "id": "biz-root-culture-traditional-name",
+      "contractHash": "574d2715bd34a6a179d09a6b0f1f4ca13744bc045a7ef66a03590e24b5eb0076"
+    },
+    {
+      "id": "biz-root-culture-trill-vs-held-note",
+      "contractHash": "d295b0ca57a67361065889202df3125b6d4a7fdb1be0ba22d3232c268068a721"
+    },
+    {
+      "id": "biz-root-culture-understudy",
+      "contractHash": "42bcc1a5595526d685b1417bd1c28d4734e387932a2f4693b8ae2ba27ce76c55"
+    },
+    {
+      "id": "biz-root-culture-workshop-firing",
+      "contractHash": "77a0216a6e85e65789469ebb041a2a7fd394e0137eadfe277aaaf8c53ecc4780"
+    },
+    {
+      "id": "biz-root-garden-apical-lateral-bud-model",
+      "contractHash": "0a95c4dba65f4853295643935e86bda225de57941fdce87ab2e675833dec4a26",
+      "distinction": "억제원T와 신장할A/B의 상호작용을 제공상태모형으로 대조한다. 계획의실행증거문제가아니다."
+    },
+    {
+      "id": "biz-root-garden-bare-root-container",
+      "contractHash": "aa3b7a790d4624a9f3c51600d857c457a4f5fb0efee67ee1dc2792f2d327ad29"
+    },
+    {
+      "id": "biz-root-garden-bolting-goal",
+      "contractHash": "63df53e2a0afb6c43d289ee31ae40c04a6f254640e170f1397cd1d89403ddca9"
+    },
+    {
+      "id": "biz-root-garden-cotyledon-leaf",
+      "contractHash": "45127e56af0029df3b4819661ede6843bb97b1bd689a065c3c43c56ed28af512"
+    },
+    {
+      "id": "biz-root-garden-cutting-seed-origin",
+      "contractHash": "05e1c5b7494aacdeb20ad2885300a7d1525508b59ecf34a61f04c402dd15ccf6"
+    },
+    {
+      "id": "biz-root-garden-division-grouping",
+      "contractHash": "3c1f2ebb7ba2a984bcca8f396507fe6ed72e7deb1bce695cdef0ca73a2e4183b"
+    },
+    {
+      "id": "biz-root-garden-dormant-bulb",
+      "contractHash": "b8828dcebcfa3d42fcdfb20d3c5864b3e6482195ca7a52aea2d23b6b8de97f49"
+    },
+    {
+      "id": "biz-root-garden-flower-sex-record",
+      "contractHash": "c86634a788a0c773c47dbc436542eb0e8f5488fb9ae4e618c3351dbf4415c04e"
+    },
+    {
+      "id": "biz-root-garden-fruit-set-ripen",
+      "contractHash": "cb77d1aefcaefdc909bb98833c8410e2fb924a992a9a0e7d2d24f5de6420b0fc"
+    },
+    {
+      "id": "biz-root-garden-garden-display-edibility",
+      "contractHash": "445b90cea156c96fddf87cef009859083f5602a1a7718138d12fc23b9b9b01d1"
+    },
+    {
+      "id": "biz-root-garden-garden-map-canopy",
+      "contractHash": "0a020b7c7f71e6cd8f47b5245df07fcf8be456ee223774e569d364cc6346b210"
+    },
+    {
+      "id": "biz-root-garden-garden-net-beneficiary",
+      "contractHash": "c1e5a501f3c4166c186b0a30f9dc271956e146e6b86a77d037a1f0a655f8f009"
+    },
+    {
+      "id": "biz-root-garden-germination-emergence",
+      "contractHash": "d723bde43c5bb3d849c03affe291e6443e5394e8d43c84df37e948a054f2301b"
+    },
+    {
+      "id": "biz-root-garden-graft-label",
+      "contractHash": "686e4de140024a292c8706a8df4cc36f53876bb990334465486ec3e741ff607d"
+    },
+    {
+      "id": "biz-root-garden-growth-photo-marker",
+      "contractHash": "73a686551031e6121227f4b192f70260e4c788b1acddaa3a948b75bd7c8da230"
+    },
+    {
+      "id": "biz-root-garden-harvest-organ-record",
+      "contractHash": "3d2f4cfcd4eed0381872905d4d9808f5dabf780f33235ddd1226cd935565b7ff"
+    },
+    {
+      "id": "biz-root-garden-hybrid-seed-description",
+      "contractHash": "47f075ea479ecf1d2390569f118b668e6f91c06c749688a5531828dbe64fcd75"
+    },
+    {
+      "id": "biz-root-garden-hydro-substrate-role",
+      "contractHash": "be07262558bf8a232e1b8bddad12cb224a21c784d313da58a78bec87b3c2fc0b"
+    },
+    {
+      "id": "biz-root-garden-inflorescence-terminal-flower",
+      "contractHash": "29f62138c5bb34823abebd61aed362ca263cadecf400c9e0bb2ea9c2e709fd52",
+      "distinction": "축이말단꽃으로종료된발달도해와 계속성장하는축의모형을 구별하고 기록된F선행을 보존한다."
+    },
+    {
+      "id": "biz-root-garden-leaf-position-colour",
+      "contractHash": "080b40007e2a61095e5c4e79201e7ad662d46a6f949b5d49a9462af4262aa7e7"
+    },
+    {
+      "id": "biz-root-garden-mulch-marker",
+      "contractHash": "2576cbccf5700afa79ca4668158d593037009ce63903c40d17de7cc45674e9c1"
+    },
+    {
+      "id": "biz-root-garden-night-interruption",
+      "contractHash": "e1d13412aeb2452aa69cd2a43f1d29b2f60af2129ae0f79fb95d5d4d4861fac4",
+      "distinction": "분리암기의 합계가 아닌 연속암기최장5시간50분을 가상개화한계10시간과 비교한다. 휴식충족뒤활동최대시간문제와 구분했다."
+    },
+    {
+      "id": "biz-root-garden-perennial-label-carry",
+      "contractHash": "07772575bfcb7d05cd8e4be0a0d7949a8223e8e14debd81e415af0955f6ca51d"
+    },
+    {
+      "id": "biz-root-garden-pest-trap-attribution",
+      "contractHash": "1f57dd9446c03bcf962b59e167fb3cafdb1a5d377b14509389d57f84b46aa859"
+    },
+    {
+      "id": "biz-root-garden-plant-name-revision",
+      "contractHash": "ad41060754a937933e235d4e860a0e86403d7bcb4960301bb49a7443a23890ed"
+    },
+    {
+      "id": "biz-root-garden-plant-tie-growth",
+      "contractHash": "8ca84cf3e9772372e83abaf2aa1e68f5f711b8691f1857d454b5b291315ace77"
+    },
+    {
+      "id": "biz-root-garden-pollination-observation",
+      "contractHash": "50704ae07dee91b994d0edc58e608633dac3b5662343042f1dc51018d533e340"
+    },
+    {
+      "id": "biz-root-garden-pollinator-partner",
+      "contractHash": "8ad55b8a6165dc367a81d36ffa7669fb285e36ce10f68895f408de5c59f3ee97"
+    },
+    {
+      "id": "biz-root-garden-pot-location-history",
+      "contractHash": "be61c11538204a8722fcf16a69bda31634d2d9138f8083caa6a49a724f4df94c"
+    },
+    {
+      "id": "biz-root-garden-pot-nested-drain",
+      "contractHash": "f211ff5e90efb3f060c53a6f489fc41b5b663e788a2edf2125ecaf58fcdeeda9"
+    },
+    {
+      "id": "biz-root-garden-pruned-branch-node",
+      "contractHash": "1121fdc42b15a122448449aed8ea78c9f00a56aa6ff95d073a96a50672e623a4"
+    },
+    {
+      "id": "biz-root-garden-repot-old-soil",
+      "contractHash": "0cefe6acbaef8ca01d0699af75d330e40b09b4cef9823d7df1f4ed89202f4f10"
+    },
+    {
+      "id": "biz-root-garden-reservoir-refill",
+      "contractHash": "40faf008a513fadd2dc24e7caf5ccd2c500d439eec2535b4b6eb736f8827f3cb"
+    },
+    {
+      "id": "biz-root-garden-rootstock-shoot",
+      "contractHash": "c236fe2147fc630cee965056af42e74eb50fb4151ad0b06e6d95896a2264b113"
+    },
+    {
+      "id": "biz-root-garden-rotation-observation",
+      "contractHash": "eeb2f58051ba86d9ef09c8ac9e18d9a5f431f95e347e73048ff1043e3a0db0ff"
+    },
+    {
+      "id": "biz-root-garden-runner-daughter",
+      "contractHash": "08d1a40ba3210966c6c8ffbb143a076ec6c704aa8fff2382f3f755affbca617e"
+    },
+    {
+      "id": "biz-root-garden-saucer-runoff",
+      "contractHash": "e2fafe78cc0b78e087cb2bebc775a45208939daea83f04b7af4936dd55056efe"
+    },
+    {
+      "id": "biz-root-garden-seed-head-maturity",
+      "contractHash": "99616f84a205433cb667a125e26305bc66f2d3e7d66e6e73d3547514d06df0b2"
+    },
+    {
+      "id": "biz-root-garden-seed-pellet-label",
+      "contractHash": "4a5657fbbe59c6ff5148398a4912c939c8a004832c25dace65df38b92476fd39"
+    },
+    {
+      "id": "biz-root-garden-self-sown-origin",
+      "contractHash": "5a178201be7599030a8c59ac13f1ba10eae7941662a1995f80f9bb0dc3e21a36"
+    },
+    {
+      "id": "biz-root-garden-shade-screen-placement",
+      "contractHash": "cfd40493b4a1b2728d3df036c2b82ae1257a746c93fdd8299d38459827ee07d6"
+    },
+    {
+      "id": "biz-root-garden-soil-top-dressing",
+      "contractHash": "48df494d2da8176d6e0a882194e5744b6937fa1863c1ee202dd05f2c6548a1dc"
+    },
+    {
+      "id": "biz-root-garden-substrate-batch-claim",
+      "contractHash": "508a01f9c266dcc55024b38d2e24bfe53d581348639a0fd9737ebe22f5fb7938"
+    },
+    {
+      "id": "biz-root-garden-sunlight-reflection",
+      "contractHash": "01cb5bc05338309f139647509fee387e49ae5301219ab3545706919a3d13329e"
+    },
+    {
+      "id": "biz-root-garden-support-vine-anchor",
+      "contractHash": "e38b25bacd9c9206d39f1d64f9caffbc6029dd755564f5418b0da484d43ba5dc"
+    },
+    {
+      "id": "biz-root-garden-variegated-branch",
+      "contractHash": "af388997c2c9929f36b39a9fad8d2fac74f75048d170dbd07d51bc43dbd65d1e"
+    },
+    {
+      "id": "biz-root-garden-variety-colour-reference",
+      "contractHash": "3737e15264e4598894114de81c7f0601c53dafc013a73bb851506e085b6ad3f5"
+    },
+    {
+      "id": "biz-root-garden-volunteer-companion",
+      "contractHash": "c6897992ec0723d0ca1127cf43d902ec9c4fce40b432ad3b28a05edafb3c067a"
+    },
+    {
+      "id": "biz-root-garden-watering-route-log",
+      "contractHash": "2bcd2c50f06be6b5fb3d8e1006d2f90a43e21f8946a83ccfd4ae06cb5a31168b"
+    },
+    {
+      "id": "biz-root-garden-webbing-source",
+      "contractHash": "c3a6337b5c404816d60ec6d42d8ae102a5920d2c3a8a5da2220dd87a636185b7"
+    },
+    {
+      "id": "biz-root-hobbies-animation-exposure-sheet",
+      "contractHash": "719ec1bc54e3ab014e721b205209f01606dfa3ad18c9b896eff6687403e866dd"
+    },
+    {
+      "id": "biz-root-hobbies-bead-loom-warp",
+      "contractHash": "299945a01040f86b77394c6618bd070b75187157e3b1ca2eea0942a74b4fdfbe"
+    },
+    {
+      "id": "biz-root-hobbies-booklet-sewing-holes",
+      "contractHash": "281a3ed521cf11698b4e2236190dc0ad6ad6c21992f0d3a21ad80bcb59204810"
+    },
+    {
+      "id": "biz-root-hobbies-calligraphy-stroke-order",
+      "contractHash": "5dbecd40c01c148eaf29b9fd7cbefca536653f7e1d51822801ec94ad57fb3078"
+    },
+    {
+      "id": "biz-root-hobbies-ceramic-glaze-sample",
+      "contractHash": "8a44a8ac5f74a846be74680f76909abd5107a48594707135393e1c1af765aee4"
+    },
+    {
+      "id": "biz-root-hobbies-choir-divisi",
+      "contractHash": "9eb44f458e6b6619ddde161ec46c88d8dedf66d571d67d5a2c69dcf5451a25cd"
+    },
+    {
+      "id": "biz-root-hobbies-clay-positive-negative",
+      "contractHash": "f57018ec3090975708dc9e033a797d1b5f304b7127b23318c01cf83d7294ccf9"
+    },
+    {
+      "id": "biz-root-hobbies-club-tool-demo",
+      "contractHash": "0f1e1a5abb1fd4b798a9538e9cdd1cd463b520d9f6191db22627279190114754"
+    },
+    {
+      "id": "biz-root-hobbies-comic-panel-time",
+      "contractHash": "28ae1217f60058a415086fe6bcf8d6d1fa5696f24630c8cc0d6011d5d866335d"
+    },
+    {
+      "id": "biz-root-hobbies-crochet-join-chain",
+      "contractHash": "cf92aea45c601ed3e4e4a8a4ad2c2939aa066acdcdaf87fdd5663c7117fa8445"
+    },
+    {
+      "id": "biz-root-hobbies-cross-staff-voice",
+      "contractHash": "140f4240dd5f05a8cd2a828ffc72a467bb04bbdb3684f5b86c63454fb8104118",
+      "distinction": "음표c의기둥연결·성부태그를보존해보표위치변경을 성부이전으로해석하지않는다."
+    },
+    {
+      "id": "biz-root-hobbies-cross-stitch-fraction",
+      "contractHash": "c35cdbc11bf7168cf8f8b55e38c225d421f1e7de6939a02fdceaa7a6fafc3350"
+    },
+    {
+      "id": "biz-root-hobbies-dance-facing",
+      "contractHash": "8a4827e59d519793ee5c07b1d6cd8021d819836c1f202eab23549a70e64ac740"
+    },
+    {
+      "id": "biz-root-hobbies-darkroom-local-exposure",
+      "contractHash": "20ed2eecaf390976d3fd440af1bf28666bff8b760c0a75d138cf6d6d731aecd6",
+      "distinction": "제공시험표에서 부분노광을늘리면어두워지는반응을읽고 얼굴밝게/배경유지의변경안을검토한다. 음화극성에서원문잉크물성을추정하는 tech-lib-075와다르다."
+    },
+    {
+      "id": "biz-root-hobbies-diorama-sightline",
+      "contractHash": "081e0a988998ee8713639f5b67ba3d2f5291faf632fc60b9aec2e9c684949b5c"
+    },
+    {
+      "id": "biz-root-hobbies-embroidery-layering",
+      "contractHash": "5fd8a61c6a373c5c33125ec7c524b5706fb35bb64ac1ce81faa1d1d9ae1e6509"
+    },
+    {
+      "id": "biz-root-hobbies-ensemble-rest-cue",
+      "contractHash": "8048f5e4aeb80a1c2acaba0286271a50bc3466520e3e22cf75f554aca575cf84"
+    },
+    {
+      "id": "biz-root-hobbies-hi-hat-choke-event",
+      "contractHash": "10317e3f1b142b383d2a84578eafdc835960021287d5066ab5e97b17c0ea8897",
+      "distinction": "새타격없는닫힘사건이 기존특정악기울림을 종료한다. 다른악기와 다음타격시점은보존한다."
+    },
+    {
+      "id": "biz-root-hobbies-intaglio-relief-ink",
+      "contractHash": "c53490ada86cff2fcba6145d4dc64264c1eeb586c82266de304686ddedc50b0c",
+      "distinction": "파인면이라는형상과잉크잔류위치를분리해 두인쇄방식의상반된홈자국을 판정한다."
+    },
+    {
+      "id": "biz-root-hobbies-intarsia-yarn-boundary",
+      "contractHash": "0ff6521f30ff7db5ce6327bc3a34f8735ced575e3792b069fdd90b9c10534a95",
+      "distinction": "같은색떨어진면의독립실묶음과 경계연결을 동시에검사한다. 실가닥단위변환이나단순선택분기와다르다."
+    },
+    {
+      "id": "biz-root-hobbies-kirigami-hinge",
+      "contractHash": "1cbf966ff0304f103e3e6a1bb1bea84f39d2e793a0de2a67e0328da27bc7cb15"
+    },
+    {
+      "id": "biz-root-hobbies-knit-held-stitches",
+      "contractHash": "4cb4831381ef267c2678a40a5777b12603ffad71c6b6761dd9dbaff372d83e7d"
+    },
+    {
+      "id": "biz-root-hobbies-linocut-registration",
+      "contractHash": "4eaa571e8e80314bcdecbe55819885f8a05bf34170dbf27c678f5f55ede87d34"
+    },
+    {
+      "id": "biz-root-hobbies-lip-sync-anticipation",
+      "contractHash": "4a9e5c900244724ec80f7eedc469df7dcda1a6a3256081e648c8b20663f4bc82",
+      "distinction": "무음준비입모양10~11과 고정발성12의두트랙을보존한다. 스톱모션등간격계산이나 점프예비동작누락과다르다."
+    },
+    {
+      "id": "biz-root-hobbies-macrame-working-core",
+      "contractHash": "319ea65d13b9c35d53bad5771eb7a5dd8271db66309168de9dab7402a479f83e"
+    },
+    {
+      "id": "biz-root-hobbies-magic-method-disclosure",
+      "contractHash": "9669c3787980af5dffd6a0ff72a6f0d6f18f7234b1aee5de230380353fe1bc5a"
+    },
+    {
+      "id": "biz-root-hobbies-melody-inversion-retrograde",
+      "contractHash": "62bceb3a405cc9118e98762f6206421184e33217a641820be2a6c5dec32f053c",
+      "distinction": "높이축부호변환과 시간순서반전을 독립검산한다. 결과 [0,-2,-5]/[1,1,2]가 제공규약과일치한다."
+    },
+    {
+      "id": "biz-root-hobbies-model-moving-joint",
+      "contractHash": "903e6e430db1e670f2ff1fe3b5a7e0360555f30278ebd8bfef4812410516c376"
+    },
+    {
+      "id": "biz-root-hobbies-model-sprue-step",
+      "contractHash": "e17f3c5caf0af72f87946838798937f965fbe1cc701b04466140e72f61f212df"
+    },
+    {
+      "id": "biz-root-hobbies-modular-origami-handed",
+      "contractHash": "3fcfb194c1970bd2e99e673ce3ea88294dd4d13b9f876258b331779d047b7124"
+    },
+    {
+      "id": "biz-root-hobbies-mosaic-border",
+      "contractHash": "0ae6489638170eb1f302bb5941698bc1ae64c3997a01b2eeed0a31a9f1455e34"
+    },
+    {
+      "id": "biz-root-hobbies-music-coda-jump",
+      "contractHash": "77717c876a5fa01b0b4ca4bde5b539097c2e794d0d1af95e1ea7d6d7875a96c1"
+    },
+    {
+      "id": "biz-root-hobbies-negative-space-letter",
+      "contractHash": "272885c924847b7d1ee42fa3593b3612abb3f248e7f3ae4cf7963050c2acc33d"
+    },
+    {
+      "id": "biz-root-hobbies-onion-skin-export",
+      "contractHash": "fe0ff0204d7a52e43127eec5613c8e49cb4f823280e0f92b5540c9d09aee045d"
+    },
+    {
+      "id": "biz-root-hobbies-paper-grain-hinge",
+      "contractHash": "72928b1a58fb3d6b1d6806f52f91ecdc1d868734bd4e5293536ab80f6785b559",
+      "distinction": "종이결과책등의 평행요구를 접기산골방향과 분리한다."
+    },
+    {
+      "id": "biz-root-hobbies-paper-quilling-coil",
+      "contractHash": "98e7d91e04f38046f5eb68eb564575b42c3730259e65a24fe11b87d494da22c5"
+    },
+    {
+      "id": "biz-root-hobbies-popup-closure",
+      "contractHash": "30dd5f3c7854008c3c35848797919e6f4ee0961b85b254d279c113f8de1f13bd"
+    },
+    {
+      "id": "biz-root-hobbies-puppet-control-map",
+      "contractHash": "ee488430cdb602608772cd6375cf1a7a1c0b035cab4c181024cea8a09499827f"
+    },
+    {
+      "id": "biz-root-hobbies-puzzle-box-sequence",
+      "contractHash": "8dd879a8f66e4c2237eacbe2e3c41c02c43c128164fbffaca006d97faa1cd956"
+    },
+    {
+      "id": "biz-root-hobbies-puzzle-piece-rotation",
+      "contractHash": "3a18a5afee7c3eee1d4911a2a72542eecc3ae0806b2f016d4f79fb9dbc39b938"
+    },
+    {
+      "id": "biz-root-hobbies-quilt-seam-nesting",
+      "contractHash": "ea1031e4d2079dc512c6894c5fa34b1f68dbe5852cde7cb10e230e58114343af",
+      "distinction": "무늬정합이이미충족돼도 교차부시접눕힘의반대방향조건은별도다. 완성치수시접합계나무늬좌표맞춤과다르다."
+    },
+    {
+      "id": "biz-root-hobbies-repair-visible-mend",
+      "contractHash": "375933a62322b3f75229c37348ad6f3c15ff560c79de6af2018faee0f4dc9dd1"
+    },
+    {
+      "id": "biz-root-hobbies-sculpture-armature",
+      "contractHash": "24489d79754b6c8245a97905fe93165af477db9fd0ac92e9a29ac85dfa02b31b"
+    },
+    {
+      "id": "biz-root-hobbies-shared-work-custody",
+      "contractHash": "24afc25d8b3bd823461a1ce7d48666ef1b4bea0718e0470e0c9c893a36edd6dc"
+    },
+    {
+      "id": "biz-root-hobbies-short-row-wrap",
+      "contractHash": "c9c1207759379e4dbfd4b7d1f53ef63f6c9d4a047d481e34450961feacdc24aa",
+      "distinction": "중간회전을의도된경로로보존하며복귀시감김을원래코와함께처리한다. 원형뜨기의단닫기·시작점계약과다르고 감김은늘림이아니다."
+    },
+    {
+      "id": "biz-root-hobbies-sketchbook-process",
+      "contractHash": "22b0e8eb941d091f16f6b4210c8d7f5ee82c803013e2ea1c2d91d40c26874d73"
+    },
+    {
+      "id": "biz-root-hobbies-stage-prop-lookalike",
+      "contractHash": "e30fd9ed870abc7601196ec50f08d13b0a9ea08238eb212e7a8209c8f555481e"
+    },
+    {
+      "id": "biz-root-hobbies-stained-pattern-faces",
+      "contractHash": "17a2789421abd0d78f7fc4699280554efd8d76af603c2ceaa2a68b145442287a"
+    },
+    {
+      "id": "biz-root-hobbies-stereo-eye-order",
+      "contractHash": "c7954cf53bdacdcb297e85fd33201d44c7db9e0928d34f01d81e40ede400f0fd",
+      "distinction": "제공눈별영상검증표에서 좌우배정교환의깊이부호반전과 전체평행이동을 분리한다. 글자좌우거울반사와다르다."
+    },
+    {
+      "id": "biz-root-hobbies-theatre-prop-state",
+      "contractHash": "303dd04a61d2e5b89d1f6f175d1f3c49f4aa4f17d3957e1ee98e70560a45cc68"
+    },
+    {
+      "id": "biz-root-hospitality-accessible-request",
+      "contractHash": "ae7e46d67d00ef1b72b52130a54df3760bde99935d50210e8d2995047a4f7849"
+    },
+    {
+      "id": "biz-root-hospitality-amenity-package-change",
+      "contractHash": "224bab65f4f2359aa46f0ffb471f50c1812a9026fc720c0666a3d42efb7cf16a"
+    },
+    {
+      "id": "biz-root-hospitality-balcony-juliet",
+      "contractHash": "5b2e0954dad72d27aeb87d2eb8bce55c0185133401c5c659c3a19920ed9d5364"
+    },
+    {
+      "id": "biz-root-hospitality-breakfast-box-option",
+      "contractHash": "7a60744c57eea8a31c57ef44baf97ab23532e411466757e49439406659adcbde"
+    },
+    {
+      "id": "biz-root-hospitality-breakfast-table-charge",
+      "contractHash": "b566407ed8b1ff6a7a9f1150b8ae6dce7093e240f808b039eb0755496165b8df"
+    },
+    {
+      "id": "biz-root-hospitality-charging-outlet-label",
+      "contractHash": "2f6d7d07c0136736e2b3db9113b50ebabe770d844d23eb5589f4363aa6e9b39b"
+    },
+    {
+      "id": "biz-root-hospitality-checkin-room-inspection",
+      "contractHash": "8430a205cd91ae95f30e2022cbcf0324e78fbdd66aedc6f5afdd46413bcbac6a"
+    },
+    {
+      "id": "biz-root-hospitality-complimentary-display",
+      "contractHash": "80cd01f78b41352492e58778c92c3779d2e8f0bfc553c2e9c294d7f71ee7ad83"
+    },
+    {
+      "id": "biz-root-hospitality-connecting-door",
+      "contractHash": "808369838c0196960bb4c5d0315b6056b99f6db912f8ffca0a26dde38be46276"
+    },
+    {
+      "id": "biz-root-hospitality-connecting-door-lock",
+      "contractHash": "2d1ba6a876ab8c221b3077696fd214709658df906e4498df14bc0c838ae569d2"
+    },
+    {
+      "id": "biz-root-hospitality-connecting-family-charge",
+      "contractHash": "9d792607167b773367c29e95570e05ca7813a261d00d6ce0ef0a72d81b143d43"
+    },
+    {
+      "id": "biz-root-hospitality-day-use-lodging",
+      "contractHash": "ae8217afa45570ff03a19d20d46058c8f17424fb7eb7c0a6de2ed5ff1f6557fa"
+    },
+    {
+      "id": "biz-root-hospitality-dnd-turndown",
+      "contractHash": "55794141b083d539fc30c75cb5b9041df4a25a049a12122c6265655a2378253f"
+    },
+    {
+      "id": "biz-root-hospitality-extra-bed-space",
+      "contractHash": "06d82ef39ca64b9151fb97d27c5cf740630e40ac0f9ac06519141929a302e3d9"
+    },
+    {
+      "id": "biz-root-hospitality-fragrance-request",
+      "contractHash": "b7e96bcfbf4870d30477635ced2eb89dc2b26709d2276649dcb964519ccc471a"
+    },
+    {
+      "id": "biz-root-hospitality-guest-laundry-pocket",
+      "contractHash": "9ab4f9cd8430b79addbd425365ff5f88f0362f023e9289b8368d31ada8ac0223"
+    },
+    {
+      "id": "biz-root-hospitality-hotel-apartment-service",
+      "contractHash": "091e2cd0e85e2e317d69d58b355d4ac8907b0fcf4695324218cdd216cbcd3ff2"
+    },
+    {
+      "id": "biz-root-hospitality-hotel-map-levels",
+      "contractHash": "985024bbeb0d0f05884868c40ae2019d67f5e572843c1f5e41561699f49625db"
+    },
+    {
+      "id": "biz-root-hospitality-hotel-quiet-room",
+      "contractHash": "e26f1912fe028f2f8dc88f4c8c1a20fcb60ff8d4b884956e2e475080426d70c1"
+    },
+    {
+      "id": "biz-root-hospitality-housekeeping-returned-item",
+      "contractHash": "c08b4eea9bf6e02605b3a25deede6273e6474b370c603328215eacd16b76afb3"
+    },
+    {
+      "id": "biz-root-hospitality-in-room-device-profile",
+      "contractHash": "7514e12c69d911d03b70684aef0519035cfc6cc551f6975c1aa41e6f13dc7b58"
+    },
+    {
+      "id": "biz-root-hospitality-incognito-stay",
+      "contractHash": "63a4d3f028b67d99cd5bab36ba6ee466279c1f1b21380e809dfb39d2904790d4"
+    },
+    {
+      "id": "biz-root-hospitality-kitchenette-stove",
+      "contractHash": "332e75baefb156ebdad4717bfa9486c63e6d648d732e579e1cdc4a91ca6237db"
+    },
+    {
+      "id": "biz-root-hospitality-late-departure-cleaning",
+      "contractHash": "9c8386b49d7dd1a82f11ff0bae16ec58a7e857aec2fdc2921b3b53a6b8d7a7bb"
+    },
+    {
+      "id": "biz-root-hospitality-laundry-care-route",
+      "contractHash": "acfbc8a62f1379e647433fc621a0d38e03d5eec86c3c22929ce6a624284d2c9c"
+    },
+    {
+      "id": "biz-root-hospitality-linen-guest-property",
+      "contractHash": "740c2a381af3edce07f986fb88f5ac6ca973e338edfff63f5114d959059c4aaa"
+    },
+    {
+      "id": "biz-root-hospitality-long-stay-mail",
+      "contractHash": "fd9730a1c6e67b34bd6d7b86d0d1b70b8457ccf707ee10f2a8c5e89de0d68be1"
+    },
+    {
+      "id": "biz-root-hospitality-luggage-in-room",
+      "contractHash": "feba69c62d82a772c79862801743d9265cba184e4039dd8dc5f13ceca94a8b9a"
+    },
+    {
+      "id": "biz-root-hospitality-night-audit-business-date",
+      "contractHash": "999528eee5737ed0320309fcd38fba3ba79428b245b0bb9f4845d3d9170f54b3",
+      "distinction": "자정이아닌결산구간으로영업일을귀속하면서 실제발생시각날짜를원형보존한다. 수집지연이나사업달력휴일계산과다르다."
+    },
+    {
+      "id": "biz-root-hospitality-package-guest-name",
+      "contractHash": "d0ac46f57e77061f81224836fac5e011d26df98fea8df94592fd0d657153be4d"
+    },
+    {
+      "id": "biz-root-hospitality-pillow-material",
+      "contractHash": "2b025930e7bed23617d836f3457ca66b769dcfd51e4e1a5a004dcfe8644b0fa2"
+    },
+    {
+      "id": "biz-root-hospitality-refresh-full-clean",
+      "contractHash": "a6043ffd08e47312197a7ce5b67f72a1669700901e4dac7becbd964aa64d179e"
+    },
+    {
+      "id": "biz-root-hospitality-reservation-room-choice",
+      "contractHash": "f9b876b8c5ec3a250079589196dacd006aa1901627822050f5f0bdafcef65267"
+    },
+    {
+      "id": "biz-root-hospitality-room-move-key-scope",
+      "contractHash": "b63e19796c4bcb1727edbd4dc42eaec6411b407bf940afc71e227b07c1eb21f1"
+    },
+    {
+      "id": "biz-root-hospitality-room-move-service",
+      "contractHash": "c8fd0a65ef98641ea5f9f3009a2e35b5af3affa38bc81a3c59cb9dd8e7d35ed8"
+    },
+    {
+      "id": "biz-root-hospitality-room-number-disclosure",
+      "contractHash": "b81b2f74075e7f24aa5c0adad210781066bef4cdd84d62092fcbdeb51f6340da"
+    },
+    {
+      "id": "biz-root-hospitality-room-service-tray",
+      "contractHash": "3b4c3fedd4362b22da04b842c25d08470559d37ed268853f376a5f31b960c968"
+    },
+    {
+      "id": "biz-root-hospitality-room-temperature-control",
+      "contractHash": "071244837bc25064cf215c5111cbbd2edbd38a6cac1ee2c61ef469bf64d3fe42"
+    },
+    {
+      "id": "biz-root-hospitality-shower-product",
+      "contractHash": "a84e9590d9a0f089f0efaf380b23c3e143b1a558aa1eb3708c30ff6701f8940c"
+    },
+    {
+      "id": "biz-root-hospitality-shuttle-departure-place",
+      "contractHash": "6708878cea524173d26db30318fde86101591033f6814a87a5e048e3c1549c5a"
+    },
+    {
+      "id": "biz-root-hospitality-sofa-bed-setup",
+      "contractHash": "b0779430cfb0811e7386da073af4baa216b177d7723bd438d6a897ec8fb96526"
+    },
+    {
+      "id": "biz-root-hospitality-split-stay-room",
+      "contractHash": "11129020a65335ab2827e7d31c1363019d12e0bee3f2b305eb936c00e10f3580"
+    },
+    {
+      "id": "biz-root-hospitality-stayover-checkout",
+      "contractHash": "f9faf30614ae08d919e15800415bac7b0e26547c448f3344f11930efc91f3bff"
+    },
+    {
+      "id": "biz-root-hospitality-suite-key-zones",
+      "contractHash": "3fd56a40cb710309466804c03bf8fa6bdc316cbb927a6c6bc5b95b0c1e51fa95"
+    },
+    {
+      "id": "biz-root-hospitality-suite-partition",
+      "contractHash": "cfeb175efb4ea1d7ec9cadcf2e511a9409d8b8fc4442b0d350e95fadf46054d8"
+    },
+    {
+      "id": "biz-root-hospitality-twin-conversion",
+      "contractHash": "b34b81fd16c5b783bff8286c0f07d67f15ff8659687a23df41a9c3e04ff6ed0b"
+    },
+    {
+      "id": "biz-root-hospitality-valet-self-park",
+      "contractHash": "04a940794f9ea6657210d5d437ee2fb74dd4b26bd61b3ec022d3b7b9a2ddedf5"
+    },
+    {
+      "id": "biz-root-hospitality-view-category",
+      "contractHash": "98b9ccb34fb546459c638a6cb8f91870147ae299d7ab22f9cfa724c8556ce08d"
+    },
+    {
+      "id": "biz-root-hospitality-welcome-gift-retail",
+      "contractHash": "bb3d8ba91c36e39e60e655f11e95d20139aa358f878ec9c6a250a4ba5e57c641"
+    },
+    {
+      "id": "biz-root-hospitality-welcome-occasion",
+      "contractHash": "79926574766a1a61c35a3bc805ac2f87b860ff63eb93376e49a462becd00e7a4"
+    },
+    {
+      "id": "biz-root-pet-adoption-listing",
+      "contractHash": "0475edbb20c15b8ba6529e9d6df9fd3196ceab42cc561664e0dba319000d7675"
+    },
+    {
+      "id": "biz-root-pet-adoption-reservation",
+      "contractHash": "dc5bc62db25eb89be74431b3ca2d006866767a7498c057159db2a2778e4b4147"
+    },
+    {
+      "id": "biz-root-pet-assistance-category",
+      "contractHash": "c9ac667f361c78e8466277167e34149d66160d9623830d5dc5c81832de3b3018"
+    },
+    {
+      "id": "biz-root-pet-boarding-items",
+      "contractHash": "0fc269a8d40da9bb65394c8e264f0c4a77c095ebec75a7a505a0ea1be823b21d"
+    },
+    {
+      "id": "biz-root-pet-bonded-pair",
+      "contractHash": "1172de3ceb7cfaf8484be7d88b2dc571258c37dbea4d0ab375aec3c42f682ea3"
+    },
+    {
+      "id": "biz-root-pet-camera-notice",
+      "contractHash": "dd8a2225bddae6781388c11ecca66690e6a144e6a190160a49f2b0fa7e5b7176"
+    },
+    {
+      "id": "biz-root-pet-care-contact-order",
+      "contractHash": "73e1bf3dfd74109434fed92ffda3c1e0c6309a8d441274c67b7638eaa50bcd9d"
+    },
+    {
+      "id": "biz-root-pet-care-plan-authority",
+      "contractHash": "5c5bd8203c066acfc2a5b7964eb68a81d91d2dc56fc3b7ca3b703e8d94709e75"
+    },
+    {
+      "id": "biz-root-pet-chip-contact",
+      "contractHash": "bdc85b958113bfb7f8497b18a2dc575c2a157427527b0370274b82d3c72ca73c"
+    },
+    {
+      "id": "biz-root-pet-command-conflict",
+      "contractHash": "29195306cdad32436a5b83b4e67b361fbe35cf211d212f280f7b60637ecac782"
+    },
+    {
+      "id": "biz-root-pet-daycare-rest",
+      "contractHash": "ef10bffbcbe355db078e2f56aa0fae8a72acfc940a27d10ab332f09737723a36"
+    },
+    {
+      "id": "biz-root-pet-enrichment-choice",
+      "contractHash": "4badec6b4bf0b0d4a6cf0092c6a5a75d6d6e11150cb6d1d65d6568c8fb859b33"
+    },
+    {
+      "id": "biz-root-pet-feeding-ownership",
+      "contractHash": "7715dd8e0b6bb68eb526a5ac5179c0fd3615c7c4f7981b4523b2625f0edb431d"
+    },
+    {
+      "id": "biz-root-pet-finder-evidence",
+      "contractHash": "e564bdd918ad9600e3f19e6feb1700bcd03edbfa4785437a64c3ce2a28270233"
+    },
+    {
+      "id": "biz-root-pet-foster-adoption",
+      "contractHash": "b10d3d58ddcd38edbdd8f1293ceec05423b4dc433899cdd30daa6869deede476"
+    },
+    {
+      "id": "biz-root-pet-foster-cost",
+      "contractHash": "1ffa6c7b1bd853b4fb726d2778c069d382e4f9ad5df2174862f12ae4c1f12e55"
+    },
+    {
+      "id": "biz-root-pet-grooming-disclosure",
+      "contractHash": "ca23e10f3d9bef36e665c7d5b696ae455aef6e4060568fde4c824ba0925ba5c3"
+    },
+    {
+      "id": "biz-root-pet-grooming-scope",
+      "contractHash": "2b25c8a6f438473c6be0193947eea6e635b5ab36630faa89c68e4bb7bc172fad"
+    },
+    {
+      "id": "biz-root-pet-harness-sizing",
+      "contractHash": "28ae734ffbccdf19879b872afa42474170db37c45fafa8fba6a72c4932d90a6a"
+    },
+    {
+      "id": "biz-root-pet-hotel-cohabitation",
+      "contractHash": "8e41fc340f625854274f3d27745edeaf95e75f1a72cd62e545584dfe4384a1b1"
+    },
+    {
+      "id": "biz-root-pet-house-scope",
+      "contractHash": "b4f270186ca620ac032f00eec6c4c5f39d2782e095ef5949ef5c0ab3821ba86a"
+    },
+    {
+      "id": "biz-root-pet-id-tag-public",
+      "contractHash": "a62a3d32e98f1c3e54e9cfd771015fec9a6bb2467643fd348cbf7463ab8baba1"
+    },
+    {
+      "id": "biz-root-pet-insurance-preapproval",
+      "contractHash": "a8c078eb4ca543bc73449bd1a62c9bc13715fcd178e28e9bd20d24b3512da082"
+    },
+    {
+      "id": "biz-root-pet-key-custody",
+      "contractHash": "3f8e3afb703368e8b318298cd6f8062fb112a2f4062b08fa92061a4015c56bc2"
+    },
+    {
+      "id": "biz-root-pet-lost-poster",
+      "contractHash": "fcfd8241d48b2330df46496f2126641d92c827f6d769bdcd9b8c3876cd9322e7"
+    },
+    {
+      "id": "biz-root-pet-marker-session-end",
+      "contractHash": "89481179ab8ebf1d5aec3b72f4ba41bd72bf74a980a619e8b062467a6e6937fd"
+    },
+    {
+      "id": "biz-root-pet-meal-refusal-log",
+      "contractHash": "9f14378af9b864a3c29937f2c367dca4513a1563e6ff4406f92eee43be8fcca6"
+    },
+    {
+      "id": "biz-root-pet-memorial-identity",
+      "contractHash": "db0f49fc45e024bee2ed328703086b3329523a557b7748c6736e9d3f1ca520b6"
+    },
+    {
+      "id": "biz-root-pet-memorial-original",
+      "contractHash": "359562e3c8d7bb4b363741d4719921dec3f1f73c9b96b14f9ac69bc6304351fa"
+    },
+    {
+      "id": "biz-root-pet-multi-bowl-label",
+      "contractHash": "8e0bae1284eb0f2f236d9c720601ccb5a7a98e6a6bbf45efd4b7a0ed8f68f2cb"
+    },
+    {
+      "id": "biz-root-pet-observation-trigger",
+      "contractHash": "8f9d24373f4f12960c2a7e4e44355444190f925034193ac0895a3d23d5f8b090"
+    },
+    {
+      "id": "biz-root-pet-offlead-service",
+      "contractHash": "d482d605348038467dc2faa1589184ae55bb142831eb12ccf96acdf4a82b1792"
+    },
+    {
+      "id": "biz-root-pet-pet-policy-weight",
+      "contractHash": "9f8f8578024dcd60614abd1bd0a59dec101a2456368044e6c521dac0b33291c1"
+    },
+    {
+      "id": "biz-root-pet-photo-matching",
+      "contractHash": "476c515f4ff50606571aa3f61e309d38d463228f8772e3b8968acbe87a7bfc9c"
+    },
+    {
+      "id": "biz-root-pet-prescription-transcribe",
+      "contractHash": "eb038f48df3332479ea96b800cce77ab3a7bd44cf29d834680abd6437b869828"
+    },
+    {
+      "id": "biz-root-pet-return-route",
+      "contractHash": "0042d16672221581b16bd2ecdcc111491b0e500c6c241410c4df469b257b76d3"
+    },
+    {
+      "id": "biz-root-pet-ride-companion",
+      "contractHash": "2c3e1d9c56147b46f729fd7af4c1bc4d9841ea830a569da5d518922e1d16c36b"
+    },
+    {
+      "id": "biz-root-pet-route-deviation",
+      "contractHash": "40331265142dde5cdfb7617e5d66edb038ce165e1749e7b5b276067e0f6e2358"
+    },
+    {
+      "id": "biz-root-pet-sitter-handover",
+      "contractHash": "d08316a41ad751e009459cda0f3dcd621e22a10e13579b50b1e7f10fa16a3b88"
+    },
+    {
+      "id": "biz-root-pet-sleep-in-vs-awake-watch",
+      "contractHash": "d85985d120977b53873090c4fdf28f75ca8e9152ab6a40c9aa8cc01319741bec"
+    },
+    {
+      "id": "biz-root-pet-sponsor-adoption-priority",
+      "contractHash": "80ccd97021c809471f208d892b512fe249bc318b46d35696f8ffddda701c5d71"
+    },
+    {
+      "id": "biz-root-pet-style-reference",
+      "contractHash": "721f28624986bdf9529ee2d986f767e39756c9dca4cfe8d7ce6410a898d8f8c9"
+    },
+    {
+      "id": "biz-root-pet-toy-component",
+      "contractHash": "0af0cf29828e89e61385509d345bb8f5f15c529e6533eaa42ff122aca720c5ee"
+    },
+    {
+      "id": "biz-root-pet-transport-crate",
+      "contractHash": "ed9d13e91e9edda57c96815afa3d5ad46feffb8e2596ac8fa99a090130a4214b"
+    },
+    {
+      "id": "biz-root-pet-travel-crate-label",
+      "contractHash": "7231992f35b75e565e61d0afd53bf2905dc5c103ea9958fa282db128b57d53c5"
+    },
+    {
+      "id": "biz-root-pet-treat-consent",
+      "contractHash": "410e4c9d669fcce720821517f104f816799b070b86b905c19ad3d51b3be49e2c"
+    },
+    {
+      "id": "biz-root-pet-vaccination-status",
+      "contractHash": "2563b06b691698b180208866446a60687a0dc78c4662ef0a14c9be55b8e6c9b2"
+    },
+    {
+      "id": "biz-root-pet-vet-document-copy",
+      "contractHash": "953701dcfb64e6b85d43f9433a63d397709ba6903d9cebfa693431c09d628507"
+    },
+    {
+      "id": "biz-root-pet-walk-release",
+      "contractHash": "022386983c18688d416c4615ce92feac9f4fcac0358720790ba04954b8c04dbf"
+    },
+    {
+      "id": "biz-root-pet-walker-location-proof",
+      "contractHash": "303f5151e864bae79a93ec2ea21408826ab22c4f3d913a4e5440a25217a026d9"
+    },
+    {
+      "id": "biz-root-travel-attraction-timeslot",
+      "contractHash": "ee5de69e5d207901253da4689dd656aa0c4e2624435fdc3c4415621cdad52e79"
+    },
+    {
+      "id": "biz-root-travel-baggage-through",
+      "contractHash": "303c21d13395490e88538fd777ec8bb1a9b472c3791b110be12d8e8deee1f123"
+    },
+    {
+      "id": "biz-root-travel-child-age-date",
+      "contractHash": "4754e292ccc9b995a98ba4b104851f1370796c24565042b8764d42f5e9e96b10"
+    },
+    {
+      "id": "biz-root-travel-city-card",
+      "contractHash": "cfc9a4aef4f146c8f2c1b02d9c08c9da396fbfaac6d5c137280cdc417a60b383"
+    },
+    {
+      "id": "biz-root-travel-codeshare-operator",
+      "contractHash": "e9e4a6291f97550a2822573c3691e6b68b3159e96692d6bcf4a907ec865c7a5c"
+    },
+    {
+      "id": "biz-root-travel-connection-protection",
+      "contractHash": "a3bf58049c31fd48c1700609d208ed3b92ffcdb12813821f933672d063080954"
+    },
+    {
+      "id": "biz-root-travel-cruise-port-time",
+      "contractHash": "f09db90d75a9b54a54fb79ec1ee9265879e697bd654ae8cb429a48daa14de2c4"
+    },
+    {
+      "id": "biz-root-travel-data-roaming-scope",
+      "contractHash": "47ef7a3a6309bdae58e771c87f5f06f7764e225ddc87132d3c05ac855f25bf7c"
+    },
+    {
+      "id": "biz-root-travel-date-line",
+      "contractHash": "88c461a9f12311521666c8395cf80c6883c4fc3a6a677c9a443697d251515a4b"
+    },
+    {
+      "id": "biz-root-travel-deposit-credit",
+      "contractHash": "c69551b05541e594ce9f220535e33f167888449feb8d59ae5e4979212b74245e"
+    },
+    {
+      "id": "biz-root-travel-esim-activation",
+      "contractHash": "73028f1597c05d851137497f77cf3874a5421698d4879f1dee10b7a0639dc828"
+    },
+    {
+      "id": "biz-root-travel-fare-reissue",
+      "contractHash": "ce2788e7a61a153cc19a8814c32fb2cc75d2d50160b55c686be184f0f857b2dc"
+    },
+    {
+      "id": "biz-root-travel-ferry-vehicle",
+      "contractHash": "604f38f531006b163cfbfd41412fccade5a5c8089772a21a38e42cb9c5ec4bda"
+    },
+    {
+      "id": "biz-root-travel-ground-closure",
+      "contractHash": "281cf7f8edeb7168a995e36c76eb9e39481ea1b604a76e90b1a4dd53cd491eda"
+    },
+    {
+      "id": "biz-root-travel-hiking-guide-scope",
+      "contractHash": "db98affa9bb9cec79cbe224c0edae8342b6b9a7d4477c62d5ed167d6042a5e61"
+    },
+    {
+      "id": "biz-root-travel-hold-vs-ticket",
+      "contractHash": "fea618348230bd3faa5731d822d77d8e63de3ce073e5fd9b53531b8347d6e919"
+    },
+    {
+      "id": "biz-root-travel-intermodal-guarantee",
+      "contractHash": "fd4d3ba66ca275182f8b75bde34d9f99e36324717f0a6a3ce6372f88f9bd937f"
+    },
+    {
+      "id": "biz-root-travel-multi-airport",
+      "contractHash": "ee46e6bcd83fc7ea6b8dc7b229fe101327bb7777332b0bd1c5220ce12a0f2754"
+    },
+    {
+      "id": "biz-root-travel-museum-reentry",
+      "contractHash": "bc7677704b4909e42e338d6d4ca63db3a64214ba8fe9978100836dc2017a5180"
+    },
+    {
+      "id": "biz-root-travel-name-order",
+      "contractHash": "ba955877668584330f61c8ceeb40c327e1d3ea299c9ff8a16bfff2ce77dc6d74"
+    },
+    {
+      "id": "biz-root-travel-open-jaw",
+      "contractHash": "2310f4bee98f2118f2bebf7cb818acd1692b773be4719548919ad63d2258104c"
+    },
+    {
+      "id": "biz-root-travel-overnight-bus",
+      "contractHash": "437feb558e715559a4127b0e85cf25ae42478230014a91ea7e27bddc9f898b57"
+    },
+    {
+      "id": "biz-root-travel-package-exclusions",
+      "contractHash": "adad2466062abaa243f1a4fe530c0f7632cf9390f9b06dbc578a6d8105eda815"
+    },
+    {
+      "id": "biz-root-travel-partial-refund",
+      "contractHash": "25011814046611bda5494174cacac5ad4b6ab8da5444798096b7360b97e79552"
+    },
+    {
+      "id": "biz-root-travel-pass-day",
+      "contractHash": "b213a38af93e5155fa73846b7f71226ef86760b9e9df8609239023707e623baa"
+    },
+    {
+      "id": "biz-root-travel-pass-window",
+      "contractHash": "e218086dbf92b4aac168fa87f927c8ecd4919ccbbaed075ec698c71b6ccdd3d9"
+    },
+    {
+      "id": "biz-root-travel-power-adapter",
+      "contractHash": "0b51d9f958afa833f7feeb57f9b60189dc03d302465d026cba73bd4dd2dec567"
+    },
+    {
+      "id": "biz-root-travel-private-shared",
+      "contractHash": "8415804b4708945e11757eeef39885ea6c5549f1f9144928344ef90048bf6f4a"
+    },
+    {
+      "id": "biz-root-travel-rail-coupon",
+      "contractHash": "c3d6a06e4bcfb2cb674914dec31de1f372a86dabf71c61870f809fb666f18f28"
+    },
+    {
+      "id": "biz-root-travel-rail-platform-pair",
+      "contractHash": "5909bd66eef7eb985229b7c4dcf78328077aba7fa0c0080e0bf3a7d4c9a68096"
+    },
+    {
+      "id": "biz-root-travel-rail-reservation-zone",
+      "contractHash": "3fe57493d88311961c8fcba073c7284192725130ad3eb43eab9477b6060959e8"
+    },
+    {
+      "id": "biz-root-travel-rental-fuel",
+      "contractHash": "97e425fbfe6520d7abf6b4c042316273ff2a1b2b1d4e0e3b8827c2f29d98e700"
+    },
+    {
+      "id": "biz-root-travel-rental-mileage",
+      "contractHash": "b8c99e40f5239d9b998c2c336591267d5ba4ccea55aabeb01afa5849ace04e61"
+    },
+    {
+      "id": "biz-root-travel-rental-oneway",
+      "contractHash": "5e27cda0be96ddef5077ca58786c1171f4cca5492d53d04746a708b03e69c5fc"
+    },
+    {
+      "id": "biz-root-travel-round-trip-period",
+      "contractHash": "b72e465acd03f0821000b32b1c9eb32e1482559492592aef2603fa049a01b751"
+    },
+    {
+      "id": "biz-root-travel-route-rest-day",
+      "contractHash": "704bef10b85bb7d37fdd40794e1a209d87546c0720ae74857b9841b45cbdd8ba"
+    },
+    {
+      "id": "biz-root-travel-seat-paid-service",
+      "contractHash": "f1ca74d193de1431a9ac67d0a7a2645c392991275966184b63258c93cdea3a4e"
+    },
+    {
+      "id": "biz-root-travel-segment-sequence",
+      "contractHash": "e246082ea706848c73369d884a02ce5ccc61c99d7e929c6ee69a97d111fd4240"
+    },
+    {
+      "id": "biz-root-travel-self-transfer",
+      "contractHash": "5a4d48f00c72bee4b6ed011257b7368ebbe28264076bf7931c7064420c5e1340"
+    },
+    {
+      "id": "biz-root-travel-sleeper-berth",
+      "contractHash": "4aaea3daa4eedb196c9ecfac8740560eaecd9686b1adcc2fda4b5003f6076c98"
+    },
+    {
+      "id": "biz-root-travel-special-meal",
+      "contractHash": "d88e9be4e5708c25ad984c5768ba2a302b5857cfad210f06222b93441f7e9925"
+    },
+    {
+      "id": "biz-root-travel-stopover-bag",
+      "contractHash": "13df733089fe6d2c794581c6d4f11692364fd00ca5aa1caf20dff0beb1cdb382"
+    },
+    {
+      "id": "biz-root-travel-terminal-luggage",
+      "contractHash": "0911b98b391eba2541683e90ac89aaa5e5c38049430fd81605646f2bb00a68b1"
+    },
+    {
+      "id": "biz-root-travel-through-stop",
+      "contractHash": "0b65b2c35265770f0f1e522b098df6da78ad3996bc215af63ac05877fa8f299e",
+      "distinction": "편명식별·기체환승·경유정차의독립축을구분한다. 동일편명/기체라도A→B→C에중간착륙B가있음을 보존한다."
+    },
+    {
+      "id": "biz-root-travel-ticket-currency",
+      "contractHash": "414a0a0b2f971da2c5051781cd55f4ee8d3b64bad6c0b63fa7a1e23c4ea0d5b7"
+    },
+    {
+      "id": "biz-root-travel-ticket-resale-name",
+      "contractHash": "5d7bd7ca506283063581d1a52e82bfaef1b557bb49e561c4c9bc6390a393f715"
+    },
+    {
+      "id": "biz-root-travel-tour-language",
+      "contractHash": "de91de2fc51948a3437693fa889222f84cb3a110a16d3ad61e534d32ad2d4a96"
+    },
+    {
+      "id": "biz-root-travel-tour-minimum",
+      "contractHash": "e366300cd865866a76ea5571e8b6e2c39cc50e4ae192aa8be75a3e85d46ee4ff"
+    },
+    {
+      "id": "biz-root-travel-transit-exit",
+      "contractHash": "1a5a9fcef6142822c2112fa99a89afcbcc8db7ac64d75b49b42cd654c784124f"
+    },
+    {
+      "id": "biz-root-travel-voucher-owner",
+      "contractHash": "7e40ef14f6e0b33f6e20681c7d24cb162f711768aca7d1e6ee8d2b2fca316b1d"
+    },
+    {
+      "id": "biz-root-travel-weather-option",
+      "contractHash": "f52e91df0a7826ec647f840825942c27a4b588a040b3294d846a52471fbefbe5"
+    },
+    {
+      "id": "biz-sales-additional-user",
+      "contractHash": "cc87f2752ce35a6d33313e243a0911bb1224efe2fdbb5d8c097b60187cc92655"
+    },
+    {
+      "id": "biz-sales-bundle-fit",
+      "contractHash": "7174644b31f0aed11b3d6a4c24dc5ea7b3ab0a5c465b1361c5bb37b23f71d5f8"
+    },
+    {
+      "id": "biz-sales-channel-ownership",
+      "contractHash": "f4586c58dd2df2c9a29e9fae5a34e5826628cd57fc7b7327e46f67a0ad51e9a1"
+    },
+    {
+      "id": "biz-sales-checkout-handoff",
+      "contractHash": "97146c10514e29108e18bfc296de9da5e0be2a82ce10485c043c2d22a688cd77"
+    },
+    {
+      "id": "biz-sales-competitive-claim",
+      "contractHash": "9c27409ff149368907e0a0f067fb17a14366eb148a2e57b18fee0ec63514aa50"
+    },
+    {
+      "id": "biz-sales-competitor-equivalence",
+      "contractHash": "b4f37130d107f099fd4b66a111636e0e5c9b3ef91409b37310b42b1ac154ac32"
+    },
+    {
+      "id": "biz-sales-contract-vs-roadmap",
+      "contractHash": "358a438de17394c0adc4be8bdcd48ec8785c76d602dd9cd967bbed69daa08108"
+    },
+    {
+      "id": "biz-sales-data-residency",
+      "contractHash": "c32adaee2ca07d59af6a5df7a8c388315427c14f4f3d98afcb065a9af13f3086"
+    },
+    {
+      "id": "biz-sales-decision-process",
+      "contractHash": "fc919d8a369bf5c57e1611f7ede668646062befae89fe0bc1dbb9adb08b23880"
+    },
+    {
+      "id": "biz-sales-demo-data-fit",
+      "contractHash": "f544240053727553aeb8749642d688ef8d71f067e1fedf2dfe55ebde6ac33c3b"
+    },
+    {
+      "id": "biz-sales-demo-scenario",
+      "contractHash": "9c799452867cc9c4bb0722add615dff6fc78b2a2dedd6d347fd33fe9c4278508"
+    },
+    {
+      "id": "biz-sales-discount-stacking",
+      "contractHash": "f17737609ab6d95e81c906c0e4ef23edba6fb6241a5a05841f07133352880247"
+    },
+    {
+      "id": "biz-sales-evaluation-weight",
+      "contractHash": "8ccfce2a6cac848e305383bfea78a567c8af5eff8ec97c7c3e98abad77cf20b4"
+    },
+    {
+      "id": "biz-sales-exclusivity-conflict",
+      "contractHash": "3688aa51e2257627f2a90170faf0f6702574d7680e4302dffc2ca2ecc29941ea"
+    },
+    {
+      "id": "biz-sales-exit-data-access",
+      "contractHash": "955c71dc4d1c5f84842e0ebd9c3f99f2eae9f7cab8883be1d0768d7a0720faca"
+    },
+    {
+      "id": "biz-sales-expansion-capacity",
+      "contractHash": "176d64c3c2256a027dbf8207aa385e3632d21e0ed6cf66ea0b75a947477f773d"
+    },
+    {
+      "id": "biz-sales-handoff-deliverables",
+      "contractHash": "aa5abea30ad26f538b7a0c78a1b3e5a63aa4fd01605ff62822fd513f75e51d3a"
+    },
+    {
+      "id": "biz-sales-implementation-effort",
+      "contractHash": "48392eeed0d33daa930f63a2edbb934885ab36f8ce97350b8f7535d8a49623d1"
+    },
+    {
+      "id": "biz-sales-lead-consent",
+      "contractHash": "fc01ea522c36b7c4669d6b53479454e2040fa691b9392e81ebfd28605e85c1d9"
+    },
+    {
+      "id": "biz-sales-loss-taxonomy",
+      "contractHash": "bc9e9524fb6b9b2efabf800a8fd534d16f3aa70c751465ceb3eaea339101a0b8"
+    },
+    {
+      "id": "biz-sales-migration-evidence",
+      "contractHash": "10ef425ab6da20856f68cab517a8b80eb3122ba33d17a53395fe2292cf16134e"
+    },
+    {
+      "id": "biz-sales-milestone-acceptance",
+      "contractHash": "46100222feec0ab47f8097fc9defc8709aedb9a4789a53138562cf5e6b23ebe4"
+    },
+    {
+      "id": "biz-sales-nonfunctional-fit",
+      "contractHash": "2dab7da3135e64711fb2ff94d24e72589c9845895b44a3bb84ba44d16b1c2275"
+    },
+    {
+      "id": "biz-sales-opportunity-aging",
+      "contractHash": "d738a27576b24be2086bb8a9223722ee20d97b1d9bffd094719d6b04a652cbe6"
+    },
+    {
+      "id": "biz-sales-poc-exit",
+      "contractHash": "d2336cf0cebc9a0bbcdfa8bb180b42e110b2b2a827ea101652caf9b1f7d499b0"
+    },
+    {
+      "id": "biz-sales-price-objection",
+      "contractHash": "808227136993a0af896820258de1b0be5ab57d350d3b8fc239b357de710b7702"
+    },
+    {
+      "id": "biz-sales-problem-before-solution",
+      "contractHash": "2f9f7da76b5e2dab615f21d74f1610049d9912d0e0c324d1854b354a4f201abd"
+    },
+    {
+      "id": "biz-sales-qualification-unknown",
+      "contractHash": "2755433d12ff7f56e5b692be723979de84694842b87f6fe77ed1a05007a8423e"
+    },
+    {
+      "id": "biz-sales-quote-expiry",
+      "contractHash": "b721a2cd08c69aceb5347e9e2c64f1b5e4e1326844329ebb415e115ce5ed9757"
+    },
+    {
+      "id": "biz-sales-reference-relevance",
+      "contractHash": "7494e54151ba82246b86b8f86055d007176ae26d3ed7ab8dc32b926461a9ce7b"
+    },
+    {
+      "id": "biz-sales-renewal-utilization",
+      "contractHash": "d2facf1e80ef56c74ea898620647eae11848a05420757bff77af8760428333e4"
+    },
+    {
+      "id": "biz-sales-request-priority",
+      "contractHash": "d824a5d1393e681181b7cba9b66c2cbc02789bfbd7852c956300ec48c1409e4a"
+    },
+    {
+      "id": "biz-sales-scope-gap",
+      "contractHash": "93c12f5204e9dc03ed0067f75b9cddadf70aa999ca66586f80e74afdd4687597"
+    },
+    {
+      "id": "biz-sales-seat-mix",
+      "contractHash": "d77501e229249403a1d363c1681f9e8dccbf6d10e1784d9325dd9484dbd4eef1"
+    },
+    {
+      "id": "biz-sales-security-questionnaire",
+      "contractHash": "dcd8c8691fe48129a26d74f9949956694794ea07babde6eb8d71df1683e1cba0"
+    },
+    {
+      "id": "biz-sales-stakeholder-gap",
+      "contractHash": "5ff016e5229b76b0b900069a7ed6b00ea3d44feac32bfc6b5588cd5a581aa2ba"
+    },
+    {
+      "id": "biz-sales-trial-activation",
+      "contractHash": "0a2ecd658cf9c8aad61e2aa139cc09ab0167942738fbaa9a1736cc660babe678"
+    },
+    {
+      "id": "biz-sales-trial-readiness",
+      "contractHash": "94df434c141d17c357038358a86165a3ca7fb5a8fcf10d48c3f6f771e62d7b42"
+    },
+    {
+      "id": "biz-sales-value-hypothesis",
+      "contractHash": "6998c4cbfcd689c9bbe02456c078b783681bc13963aaa0ea5897f96bdb46dd86"
+    },
+    {
+      "id": "biz-sample-return-accounting",
+      "contractHash": "96cfad441411f13a8950cd988cf557e8215473f715223200af1bbf9e6fe342dc"
+    },
+    {
+      "id": "biz-shipping-fee-threshold",
+      "contractHash": "2cb49de2f60ac456481fefc7f50cc09ed829d79f6cee60a3b938e4909ec6deb8"
+    },
+    {
+      "id": "biz-size-chart-measurement",
+      "contractHash": "50d92f29b2d5b600b923bffbefc9b6298965ec91819fbc0c92736569e6940145"
+    },
+    {
+      "id": "biz-story-age-timeline",
+      "contractHash": "6ef0b1e4294edfb76d8e57d370f081b6af8b799d7961c5651f70a5b81900aa0e"
+    },
+    {
+      "id": "biz-story-calendar-order",
+      "contractHash": "b14f4791ea9b523dcbf2e34dbe7ac61be76725c7903b46e37bb5913ed10f68ce"
+    },
+    {
+      "id": "biz-story-cause-effect",
+      "contractHash": "61e00ad28410dad5e4833e6f01e96afcfeded7fa93340d2687c9e6d61f60eeb3"
+    },
+    {
+      "id": "biz-story-chapter-hook",
+      "contractHash": "7f9653a0d2629700ea61012c3b76baa802154a6ce412b226e5d4973f2112aa31"
+    },
+    {
+      "id": "biz-story-dialogue-speakers",
+      "contractHash": "b6d1d50e77ec9c7c8e932b597699cd8c6862deaf1da8f057ab3bc3dce36f2c4c"
+    },
+    {
+      "id": "biz-story-dialogue-subtext",
+      "contractHash": "5c5b4a6de3698add86cef89467a0a647f28e1423b713d4e666e2225c61b20e88"
+    },
+    {
+      "id": "biz-story-flashback-anchor",
+      "contractHash": "92cfd575b9f32fcd79e7897e6ccc322a36eb24a0b262bbbd1400efc131ae3669"
+    },
+    {
+      "id": "biz-story-goal-obstacle",
+      "contractHash": "19d92e0a04e8dd8c115fca57ca1f1af9d68bc92c4853108ce7574a2cab244153"
+    },
+    {
+      "id": "biz-story-letter-delivery",
+      "contractHash": "759cf68b8f3f8b5c0d08e6d141bb15d1408ca56ab8503d01fa8f84fc7b19db71"
+    },
+    {
+      "id": "biz-story-location-presence",
+      "contractHash": "814f4f484936752db4505c1e8a14617126ee73b4879f9a4bda1e3333f2aae27e"
+    },
+    {
+      "id": "biz-story-metaphor-literal",
+      "contractHash": "fa5c506ca9c08ad46592faec4a2d0136ae63997126d73c81221fcf40734c94fd"
+    },
+    {
+      "id": "biz-story-motivation-evidence",
+      "contractHash": "a6183a51d96437907e77d83131bf3896a7b40ac7ee71f5b1989d45ad1f94db9a"
+    },
+    {
+      "id": "biz-story-name-consistency",
+      "contractHash": "f0c77c15226bbba97f073d4405e8142d014ba9e74174633ad98fbe047ad84140"
+    },
+    {
+      "id": "biz-story-object-state",
+      "contractHash": "92ed5121e0057e03a35efbb43786d79f43403772119a166e5829b22715528715"
+    },
+    {
+      "id": "biz-story-pov-boundary",
+      "contractHash": "d185f6a7c173917f58f736138867045114fa4c43b7cce550c757e44bc67ed893"
+    },
+    {
+      "id": "biz-story-promise-payoff",
+      "contractHash": "ea77e405c1a18ee2a2612f40bf0c7a6847b309daf76fc06486d5fcab2de21623"
+    },
+    {
+      "id": "biz-story-prop-continuity",
+      "contractHash": "c76d5bb16f1b32d28b33b860ae048b76f077a0c621dec7e63733b82d3c891ecb"
+    },
+    {
+      "id": "biz-story-reveal-order",
+      "contractHash": "fd7afd5f2f72af3695a6b734837193ee92b9447c394c8adffbed33fc7e29d1a9"
+    },
+    {
+      "id": "biz-story-riddle-solvability",
+      "contractHash": "7c6aea7abf86ae18143338b17ae40b7b5dafa3153f78ba37af684a197c6505fd"
+    },
+    {
+      "id": "biz-story-rule-exception",
+      "contractHash": "6aaeba368faf3291ab4cf9360fda8510a10bb319a85cf2a1c9a2a641ad82d368"
+    },
+    {
+      "id": "biz-story-scene-purpose",
+      "contractHash": "8b6670c180d61bdd2d042a6d8044d541954ad3a7fdecc308332cda301af009e4"
+    },
+    {
+      "id": "biz-story-secret-knowledge",
+      "contractHash": "b0e45eba609e2f5c65ad6e1c6d0b467a9b71bb6f9d8667d46e13a2a02f59729f"
+    },
+    {
+      "id": "biz-story-spatial-blocking",
+      "contractHash": "528ba3d7d292bd53117fca22a5ef93547b2c0fdf78ec5dc6bad23e848380a5a5"
+    },
+    {
+      "id": "biz-story-travel-time",
+      "contractHash": "a35ba91d41d8de3cb67ca61e1c7fd736e6a85cd469f31c104c2bb46853c16b50"
+    },
+    {
+      "id": "biz-story-world-cost",
+      "contractHash": "74d2e57f6e2cc83fcb3b30366006587094df0ec4ea4b597b00a05cb006d030c2"
+    },
+    {
+      "id": "biz-subscription-addons-dependency",
+      "contractHash": "c9a559b97c6c3b8f933c6d24fc461fd8f57f746b0816a5d71f7561eea9c3a22f"
+    },
+    {
+      "id": "biz-subscription-billing-anchor",
+      "contractHash": "d0b285737f3570da8a0bdc0224e6e7d6ce94771ff302e0323f23f98da25fc83b"
+    },
+    {
+      "id": "biz-subscription-cancel-effective",
+      "contractHash": "2b51d9fdfc017709bed4e17941d2c927072c346c34b80a58d74f3b7e49eb395b"
+    },
+    {
+      "id": "biz-subscription-downgrade-effects",
+      "contractHash": "932d72f59328ba7d7ecb8c883bcc2f31177fba110a2c8891699a91467220821d"
+    },
+    {
+      "id": "biz-subscription-pause-vs-cancel",
+      "contractHash": "14c7948330171192cd6c6d04eab41504cf054e5c8331d2f86e0b5aef44384d82"
+    },
+    {
+      "id": "biz-subscription-trial-conversion",
+      "contractHash": "231f1a1e96819ad4c65a84865d535c22ed69788d62c44b1ce4600b43f9e7d018"
+    },
+    {
+      "id": "biz-support-attachment-safety",
+      "contractHash": "c430ff325cb8ead26ff719c2952d8f6966b72f4bcb06588adf7f9b346e71cbae"
+    },
+    {
+      "id": "biz-support-callback-window",
+      "contractHash": "8e141b02b43b24556752522b053a93307bfb2941c1b2201f1b2ca0621213189a"
+    },
+    {
+      "id": "biz-support-channel-continuity",
+      "contractHash": "c94a2545cb4f8f3e1bd4d0cbd865fe09354eddda5e9039ae6927fce51ea88074"
+    },
+    {
+      "id": "biz-support-csat-denominator",
+      "contractHash": "66c86af9fdc6797265b8831ffe864055fcc59aca5a9775fa0275ab9432045704"
+    },
+    {
+      "id": "biz-support-duplicates",
+      "contractHash": "8d6d715b95d12f9d815112a62d00c45c93596e284419d8bc0d5268ddc6c59577"
+    },
+    {
+      "id": "biz-support-entitlement",
+      "contractHash": "7a45569c44cae83ccb72bf1a367798e399767d1e389f881047238481a85527c9"
+    },
+    {
+      "id": "biz-support-escalation-summary",
+      "contractHash": "05c897c0f3a6aad18eb2330735f5f02036046178886f89a8d759761e92028e1a"
+    },
+    {
+      "id": "biz-support-first-response",
+      "contractHash": "f4b0290e173041f5cca35838833fac1e795d35df83e56d3ba851522096e13347"
+    },
+    {
+      "id": "biz-support-inactivity",
+      "contractHash": "d3a145379815a5a2d75c7c6f4112edf0a8bae89a5a8ac8777de85a45fe42cf4c"
+    },
+    {
+      "id": "biz-support-known-issue",
+      "contractHash": "bd8df7bc3b6b3f3da3a6d7fd0017223ef1078fe03a57bfdf289d5b30a6be6f4b"
+    },
+    {
+      "id": "biz-support-language-routing",
+      "contractHash": "71323fcc6293622778ef7a831752ac36b61c8a78e478ef1feeb075ac400cc6f8"
+    },
+    {
+      "id": "biz-support-next-question",
+      "contractHash": "3039b045561946749c8c34318722f7171e856e4402987863de320e33c75a1783"
+    },
+    {
+      "id": "biz-support-promise",
+      "contractHash": "566ad163abb4d85e06193844e95c1b0a495875bd5fd41a5feeee7783a8a7c378"
+    },
+    {
+      "id": "biz-support-quality-rubric",
+      "contractHash": "de83307cc9517ca232cd3dcd5fdebf225f93f63bd1d077a2c188ec6f85e08075"
+    },
+    {
+      "id": "biz-support-reason-codes",
+      "contractHash": "e6e4ab213a9ddc4546cc7c5cc52c05f3b53208550a498bc6b4f18e9d03b7dd68"
+    },
+    {
+      "id": "biz-support-reopen",
+      "contractHash": "c7c5beae5a11663aadb2bb5879260d9d382d9735a40d457eddb3bef0aa861f2c"
+    },
+    {
+      "id": "biz-support-repeat-contact",
+      "contractHash": "a95dc74d09e635b21b56206ab28eef1bd709a2b3c3b9d76241e000e583a253fe"
+    },
+    {
+      "id": "biz-support-status-reconciliation",
+      "contractHash": "c33a2de52de2e31ac2c356314985258bcc8a622f377e6dbd8a1419bf5cb5e45e"
+    },
+    {
+      "id": "biz-support-warranty-scope",
+      "contractHash": "a9454d13fd2dbcffb6ff3c5f251f1763f7c4753b231236ac14d013837999ff86"
+    },
+    {
+      "id": "biz-support-workaround",
+      "contractHash": "e947156a9df063a9b5a94a4a4e723b9fec873189a10277954ebbfe4c625a3d37"
+    },
+    {
+      "id": "biz-survey-anonymity",
+      "contractHash": "2818e482498be6e27d08d46020cd9f81fd353a92ea533e1e2e339616ceb60276"
+    },
+    {
+      "id": "biz-training-waitlist",
+      "contractHash": "b7a97cda39c6e4605cdf7156044a72e7500ae66ea6ba0cd349cd5da476f81ca2"
+    },
+    {
+      "id": "biz-travel-overlap",
+      "contractHash": "91521560b67a42c8a5857ec0435fba79b1cfd01aaedf39fc0655740e660988de"
+    },
+    {
+      "id": "biz-volunteer-shifts",
+      "contractHash": "6d516327de4b295d3d96d224f3ed629b2ad4fea611739f33c13830757a94d6bc"
+    },
+    {
+      "id": "biz-work-baseline-version",
+      "contractHash": "431428901b144d7717c8323322add1973a11fbda4c8b6158dbc410223ee4a0a6"
+    },
+    {
+      "id": "biz-work-blocked-vs-waiting",
+      "contractHash": "92e689c7d52af31ad52b39a89b60714a0ad3a8b7bfce64390b2ba9e2f21225af"
+    },
+    {
+      "id": "biz-work-cancelled-work",
+      "contractHash": "90e420f67688495eb0fdac6742ffd8273a088cb1b3ef1ed3d1c1ba5fabddd5f4"
+    },
+    {
+      "id": "biz-work-consulted-informed",
+      "contractHash": "91418aba06fc1ba62cb3cf031e4240122ce05ad365bc2c25bffd9ca4c8c4bb92"
+    },
+    {
+      "id": "biz-work-decision-consent",
+      "contractHash": "5fac48d50d14681cc5bf94e8cb16872db20ff7878b727f1b797b91dd97379cab"
+    },
+    {
+      "id": "biz-work-definition-done",
+      "contractHash": "6bbb9b5b1cf552ad4e0c7e7be1159b1ca9d3538766b9ef47fce49746c1cc5142"
+    },
+    {
+      "id": "biz-work-delegation-authority",
+      "contractHash": "ac2d1d1b75672e20cfd0250fdc72d6e0707fdcb9b1b1dea4f7a3b210386061a9"
+    },
+    {
+      "id": "biz-work-escalation-threshold",
+      "contractHash": "3fa17f21440e58ecff9732f31e8af6b4ac1bda0e1710bb7af48eacd7fc5b0bd8"
+    },
+    {
+      "id": "biz-work-estimate-confidence",
+      "contractHash": "82a00c78c2c6c723a7020a084078fa66ee4f0a3bf7fd42e19f521ffa990ee159"
+    },
+    {
+      "id": "biz-work-expedite-capacity",
+      "contractHash": "9eaa93f7178081ce9f1c9a1b15473e28d3d5e4c233e6487746faf551ef668d19"
+    },
+    {
+      "id": "biz-work-handshake-acceptance",
+      "contractHash": "7e0a990110ebd42c02c0121b5e0afb91ad5a3e8c11a800eeaf35ec56e84a6b6e"
+    },
+    {
+      "id": "biz-work-information-radiator",
+      "contractHash": "8c194566d9ed180a6f2b55cdd50055e86d10bb69ea15b866012020115857b2ca"
+    },
+    {
+      "id": "biz-work-intake-duplicate-scope",
+      "contractHash": "c4be185d6229817d919d7886fbfad73988a863eba15b966b32aea74586683395"
+    },
+    {
+      "id": "biz-work-milestone-buffer",
+      "contractHash": "1d4f5d5079a4527ea213c02c528c6e897678b5eaa1756c24acd35b30379dc1ba"
+    },
+    {
+      "id": "biz-work-parking-lot",
+      "contractHash": "4e1b6adc28c93b81263a0ceb8ceaf497bbd7d380e73d792ef7dff168aa06107c"
+    },
+    {
+      "id": "biz-work-policy-exception-scope",
+      "contractHash": "e06254f11c5f66e53fea85c13197707a3a286e6e76da572861fe0f9574f74664"
+    },
+    {
+      "id": "biz-work-priority-inversion",
+      "contractHash": "6ae63fffa36f48368bb2aec4986be0788deb23f8ae9cf0c31f1411fd007fc453"
+    },
+    {
+      "id": "biz-work-progress-denominator",
+      "contractHash": "a03dd076a3f7ed686af13066d88c864bce115d172f040aa310f50421b12431af"
+    },
+    {
+      "id": "biz-work-raci-accountable",
+      "contractHash": "5316b0ec1c6079334b6c4f7ad1f70c545ff09e3f8794fec89a7e8bafd3277a7a"
+    },
+    {
+      "id": "biz-work-requirement-conflict",
+      "contractHash": "3ceb97a80ab74106e53fbb90170a2ad84d0bf2ca6b2814faa4259d4496a0f559"
+    },
+    {
+      "id": "biz-work-reversible-choice",
+      "contractHash": "7e57b9292b740eb9923adafb2bd8c4cb35cd33b720e13531dbc930beac15da9e"
+    },
+    {
+      "id": "biz-work-scope-baseline",
+      "contractHash": "f62bb907c8515b1ea175aa099af767abfa8d190ebf619a60cc80488329d16d4d"
+    },
+    {
+      "id": "biz-work-single-source",
+      "contractHash": "3dddb796bf721cf3491ae460f51eaa6736c6727f774684f1e2d252ff587e2912"
+    },
+    {
+      "id": "biz-work-wip-limit",
+      "contractHash": "73b288c26347ff67cfbd034d4178558dcb1df9a4b3102f1c2b34a2ab5628dd0a"
+    },
+    {
+      "id": "biz-work-working-agreement",
+      "contractHash": "40572003bd3d82da2d477dace230d2583c2957ba08b99240f68f2d459f4ca754"
+    },
+    {
+      "id": "biz-workshop-grouping",
+      "contractHash": "e48f50659e71ebe44e536d88c5c6eae7eedcd253b7ddd1738b163fdb4393805e"
+    },
+    {
+      "id": "biz-writing-addressing-audience",
+      "contractHash": "1df9eb498d4f9218093ea7a8eb5459b5f302abaac5d04dd1e872a0491af19597"
+    },
+    {
+      "id": "biz-writing-analogy-limits",
+      "contractHash": "6e30c103a46bfec6ce7f0923cccf1308337a680d13268bbc1361f62124984317"
+    },
+    {
+      "id": "biz-writing-apology-causality",
+      "contractHash": "5994ead41ce934d8299c6162187466b44db09034faddd20f8ba0066678a4bc57"
+    },
+    {
+      "id": "biz-writing-approval-explanation",
+      "contractHash": "6fca4406e63f9db00acb6ede83e8e1bfa06e68d3913cc89a497edc72c9c50370"
+    },
+    {
+      "id": "biz-writing-approximate-vs-exact",
+      "contractHash": "ed1b0df09d0dedfd44a80d0ba9a1d7ef82ac484ff68b9c11551bec3867ef1662"
+    },
+    {
+      "id": "biz-writing-comparison-decision",
+      "contractHash": "233b2dae1ccd734ba40687b02cfa9970af9df7ba8ff2e8688dd07e68272c2d14"
+    },
+    {
+      "id": "biz-writing-comparison-reference",
+      "contractHash": "ca298f67671cb3bbfc6250734a09cdd31d9f474f0b503e63c580fc787a223482"
+    },
+    {
+      "id": "biz-writing-contact-escalation",
+      "contractHash": "ab44cc89d930e0a440cbea073f65c636ff23cde85a87ca14fba323ba1f10da83"
+    },
+    {
+      "id": "biz-writing-date-locale",
+      "contractHash": "1be7331358da3f4d2a247f877d5127cdfc996137163cca1087365d00528e4d9c"
+    },
+    {
+      "id": "biz-writing-draft-status",
+      "contractHash": "24a9d01f633ab9039c5562186cec01b5de03e92c28c92ffee4eba215977421c2"
+    },
+    {
+      "id": "biz-writing-empty-state-start",
+      "contractHash": "b963d5e460582f268f99077d033e3cc059085341f9803ded7dfed598e8fdf893"
+    },
+    {
+      "id": "biz-writing-estimate-range",
+      "contractHash": "a416ef38700f504f2ccce5372fa811062c2892419c20b66457ad5ac32cc5fc46"
+    },
+    {
+      "id": "biz-writing-example-representativeness",
+      "contractHash": "26045c4afdd3b3444cb900ee88b314b80ef7eab1b5437332cc7fe90211936b94"
+    },
+    {
+      "id": "biz-writing-explanation-depth",
+      "contractHash": "7a1035a4769ebe8c2c05f106218196138c470cf5bc2ae91afe7021e9695d1d64"
+    },
+    {
+      "id": "biz-writing-export-runtime",
+      "contractHash": "4b241a382651b1c06820417893431e68deb4a889055d30512285682ba833d653"
+    },
+    {
+      "id": "biz-writing-faq-actual-question",
+      "contractHash": "0f874d57931240fe4578fd152f78b6d0779e7ccca958a8e06c45d0e777d9bdf8"
+    },
+    {
+      "id": "biz-writing-footnote-scope",
+      "contractHash": "74e973a535101e65b834ff56a64fa8f3b3af9a2d252d0f4be2d83c1e6320bcf6"
+    },
+    {
+      "id": "biz-writing-honorific-consistency",
+      "contractHash": "b8ccdb4605f962b5ca21952795337ce02968e504704f5389c4e300b09514d742"
+    },
+    {
+      "id": "biz-writing-internal-note",
+      "contractHash": "24751a31a3153fba550c5fdd3a5eae5a41601a7de268fe0a4ecd7c23f91dce37"
+    },
+    {
+      "id": "biz-writing-interruption-recovery",
+      "contractHash": "f82a1b877bccb1905a916519d01acf2d71266ef94ea48ee668880b2d46f69cec"
+    },
+    {
+      "id": "biz-writing-list-parallelism",
+      "contractHash": "6fc72df83c2473673f6bcb601d1a1fe06522d0cb34509b16210895e110216227"
+    },
+    {
+      "id": "biz-writing-modifier-attachment",
+      "contractHash": "32b7b73ffc86bf39f841f3c3d7f36d1266692e3c15da78a2cab0fe3f4d0837e6"
+    },
+    {
+      "id": "biz-writing-negation-scope",
+      "contractHash": "5a4f3b60517802344387cfa4b36f6c9a03086fe16e873a577076a0c6f1b1ee25"
+    },
+    {
+      "id": "biz-writing-numeric-sign",
+      "contractHash": "adf1389aff1c93149c2d94ae70ca81a1bdf31b450589bc5f5fbc1fd357d9cfb0"
+    },
+    {
+      "id": "biz-writing-option-consequence",
+      "contractHash": "46375dd3309c0fc29e0bdbc0c6dd415d0e77f6abf7bb494c4e3bdba991495a2a"
+    },
+    {
+      "id": "biz-writing-or-and",
+      "contractHash": "f5bc894ce7a9933803dbd20dd5584388bab085991d6e46c02abed81bd359ad82"
+    },
+    {
+      "id": "biz-writing-placeholder-leak",
+      "contractHash": "62e4f6b2150467dc9d2d7ba07a85ce02f568f413de86a214678a4035ac4ae004"
+    },
+    {
+      "id": "biz-writing-procedure-branch",
+      "contractHash": "a8d20e2a68df473a55267361b7bb6c5b78651a4fa295534d96ebb70b21c87dcb"
+    },
+    {
+      "id": "biz-writing-progress-disclaimer",
+      "contractHash": "6c9cb97bc89f700992f27fe83f1126431cc4a5af9d91bd4d5497b493f273c9f2"
+    },
+    {
+      "id": "biz-writing-pronoun-owner",
+      "contractHash": "36de2bb97adbd313133050ec7e529614f6638fbfbdc0999ff412d5d32ad347b3"
+    },
+    {
+      "id": "biz-writing-range-inclusive",
+      "contractHash": "0153bd86bce66108badbde950d12c176cc8b417b76e8ce0994b6cf5e0e8486ab"
+    },
+    {
+      "id": "biz-writing-reason-before-action",
+      "contractHash": "8db652125bb5a971836fb86ca8baa6d70516eaacf2bad3700f93cfa335bfcd69"
+    },
+    {
+      "id": "biz-writing-relative-reference",
+      "contractHash": "1e810bd526227d017fee6668e8e15412474626c6f9b1613e05b3f1697f0e73c5"
+    },
+    {
+      "id": "biz-writing-review-not-authority",
+      "contractHash": "6aa4b3c35a82a00fcacd40bc45041a2cf556730a4e6134cc3876678f53d33649"
+    },
+    {
+      "id": "biz-writing-setup-incomplete",
+      "contractHash": "46887596d28960b5b165fb678d7d861201490ec318bac722c8667b33ea3b9cbf"
+    },
+    {
+      "id": "biz-writing-subject-number",
+      "contractHash": "091283813df047c82c3e812967485d2aeacb250d4571bfa6f282ff040ec43ac9"
+    },
+    {
+      "id": "biz-writing-success-criteria",
+      "contractHash": "ad80297e3a9bbe455a7af10213f775144312d2907cfdaa1ebd1f021e49c44209"
+    },
+    {
+      "id": "biz-writing-system-vs-user",
+      "contractHash": "51e1fbc1db46555cd25a90ea66eecc624132d17e015bf7a0d320c8dd8da195bc"
+    },
+    {
+      "id": "biz-writing-test-vs-live",
+      "contractHash": "d956f4507a34d0f60f3c5e1e7553695b220d37a653d4cc8cfa141d62d6cce219"
+    },
+    {
+      "id": "biz-writing-tool-failure-message",
+      "contractHash": "d1d8d3d613353a14fb6814a37c0ee9149e5d7c8f86bc81d87504490dc28e8c5a"
+    },
+    {
+      "id": "biz-writing-troubleshooting-observable",
+      "contractHash": "c94170b642315ebda2ce1be3a8269a6a2c00975ddced4e3e0c1af05e7825d838"
+    },
+    {
+      "id": "biz-writing-version-specific-help",
+      "contractHash": "e90ea6dbcef879f9eb34c27b3f4e3d0eed71734e6313a7957f9223340bc39058"
+    },
+    {
+      "id": "biz-writing-warning-placement",
+      "contractHash": "0e72aa86d5abb787050c7a395f7fd1399e95de9783fe96037f704e87dcae6278"
+    }
+  ],
+  "rejected": []
+}

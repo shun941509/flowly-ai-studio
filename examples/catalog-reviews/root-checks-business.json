@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "reviewer": "/root",
+  "humanReviewed": false,
+  "scope": "운영 저자가 교체한 business 계약의 입력·자료·규칙·출력·실패조건을 루트가 직접 읽었다. 원 business/technical 제목 후보와 해당 실제 계약을 대조했고, 현재 reviewed에 나열한 계약만 통과시켰다. 저자가 다른 root 원저작150건은 이 보고서가 승인하지 않는다. 모든 쌍의 수학적 무중복 증명이나 실제 모델 답변 품질 검증은 아니다.",
+  "reviewed": [
+    {
+      "id": "biz-revision-screenplay-scene-slug",
+      "contractHash": "1cb1cb3e9130b72d7f997d8ca2a836d1cdc1d250ad1f5dd647c5a7154143608b",
+      "distinction": "대본 표제의 실내외와 본문 공간 조건을 대조한다."
+    },
+    {
+      "id": "biz-revision-prevented-damage-trigger",
+      "contractHash": "266ce5584517ab22bedd402700e101777eb0a599bc46e51efd947a323ccbeb4e",
+      "distinction": "공격 발생과 방지 후 실제 피해 수령의 후속 발동 조건을 구분한다."
+    },
+    {
+      "id": "biz-revision-audiobook-note-return",
+      "contractHash": "ea0216e2158f8618452dc2da32c7d064367b5aeab8d8ffd19e995849e86dba86",
+      "distinction": "주석 호출 뒤 복귀할 본문 위치의 누락을 찾는다."
+    },
+    {
+      "id": "biz-revision-dialogue-address-direction",
+      "contractHash": "10da117c595ab556915c75d7bf0ab4fd245395e05737f10745152d41eddee2e2",
+      "distinction": "화자 자신의 역할과 대사 수신자 호칭을 구분한다."
+    },
+    {
+      "id": "biz-revision-ibid-after-insert",
+      "contractHash": "72b73442bc1b4b53806d088ece4c99b07d1fb34b43b0d8c89fd054832e9afb65",
+      "distinction": "주석 삽입으로 바뀐 직전 문헌 참조 대상을 추적한다."
+    },
+    {
+      "id": "biz-revision-poem-line-vs-wrap",
+      "contractHash": "33516bcacb6cbaee7004455cacce92dcc2dbe19d9dfa0cfaa5bd19c7e984dd71",
+      "distinction": "작가 개행과 화면 폭에 따른 표시 줄을 구분한다."
+    },
+    {
+      "id": "biz-revision-comic-balloon-offpanel",
+      "contractHash": "58e28b05e82aa4cccf7fdd2a32fe47482dc56bc276be2d48e3e7614c8da03607",
+      "distinction": "화면 밖 화자의 대사를 화면 안 인물에 연결한 꼬리를 검토한다. 새 hobby 중복은 저자에게 교체 요청했다."
+    },
+    {
+      "id": "biz-revision-script-direction-not-dialogue",
+      "contractHash": "6543368643af76bc98abe82a40cbf39a7f04da78d30b4fb55c83cce59d84234f",
+      "distinction": "연기 동작 지문을 보존하되 대사 발화 목록에서 분리한다."
+    },
+    {
+      "id": "biz-revision-verbatim-transcript-mode",
+      "contractHash": "63cc4836a11b40e55c7a851729f249fa79b3bcfa897ec15fe905a71fc2f1b199",
+      "distinction": "의미 요약이 아닌 축어 납품 계약의 머뭇거림·자기수정 보존을 확인한다."
+    },
+    {
+      "id": "biz-revision-radio-diegetic-continuity",
+      "contractHash": "0baa00d88c48fc82d31733bfbc9a12f98f9ed1914ed17af98fc0299789b760d2",
+      "distinction": "장면 내 장치 소리와 장면 밖 음악으로의 전환 표시를 구분한다."
+    },
+    {
+      "id": "biz-revision-reversed-documentary-action",
+      "contractHash": "6b863d796e50fd78bdde3f901766b7b61bfe8ff108fde1f4850b59c46ef07503",
+      "distinction": "시간 역재생 효과를 원 사건의 증거로 잘못 쓰는 문제를 확인한다."
+    },
+    {
+      "id": "biz-revision-portfolio-process-vs-final",
+      "contractHash": "9c2e9a45ad743e7eb282297c2cf573c7bb75ac2f1f9b6037364aa1e98b11ca94",
+      "distinction": "최종 작품과 직접 제작 과정의 계보를 대조한다. 별도 hobby의 평가 대상 시안 고정과 구분한다."
+    },
+    {
+      "id": "biz-revision-puzzle-answer-on-reverse",
+      "contractHash": "a31f3272069c56b7f21436032179d564bff9553b726dfda09adcb7a042fabeb8",
+      "distinction": "체험 미리보기의 문제면과 뒤집기 이후 해답면 공개 단계를 분리한다."
+    },
+    {
+      "id": "biz-revision-animated-text-hold-keyframe",
+      "contractHash": "a42b212abfdb3a7c600c6af24d1ff055b8e72434d0b29e5f4f35b2c98c6ed460",
+      "distinction": "유지 후 즉시 교체와 중간 모핑을 만드는 연속 보간의 연출 차이를 확인한다."
+    },
+    {
+      "id": "biz-revision-recipe-photo-inedible-prop",
+      "contractHash": "b783a8f3d891bfce1e56a9049c59f53a2fb183441494fdeb0b17a1b14a5a96a1",
+      "distinction": "촬영 소품과 실제 음식이라는 제작 역할을 구분한다."
+    },
+    {
+      "id": "biz-revision-service-evidence-vs-promise",
+      "contractHash": "1d01835c558fe0b42a831d0082e80c5c6568b7c97c076b21e45efe11503b80f7",
+      "distinction": "접수 증거물과 수선·인도의 서비스 산출물 관계를 검토한다."
+    },
+    {
+      "id": "biz-revision-book-dustjacket-flap",
+      "contractHash": "cc8a8b1956922b000b79486bd6ae986e1c8421820844df2839e25b47919388bf",
+      "distinction": "재킷 전개도와 표지 안쪽으로 접힌 날개 위치를 연결한다."
+    },
+    {
+      "id": "biz-revision-print-braille-interpoint",
+      "contractHash": "71d81e610f2ed0ff5fddfa36392fd5badcb4f22da37c805da9df1a868189673b",
+      "distinction": "제공된 앞뒤 점자 도면의 물리적 돌출 위치 충돌을 점역 의미와 분리한다."
+    },
+    {
+      "id": "biz-revision-knit-cable-crossing",
+      "contractHash": "26792383e2d860f64705c166343e9036b72754c0875ef250dfb8e0002b550b20",
+      "distinction": "같은 코 수라도 보류 앞뒤가 만드는 교차 관계를 구분한다."
+    },
+    {
+      "id": "biz-revision-crochet-loop-layer",
+      "contractHash": "ca42ec1a836813a134ef77809657bb7cc1cbd4cf03f9dc7b7061b9ff4a4f4fef",
+      "distinction": "코 위치와 실제 걸어뜨는 고리 층 및 남는 장식선의 관계를 검토한다."
+    },
+    {
+      "id": "biz-revision-pattern-cut-on-fold",
+      "contractHash": "7036e654752423b157a779650dbbab7e467a4db2e239f70b532909ccf5b472c4",
+      "distinction": "반쪽 재단패턴의 접는 선과 절단선 역할을 구분한다."
+    },
+    {
+      "id": "biz-revision-weave-warp-weft-face",
+      "contractHash": "c96ce6d6511d19a35a13b44e59c6d1307690f697157a699e3ef85d32ff510323",
+      "distinction": "실 색과 위아래 교차에 따른 앞면 노출을 연결한다."
+    },
+    {
+      "id": "biz-revision-menu-ellipsis-action",
+      "contractHash": "515b02fab11c4d764d77b322c8d6b1320dada0aea676269df1df7209a2f2c3d0",
+      "distinction": "추가입력 메뉴 표지와 텍스트 생략으로서의 말줄임표를 구분한다."
+    },
+    {
+      "id": "biz-revision-localized-sentence-fragments",
+      "contractHash": "910843d2d60cc4541572c21cc922b336020e68d261aa963ada987a70522f101e",
+      "distinction": "번역 값의 정체성을 유지하면서 전체 문장 자리의 재배열 가능성을 검토한다."
+    },
+    {
+      "id": "biz-revision-game-partial-instruction",
+      "contractHash": "668f15285638413b6a3698423f7697e25e3340706c6bb40beaab1751a29491b1",
+      "distinction": "효과의 앞부분 실행 뒤 불가능한 뒷부분만 건너뛰며 비용 충족과 구분한다."
+    },
+    {
+      "id": "biz-revision-game-reroll-vs-explode",
+      "contractHash": "3df5e8963297a0277883dddfc329803fbee469d5a9a67ad25e180c7c3df74458",
+      "distinction": "버린 원래 주사위를 새 결과로 대체하며 추가 주사위 합산과 구분한다."
+    },
+    {
+      "id": "biz-revision-game-attached-card-host",
+      "contractHash": "9ade8ce0c346bdb805a3e4729e9a7161b4a0b36905c9b425475d0c3cde52afa7",
+      "distinction": "부착 대상의 영역 이동과 별도 부착 카드의 잔류 상태를 추적한다."
+    },
+    {
+      "id": "biz-revision-game-action-replacement",
+      "contractHash": "17a73e3dc61893c62ddaa0828248be2795557270a51a257ae1ba2a3aa64d708f",
+      "distinction": "원 행동을 수행하지 않는 대체 효과와 추가 행동 및 원 행동의 발동을 구분한다."
+    },
+    {
+      "id": "biz-revision-game-simultaneous-combat",
+      "contractHash": "355e6fc6ef001f673c483d58b9d412c9310b6497c6cbaf280e020c9ba932ea07",
+      "distinction": "동시에 확정된 피해를 처리 순서 때문에 취소하지 않는다. 자원 경합 순서 규칙과 구분한다."
+    },
+    {
+      "id": "biz-revision-game-negotiation-binding",
+      "contractHash": "0039345b813eb0b7dcfd26955097f45cf06085114a1e8979456a86a6678d6a28",
+      "distinction": "즉시 교환의 구속력과 미래 협상 약속의 비구속 규칙을 구분한다."
+    },
+    {
+      "id": "biz-revision-game-face-down-characteristics",
+      "contractHash": "ed9ba1ab1fd991533e313ccf7ec24e03ef54743b62a06f96ab50c8ada3226ccb",
+      "distinction": "플레이어가 아는 원본 정보와 현재 뒷면 상태의 규칙상 특성을 분리한다."
+    },
+    {
+      "id": "biz-revision-game-hidden-search-failure",
+      "contractHash": "bcad44f00f3aa4ef6bdbe39a38d21e896a1a2bd746c0ad1270cfe59539bfd4e9",
+      "distinction": "숨겨진 영역의 조건부 탐색에서 명시적으로 허용된 미발견 선언을 검토한다."
+    },
+    {
+      "id": "biz-revision-translator-note-voice",
+      "contractHash": "1f3d67cba26607cb56d7453b84f13d05f93801b94258c24511ca3a36f4f53e47",
+      "distinction": "원저자와 후대 번역자 주석의 서술 주체 및 시간 층위를 구분한다."
+    },
+    {
+      "id": "biz-revision-game-source-leaves",
+      "contractHash": "ce3e92173296ee1681870f5bc345ece6517e38f44f52c3757438053387163d0b",
+      "distinction": "이미 생성된 능력의 존속과 원천의 이탈을 구분하며 대상 이탈 규칙과 대조한다."
+    },
+    {
+      "id": "biz-revision-game-payment-trigger",
+      "contractHash": "f779a78b179544c7937423007e1cb8c532fd78cd403d2a1d4c7e56fc1b5b91d1",
+      "distinction": "자원 손실 사건과 명시적인 비용 지불 사건의 발동 조건을 구분한다."
+    },
+    {
+      "id": "biz-revision-book-two-fronts",
+      "contractHash": "c8046eab46fcfbea104f5cbbd91d300607b7e8bd5a7ef3457d508abf41a8c65c",
+      "distinction": "서로 반대 방향인 두 표지의 의도적 구조를 일괄 회전 오류와 구분한다."
+    },
+    {
+      "id": "biz-revision-sostenuto-captured-notes",
+      "contractHash": "020aa6e6f702efe36fe8df19444c6589cf080438fba3c1f0ef921d407e4e8a20",
+      "distinction": "페달 작동 순간의 음 집합만 포착하는 규칙을 후속 음까지 유지하는 규칙과 구분한다."
+    },
+    {
+      "id": "biz-revision-double-cast-character-identity",
+      "contractHash": "a463853d4e33244cbe5f4e5783a9f60985d2018d38800cf12400ec2280223ed0",
+      "distinction": "한 배우가 연기하는 별도 극중 인물의 정체성을 유지하며 공연 회차별 배우 배정과 구분한다."
+    }
+  ],
+  "rejected": []
+}

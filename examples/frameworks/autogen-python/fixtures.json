@@ -1,0 +1,1 @@
+{"license":"CC0-1.0","synthetic":true,"incidents":{"PAY-17":{"id":"PAY-17","p95_ms":2200,"normal_p95_ms":500,"queue_depth":82,"proposed_action":"재시도 큐와 결제 제공자 응답 확인","recovery_verified":false,"measured_at":"2026-10-22T09:00:00Z"}}}

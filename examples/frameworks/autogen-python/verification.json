@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-22",
+  "python": "3.13.3",
+  "static": "Python AST와 manifest 파일 존재 검사 통과",
+  "offlineTests": 2,
+  "configurationChecks": [
+    "키 없는 --check는 unconfigured",
+    "키 없는 실제 실행은 미설정 오류로 중단"
+  ],
+  "providerCalls": 0,
+  "mcpCalls": 0,
+  "externalWrites": 0,
+  "liveVerified": false,
+  "dependencies": [
+    "autogen-agentchat==0.7.5",
+    "autogen-ext[openai]==0.7.5",
+    "python-dotenv==1.2.4"
+  ],
+  "mainSha256": "ddd2df12de9677ea35f81d681cae5130f262b8dbc162d1faaa8422a86094f0c0",
+  "notes": "실제 SDK + 테스트 응답 주입. 외부 socket 차단, Windows asyncio 내부 loopback 허용. 실제 모델의 품질/도구 선택 능력은 미검증."
+}

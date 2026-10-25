@@ -1,0 +1,37 @@
+{
+  "id": "smolagents-python",
+  "framework": "smolagents",
+  "language": "python",
+  "kind": "native",
+  "projectId": "inventory-tool-agent",
+  "title": "안전 재고 부족분 조회",
+  "description": "JSON 도구 호출 에이전트가 재고와 예정 입고량으로 재주문 부족분을 계산합니다.",
+  "entrypoint": "main.py",
+  "files": [
+    "main.py",
+    "requirements.txt",
+    "README.md",
+    ".env.example",
+    ".gitignore",
+    "fixtures.json",
+    "test_offline.py",
+    "manifest.json",
+    "verification.json"
+  ],
+  "verification": {
+    "static": true,
+    "offline": true,
+    "live": false
+  },
+  "inputExample": "SKU-8 재주문에 필요한 수량을 알려줘",
+  "expectedOutput": "안전재고30 - 현재12 - 입고8 = 부족10개; 발주하지 않음",
+  "sources": [
+    "https://huggingface.co/docs/smolagents/reference/agents",
+    "https://huggingface.co/docs/smolagents/reference/models"
+  ],
+  "requirements": [
+    "Python 3.11 이상",
+    "사용자가 지정하는 OPENAI_API_KEY와 FLOWLY_MODEL"
+  ],
+  "limits": "최대 4단계, 동시 도구 1개. ToolCallingAgent만 사용하며 CodeAgent나 임의 코드 실행은 포함하지 않습니다."
+}

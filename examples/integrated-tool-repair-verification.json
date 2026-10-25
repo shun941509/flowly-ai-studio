@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "fingerprint": "1a63a227b7d943e28379a974bff7f8fee2f21204e498ebd67f6552a9309e472b",
+  "scope": "explicit workflow branch/data/state scenarios on actual exported CLIs; test-only provider responses, not live model quality",
+  "projects": [
+    {
+      "id": "integrated-043-cost-allocation",
+      "designHash": "4362cb8408b7c7e254fcc84099b7b9e7eae75955d9ee6565374c015e2a5c7c48",
+      "executionHash": "22a36a103f9fd97b9662ef9efb23a873d337d2e11a709708db184cabba8e4cc3",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "e74a75428fe8cc6c3ff6d5678b228289f7be5e40219b220b38be0602bb4639d7",
+        "python": "51ce4b894b80b452fe69cc4216194ced66cf4a389e9ff2b9c029ea72b0420e83"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "비용5의 최적 배정을 예산6 안에서 설명",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_ALLOCATION:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "낮은 예산은 입력 대기 후 계산을 반복하지 않고 재개",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_ALLOCATION_REVISED:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "비용5의 최적 배정을 예산6 안에서 설명",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_ALLOCATION:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "낮은 예산은 입력 대기 후 계산을 반복하지 않고 재개",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_ALLOCATION_REVISED:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    }
+  ],
+  "checks": 6,
+  "failures": [
+    {
+      "id": "integrated-048-redacted-agent-input",
+      "message": "AssertionError [ERR_ASSERTION]: integrated-048-redacted-agent-input/node/이메일을 가린 자료만 Agent가 수신: test boundary contract failed; expected workflow failure must not hide a fixture error\n+ actual - expected\n\n+ [\n+   {\n+     message: 'Disallowed model input: alice@example.test'\n+   }\n+ ]\n- []\n\n    at <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:274:20)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:80:178)\n    at async Promise.allSettled (index 1)\n    at async boundedWorkers (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:80:17)\n    at async main (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:229:10)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:320:79)",
+      "artifactDirectory": "C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\outputs\\integrated-tool-repairs\\.validation-1IDGal\\integrated-048-redacted-agent-input"
+    }
+  ],
+  "externalCalls": 0,
+  "progress": {
+    "selected": 2,
+    "completed": 2,
+    "retained": 0,
+    "workers": 2,
+    "interrupted": false,
+    "updatedAt": "2026-10-24T21:03:45.060Z"
+  }
+}

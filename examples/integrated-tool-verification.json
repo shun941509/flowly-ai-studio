@@ -1,0 +1,380 @@
+{
+  "version": 1,
+  "fingerprint": "0cf5ff0af603c53f179d5c0d4ce37b3da3354de3828be2c366e3d4300c02bbae",
+  "scope": "explicit workflow branch/data/state scenarios on actual exported CLIs; test-only provider responses, not live model quality",
+  "projects": [
+    {
+      "id": "integrated-007-hybrid-tools",
+      "designHash": "a7889b28e2bdef46689284dbfa8af9c69fd439ab3c6a598b7b7d082047c9003c",
+      "executionHash": "6148dd7d51e967aea374b68f9f9d9d438efcffe7f5153ca2db9a7f2e4148dee8",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "a956f91143e113da81d4c2e3b85f09c2552155f78a8565c8d6ffa97772f1ffd3",
+        "python": "79265454560ff8738d276c335c0066ad0543d8680b8753a60e40409cfa38815c"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "두 검색의 실제 순위를 합친 인용 답변",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_HYBRID:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "검색해도 원문에 없는 인용은 공개 거절",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_HYBRID:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "두 검색의 실제 순위를 합친 인용 답변",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_HYBRID:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "검색해도 원문에 없는 인용은 공개 거절",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_HYBRID:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "integrated-039-signal-comparison",
+      "designHash": "7b1fb0e192df4f7fe874904854a055d1bf58ad95ace3ac4fc23c4162d0c48166",
+      "executionHash": "f03ae891a510724ed41cf7797486b48aebd956a1aa7bdf8d649e6adee1cd4ccd",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "9bb94ee610da534adcb11368e9f2903887a2fe194b340a50485ba0000e7d2862",
+        "python": "1a4e4572e53bf43d362c0b209455ee532fde8454a95f4ced3537e5cd4cf1ae1d"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 FFT 결과 비교와 해석 한계",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_SIGNAL_ANALYSIS:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "원인 단정 한계를 생략한 답변은 보완",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "INTEGRATED_SIGNAL_ANALYSIS:": 1,
+            "INTEGRATED_SIGNAL_REPAIR:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 FFT 결과 비교와 해석 한계",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_SIGNAL_ANALYSIS:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "원인 단정 한계를 생략한 답변은 보완",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "INTEGRATED_SIGNAL_ANALYSIS:": 1,
+            "INTEGRATED_SIGNAL_REPAIR:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "integrated-057-graph-evidence",
+      "designHash": "2ad07cf765283b15ba0beebdc7e877bb9a6c77af4af377987edfc8e63417d70f",
+      "executionHash": "f239707ad0783b17bf13a0c0547c5383f5796558593efaf899b35b624685e188",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "8972440071d0824ab74c99f163d9e6f2af31bb69eb810b1039aaddc27e3c1a2e",
+        "python": "11cd6dbdceeb9d026e40c9d0ef722d4f21b0775fa2ef0f734bab707bd5cfa901"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "두 관계의 출처를 따라 데이터베이스 영향 설명",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "INTEGRATED_GRAPH_EXPLAIN:": 1,
+            "INTEGRATED_GRAPH_VERIFY:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "깊이0의 관측에 없는 관계 설명을 검토자가 거절",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "INTEGRATED_GRAPH_EXPLAIN:": 1,
+            "INTEGRATED_GRAPH_VERIFY:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "두 관계의 출처를 따라 데이터베이스 영향 설명",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "INTEGRATED_GRAPH_EXPLAIN:": 1,
+            "INTEGRATED_GRAPH_VERIFY:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "깊이0의 관측에 없는 관계 설명을 검토자가 거절",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "INTEGRATED_GRAPH_EXPLAIN:": 1,
+            "INTEGRATED_GRAPH_VERIFY:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "integrated-085-data-quality-review",
+      "designHash": "d47973808ca243b72fb006b30a7b4785c54c499fba6a8650bb91617065f3269b",
+      "executionHash": "8c18d75aebf90297f3a8b6315ed1b80c10c7944f8a7a4cde2d684dbcf9df7489",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "37dbcaa9daf60a23790860a0928a249fb99ffc4fc089f537c8bd73c667feef22",
+        "python": "01e5473579dcfb009bef4baad44a2ae18e89676989253868ad704810e487933f"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "중복 계산 후 교정안 수락",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_QUALITY_REPAIR:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "중복이 없는 자료는 교정 검토 생략",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_QUALITY_CLEAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "교정안 거절은 원본 보존",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_QUALITY_REPAIR:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "중복 계산 후 교정안 수락",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_QUALITY_REPAIR:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "중복이 없는 자료는 교정 검토 생략",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_QUALITY_CLEAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "교정안 거절은 원본 보존",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "INTEGRATED_QUALITY_REPAIR:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "integrated-100-adaptive-shared-board",
+      "designHash": "2315ea46525a989d1a1744df076b67e9e9636ad9a70c844231f26a231889ea2f",
+      "executionHash": "a68b5e9d1a4852368fe845fd1f3a33aa7efaaa0547ea42c1704745a9737443ec",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "4c3a634b78b9598f3726d1466ff94dcd7e517a11fdfeb895b386fd5cac914f50",
+        "python": "7dec8986dfd003324a8cc99ff96a936154dfdb75cc6a04e31dbcc8da2a33d48b"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "작성 결과 관측 후 검증자 선택과 완료",
+          "status": "succeeded",
+          "modelCalls": 6,
+          "modelCallCounts": {
+            "\"round\":1": 1,
+            "INTEGRATED_BOARD_WRITER:": 1,
+            "\"round\":2": 1,
+            "INTEGRATED_BOARD_REVIEWER:": 1,
+            "\"round\":3": 1,
+            "INTEGRATED_BOARD_FINAL:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "독립 검증 실패는 조정자의 완료 주장과 무관하게 보류",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "modelCallCounts": {
+            "\"round\":1": 1,
+            "INTEGRATED_BOARD_WRITER:": 1,
+            "\"round\":2": 1,
+            "INTEGRATED_BOARD_REVIEWER:": 1,
+            "\"round\":3": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "작성 결과 관측 후 검증자 선택과 완료",
+          "status": "succeeded",
+          "modelCalls": 6,
+          "modelCallCounts": {
+            "\"round\":1": 1,
+            "INTEGRATED_BOARD_WRITER:": 1,
+            "\"round\":2": 1,
+            "INTEGRATED_BOARD_REVIEWER:": 1,
+            "\"round\":3": 1,
+            "INTEGRATED_BOARD_FINAL:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "독립 검증 실패는 조정자의 완료 주장과 무관하게 보류",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "modelCallCounts": {
+            "\"round\":1": 1,
+            "INTEGRATED_BOARD_WRITER:": 1,
+            "\"round\":2": 1,
+            "INTEGRATED_BOARD_REVIEWER:": 1,
+            "\"round\":3": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    }
+  ],
+  "checks": 32,
+  "failures": [
+    {
+      "id": "integrated-043-cost-allocation",
+      "message": "AssertionError [ERR_ASSERTION]: integrated-043-cost-allocation/node/낮은 예산은 입력 대기 후 계산을 반복하지 않고 재개: ‘보완 예산 확인’에서 이전 결과 allocation.totalCost를 찾지 못했어요.\n+ actual - expected\n\n+ 'failed'\n- 'succeeded'\n\n    at <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:275:20)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:80:178)\n    at async Promise.allSettled (index 0)\n    at async boundedWorkers (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:80:17)\n    at async main (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:229:10)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:320:79)",
+      "artifactDirectory": "C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\outputs\\integrated-tools\\.validation-QMcQwW\\integrated-043-cost-allocation"
+    },
+    {
+      "id": "integrated-048-redacted-agent-input",
+      "message": "AssertionError [ERR_ASSERTION]: integrated-048-redacted-agent-input/node/이메일을 가린 자료만 Agent가 수신: test boundary contract failed; expected workflow failure must not hide a fixture error\n+ actual - expected\n\n+ [\n+   {\n+     message: 'Disallowed model input: alice@example.test'\n+   }\n+ ]\n- []\n\n    at <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:274:20)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:80:178)\n    at async Promise.allSettled (index 0)\n    at async boundedWorkers (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:80:17)\n    at async main (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:229:10)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:320:79)",
+      "artifactDirectory": "C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\outputs\\integrated-tools\\.validation-QMcQwW\\integrated-048-redacted-agent-input"
+    }
+  ],
+  "externalCalls": 0,
+  "progress": {
+    "selected": 7,
+    "completed": 7,
+    "retained": 0,
+    "workers": 2,
+    "interrupted": false,
+    "updatedAt": "2026-10-24T21:01:06.058Z"
+  }
+}

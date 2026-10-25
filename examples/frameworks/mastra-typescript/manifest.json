@@ -1,0 +1,27 @@
+{
+  "id": "mastra-typescript",
+  "framework": "Mastra",
+  "language": "typescript",
+  "kind": "native",
+  "projectId": "release-readiness",
+  "title": "출시 준비 검사와 보류 원인 안내",
+  "description": "실제 SDK 실행 경로를 오프라인 주입 모델로 검증했습니다. 실제 모델 연결은 미설정입니다.",
+  "entrypoint": "main.ts",
+  "files": [
+    ".env.example",
+    ".gitignore",
+    "README.md",
+    "config.ts",
+    "main.ts",
+    "offline.test.ts",
+    "package.json",
+    "pnpm-lock.yaml",
+    "tsconfig.json",
+    "fixtures/releases.json"
+  ],
+  "verification": {
+    "static": true,
+    "offline": true,
+    "live": false
+  }
+}

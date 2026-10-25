@@ -1,0 +1,13 @@
+# Copy using pnpm setup:local for local test sessions and a generated secret.
+FLOWLY_ENV=development
+FLOWLY_AUTH_MODE=unconfigured
+FLOWLY_APP_ORIGIN=http://127.0.0.1:5173
+FLOWLY_SESSION_SECRET=
+FLOWLY_TEST_RUNTIME=false
+# Web authentication secrets belong only in ignored local config / Worker secrets.
+OIDC_ISSUER=
+OIDC_CLIENT_ID=
+OIDC_CLIENT_SECRET=
+# The web never calls OpenAI. Users set model keys/tokens in the exported project's .env.
+# JSON connection metadata only: see docs/LOCAL_RUNTIME.md. Do not store token values here.
+FLOWLY_CONNECTIONS_JSON=[]

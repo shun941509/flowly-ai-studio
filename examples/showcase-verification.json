@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "fingerprint": "203109a20ae4c943b612ec55571ca640198a8a478da8868e35c350d9dc932f57",
+  "scope": "explicit workflow branch/data/state scenarios on actual exported CLIs; test-only provider responses, not live model quality",
+  "projects": [],
+  "checks": 0,
+  "failures": [
+    {
+      "id": "showcase-agent-harness",
+      "message": "Error: showcase-agent-harness/python/읽기 도구 결과를 받은 뒤 정상 답변: Traceback (most recent call last):\r\n  File \"C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-python-boundary.py\", line 82, in <module>\r\n    raise SystemExit(runner.main(sys.argv[1:]))\r\n                     ~~~~~~~~~~~^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\outputs\\showcase\\.validation-a7zvI1\\showcase-agent-harness\\python\\runner.py\", line 2748, in main\r\n    Engine(package, package_hash, store, provider, run).execute()\r\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\r\n  File \"C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\outputs\\showcase\\.validation-a7zvI1\\showcase-agent-harness\\python\\runner.py\", line 2399, in execute\r\n    output = self.process_node(node, input_data)\r\n  File \"C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\outputs\\showcase\\.validation-a7zvI1\\showcase-agent-harness\\python\\runner.py\", line 2268, in process_node\r\n    return self.agent(node, input_data)\r\n           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\outputs\\showcase\\.validation-a7zvI1\\showcase-agent-harness\\python\\runner.py\", line 1817, in agent\r\n    reply = self.providers.model(copy.deepcopy(self.cp[\"messages\"]), copy.deepcopy(tools), output_budget, self.guard(node), **({\"on_delta\": stream} if stream else {}))\r\n  File \"C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\outputs\\showcase\\.validation-a7zvI1\\showcase-agent-harness\\python\\runner.py\", line 1351, in model\r\n    response, _ = self.http.post(\"https://api.openai.com/v1/responses\", {\r\n                  ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n        \"model\": self.env[\"FLOWLY_MODEL\"], \"instructions\": INSTRUCTIONS, \"input\": items,\r\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n    ...<2 lines>...\r\n        **({\"stream\": True} if on_delta is not None else {}),\r\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n    }, {\"Content-Type\": \"application/json\", \"Authorization\": \"Bearer \" + self.env[\"OPENAI_API_KEY\"]}, timeout_ms, **({\"on_delta\": on_delta} if on_delta is not None else {}))\r\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-python-boundary.py\", line 67, in test_post\r\n    assert required in observations, \"Missing actual tool observation: \" + required\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: Missing actual tool observation: 예약은 시작 10분 전까지\r\n\n    at cli (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:212:64)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:222:64)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:73:178)\n    at async Promise.allSettled (index 1)\n    at async boundedWorkers (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:73:17)\n    at async main (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:180:10)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:266:79)",
+      "artifactDirectory": "C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\outputs\\showcase\\.validation-a7zvI1\\showcase-agent-harness"
+    },
+    {
+      "id": "showcase-request-orchestration",
+      "message": "AssertionError [ERR_ASSERTION]: showcase-request-orchestration/python/배송 요청은 실제 도구 인자로 주문번호 전달: 도구 실행이 거절되었거나 실패했어요. 기록을 확인해 주세요.\n+ actual - expected\n\n+ 'failed'\n- 'succeeded'\n\n    at <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:224:20)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:73:178)\n    at async Promise.allSettled (index 0)\n    at async boundedWorkers (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:73:17)\n    at async main (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:180:10)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:266:79)",
+      "artifactDirectory": "C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\outputs\\showcase\\.validation-a7zvI1\\showcase-request-orchestration"
+    },
+    {
+      "id": "showcase-approved-publishing",
+      "message": "AssertionError [ERR_ASSERTION]: showcase-approved-publishing/python/두 단계 승인 후 재시작과 재개에도 정확히 한 번 등록: 외부 변경의 성공 여부가 불명확해요. 서비스에서 확인해 주세요. 자동 반복하지 않아요.\n+ actual - expected\n\n+ 'unknown_outcome'\n- 'succeeded'\n\n    at <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:224:20)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:73:178)\n    at async Promise.allSettled (index 1)\n    at async boundedWorkers (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:73:17)\n    at async main (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:180:10)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:266:79)",
+      "artifactDirectory": "C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\outputs\\showcase\\.validation-a7zvI1\\showcase-approved-publishing"
+    },
+    {
+      "id": "__fingerprint_changed__",
+      "message": "Runtime/harness changed during validation; results cannot be reused. Run --resume after sources stabilize."
+    }
+  ],
+  "externalCalls": 0,
+  "progress": {
+    "selected": 6,
+    "completed": 6,
+    "retained": 0,
+    "workers": 2,
+    "interrupted": false,
+    "updatedAt": "2026-10-23T06:42:46.693Z"
+  }
+}

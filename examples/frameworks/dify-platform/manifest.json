@@ -1,0 +1,25 @@
+{
+  "id": "dify-platform",
+  "framework": "Dify",
+  "language": "platform",
+  "kind": "platform",
+  "projectId": "ticket-intake",
+  "title": "문의 접수 분류와 전달 초안",
+  "description": "Dify DSL 및 두 언어 API 클라이언트. 실제 플랫폼 가져오기 미검증.",
+  "entrypoint": "workflow.yml",
+  "files": [
+    ".env.example",
+    ".gitignore",
+    "README.md",
+    "client.mjs",
+    "client.py",
+    "fixtures.json",
+    "offline.test.mjs",
+    "workflow.yml"
+  ],
+  "verification": {
+    "static": true,
+    "offline": true,
+    "live": false
+  }
+}

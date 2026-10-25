@@ -1,0 +1,673 @@
+{
+  "version": 1,
+  "fingerprint": "c4acd0e6bf63040d598bc4f4c2b89c7132c49e919657c95a6942574f4b144efb",
+  "scope": "explicit workflow branch/data/state scenarios on actual exported CLIs; test-only provider responses, not live model quality",
+  "projects": [
+    {
+      "id": "p3-rag-generation-recovery",
+      "designHash": "29dbb1ab3300d167425dabb59d46a3ad4ec8083531d36809cabad29bb37464fe",
+      "executionHash": "0e0caf2d1cfe46def866598fc2b8222a06364f6bc1fd1ab4dbb3000362287cde",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "9bcd7319bab49b1b2bf09ebb4832881464e0758e9b12aa53b532092d5f3786ac",
+        "python": "595cbf33b34fadc8a667e65c09c0a6b00449c7f9825af0997684d4fa93fa67a7"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "기준 세대 g1 발행",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "검색 평가 실패한 g2는 활성화하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "개선된 g3가 평가 후 활성화",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "별도 복구 경로로 재평가한 g1 복구",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "발행되지 않은 실패 후보로 복구 금지",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent가 검색·색인 관측을 불충분하다고 판단하면 결과 공개 보류",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "기준 세대 g1 발행",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "검색 평가 실패한 g2는 활성화하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "개선된 g3가 평가 후 활성화",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "별도 복구 경로로 재평가한 g1 복구",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "발행되지 않은 실패 후보로 복구 금지",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent가 검색·색인 관측을 불충분하다고 판단하면 결과 공개 보류",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "p3-rag-incremental",
+      "designHash": "5af53bf28ebe617e2278ec043eac5f87574ff00a04aa45613c128295665f90e6",
+      "executionHash": "7cdf3a99598d4af8c0f072851cdca6465d70054391f94278bbb4b278ba79f6a1",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "f6ab9626eb0218a08941eb867ba029e53d7bdf276a1510353d8bd5a407b460f1",
+        "python": "94ac18fabe9ef959215ccfbf466daf2abd5e2bd67548c42bac9a67ee723f7250"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "최초 두 문서 세 조각을 준비·평가·발행",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 3,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "다음 실행에서 수정된 한 조각만 임베딩",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 3,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "본문이 같으면 문서 버전이 달라도 임베딩 재사용",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 2,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "허용되지 않은 자료 ID의 갱신은 임베딩 전 거절",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent가 검색·색인 관측을 불충분하다고 판단하면 결과 공개 보류",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 3,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "최초 두 문서 세 조각을 준비·평가·발행",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 3,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "다음 실행에서 수정된 한 조각만 임베딩",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 3,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "본문이 같으면 문서 버전이 달라도 임베딩 재사용",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 2,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "허용되지 않은 자료 ID의 갱신은 임베딩 전 거절",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent가 검색·색인 관측을 불충분하다고 판단하면 결과 공개 보류",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 3,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "p3-rag-local-revocation",
+      "designHash": "e59743b07c0181fe6f278dc93c8748337254b3c4b37a8a0c9a7674dfeaf848d1",
+      "executionHash": "bd7e6f85259efa7320d3675ca6a451e2c1e9de2379015f1b12dcdde70d1a4c26",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "f542c887640edca6460c033917f0a960e8983db8df8b8e306c3ba36aaa95a81d",
+        "python": "859eeed9a71d797508dd7bb2eeff146bee2fca8430d3681ca16945f88575d8c8"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "초기 버전 검색에서 원문 출처 확인",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "다음 프로세스에서 원문 철회 후 검색 결과 0건",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "철회 후 재조회에서도 금지 문서가 되살아나지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "허용 목록 밖 자료 ID의 철회 요청 거절",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent가 검색·색인 관측을 불충분하다고 판단하면 결과 공개 보류",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "초기 버전 검색에서 원문 출처 확인",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "다음 프로세스에서 원문 철회 후 검색 결과 0건",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "철회 후 재조회에서도 금지 문서가 되살아나지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "허용 목록 밖 자료 ID의 철회 요청 거절",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent가 검색·색인 관측을 불충분하다고 판단하면 결과 공개 보류",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "KNOWLEDGE_RESULT_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "p4-graph-candidate-lineage",
+      "designHash": "1bb16b92753fca1b09231211a24e89417df36ce90ce6bf11a28654a1a49cf703",
+      "executionHash": "1a4d164623c055c112e32421504c0e7d0f53b366280b488eeb44c30f59652cdf",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "6c27186a1fd5ee460ffd8d1d1136ac7ad2ee8fd5901dd8bf52e3310e71c30dbb",
+        "python": "ce23b2e2cf57be449db365811a462b12f356b035db1957bd0cd9215f49acdd38"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "조상 수정으로 자손을 무효화하고 새 부모 버전으로 합성",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 4,
+            "CANDIDATE_PUBLIC_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "계보 검토 거절 후 최종 후보 공개 안 함",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 4,
+            "CANDIDATE_PUBLIC_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "조상 변경 후 무효화한 자손을 다시 병합하면 실패",
+          "status": "failed",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 3
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "모델 후보가 없으면 담당자 검토 없이 보류",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "계산 성공 뒤 Agent의 적용 범위 거절은 결과 공개 차단",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 4,
+            "CANDIDATE_PUBLIC_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "조상 수정으로 자손을 무효화하고 새 부모 버전으로 합성",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 4,
+            "CANDIDATE_PUBLIC_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "계보 검토 거절 후 최종 후보 공개 안 함",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 4,
+            "CANDIDATE_PUBLIC_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "조상 변경 후 무효화한 자손을 다시 병합하면 실패",
+          "status": "failed",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 3
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "모델 후보가 없으면 담당자 검토 없이 보류",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "계산 성공 뒤 Agent의 적용 범위 거절은 결과 공개 차단",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 4,
+            "CANDIDATE_PUBLIC_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "p4-tree-candidate-backtracking",
+      "designHash": "d95a7abb7417e7a18cdc3ffa5a12176c87624f0f35e7599e722338774408afba",
+      "executionHash": "a7fdc2dba9af107a4064fd3efb5f1b7ed345add4186c2881c18e1fef6b45cfd0",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "a0d3ecbf2b60cb3e2c70b410158e97d61c6d5e6b4c9443260e3824ea50cbf944",
+        "python": "79578d2675c3d1ce3cb7492d0cfd166794097e69ed8b190e92f42eab3f07e055"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "더 유망해 보인 막힌 가지에서 되돌아 형제 후보 확장",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 3,
+            "CANDIDATE_PUBLIC_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "아무 후보도 만들지 못하면 해답 부재를 단정하지 않고 보류",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "원래 입력에 없는 항목으로 정답을 꾸미면 실패",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "모델이 합계와 성공 여부를 직접 지정할 수 없음",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "계산 성공 뒤 Agent의 적용 범위 거절은 결과 공개 차단",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 3,
+            "CANDIDATE_PUBLIC_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "더 유망해 보인 막힌 가지에서 되돌아 형제 후보 확장",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 3,
+            "CANDIDATE_PUBLIC_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "아무 후보도 만들지 못하면 해답 부재를 단정하지 않고 보류",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "원래 입력에 없는 항목으로 정답을 꾸미면 실패",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "모델이 합계와 성공 여부를 직접 지정할 수 없음",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "계산 성공 뒤 Agent의 적용 범위 거절은 결과 공개 차단",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "modelCallCounts": {
+            "FLOWLY_CANDIDATE_SEARCH:": 3,
+            "CANDIDATE_PUBLIC_REVIEW:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    }
+  ],
+  "checks": 62,
+  "failures": [],
+  "externalCalls": 0,
+  "progress": {
+    "selected": 5,
+    "completed": 5,
+    "retained": 0,
+    "workers": 2,
+    "interrupted": false,
+    "updatedAt": "2026-10-24T21:08:15.371Z"
+  }
+}

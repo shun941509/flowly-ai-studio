@@ -1,0 +1,1902 @@
+[
+  {
+    "id": "tech-code-001",
+    "title": "부동소수점 비교",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "부동소수점 비교의 실제 동작과 수정 전제를 판별한다.",
+    "input": "0.1+0.2==0.3",
+    "facts": "합성 코드 사례: 허용오차1e-9",
+    "output": "부동소수점 비교: 정확false,오차true",
+    "rules": [
+      "절대오차사용",
+      "금액규칙별도",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "NaN거절",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-002",
+    "title": "배열 삭제 중 순회",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "배열 삭제 중 순회의 실제 동작과 수정 전제를 판별한다.",
+    "input": "[1,2,3]홀수제거",
+    "facts": "합성 코드 사례: 순회중splice금지",
+    "output": "배열 삭제 중 순회: 새배열[2]",
+    "rules": [
+      "선택/변경분리",
+      "순서보존",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "비배열거절",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-003",
+    "title": "클로저 반복 변수",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "클로저 반복 변수의 실제 동작과 수정 전제를 판별한다.",
+    "input": "for(var i=0;i<3;i++)에서 ()=>i 콜백을 배열에3개 저장한 뒤 모두 호출",
+    "facts": "합성 JavaScript 사례: 콜백은 반복문이 종료되어 i=3인 뒤 순서대로 호출하며, 반복 도중에는 호출하지 않는다.",
+    "output": "클로저 반복 변수: 모두3",
+    "rules": [
+      "실행시점검사",
+      "블록범위검토",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "동기호출구분",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-004",
+    "title": "비동기 forEach 대기",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "비동기 forEach 대기의 실제 동작과 수정 전제를 판별한다.",
+    "input": "forEach(async save)뒤done",
+    "facts": "합성 코드 사례: Promise수집없음",
+    "output": "비동기 forEach 대기: done먼저가능",
+    "rules": [
+      "Promise.all검토",
+      "순차여부확인",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "완료단정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-005",
+    "title": "빈 배열 every",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "빈 배열 every의 실제 동작과 수정 전제를 판별한다.",
+    "input": "[].every(양수검사)",
+    "facts": "합성 코드 사례: 반례없음",
+    "output": "빈 배열 every: true이나표본없음",
+    "rules": [
+      "존재조건분리",
+      "길이확인",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "정상표본단정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-006",
+    "title": "숫자 기본 정렬",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "숫자 기본 정렬의 실제 동작과 수정 전제를 판별한다.",
+    "input": "[2,10,1].sort()",
+    "facts": "합성 코드 사례: 문자열비교",
+    "output": "숫자 기본 정렬: [1,10,2]",
+    "rules": [
+      "숫자비교지정",
+      "원본변경명시",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "혼합타입확인",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-007",
+    "title": "얕은 복사 공유",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "얕은 복사 공유의 실제 동작과 수정 전제를 판별한다.",
+    "input": "b={...a};b.x.n=2",
+    "facts": "합성 코드 사례: a.x.n=1",
+    "output": "얕은 복사 공유: a.x.n=2",
+    "rules": [
+      "중첩참조검사",
+      "경로별복사",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "순환JSON복사금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-008",
+    "title": "선택 체이닝 괄호",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "선택 체이닝 괄호의 실제 동작과 수정 전제를 판별한다.",
+    "input": "a=null;(a?.b).c",
+    "facts": "합성 코드 사례: 괄호뒤일반접근",
+    "output": "선택 체이닝 괄호: TypeError",
+    "rules": [
+      "연속체인확인",
+      "누락정책정의",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "기본값생성금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-009",
+    "title": "널 병합 기본값",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "널 병합 기본값의 실제 동작과 수정 전제를 판별한다.",
+    "input": "count0,OR10,??10",
+    "facts": "합성 코드 사례: 0은유효",
+    "output": "널 병합 기본값: 각각10,0",
+    "rules": [
+      "falsy/nullish구분",
+      "유효0보존",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "빈문자정책확인",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-010",
+    "title": "switch 분기 누적",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "switch 분기 누적의 실제 동작과 수정 전제를 판별한다.",
+    "input": "x1,case1A,case2B",
+    "facts": "합성 코드 사례: break없음",
+    "output": "switch 분기 누적: A와B",
+    "rules": [
+      "종료검사",
+      "의도누적구분",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "언어미상확인",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-011",
+    "title": "전역 정규식 상태",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "전역 정규식 상태의 실제 동작과 수정 전제를 판별한다.",
+    "input": "aa에/a/g test3회",
+    "facts": "합성 코드 사례: lastIndex유지",
+    "output": "전역 정규식 상태: true,true,false",
+    "rules": [
+      "인덱스추적",
+      "독립검사초기화",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "재생성여부확인",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-012",
+    "title": "문자열 길이 단위",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "문자열 길이 단위의 실제 동작과 수정 전제를 판별한다.",
+    "input": "😀",
+    "facts": "합성 코드 사례: UTF16",
+    "output": "문자열 길이 단위: 길이2,코드포인트1",
+    "rules": [
+      "단위명시",
+      "표시문자구분",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "결합문자추가검사",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-013",
+    "title": "월 인덱스 기준",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "월 인덱스 기준의 실제 동작과 수정 전제를 판별한다.",
+    "input": "new Date(2026,1,1)",
+    "facts": "합성 코드 사례: 월0부터",
+    "output": "월 인덱스 기준: 2월1일",
+    "rules": [
+      "인덱스보정",
+      "시간대표시",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "ISO월혼용금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-014",
+    "title": "정수 정밀도 범위",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "정수 정밀도 범위의 실제 동작과 수정 전제를 판별한다.",
+    "input": "9007199254740993 Number",
+    "facts": "합성 코드 사례: 상한2^53-1",
+    "output": "정수 정밀도 범위: 손실위험",
+    "rules": [
+      "범위검사",
+      "원문보존",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "손실복원단정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-015",
+    "title": "JSON 속성 누락",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "JSON 속성 누락의 실제 동작과 수정 전제를 판별한다.",
+    "input": "a:undefined,b:null",
+    "facts": "합성 코드 사례: undefined생략",
+    "output": "JSON 속성 누락: b만남음",
+    "rules": [
+      "누락/null구분",
+      "계약확인",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "배열규칙혼동금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-016",
+    "title": "Promise 경합 취소",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "Promise 경합 취소의 실제 동작과 수정 전제를 판별한다.",
+    "input": "slow와timeout경합",
+    "facts": "합성 코드 사례: timeout승리",
+    "output": "Promise 경합 취소: slow계속가능",
+    "rules": [
+      "취소신호분리",
+      "중단확인",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "중단완료단정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-017",
+    "title": "finally 반환 우선",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "finally 반환 우선의 실제 동작과 수정 전제를 판별한다.",
+    "input": "try1,finally2반환",
+    "facts": "합성 코드 사례: finally우선",
+    "output": "finally 반환 우선: 반환2",
+    "rules": [
+      "종료경로추적",
+      "정리역할분리",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "예외은폐누락금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-018",
+    "title": "await 예외 범위",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "await 예외 범위의 실제 동작과 수정 전제를 판별한다.",
+    "input": "try에서p반환",
+    "facts": "합성 코드 사례: p나중reject",
+    "output": "await 예외 범위: catch미포착",
+    "rules": [
+      "await위치",
+      "호출자처리",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "동기throw혼동금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-019",
+    "title": "희소 배열 콜백",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "희소 배열 콜백의 실제 동작과 수정 전제를 판별한다.",
+    "input": "Array(3).map(()=>1)",
+    "facts": "합성 코드 사례: 빈슬롯생략",
+    "output": "희소 배열 콜백: 빈슬롯유지",
+    "rules": [
+      "undefined구분",
+      "초기화명시",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "3회호출단정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-020",
+    "title": "객체 키 순서",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "객체 키 순서의 실제 동작과 수정 전제를 판별한다.",
+    "input": "b,2,1,a삽입",
+    "facts": "합성 코드 사례: 정수키우선",
+    "output": "객체 키 순서: 1,2,b,a",
+    "rules": [
+      "키유형분리",
+      "Map검토",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "삽입순서가정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-021",
+    "title": "쿼리 다중 값",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "쿼리 다중 값의 실제 동작과 수정 전제를 판별한다.",
+    "input": "tag=a&tag=b",
+    "facts": "합성 코드 사례: get첫값",
+    "output": "쿼리 다중 값: a,getAll[a,b]",
+    "rules": [
+      "다중계약",
+      "순서보존",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "임의마지막선택금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-022",
+    "title": "치환 메타문자",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "치환 메타문자의 실제 동작과 수정 전제를 판별한다.",
+    "input": "replace값$&",
+    "facts": "합성 코드 사례: 매치전체참조",
+    "output": "치환 메타문자: 리터럴은함수반환",
+    "rules": [
+      "메타문자검사",
+      "원문보존",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "입력코드실행금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-023",
+    "title": "파싱 잔여 단위",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "파싱 잔여 단위의 실제 동작과 수정 전제를 판별한다.",
+    "input": "parseInt12px",
+    "facts": "합성 코드 사례: 숫자접두해석",
+    "output": "파싱 잔여 단위: 12이나엄격검증아님",
+    "rules": [
+      "전체일치",
+      "단위분리",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "금액승인금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-024",
+    "title": "음수 나머지",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "음수 나머지의 실제 동작과 수정 전제를 판별한다.",
+    "input": "-5%3",
+    "facts": "합성 코드 사례: JS부호규칙",
+    "output": "음수 나머지: -2",
+    "rules": [
+      "모듈로구분",
+      "인덱스보정",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "0분모거절",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-025",
+    "title": "폼 기본 동작",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "폼 기본 동작의 실제 동작과 수정 전제를 판별한다.",
+    "input": "submit핸들러",
+    "facts": "합성 코드 사례: preventDefault없음",
+    "output": "폼 기본 동작: 기본전송가능",
+    "rules": [
+      "기본동작분리",
+      "경로단일화",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "실제전송금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-026",
+    "title": "이벤트 전파 중단",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "이벤트 전파 중단의 실제 동작과 수정 전제를 판별한다.",
+    "input": "stopPropagation",
+    "facts": "합성 코드 사례: 같은요소리스너2",
+    "output": "이벤트 전파 중단: 다른리스너계속",
+    "rules": [
+      "즉시중단구분",
+      "범위최소화",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "기본취소오해금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-027",
+    "title": "리스너 제거 참조",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "리스너 제거 참조의 실제 동작과 수정 전제를 판별한다.",
+    "input": "add(fn),remove(wrapper)",
+    "facts": "합성 코드 사례: 참조다름",
+    "output": "리스너 제거 참조: 제거안됨",
+    "rules": [
+      "동일참조",
+      "capture일치",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "익명동일시금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-028",
+    "title": "debounce 입력 보존",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "debounce 입력 보존의 실제 동작과 수정 전제를 판별한다.",
+    "input": "A0,B50,delay100",
+    "facts": "합성 코드 사례: 후행만",
+    "output": "debounce 입력 보존: 150에B",
+    "rules": [
+      "타이머갱신",
+      "마지막인자",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "leading확인",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-029",
+    "title": "throttle 선행 제한",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "throttle 선행 제한의 실제 동작과 수정 전제를 판별한다.",
+    "input": "A0,B20,C120",
+    "facts": "합성 코드 사례: 간격100선행",
+    "output": "throttle 선행 제한: A,C",
+    "rules": [
+      "기간억제",
+      "후행없음",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "debounce혼동금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-030",
+    "title": "메모 키 충돌",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "메모 키 충돌의 실제 동작과 수정 전제를 판별한다.",
+    "input": "ab/c와a/bc연결",
+    "facts": "합성 코드 사례: 구분자없음",
+    "output": "메모 키 충돌: abc충돌",
+    "rules": [
+      "구조화키",
+      "타입보존",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "우연일치신뢰금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-031",
+    "title": "실패 Promise 캐시",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "실패 Promise 캐시의 실제 동작과 수정 전제를 판별한다.",
+    "input": "거절도Map보관",
+    "facts": "합성 코드 사례: 삭제없음",
+    "output": "실패 Promise 캐시: 후속도실패",
+    "rules": [
+      "실패정책분리",
+      "재시점정의",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "무한재시도금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-032",
+    "title": "파일명 이식",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "파일명 이식의 실제 동작과 수정 전제를 판별한다.",
+    "input": "import Util,파일util",
+    "facts": "합성 코드 사례: Linux대소구분",
+    "output": "파일명 이식: 해석실패후보",
+    "rules": [
+      "경로일치",
+      "OS차이",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "Windows일반화금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-033",
+    "title": "모듈 순환 초기화",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "모듈 순환 초기화의 실제 동작과 수정 전제를 판별한다.",
+    "input": "A와B상호초기참조",
+    "facts": "합성 코드 사례: 초기화전읽기",
+    "output": "모듈 순환 초기화: 값오류위험",
+    "rules": [
+      "공통의존분리",
+      "접근시점",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "정상값단정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-034",
+    "title": "타입 단언 경계",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "타입 단언 경계의 실제 동작과 수정 전제를 판별한다.",
+    "input": "JSON as User",
+    "facts": "합성 코드 사례: 단언런타임제거",
+    "output": "타입 단언 경계: 검증안됨",
+    "rules": [
+      "스키마검사",
+      "단언분리",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "외부값신뢰금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-035",
+    "title": "유니온 누락 분기",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "유니온 누락 분기의 실제 동작과 수정 전제를 판별한다.",
+    "input": "a,b처리후c추가",
+    "facts": "합성 코드 사례: c미처리",
+    "output": "유니온 누락 분기: 누락c",
+    "rules": [
+      "never검사",
+      "기본값은폐금지",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "미지원명시오류",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-036",
+    "title": "readonly 속성 범위",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "readonly 속성 범위의 실제 동작과 수정 전제를 판별한다.",
+    "input": "readonly items배열",
+    "facts": "합성 코드 사례: 재할당만금지",
+    "output": "readonly 속성 범위: push가능",
+    "rules": [
+      "속성/배열구분",
+      "ReadonlyArray",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "깊은불변주장금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-037",
+    "title": "가변 기본 인자",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "가변 기본 인자의 실제 동작과 수정 전제를 판별한다.",
+    "input": "f(xs=[])append1",
+    "facts": "합성 코드 사례: 기본1회생성",
+    "output": "가변 기본 인자: 1개뒤2개",
+    "rules": [
+      "호출별생성",
+      "None기본",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "공유의도확인",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-038",
+    "title": "반복문 else의 종료 경로",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "Python 반복문 else가 마지막 조건문의 거짓 분기가 아니라 break 없는 종료 경로임을 검토한다.",
+    "input": "for x in [1,2]: if x==3: break; 반복문에 붙은 else에서 not_found를 기록",
+    "facts": "합성 Python 코드에서 if는 for 본문 안에 있고 else는 for와 같은 들여쓰기다. for의 else는 break 없이 반복을 마치면 실행된다.",
+    "output": "3이 없어 break가 실행되지 않으므로 반복 종료 뒤 not_found가 기록된다. if의 else나 마지막 원소에만 적용되는 분기로 해석하지 않는다.",
+    "rules": [
+      "else가 붙은 구문을 들여쓰기 정보로 확인한다.",
+      "정상 반복 종료와 break 종료를 구분한다.",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "들여쓰기 정보가 없으면 else의 소속을 확정하지 않는다.",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-039",
+    "title": "값과 동일성",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "값과 동일성의 실제 동작과 수정 전제를 판별한다.",
+    "input": "독립[1]두개",
+    "facts": "합성 코드 사례: is참조비교",
+    "output": "값과 동일성: ==true,isfalse",
+    "rules": [
+      "값연산선택",
+      "싱글턴분리",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "정수캐시일반화금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-040",
+    "title": "생성기 재사용",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "생성기 재사용의 실제 동작과 수정 전제를 판별한다.",
+    "input": "g=[1,2]생성기",
+    "facts": "합성 코드 사례: 단회소비",
+    "output": "생성기 재사용: 첫[1,2],다음[]",
+    "rules": [
+      "재생성",
+      "보관비용",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "무한보관금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-041",
+    "title": "zip 길이 손실",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "zip 길이 손실의 실제 동작과 수정 전제를 판별한다.",
+    "input": "[1,2]와[a]",
+    "facts": "합성 코드 사례: 짧은쪽종료",
+    "output": "zip 길이 손실: (1,a)만",
+    "rules": [
+      "길이검사",
+      "strict검토",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "누락성공금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-042",
+    "title": "bool 정수 관계",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "bool 정수 관계의 실제 동작과 수정 전제를 판별한다.",
+    "input": "isinstance(True,int)",
+    "facts": "합성 코드 사례: Python상속",
+    "output": "bool 정수 관계: true",
+    "rules": [
+      "bool별도검사",
+      "수량타입정의",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "수량1자동수용금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-043",
+    "title": "지역변수 누락 경로",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "지역변수 누락 경로의 실제 동작과 수정 전제를 판별한다.",
+    "input": "함수 안에서 if flag: x=1을 실행한 뒤 조건문 밖에서 return x; flag=False",
+    "facts": "합성 Python 사례: x의 다른 대입이나 global·nonlocal 선언은 없고, flag는 False다.",
+    "output": "지역변수 누락 경로: UnboundLocalError",
+    "rules": [
+      "전경로초기화",
+      "기본의미확인",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "임의0금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-044",
+    "title": "예외 이름 수명",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "예외 이름 수명의 실제 동작과 수정 전제를 판별한다.",
+    "input": "except E as err뒤사용",
+    "facts": "합성 코드 사례: 블록후정리",
+    "output": "예외 이름 수명: 이름오류가능",
+    "rules": [
+      "필요값보관",
+      "참조수명",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "성공경로누락금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-045",
+    "title": "집합 출력 순서",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "집합 출력 순서의 실제 동작과 수정 전제를 판별한다.",
+    "input": "Python set(['b','a'])의 원소를 순회해 출력",
+    "facts": "합성 코드 사례: 순서미계약",
+    "output": "집합 출력 순서: 순서미보장",
+    "rules": [
+      "정렬명시",
+      "자료형선택",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "시드일반화금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-046",
+    "title": "파일 인코딩",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "파일 인코딩의 실제 동작과 수정 전제를 판별한다.",
+    "input": "UTF8를locale읽기",
+    "facts": "합성 코드 사례: 환경의존",
+    "output": "파일 인코딩: utf8명시",
+    "rules": [
+      "인코딩일치",
+      "오류정책",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "깨짐무시금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-047",
+    "title": "시간대 혼합 비교",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "시간대 혼합 비교의 실제 동작과 수정 전제를 판별한다.",
+    "input": "Python datetime의 시간대 있는 aware 값과 시간대 없는 naive 값에 aware < naive 순서 비교를 수행",
+    "facts": "합성 Python 사례: 두 값은 datetime 객체이며 한쪽만 시간대가 있다. 비교 연산은 동등성 ==가 아닌 순서 <다.",
+    "output": "aware < naive 순서 비교는 TypeError다. naive 값이 어느 시간대인지 확인해 같은 기준으로 변환해야 하며 단순 시간대 덧붙이기를 변환과 혼동하지 않는다.",
+    "rules": [
+      "시간대통일",
+      "naive의미",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "replace변환단정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-048",
+    "title": "가변 객체 해시",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "가변 객체 해시의 실제 동작과 수정 전제를 판별한다.",
+    "input": "dataclass eqTrue frozenFalse",
+    "facts": "합성 코드 사례: hash없음",
+    "output": "가변 객체 해시: set삽입불가",
+    "rules": [
+      "키불변",
+      "식별키선택",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "unsafe해법단정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-049",
+    "title": "코루틴 미대기",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "코루틴 미대기의 실제 동작과 수정 전제를 판별한다.",
+    "input": "coro=async함수호출",
+    "facts": "합성 코드 사례: 본문미실행",
+    "output": "코루틴 미대기: 코루틴반환",
+    "rules": [
+      "await필요",
+      "루프경계",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "완료표시금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-050",
+    "title": "예외 자원 반납",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "예외 자원 반납의 실제 동작과 수정 전제를 판별한다.",
+    "input": "open뒤오류,close끝",
+    "facts": "합성 코드 사례: close미도달",
+    "output": "예외 자원 반납: 파일반납누락",
+    "rules": [
+      "with검토",
+      "전경로반납",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "GC즉시성의존금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-051",
+    "title": "기본 인자 선평가",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "기본 인자 선평가의 실제 동작과 수정 전제를 판별한다.",
+    "input": "d.get(k,expensive())",
+    "facts": "합성 코드 사례: k있어도인자평가",
+    "output": "기본 인자 선평가: expensive호출",
+    "rules": [
+      "키분기",
+      "지연평가",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "히트무호출단정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-052",
+    "title": "정렬 키 횟수",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "정렬 키 횟수의 실제 동작과 수정 전제를 판별한다.",
+    "input": "sorted n개 key=f",
+    "facts": "합성 코드 사례: 요소당1회",
+    "output": "정렬 키 횟수: n회",
+    "rules": [
+      "비교횟수분리",
+      "부작용제한",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "비교자일반화금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-053",
+    "title": "NULL 동등 조건",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "NULL 동등 조건의 실제 동작과 수정 전제를 판별한다.",
+    "input": "value=NULL",
+    "facts": "합성 코드 사례: SQL미지값",
+    "output": "NULL 동등 조건: 참행없음",
+    "rules": [
+      "IS NULL",
+      "3값논리",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "0치환금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-054",
+    "title": "NOT IN NULL",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "NOT IN NULL의 실제 동작과 수정 전제를 판별한다.",
+    "input": "id NOT IN(1,NULL)",
+    "facts": "합성 코드 사례: 비일치unknown",
+    "output": "NOT IN NULL: id2도제외",
+    "rules": [
+      "NULL제외",
+      "NOT EXISTS",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "집합차동일시금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-055",
+    "title": "COUNT 분모",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "COUNT 분모의 실제 동작과 수정 전제를 판별한다.",
+    "input": "x=[1,NULL,2]",
+    "facts": "합성 코드 사례: 행수와비NULL",
+    "output": "COUNT 분모: 3과2",
+    "rules": [
+      "분모표시",
+      "NULL보존",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "0혼동금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-056",
+    "title": "LEFT JOIN 필터",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "LEFT JOIN 필터의 실제 동작과 수정 전제를 판별한다.",
+    "input": "WHERE B.ok=1",
+    "facts": "합성 코드 사례: 미매칭NULL",
+    "output": "LEFT JOIN 필터: 미매칭A제외",
+    "rules": [
+      "ON검토",
+      "보존목적확인",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "LEFT명칭신뢰금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-057",
+    "title": "조인 금액 증폭",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "조인 금액 증폭의 실제 동작과 수정 전제를 판별한다.",
+    "input": "주문100,품목3조인",
+    "facts": "합성 코드 사례: 주문금액반복",
+    "output": "조인 금액 증폭: 합300위험",
+    "rules": [
+      "그레인분리",
+      "주문당1회",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "금액DISTINCT금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-058",
+    "title": "동률 순위",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "동률 순위의 실제 동작과 수정 전제를 판별한다.",
+    "input": "점수90,90,80",
+    "facts": "합성 코드 사례: RANK,DENSE",
+    "output": "동률 순위: 1,1,3과1,1,2",
+    "rules": [
+      "동률규칙",
+      "간격선택",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "행번호혼용금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-059",
+    "title": "윈도 프레임",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "윈도 프레임의 실제 동작과 수정 전제를 판별한다.",
+    "input": "날짜동률누적SUM",
+    "facts": "합성 코드 사례: 기본RANGE",
+    "output": "윈도 프레임: 동률합동일",
+    "rules": [
+      "ROWS검토",
+      "타이키명시",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "물리순서가정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-060",
+    "title": "다중 SQL 읽기 제한",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "다중 SQL 읽기 제한의 실제 동작과 수정 전제를 판별한다.",
+    "input": "SELECT뒤DELETE",
+    "facts": "합성 코드 사례: 읽기1문장",
+    "output": "다중 SQL 읽기 제한: 거절",
+    "rules": [
+      "문장파싱",
+      "실행않음",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "접두사만검사금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-061",
+    "title": "LIMIT 재현성",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "LIMIT 재현성의 실제 동작과 수정 전제를 판별한다.",
+    "input": "LIMIT10,ORDER없음",
+    "facts": "합성 코드 사례: 순서미지정",
+    "output": "LIMIT 재현성: 구성미보장",
+    "rules": [
+      "결정정렬",
+      "타이키추가",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "반복동일보장금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-062",
+    "title": "집계 후 필터",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "집계 후 필터의 실제 동작과 수정 전제를 판별한다.",
+    "input": "부서SUM>100",
+    "facts": "합성 코드 사례: 집계후판단",
+    "output": "집계 후 필터: HAVING",
+    "rules": [
+      "행/그룹분리",
+      "분모영향",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "WHERE집계금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-063",
+    "title": "기간 끝 자정",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "기간 끝 자정의 실제 동작과 수정 전제를 판별한다.",
+    "input": "BETWEEN10/1,10/31",
+    "facts": "합성 코드 사례: 끝00시",
+    "output": "기간 끝 자정: 마지막날누락",
+    "rules": [
+      "반열린구간",
+      "다음달미만",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "초정밀고정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-064",
+    "title": "UNION 행 보존",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "UNION 행 보존의 실제 동작과 수정 전제를 판별한다.",
+    "input": "A1,1 B1,2",
+    "facts": "합성 코드 사례: UNION중복제거",
+    "output": "UNION 행 보존: 2행,ALL4행",
+    "rules": [
+      "보존목적",
+      "비용차이",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "중복오류단정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-065",
+    "title": "정수 SQL 비율",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "정수 SQL 비율의 실제 동작과 수정 전제를 판별한다.",
+    "input": "3/2",
+    "facts": "합성 코드 사례: 가상DB절단",
+    "output": "정수 SQL 비율: 1",
+    "rules": [
+      "타입변환",
+      "분모검사",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "DB일반화금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-066",
+    "title": "복합 고유키",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "복합 고유키의 실제 동작과 수정 전제를 판별한다.",
+    "input": "a1,a2,a1",
+    "facts": "합성 코드 사례: 쌍단위고유",
+    "output": "복합 고유키: 2쌍",
+    "rules": [
+      "개별수합금지",
+      "쌍보존",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "연결키충돌주의",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-067",
+    "title": "고정폭 넘침",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "고정폭 넘침의 실제 동작과 수정 전제를 판별한다.",
+    "input": "Java int형 Integer.MAX_VALUE에 int형1을 더한 뒤 long 변수에 대입",
+    "facts": "합성 Java 사례: int는32비트 부호 정수이며 이 덧셈은 int로 먼저 수행된다. 범위를 넘는 int 덧셈은 하위32비트로 순환하고 이후 long으로 변환한다. C의 부호 정수 넘침에 이 규칙을 일반화하지 않는다.",
+    "output": "고정폭 넘침: MIN_INT",
+    "rules": [
+      "연산전검사",
+      "checked검토",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "대입long만확장금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-068",
+    "title": "자원 닫힘 역순",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "자원 닫힘 역순의 실제 동작과 수정 전제를 판별한다.",
+    "input": "try(R1;R2)",
+    "facts": "합성 코드 사례: Java역순",
+    "output": "자원 닫힘 역순: R2후R1",
+    "rules": [
+      "순서확인",
+      "억제예외보존",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "첫예외만판정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-069",
+    "title": "equals hash 계약",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "equals hash 계약의 실제 동작과 수정 전제를 판별한다.",
+    "input": "동등객체hash상이",
+    "facts": "합성 코드 사례: 해시계약위반",
+    "output": "equals hash 계약: 조회오류위험",
+    "rules": [
+      "두함수일치",
+      "가변키주의",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "hash같음동등추론금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-070",
+    "title": "배열 공변 저장",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "배열 공변 저장의 실제 동작과 수정 전제를 판별한다.",
+    "input": "Object[]=String[]에1",
+    "facts": "합성 코드 사례: 실배열String",
+    "output": "배열 공변 저장: ArrayStoreException",
+    "rules": [
+      "실타입확인",
+      "제네릭검토",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "컴파일성공신뢰금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-071",
+    "title": "스트림 단락 평가",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "순차 스트림의 첫 일치 탐색에서 조건식 평가가 중단되는 시점을 찾는다.",
+    "input": "순차 [1,2,3,4]에서 filter(x>2).findFirst()",
+    "facts": "합성 Java 스트림: 순차·순서 보존 실행이며 첫 일치값을 반환한다. 조건식 부작용은 없다.",
+    "output": "스트림 단락 평가: 첫 일치값3; 조건식은1,2,3에 대해3회 평가",
+    "rules": [
+      "첫 일치를 찾으면 뒤의4를 평가할 필요가 없다",
+      "병렬 또는 순서 미보존 실행의 평가 횟수에는 그대로 적용하지 않는다",
+      "실제 코드를 실행하지 않고 제공된 흐름을 분석한다"
+    ],
+    "failures": [
+      "일치가 없으면 빈 결과이며 마지막 값을 대신 반환하지 않는다",
+      "부작용이 있는 조건식은 중단 시점에 의존하는 설계를 검토한다"
+    ]
+  },
+  {
+    "id": "tech-code-072",
+    "title": "C 종료문자 공간",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "C 종료문자 공간의 실제 동작과 수정 전제를 판별한다.",
+    "input": "char3에abc",
+    "facts": "합성 코드 사례: 널포함4필요",
+    "output": "C 종료문자 공간: 1부족",
+    "rules": [
+      "종료포함",
+      "경계검사",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "취약실행금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-073",
+    "title": "C 배열 인자 크기",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "C 배열 인자 크기의 실제 동작과 수정 전제를 판별한다.",
+    "input": "sizeof함수a[]",
+    "facts": "합성 코드 사례: 포인터조정",
+    "output": "C 배열 인자 크기: 전체크기아님",
+    "rules": [
+      "길이전달",
+      "포인터크기확인",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "개수추정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-074",
+    "title": "해제 뒤 참조",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "해제 뒤 참조의 실제 동작과 수정 전제를 판별한다.",
+    "input": "free뒤p.x",
+    "facts": "합성 코드 사례: 수명종료",
+    "output": "해제 뒤 참조: use-after-free",
+    "rules": [
+      "소유권표시",
+      "별칭검토",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "null만해결단정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-075",
+    "title": "매크로 괄호",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "매크로 괄호의 실제 동작과 수정 전제를 판별한다.",
+    "input": "x*x에1+2",
+    "facts": "합성 코드 사례: 토큰치환",
+    "output": "매크로 괄호: 5",
+    "rules": [
+      "인자괄호",
+      "전체괄호",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "부작용인자금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-076",
+    "title": "char 부호",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "char 부호의 실제 동작과 수정 전제를 판별한다.",
+    "input": "char255<0",
+    "facts": "합성 코드 사례: 구현의존",
+    "output": "char 부호: 플랫폼따름",
+    "rules": [
+      "명시부호",
+      "바이트형선택",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "단일환경일반화금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-077",
+    "title": "realloc 실패",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "realloc 실패의 실제 동작과 수정 전제를 판별한다.",
+    "input": "p=realloc(p,n)",
+    "facts": "합성 코드 사례: 실패NULL",
+    "output": "realloc 실패: 원본주소유실",
+    "rules": [
+      "임시주소",
+      "원본보존",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "n0전제확인",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-078",
+    "title": "Rust 이동",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "Rust 이동의 실제 동작과 수정 전제를 판별한다.",
+    "input": "String a를b로뒤a사용",
+    "facts": "합성 코드 사례: Copy아님",
+    "output": "Rust 이동: 컴파일거절",
+    "rules": [
+      "빌림구분",
+      "clone비용",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "Copy혼동금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-079",
+    "title": "Rust 중첩 가변 대여",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "Rust 중첩 가변 대여의 실제 동작과 수정 전제를 판별한다.",
+    "input": "r1,r2동시가변",
+    "facts": "합성 코드 사례: 동시에활성",
+    "output": "Rust 중첩 가변 대여: 컴파일거절",
+    "rules": [
+      "수명분리",
+      "단일접근",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "unsafe우회금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-080",
+    "title": "UTF8 인덱싱",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "UTF8 인덱싱의 실제 동작과 수정 전제를 판별한다.",
+    "input": "Rust문자열[0]",
+    "facts": "합성 코드 사례: 가변바이트",
+    "output": "UTF8 인덱싱: 직접인덱싱불가",
+    "rules": [
+      "chars사용",
+      "경계확인",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "중간바이트분할금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-081",
+    "title": "Option 언랩",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "Option 언랩의 실제 동작과 수정 전제를 판별한다.",
+    "input": "None.unwrap()",
+    "facts": "합성 코드 사례: 값없음",
+    "output": "Option 언랩: panic",
+    "rules": [
+      "없음분기",
+      "기본의미",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "값지어내기금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-082",
+    "title": "typed nil 인터페이스",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "typed nil 인터페이스의 실제 동작과 수정 전제를 판별한다.",
+    "input": "Go interface에nil포인터",
+    "facts": "합성 코드 사례: 동적타입존재",
+    "output": "typed nil 인터페이스: !=nil",
+    "rules": [
+      "타입/값검사",
+      "반환설계",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "nil한번안전단정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-083",
+    "title": "defer 인자 시점",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "defer 인자 시점의 실제 동작과 수정 전제를 판별한다.",
+    "input": "x1 defer print(x) x2",
+    "facts": "합성 코드 사례: 등록시평가",
+    "output": "defer 인자 시점: 출력1",
+    "rules": [
+      "평가/실행분리",
+      "클로저구분",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "출력2오해금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-084",
+    "title": "map 동시 쓰기",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "map 동시 쓰기의 실제 동작과 수정 전제를 판별한다.",
+    "input": "Go두goroutine쓰기",
+    "facts": "합성 코드 사례: 동기화없음",
+    "output": "map 동시 쓰기: race위험",
+    "rules": [
+      "락/소유자",
+      "읽기도검사",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "우연성공안전금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-085",
+    "title": "슬라이스 확장 공유",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "슬라이스 확장 공유의 실제 동작과 수정 전제를 판별한다.",
+    "input": "len2 cap4 append",
+    "facts": "합성 코드 사례: 재할당없음",
+    "output": "슬라이스 확장 공유: 원배열3번째변경",
+    "rules": [
+      "len/cap분리",
+      "복사판단",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "항상새배열금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-086",
+    "title": "채널 닫기 책임",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "채널 닫기 책임의 실제 동작과 수정 전제를 판별한다.",
+    "input": "수신close후송신",
+    "facts": "합성 코드 사례: 닫힌채널",
+    "output": "채널 닫기 책임: panic",
+    "rules": [
+      "송신소유권",
+      "다중닫힘방지",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "닫힘전체취소금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-087",
+    "title": "반복 defer 누적",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "반복 defer 누적의 실제 동작과 수정 전제를 판별한다.",
+    "input": "100파일deferclose",
+    "facts": "합성 코드 사례: 함수끝정리",
+    "output": "반복 defer 누적: 100열림가능",
+    "rules": [
+      "범위분리",
+      "최대자원계산",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "매회즉시닫힘금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-088",
+    "title": "CSS 박스 너비",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "CSS 박스 너비의 실제 동작과 수정 전제를 판별한다.",
+    "input": "w100,pad10,border2",
+    "facts": "합성 코드 사례: content-box",
+    "output": "CSS 박스 너비: 124",
+    "rules": [
+      "양쪽합산",
+      "box-sizing",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "margin혼입금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-089",
+    "title": "flex 최소너비",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "flex 최소너비의 실제 동작과 수정 전제를 판별한다.",
+    "input": "긴문자열항목",
+    "facts": "합성 코드 사례: min-width:auto",
+    "output": "flex 최소너비: 수축제약",
+    "rules": [
+      "min0검토",
+      "줄바꿈정책",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "텍스트삭제금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-090",
+    "title": "쌓임 맥락",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "쌓임 맥락의 실제 동작과 수정 전제를 판별한다.",
+    "input": "자식999부모1,이웃2",
+    "facts": "합성 코드 사례: 부모context",
+    "output": "쌓임 맥락: 이웃위불가",
+    "rules": [
+      "계층비교",
+      "숫자합금지",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "무한z증가금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-091",
+    "title": "cascade 중요도",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "cascade 중요도의 실제 동작과 수정 전제를 판별한다.",
+    "input": "id vs important",
+    "facts": "합성 코드 사례: 같은origin",
+    "output": "cascade 중요도: important우선",
+    "rules": [
+      "중요도분리",
+      "layer확인",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "id절대우선금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-092",
+    "title": "상태 갱신 누적",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "상태 갱신 누적의 실제 동작과 수정 전제를 판별한다.",
+    "input": "React set(n+1)3회,n0",
+    "facts": "합성 코드 사례: 같은스냅샷",
+    "output": "상태 갱신 누적: 1,함수형3",
+    "rules": [
+      "업데이터추적",
+      "이전상태의존",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "즉시변수오해금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-093",
+    "title": "목록 key 정체성",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "목록 key 정체성의 실제 동작과 수정 전제를 판별한다.",
+    "input": "정렬에index key",
+    "facts": "합성 코드 사례: 행입력상태있음",
+    "output": "목록 key 정체성: 상태잘못결합",
+    "rules": [
+      "안정ID",
+      "형제범위",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "무작위키금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-094",
+    "title": "응답 역전",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "응답 역전의 실제 동작과 수정 전제를 판별한다.",
+    "input": "A후B,B먼저완료",
+    "facts": "합성 코드 사례: A늦게도착",
+    "output": "응답 역전: A가B덮음",
+    "rules": [
+      "세대검사",
+      "정리무시",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "서버취소단정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-095",
+    "title": "제어 입력 전환",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "제어 입력 전환의 실제 동작과 수정 전제를 판별한다.",
+    "input": "undefined후문자열",
+    "facts": "합성 코드 사례: 비제어에서제어",
+    "output": "제어 입력 전환: 경고",
+    "rules": [
+      "초기값일관",
+      "null정책",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "내용초기화금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-096",
+    "title": "memo 의존",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "memo 의존의 실제 동작과 수정 전제를 판별한다.",
+    "input": "price읽고deps[]",
+    "facts": "합성 코드 사례: price변경",
+    "output": "memo 의존: 이전계산유지",
+    "rules": [
+      "의존포함",
+      "정확성우선",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "렌더없음단정금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-097",
+    "title": "effect 정리",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "effect 정리의 실제 동작과 수정 전제를 판별한다.",
+    "input": "deps변경",
+    "facts": "합성 코드 사례: 기존cleanup있음",
+    "output": "effect 정리: 정리후새효과",
+    "rules": [
+      "구독쌍",
+      "언마운트정리",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "StrictMode혼동금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-098",
+    "title": "fetch 상태",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "fetch 상태의 실제 동작과 수정 전제를 판별한다.",
+    "input": "HTTP500",
+    "facts": "합성 코드 사례: 통신성공",
+    "output": "fetch 상태: resolve,okfalse",
+    "rules": [
+      "상태검사",
+      "통신오류분리",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "resolve성공금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-099",
+    "title": "Worker 버퍼 전송",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "Worker 버퍼 전송의 실제 동작과 수정 전제를 판별한다.",
+    "input": "전송목록ArrayBuffer",
+    "facts": "합성 코드 사례: 소유권이전",
+    "output": "Worker 버퍼 전송: 송신detached",
+    "rules": [
+      "복사/전송구분",
+      "재사용차단",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "공유오해금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  },
+  {
+    "id": "tech-code-100",
+    "title": "태스크 실행 순서",
+    "category": "개발·코드 의미",
+    "pattern": "agent",
+    "problem": "태스크 실행 순서의 실제 동작과 수정 전제를 판별한다.",
+    "input": "sync A,Promise B,timer C",
+    "facts": "합성 코드 사례: 같은태스크",
+    "output": "태스크 실행 순서: A,B,C",
+    "rules": [
+      "스택완료우선",
+      "microtask우선",
+      "제공된 코드만 분석하며 실행하거나 변경하지 않는다"
+    ],
+    "failures": [
+      "I/O일반화금지",
+      "언어·실행 환경 전제가 다르면 확인 필요"
+    ]
+  }
+]

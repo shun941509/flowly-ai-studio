@@ -1,0 +1,29 @@
+# Install only the groups used by tool-manifest.json. No install or download is
+# performed by check/run. These ranges are compatibility requirements, not a lock.
+# Scientific tools:
+numpy>=1.26,<3
+scipy>=1.12,<2
+scikit-learn>=1.5,<2
+# Structured text validation / offline tokenizer assets:
+jsonschema>=4.22,<5
+tokenizers>=0.20,<1
+# Optional search / sequence / manifold tools:
+hnswlib>=0.8,<1
+umap-learn>=0.5,<1
+hmmlearn>=0.3,<1
+sklearn-crfsuite>=0.5,<1
+# Optional image / signal / local OCR:
+opencv-python-headless>=4.9,<5
+scikit-image>=0.24,<1
+PyWavelets>=1.6,<2
+Pillow>=10,<13
+pytesseract>=0.3.13,<1
+# Optional pre-provisioned local model backends (no remote model IDs):
+spacy>=3.8,<4
+sentence-transformers>=3.4,<6
+transformers>=4.48,<5
+torch>=2.4,<3
+faster-whisper>=1.1,<2
+mediapipe>=0.10,<1
+# Optional isolated supplied-HTML automation; Chromium must be provisioned:
+playwright>=1.49,<2

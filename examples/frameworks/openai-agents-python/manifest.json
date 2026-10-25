@@ -1,0 +1,25 @@
+{
+  "id": "openai-agents-python",
+  "framework": "OpenAI Agents SDK",
+  "language": "python",
+  "kind": "native",
+  "projectId": "shipment-lookup",
+  "title": "도구로 근거를 확인하는 배송 안내",
+  "description": "실제 SDK 실행 경로를 오프라인 주입 모델로 검증했습니다. 실제 모델 연결은 미설정입니다.",
+  "entrypoint": "main.py",
+  "files": [
+    ".env.example",
+    ".gitignore",
+    "README.md",
+    "fixtures/shipments.json",
+    "main.py",
+    "requirements.lock.txt",
+    "requirements.txt",
+    "test_offline.py"
+  ],
+  "verification": {
+    "static": true,
+    "offline": true,
+    "live": false
+  }
+}

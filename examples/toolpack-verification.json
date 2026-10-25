@@ -1,0 +1,416 @@
+{
+  "version": 1,
+  "recordedAt": "2026-10-24T21:18:29.954428+00:00",
+  "scope": "Local Python tool algorithms; model/MCP providers were not contacted. Test-only tokenizer assets and HMAC keys are distinguished from default readiness.",
+  "totalTools": 195,
+  "executedCount": 180,
+  "executedIds": [
+    "ab_test",
+    "accuracy",
+    "adaboost",
+    "adjusted_mutual_info",
+    "adjusted_rand",
+    "affinity_propagation",
+    "ai_citation",
+    "ann",
+    "anomaly_detection",
+    "anonymization",
+    "ard",
+    "average_precision",
+    "balanced_accuracy",
+    "bayesian_ridge",
+    "benchmark",
+    "bilateral_filter",
+    "birch",
+    "bm25",
+    "brier_score",
+    "calibration",
+    "calinski_harabasz",
+    "canny",
+    "causal_inference",
+    "cca",
+    "cholesky",
+    "chunking",
+    "classification",
+    "classification_threshold",
+    "clustering",
+    "cohen_kappa",
+    "computer_vision",
+    "conformal_prediction",
+    "confusion_matrix",
+    "connected_components",
+    "content_credentials",
+    "contingency_matrix",
+    "cosine_similarity",
+    "cross_validation",
+    "data_augmentation",
+    "data_classification",
+    "data_drift",
+    "data_labeling",
+    "data_quality",
+    "davies_bouldin",
+    "dbscan",
+    "dct",
+    "decision_tree",
+    "differential_privacy",
+    "distance_transform",
+    "dtw",
+    "dwt",
+    "eigen",
+    "elastic_net",
+    "evals",
+    "extra_trees",
+    "f1",
+    "factor_analysis",
+    "feature_binarization",
+    "feature_discretization",
+    "feature_engineering",
+    "feature_hashing",
+    "feature_importance",
+    "feature_selection",
+    "features",
+    "fft",
+    "fowlkes_mallows",
+    "frequency_encoding",
+    "gamma_correction",
+    "gaussian_filter",
+    "gaussian_process",
+    "glcm",
+    "gmm",
+    "gradient_boosting",
+    "hamming_loss",
+    "harris_corners",
+    "hdbscan",
+    "hessenberg",
+    "hierarchical_clustering",
+    "histogram_equalization",
+    "hog",
+    "huber_regression",
+    "hungarian",
+    "hybrid_search",
+    "ica",
+    "image_segmentation",
+    "imputation",
+    "isolation_forest",
+    "isomap",
+    "ivf_flat",
+    "json_schema",
+    "jsonl",
+    "kalman",
+    "kde",
+    "kernel_pca",
+    "kmeans",
+    "knn",
+    "knowledge_graph",
+    "l1_normalization",
+    "l2_normalization",
+    "label_encoding",
+    "laplacian",
+    "lbp",
+    "lda",
+    "lle",
+    "lof",
+    "logistic_regression",
+    "lu",
+    "maxabs_scaling",
+    "mcc",
+    "mean_shift",
+    "median_filter",
+    "minmax_scaling",
+    "model_drift",
+    "moderation",
+    "morphology",
+    "naive_bayes",
+    "nearest_centroid",
+    "nmf",
+    "nms",
+    "object_detection",
+    "object_tracking",
+    "omp",
+    "onehot_encoding",
+    "ood",
+    "optical_flow",
+    "optics",
+    "ordinal_encoding",
+    "otsu",
+    "pair_confusion_matrix",
+    "pca",
+    "perceptron",
+    "pii",
+    "pls",
+    "poisson_regression",
+    "power_transform",
+    "precision",
+    "product_quantization",
+    "qda",
+    "qr",
+    "quantile_regression",
+    "quantile_transform",
+    "query_expansion",
+    "random_forest",
+    "random_projection",
+    "ransac",
+    "recall",
+    "recommender",
+    "redaction",
+    "regression",
+    "robust_scaling",
+    "roc_auc",
+    "rrf",
+    "scalar_quantization",
+    "schur",
+    "semantic_search",
+    "sift",
+    "silhouette",
+    "sparse_pca",
+    "speaker_diarization",
+    "spectral_clustering",
+    "ssml",
+    "standard_scaling",
+    "svd",
+    "svm",
+    "synthetic_data",
+    "target_encoding",
+    "tfidf",
+    "theil_sen",
+    "throughput",
+    "time_series_forecast",
+    "tokenizer",
+    "tokens",
+    "tsne",
+    "v_measure",
+    "vad",
+    "watermark",
+    "watershed",
+    "wer",
+    "whitening",
+    "xai"
+  ],
+  "unconfiguredCount": 15,
+  "unconfigured": [
+    {
+      "id": "computer_use",
+      "reasons": [
+        {
+          "code": "missing_dependency",
+          "name": "playwright"
+        }
+      ]
+    },
+    {
+      "id": "crf",
+      "reasons": [
+        {
+          "code": "missing_dependency",
+          "name": "sklearn_crfsuite"
+        }
+      ]
+    },
+    {
+      "id": "embedding",
+      "reasons": [
+        {
+          "code": "missing_dependency",
+          "name": "sentence_transformers"
+        },
+        {
+          "code": "missing_model",
+          "message": "embedding의 로컬 모델을 FLOWLY_TOOL_MODELS에 설정해 주세요."
+        }
+      ]
+    },
+    {
+      "id": "hmm",
+      "reasons": [
+        {
+          "code": "missing_dependency",
+          "name": "hmmlearn"
+        }
+      ]
+    },
+    {
+      "id": "hnsw",
+      "reasons": [
+        {
+          "code": "missing_dependency",
+          "name": "hnswlib"
+        }
+      ]
+    },
+    {
+      "id": "multimodal",
+      "reasons": [
+        {
+          "code": "missing_model",
+          "message": "multimodal의 로컬 모델을 FLOWLY_TOOL_MODELS에 설정해 주세요."
+        }
+      ]
+    },
+    {
+      "id": "ner",
+      "reasons": [
+        {
+          "code": "missing_dependency",
+          "name": "spacy"
+        },
+        {
+          "code": "missing_model",
+          "message": "ner의 로컬 모델을 FLOWLY_TOOL_MODELS에 설정해 주세요."
+        }
+      ]
+    },
+    {
+      "id": "ocr",
+      "reasons": [
+        {
+          "code": "missing_dependency",
+          "name": "pytesseract"
+        }
+      ]
+    },
+    {
+      "id": "pose_estimation",
+      "reasons": [
+        {
+          "code": "missing_dependency",
+          "name": "mediapipe"
+        },
+        {
+          "code": "missing_model",
+          "message": "pose_estimation의 로컬 모델을 FLOWLY_TOOL_MODELS에 설정해 주세요."
+        }
+      ]
+    },
+    {
+      "id": "reranking",
+      "reasons": [
+        {
+          "code": "missing_dependency",
+          "name": "sentence_transformers"
+        },
+        {
+          "code": "missing_model",
+          "message": "reranking의 로컬 모델을 FLOWLY_TOOL_MODELS에 설정해 주세요."
+        }
+      ]
+    },
+    {
+      "id": "rpa",
+      "reasons": [
+        {
+          "code": "missing_dependency",
+          "name": "playwright"
+        }
+      ]
+    },
+    {
+      "id": "sentiment",
+      "reasons": [
+        {
+          "code": "missing_model",
+          "message": "sentiment의 로컬 모델을 FLOWLY_TOOL_MODELS에 설정해 주세요."
+        }
+      ]
+    },
+    {
+      "id": "stt",
+      "reasons": [
+        {
+          "code": "missing_dependency",
+          "name": "faster_whisper"
+        },
+        {
+          "code": "missing_model",
+          "message": "stt의 로컬 모델을 FLOWLY_TOOL_MODELS에 설정해 주세요."
+        }
+      ]
+    },
+    {
+      "id": "tts",
+      "reasons": [
+        {
+          "code": "missing_model",
+          "message": "tts의 로컬 모델을 FLOWLY_TOOL_MODELS에 설정해 주세요."
+        }
+      ]
+    },
+    {
+      "id": "umap",
+      "reasons": [
+        {
+          "code": "missing_dependency",
+          "name": "umap"
+        }
+      ]
+    }
+  ],
+  "defaultEnvironment": {
+    "readyCount": 176,
+    "unconfiguredCount": 19,
+    "unconfiguredIds": [
+      "computer_use",
+      "content_credentials",
+      "crf",
+      "embedding",
+      "hmm",
+      "hnsw",
+      "multimodal",
+      "ner",
+      "ocr",
+      "pose_estimation",
+      "reranking",
+      "rpa",
+      "sentiment",
+      "stt",
+      "tokenizer",
+      "tokens",
+      "tts",
+      "umap",
+      "watermark"
+    ]
+  },
+  "configuredOnlyInTests": [
+    "content_credentials",
+    "tokenizer",
+    "tokens",
+    "watermark"
+  ],
+  "environment": {
+    "python": "3.13.3",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "environmentPath": "work/tools-env",
+    "packages": {
+      "numpy": "2.2.4",
+      "scipy": "1.15.2",
+      "scikit-learn": "1.6.1",
+      "opencv-python-headless": "4.14.0.94",
+      "Pillow": "12.3.0",
+      "PyWavelets": "1.10.0",
+      "jsonschema": "4.26.0",
+      "scikit-image": "0.26.0",
+      "tokenizers": "0.21.1",
+      "transformers": "4.51.3",
+      "torch": "2.6.0"
+    }
+  },
+  "verification": {
+    "command": "work/tools-env/Scripts/python.exe -X utf8 -m unittest discover -s tests -p test_toolpacks.py",
+    "tests": 35,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "result": "passed",
+    "instrumentation": "Repeated the same unittest discovery in-process and recorded IDs only after execute_tool returned successfully. No tool implementation was replaced.",
+    "seconds": 21.11
+  },
+  "realExternalAPICalls": 0,
+  "realOpenAICalls": 0,
+  "realMCPCalls": 0,
+  "limitations": [
+    "Execution evidence covers each documented bounded algorithm, not all possible inputs or model quality.",
+    "Local-model adapters without supplied models remain unconfigured.",
+    "Scientific model state is a bounded JSON training recipe; prediction reconstructs fitting without pickle.",
+    "RPA/computer-use support only isolated supplied HTML, not external desktop/application access.",
+    "Flowly HMAC content credentials are not C2PA; watermark verification does not establish AI authorship."
+  ]
+}

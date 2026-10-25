@@ -1,0 +1,335 @@
+[
+  {
+    "id": "008",
+    "sourceId": "completed-008-bounded-followup",
+    "acceptance": [
+      "실제 검색 참조와 일치하는 다음 질문만 허용합니다.",
+      "방문 집합·출처 연결을 보존하고 추가 조회를 1회로 제한합니다.",
+      "이미 방문한 대상은 추가 도구 호출 전에 거절하고 미해결 참조가 없으면 첫 조회 근거만으로 답변합니다."
+    ],
+    "implementedScope": "실제 조회 결과의 참조에서 Agent가 다음 질문을 선택합니다. 방문 ID와 근거 계보를 프로그램이 검사하고 추가 조회는 1회로 제한합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상",
+      "도구 및 자료의 사내 MCP 계약과 내보낸 .env 연결 주소·토큰"
+    ]
+  },
+  {
+    "id": "009",
+    "sourceId": "completed-009-applicable-policy",
+    "acceptance": [
+      "범위·효력 기간·권위·최신 효력일 순서로 결정합니다.",
+      "결정되지 않은 동급 충돌은 사람에게 넘기고 재개 시 선택 후보를 재검사합니다.",
+      "권위가 높더라도 만료된 문서를 배제하며 보완 입력으로 만료 규정을 선택해도 적용하지 않습니다."
+    ],
+    "implementedScope": "적용 범위와 시점을 먼저 검사하고 권위·효력 시작일로 적용 규정을 결정합니다. 동급 충돌은 사람에게 넘기며 선택도 현재 적용 후보 안에서 재검사합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상"
+    ]
+  },
+  {
+    "id": "010",
+    "sourceId": "completed-010-policy-change-impact",
+    "acceptance": [
+      "원문의 실제 차이와 버전 해시를 보존합니다.",
+      "업무 참조 교차 검색과 미확인 업무를 분리하고 사람이 검토합니다.",
+      "원문 변경이 없으면 업무 조회를 생략하고 사람 검토가 거절되면 영향 보고를 발행하지 않습니다."
+    ],
+    "implementedScope": "버전 원문의 추가·삭제·수정과 해시를 실제 계산하고 등록된 업무 참조를 교차 조회합니다. Agent는 확인된 영향과 참조 미확인 업무를 분리하여 검토에 전달합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상",
+      "도구 및 자료의 사내 MCP 계약과 내보낸 .env 연결 주소·토큰"
+    ]
+  },
+  {
+    "id": "011",
+    "sourceId": "completed-011-reviewed-index-intake",
+    "acceptance": [
+      "실제 권한 결과·문서 형식·ID·본문 해시를 검사하고 부적합 자료를 격리합니다.",
+      "누적 반입 원장과 원문을 보존하며 다른 자료를 반입한 뒤에도 기존 해시 중복을 건너뜁니다. 현재 허가된 누적 자료로 새 세대를 구성합니다.",
+      "실제 조각화와 검색 평가를 통과한 세대만 발행합니다."
+    ],
+    "implementedScope": "사내 권한 검사와 저장된 반입 원장을 대조하여 부적합 자료를 격리합니다. Agent가 반입·격리 결과를 검토한 후 사람이 수락한 자료만 실제 조각화·검색 평가·발행합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상",
+      "도구 및 자료의 사내 MCP 계약과 내보낸 .env 연결 주소·토큰"
+    ]
+  },
+  {
+    "id": "012",
+    "sourceId": "completed-012-revocation-recheck",
+    "acceptance": [
+      "사용자 입력의 역할을 신뢰하지 않고 사내 MCP 인증 세션으로 권한을 판정해야 합니다.",
+      "읽기 전과 사람 검토 후 재검사하며 검사 장애는 허용으로 처리하지 않습니다.",
+      "내보낸 오프라인 복사본 전체를 회수하는 기능은 아닙니다."
+    ],
+    "implementedScope": "사내 MCP가 현재 세션의 자료 권한을 확인한 뒤만 자료를 읽습니다. Agent 초안을 사람이 검토한 뒤 권한을 다시 검사하며 철회·검사 실패는 답변 공개를 중단합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상",
+      "도구 및 자료의 사내 MCP 계약과 내보낸 .env 연결 주소·토큰"
+    ]
+  },
+  {
+    "id": "013",
+    "sourceId": "completed-013-contracted-plan",
+    "acceptance": [
+      "등록된 작업 정의·입력 해시·의존 결과를 실행기에 저장합니다.",
+      "완료한 하위 작업을 재개 시 재실행하지 않고 독립 검증이 완료를 결정합니다.",
+      "사용자가 완료 조건을 보완해야 계획을 실행하며 독립 검증이 누락을 판정하면 최종 결과 저장을 차단합니다."
+    ],
+    "implementedScope": "목표를 보완한 뒤 Agent가 등록 작업 순서를 선택합니다. 실행기는 작업 정의·입력 해시와 의존 산출물을 저장하고 독립 검증 작업의 결과로 완료를 판정합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상"
+    ]
+  },
+  {
+    "id": "014",
+    "sourceId": "completed-014-paged-failed-only",
+    "acceptance": [
+      "페이지·항목 한도와 실제 완료 커서를 지속 저장합니다.",
+      "최대 400개 보완 입력을 같은 20항목 페이지 처리기로 실행하며 성공 결과를 그대로 재사용합니다.",
+      "실패 항목 보완 목록에 이미 성공한 ID가 섞이면 재처리 전에 거절하여 성공 결과의 중복 계산을 막습니다."
+    ],
+    "implementedScope": "최대 400항목을 20페이지로 나눠 실제 수량 계산을 수행합니다. 각 페이지 완료 커서를 저장하고 실패 항목만 사람이 보완하여 기존 성공 결과를 재사용합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상"
+    ]
+  },
+  {
+    "id": "015",
+    "sourceId": "completed-015-same-criteria-candidates",
+    "acceptance": [
+      "후보 생성은 병렬·독립이며 같은 실제 계산 기준을 적용합니다.",
+      "동률은 사람 검토로 분기하고 예산 초과 후보는 탈락시킵니다.",
+      "동점 검토 후 제출한 후보 ID를 실제 최고 점수 후보 집합과 대조한 뒤 선택 결과로 확정합니다."
+    ],
+    "implementedScope": "두 Agent가 서로의 답을 보지 않고 작업 집합을 제안합니다. 실제 비용·효용 합계를 같은 기준으로 계산하고 최고 후보가 동률이면 사람이 선택합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상"
+    ]
+  },
+  {
+    "id": "016",
+    "sourceId": "completed-016-issue-evidence-debate",
+    "acceptance": [
+      "주장·반박은 쟁점 ID와 실제 원문 인용에 결합됩니다.",
+      "유효하지 않은 인용은 독립 판단 전에 사람에게 넘깁니다.",
+      "반박 단계가 원래 쟁점이나 주장을 바꾸면 거절하고 검증된 양측 근거만 독립 판단 Agent에 전달합니다."
+    ],
+    "implementedScope": "주장 Agent와 반박 Agent가 쟁점 ID를 공유하고 원문 인용을 제시합니다. 프로그램이 출처와 인용을 검사한 뒤 독립 판단 Agent가 양측 근거의 한계를 판단합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상"
+    ]
+  },
+  {
+    "id": "018",
+    "sourceId": "completed-018-edited-version-decision",
+    "acceptance": [
+      "사람이 편집한 본문의 해시를 후속 결정에 결합합니다.",
+      "보완 입력·편집·재개 뒤 오래된 결정을 그대로 사용하지 않습니다.",
+      "초안 검토와 제약 보완에서 각각 대기하고 현재 본문과 다른 해시의 결정은 최종 검토 전에 거절합니다."
+    ],
+    "implementedScope": "초안을 사람이 수정·수락한 뒤 편집된 본문의 해시를 계산합니다. 보완 입력을 받은 판단 Agent의 결과는 해당 해시와 일치해야 후속 검토로 넘어갑니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상"
+    ]
+  },
+  {
+    "id": "020",
+    "sourceId": "completed-020-runtime-budget-plan",
+    "acceptance": [
+      "runtimeBudget은 실행기가 주입하며 사용자 입력은 거절합니다.",
+      "필수/선택 작업의 예상 비용을 비교하고 실제 후속 실행에도 기존 한도가 적용됩니다.",
+      "선택 작업 예산이 있으면 별도 검토 Agent를 실제 실행하고 부족하면 생략합니다."
+    ],
+    "implementedScope": "프로그램이 현재 실행기의 실제 사용량에서 남은 예산을 계산합니다. 필수 작업이 불가능하면 중단하고 선택 작업을 생략한 경우 Agent가 부분 완료 범위를 명시합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상"
+    ]
+  },
+  {
+    "id": "021",
+    "sourceId": "completed-021-typed-fallback",
+    "acceptance": [
+      "읽기 재시도 횟수는 유한하며 오류와 빈 조회 결과를 구별합니다.",
+      "대체 조회는 별도 등록 도구이며 실제 사용 출처를 답변에 남깁니다.",
+      "오류 경로에서도 저장된 원래 조회 대상을 유지하며 대체 연결까지 실패하면 성공 답변을 만들지 않습니다."
+    ],
+    "implementedScope": "주 조회의 연결 실패는 제한된 읽기 재시도 뒤 대체 서비스로 이동합니다. 연결은 성공했지만 자료가 없는 경우도 별도 경로로 대체 조회하며 Agent가 사용한 출처를 설명합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상",
+      "도구 및 자료의 사내 MCP 계약과 내보낸 .env 연결 주소·토큰"
+    ]
+  },
+  {
+    "id": "023",
+    "sourceId": "completed-023-durable-agent-resume",
+    "acceptance": [
+      "전처리 결과와 입력 대기를 디스크에 저장하고 동일 실행 ID에서 재개합니다.",
+      "프로세스 강제 종료·살아 있는 잠금 거절·죽은 잠금 해제는 별도 실제 CLI 검사로 확인합니다.",
+      "보완 입력 후 Agent에 저장된 합계와 새 사용 목적을 함께 전달하며 전처리·체크포인트·후속 Agent는 각각 한 번만 완료합니다."
+    ],
+    "implementedScope": "지속 저장된 전처리 체크포인트 이후 입력을 기다립니다. 보완 입력을 제출하면 Agent가 보존된 계산과 새 입력을 함께 확인하며 완료한 전처리는 반복하지 않습니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상"
+    ]
+  },
+  {
+    "id": "024",
+    "sourceId": "completed-024-correlated-response-trust",
+    "acceptance": [
+      "스키마 존재만 검사하지 않고 요청 일치·자료 신선도·유효 응답 충돌을 실제 검사합니다.",
+      "유효 자료가 없으면 1회 재조회하며 해결되지 않은 결과는 명시적으로 사람에게 전달합니다.",
+      "다른 요청 ID나 오래된 관측값을 신뢰 근거에서 제외하고 유효 응답끼리 충돌하면 자동 답변 대신 검토를 기다립니다."
+    ],
+    "implementedScope": "MCP 응답의 요청 ID·대상·신선도와 출처를 실제 검사합니다. 유효 응답이 없으면 독립 서비스를 한 번 조회하고 서로 다른 유효 값은 사람 검토로 넘깁니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상",
+      "도구 및 자료의 사내 MCP 계약과 내보낸 .env 연결 주소·토큰"
+    ]
+  },
+  {
+    "id": "025",
+    "sourceId": "completed-025-raw-table-unit-join",
+    "acceptance": [
+      "원시 텍스트를 실제 추출하며 고정된 CSV·파이프 문서 형식을 명시합니다.",
+      "SKU 결합·단위 환산·출처 셀/행 인용을 계산하고 불일치는 사람에게 전달합니다.",
+      "지원하지 않는 단위는 추정 환산하지 않고 실패시키며 실제 수량·가격 불일치는 일치 답변으로 넘기지 않습니다."
+    ],
+    "implementedScope": "CSV 원문과 구분자 문서 원문을 실제 파싱하고 SKU로 결합합니다. g/kg·ml/l 단위와 단가를 정규화하고 셀 주소·원문 행·인용을 붙여 Agent가 결과를 설명합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상"
+    ]
+  },
+  {
+    "id": "026",
+    "sourceId": "completed-026-query-contract-calculation",
+    "acceptance": [
+      "등록된 읽기 조회만 사용하며 응답 행 수·열·숫자 형식을 실제 검사합니다.",
+      "실제 계산 결과와 원본 해시·단위를 해석 Agent에 전달합니다.",
+      "MCP 응답은 행 데이터로만 받아 고정된 검증 계약을 덮어쓰지 못하게 하고 숫자가 아닌 수량은 계산 전에 거절합니다."
+    ],
+    "implementedScope": "Agent가 등록된 조회를 선택합니다. 실제 MCP 반환 행의 열·건수·숫자 형식을 검사하고 검증된 값으로 합계·평균을 계산한 뒤 결과의 단위를 설명합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상",
+      "도구 및 자료의 사내 MCP 계약과 내보낸 .env 연결 주소·토큰"
+    ]
+  },
+  {
+    "id": "027",
+    "sourceId": "completed-027-deduplicated-followup",
+    "acceptance": [
+      "합의한 업무만 추출하고 누락 담당·기한을 보완합니다.",
+      "등록 전 중복 조회와 외부 변경 승인을 분리하고 완료 ID를 지속 저장합니다.",
+      "기존 업무가 있거나 생성 승인을 거절하면 생성 도구를 호출하지 않으며 생성 응답의 회의 ID와 업무 ID를 검사합니다."
+    ],
+    "implementedScope": "Agent가 합의된 후속 업무를 추출하고 담당·기한은 사용자가 확인합니다. 사내 등록 원장을 조회하여 중복이면 기존 ID를 반환하고 신규이면 승인된 정확한 인자로 등록합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상",
+      "도구 및 자료의 사내 MCP 계약과 내보낸 .env 연결 주소·토큰"
+    ]
+  },
+  {
+    "id": "028",
+    "sourceId": "completed-028-retained-notification-ledger",
+    "acceptance": [
+      "마지막 사건 하나만이 아니라 보존 기간 전체 사건 ID를 대조합니다.",
+      "전송 전 pending·전송 후 영수증을 저장하며 미확정 사건은 조회로 확인합니다.",
+      "전송 응답이 유실된 사건은 다음 요청에서도 재전송하지 않고 저장된 사건 ID로 영수증만 조회하여 원장을 확정합니다."
+    ],
+    "implementedScope": "전체 보존 기간의 사건 ID와 마지막 전송 상태를 비교합니다. 전송 전 pending 원장을 저장하고 영수증을 확인한 뒤 sent로 바꿉니다. 미확정 사건은 재전송하지 않고 서비스 영수증을 조회합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상",
+      "도구 및 자료의 사내 MCP 계약과 내보낸 .env 연결 주소·토큰"
+    ]
+  },
+  {
+    "id": "029",
+    "sourceId": "completed-029-cross-service-reconcile",
+    "acceptance": [
+      "요청별 누적 원장에 안정된 요청 ID와 업무 해시를 보존합니다.",
+      "구형 transfer_stage 원장이 있으면 전환 확인 전 중단합니다. 새 원장은 최초 외부 쓰기 전 CAS 예약하며 반복·불명확 요청은 읽기 조정만 수행합니다.",
+      "CRM·티켓 영수증을 독립 승인과 요청·교차 ID 검사 후 CAS 저장하며 다른 요청을 덮어쓰지 않습니다."
+    ],
+    "implementedScope": "외부 쓰기 전에 요청 ID·업무 해시를 누적 원장에 CAS 예약합니다. 다른 요청의 영수증을 보존하고 같은 요청의 재실행은 읽기 조정으로만 처리합니다. CRM과 티켓은 별도 승인하며 불명확한 쓰기를 자동 재등록하지 않습니다. 구형 transfer_stage 원장이 남아 있으면 전환 확인 전 외부 쓰기를 중단하고 기존 기록을 보존합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상",
+      "도구 및 자료의 사내 MCP 계약과 내보낸 .env 연결 주소·토큰"
+    ]
+  },
+  {
+    "id": "030",
+    "sourceId": "completed-030-verified-project-memory",
+    "acceptance": [
+      "프로젝트별 기억·출처 인용·만료·충돌 이력을 분리합니다.",
+      "독립 근거 검사와 사람 수락을 통과한 교훈만 저장합니다.",
+      "기존 교훈과 충돌하면 대체 이력을 남기고 다른 프로젝트 ID 또는 원문에 없는 인용은 저장 전에 거절합니다."
+    ],
+    "implementedScope": "Agent가 실제 근거로 교훈을 제안합니다. 프로그램은 프로젝트·인용·유효 기간·기존 기억 충돌을 검사하고 사람이 수락한 뒤만 해당 프로젝트 기억에 저장합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상"
+    ]
+  },
+  {
+    "id": "032",
+    "sourceId": "completed-032-dependency-impact-replan",
+    "acceptance": [
+      "실제 실패 사례에서 DAG의 종속 영향 집합을 계산합니다.",
+      "정상 결과를 보존하고 무효화할 산출물·새 담당·재실행 순서를 저장합니다.",
+      "등록 담당자 specialist/reviewer에 따라 서로 다른 Agent·검증 경로를 실제 실행합니다."
+    ],
+    "implementedScope": "Agent가 만든 조건을 실제 사례로 검사합니다. 실패하면 등록 작업 DAG의 후속 영향만 계산하고 정상 근거 결과를 보존한 채 새 담당자가 실패 조건을 수정하고 하위 보고서를 다시 만듭니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상"
+    ]
+  },
+  {
+    "id": "033",
+    "sourceId": "completed-033-discriminating-hypotheses",
+    "acceptance": [
+      "가설별 예측과 실제 관찰을 대조해 지지·반증·미해결을 갱신합니다.",
+      "구별 가능한 미확인 특징만 1회 관찰하고 불충분하면 사람에게 넘깁니다.",
+      "이미 관찰했거나 가설을 구분하지 못하는 특징 선택은 도구 호출 전에 거절하고 관찰 한도 뒤 미해결 상태를 유지합니다."
+    ],
+    "implementedScope": "Agent가 관찰 계획을 선택하기 전에 프로그램이 경쟁 가설을 구별하는 미확인 특징을 계산합니다. 허용된 특징만 실제 조회하고 지지·반증·미해결을 다시 계산합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상",
+      "도구 및 자료의 사내 MCP 계약과 내보낸 .env 연결 주소·토큰"
+    ]
+  },
+  {
+    "id": "034",
+    "sourceId": "completed-034-counterexample-regression",
+    "acceptance": [
+      "반례 여부는 모델 주장이 아니라 안전한 조건 실행 결과로 확인합니다.",
+      "실제 반례와 기존 성공 사례를 모두 재검사하고 실패한 수정은 사람에게 넘깁니다.",
+      "제안한 사례가 실제 반례가 아니면 수정 Agent를 실행하지 않고 원래 조건식을 보존합니다."
+    ],
+    "implementedScope": "Agent가 만든 조건에 별도 반례 Agent가 경계 입력을 제안합니다. 프로그램은 명세와 후보를 실제 실행하여 반례인지 확인하고 수정한 조건을 기존 성공 사례와 반례 전체로 다시 검사합니다.",
+    "remainingSetup": [
+      "내보낸 .env의 OPENAI_API_KEY와 모델",
+      "Node.js 22 이상·Python 3.11 이상"
+    ]
+  }
+]

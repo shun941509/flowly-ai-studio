@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "flowly-local",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-05-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [{"binding":"DB","database_name":"flowly-local","database_id":"00000000-0000-4000-8000-000000000000","migrations_dir":"drizzle"}],
+  "vars": {"FLOWLY_ENV":"development","FLOWLY_AUTH_MODE":"unconfigured","FLOWLY_APP_ORIGIN":"http://127.0.0.1:5173"},
+  "triggers": {"crons":["* * * * *"]}
+}

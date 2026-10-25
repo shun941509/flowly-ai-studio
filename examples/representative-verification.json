@@ -1,0 +1,1338 @@
+{
+  "version": 1,
+  "fingerprint": "4da910cd12b58ac7e509718676612f3c5329c494e0b1c8f0bf6a75ae473161f0",
+  "scope": "explicit workflow branch/data/state scenarios on actual exported CLIs; test-only provider responses, not live model quality",
+  "projects": [
+    {
+      "id": "showcase-agent-harness",
+      "designHash": "2fcc6f61f24f3637b1532864a5e36348e970f76d934c80c141d9ee1c6ae98325",
+      "executionHash": "107c6d22260e462dce2781cdd6b3d4728b081bf39c38725ce3c7f22c8e6372b0",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "6564564818941105c46f6ed900331008d87260b111bc818f89d5a734152dda62",
+        "python": "42b3d3e94723f68316da6ac37fc64ea4b72a3024b068ec097b6821e87d3f6bf1"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "읽기 도구 결과를 받은 뒤 정상 답변",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "도구 없는 첫 답변을 거절하고 실제 조회 후에만 확정",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "계속 도구 없이 답하면 판단 한도에서 중단",
+          "status": "budget_exceeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "수정 Agent는 이전 Agent의 도구 결과로 조회를 생략할 수 없음",
+          "status": "budget_exceeded",
+          "modelCalls": 5,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "스키마 실패 후 원래 질문으로 한 번 수정",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "두 번째 형식 실패는 추가 수정 없이 종료",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "빈 답변: 정상 답변으로 보내지 않고 한 번 수정",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "공백 답변: 정상 답변으로 보내지 않고 한 번 수정",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "빈 출처: 정상 답변으로 보내지 않고 한 번 수정",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "공백 출처: 정상 답변으로 보내지 않고 한 번 수정",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "수정 후에도 빈 답변이면 답변 확정 없이 종료",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "수정 후에도 공백 답변이면 답변 확정 없이 종료",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "수정 후에도 빈 출처이면 답변 확정 없이 종료",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "수정 후에도 공백 출처이면 답변 확정 없이 종료",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "허용되지 않은 변경 도구는 차단하고 읽기만 수행",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 1,
+            "delete_records": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "계속 조회하는 Agent는 도구 2회 한도에서 중단",
+          "status": "budget_exceeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "도구 인자 스키마 오류는 실제 도구 호출 없이 수정 경로",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "읽기 도구 결과를 받은 뒤 정상 답변",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "도구 없는 첫 답변을 거절하고 실제 조회 후에만 확정",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "계속 도구 없이 답하면 판단 한도에서 중단",
+          "status": "budget_exceeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "수정 Agent는 이전 Agent의 도구 결과로 조회를 생략할 수 없음",
+          "status": "budget_exceeded",
+          "modelCalls": 5,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "스키마 실패 후 원래 질문으로 한 번 수정",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "두 번째 형식 실패는 추가 수정 없이 종료",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "빈 답변: 정상 답변으로 보내지 않고 한 번 수정",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "공백 답변: 정상 답변으로 보내지 않고 한 번 수정",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "빈 출처: 정상 답변으로 보내지 않고 한 번 수정",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "공백 출처: 정상 답변으로 보내지 않고 한 번 수정",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "수정 후에도 빈 답변이면 답변 확정 없이 종료",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "수정 후에도 공백 답변이면 답변 확정 없이 종료",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "수정 후에도 빈 출처이면 답변 확정 없이 종료",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "수정 후에도 공백 출처이면 답변 확정 없이 종료",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "허용되지 않은 변경 도구는 차단하고 읽기만 수행",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 1,
+            "delete_records": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "계속 조회하는 Agent는 도구 2회 한도에서 중단",
+          "status": "budget_exceeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 2
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "도구 인자 스키마 오류는 실제 도구 호출 없이 수정 경로",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_reference": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "showcase-approved-publishing",
+      "designHash": "c9512340fb2c59210119484ce1126941713690cfe868174517ed142f564cf784",
+      "executionHash": "6dbb05546c6ed6f4f92cca697a4138b4bac9438bfcf8250397069a360a523634",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "7cd5deb320f3ca0b51cbb708d3ca723e376d26a712d3f1e4d7d82ff731c51597",
+        "python": "352098d8f256bbff1ae97fbdaa0441327c32f171cc49845c4079a14bfe6ed869"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "내용 검토 전에는 외부 쓰기 0회",
+          "status": "waiting_review",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "내용 검토 수락만으로 등록하지 않고 별도 승인 대기",
+          "status": "waiting_approval",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "두 단계 승인 후 재시작과 재개에도 정확히 한 번 등록",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "내용 검토 거절은 변경 승인과 등록 모두 생략",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "외부 변경 승인 거절은 쓰기 없이 실패로 종료",
+          "status": "failed",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "등록 응답 유실은 확인 필요 상태이며 재개로 재시도하지 않음",
+          "status": "unknown_outcome",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "초안 필수 본문 누락은 검토 이전에 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "빈 제목은 스키마가 맞아도 등록하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "등록 ID가 없는 서비스 응답은 성공으로 표시하지 않음",
+          "status": "failed",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "빈 등록 ID는 완료 안내 대신 서비스 확인 요청하며 재등록하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "내용 검토 전에는 외부 쓰기 0회",
+          "status": "waiting_review",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "내용 검토 수락만으로 등록하지 않고 별도 승인 대기",
+          "status": "waiting_approval",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "두 단계 승인 후 재시작과 재개에도 정확히 한 번 등록",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "내용 검토 거절은 변경 승인과 등록 모두 생략",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "외부 변경 승인 거절은 쓰기 없이 실패로 종료",
+          "status": "failed",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "등록 응답 유실은 확인 필요 상태이며 재개로 재시도하지 않음",
+          "status": "unknown_outcome",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "초안 필수 본문 누락은 검토 이전에 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "빈 제목은 스키마가 맞아도 등록하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "등록 ID가 없는 서비스 응답은 성공으로 표시하지 않음",
+          "status": "failed",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "빈 등록 ID는 완료 안내 대신 서비스 확인 요청하며 재등록하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_record": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "showcase-multi-agent-editorial",
+      "designHash": "8aeb68f7f8cc5f64a92a28dfeca921fc285ebeb087b3e8aa0a3fa96ed8d0f655",
+      "executionHash": "e1f01933d77dd3df9dc2243ae9623b9f81dc82de3c3b2030f4f97fe13d1f6c0d",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "2a952685c8e2d53643a3fadbe55a6ff25cf58ed6a5714482fe749a58324308a3",
+        "python": "673686dd2ba0121f93f23e3b75d80cc5dcc47898db72ed1106e341ac52b7d2d4"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "조사·작성·검토 통과 시 수정 Agent 생략",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "실제 초안과 지적을 전달해 한 번 수정 후 재검사",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "수정 후에도 남은 지적은 원자료와 함께 사람 검토 대기",
+          "status": "waiting_review",
+          "modelCalls": 5,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "미해결 문서는 사람 수락이어도 자동 통과로 표시하지 않음",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "미해결 문서 거절은 초안을 확정 결과로 내보내지 않음",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "조사 JSON 형식 오류에서 후속 작성 중단",
+          "status": "failed",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "검토 passed 문자열은 참으로 취급하지 않음",
+          "status": "failed",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "최종 검사 판정 누락이면 수정본 성공 출력 금지",
+          "status": "failed",
+          "modelCalls": 5,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "원자료 미입력은 모델 호출 전 실패",
+          "status": "failed",
+          "modelCalls": 0,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "검토 통과 판정이어도 빈 원초안을 확정하지 않음",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "최종 검사 통과 판정이어도 빈 수정본을 확정하지 않음",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "조사·작성·검토 통과 시 수정 Agent 생략",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 초안과 지적을 전달해 한 번 수정 후 재검사",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "수정 후에도 남은 지적은 원자료와 함께 사람 검토 대기",
+          "status": "waiting_review",
+          "modelCalls": 5,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "미해결 문서는 사람 수락이어도 자동 통과로 표시하지 않음",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "미해결 문서 거절은 초안을 확정 결과로 내보내지 않음",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "조사 JSON 형식 오류에서 후속 작성 중단",
+          "status": "failed",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "검토 passed 문자열은 참으로 취급하지 않음",
+          "status": "failed",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "최종 검사 판정 누락이면 수정본 성공 출력 금지",
+          "status": "failed",
+          "modelCalls": 5,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "원자료 미입력은 모델 호출 전 실패",
+          "status": "failed",
+          "modelCalls": 0,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "검토 통과 판정이어도 빈 원초안을 확정하지 않음",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "최종 검사 통과 판정이어도 빈 수정본을 확정하지 않음",
+          "status": "succeeded",
+          "modelCalls": 5,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "showcase-parallel-proposal",
+      "designHash": "921a33c2b92bcd057f686b3e97f1d5f5740d40d43fdf69fb141f5e12932bf87b",
+      "executionHash": "a4b57b20b98c183306ca347436279feac0e636cabe2bb48dd0756a2b506c4f39",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "a6f0565a4423b10c7384ea593b8f52058e81e2f371d51d374e2cb999fae83be6",
+        "python": "dc8cf964208d4621e4cfeb011be03d367c0c2e3417f6992586b9ec39d2f82d32"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "세 Agent의 실제 검토가 모두 종합 입력에 전달",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "사업성 JSON 오류는 다른 검토를 보존하고 판정 보류",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "기술 검토 필수 필드 누락을 식별",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "운영 검토의 빈 근거도 필수 검토 누락",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "의견 충돌은 승인으로 숨기지 않고 표시",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "종합 보고서 형식 위반은 성공 출력 금지",
+          "status": "failed",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "충돌 없음 판정이어도 빈 종합 보고서는 확정하지 않음",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "세 Agent의 실제 검토가 모두 종합 입력에 전달",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "사업성 JSON 오류는 다른 검토를 보존하고 판정 보류",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "기술 검토 필수 필드 누락을 식별",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "운영 검토의 빈 근거도 필수 검토 누락",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "의견 충돌은 승인으로 숨기지 않고 표시",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "종합 보고서 형식 위반은 성공 출력 금지",
+          "status": "failed",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "충돌 없음 판정이어도 빈 종합 보고서는 확정하지 않음",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "showcase-rag-evidence",
+      "designHash": "19712e374e9a4602e176f5b69b534813c5e08bb95fa17d8bddce3954dc1a9d0e",
+      "executionHash": "7485436fdac2262018f91690b3d1d512319d717c58f66fa6e19d5c322320b3a9",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "db75408e89a7e410860865ed556a72daecea1279a831d85f306aa9fd641e9add",
+        "python": "69452af007230cc7379da4067d58bde5e476e8a97be756e52f2ce177394d018c"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "최초 색인과 취소 근거 직접 답변",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 2,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "지속 색인을 재사용하고 다른 문서 선택",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 1,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "모호한 질문을 한 번 재작성해 근거 확보",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "embeddingCalls": 2,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "두 검색 모두 근거 부족이면 답변 모델 생략",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 2,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "존재하지 않는 문서 ID 인용은 공개하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 1,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "문서에 없는 인용문은 공개하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 1,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "빈 인용문으로 부분문자열 검사 우회 불가",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 1,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "재작성 응답의 필수 query 누락",
+          "status": "failed",
+          "modelCalls": 1,
+          "embeddingCalls": 1,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "최초 색인과 취소 근거 직접 답변",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 2,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "지속 색인을 재사용하고 다른 문서 선택",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 1,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "모호한 질문을 한 번 재작성해 근거 확보",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "embeddingCalls": 2,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "두 검색 모두 근거 부족이면 답변 모델 생략",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 2,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "존재하지 않는 문서 ID 인용은 공개하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 1,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "문서에 없는 인용문은 공개하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 1,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "빈 인용문으로 부분문자열 검사 우회 불가",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 1,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "재작성 응답의 필수 query 누락",
+          "status": "failed",
+          "modelCalls": 1,
+          "embeddingCalls": 1,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "showcase-request-orchestration",
+      "designHash": "288fd4ac849663928a7b9921ab8251868d003fa05f152abc2da812cbc2c9cfe5",
+      "executionHash": "0fac685502acb5448dd0b5f1eaab983cae943f1d9c4896e0396b7aa0055befaf",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "e4846698573b05e1f7261b339ec57aa2f623c969e2bde115e3860220322cb965",
+        "python": "b2e3fbffc7c46158ff892530dfa2ad6bf449649f1605b3de2a2e042eaf452855"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "정책만 요청하면 배송 서비스를 호출하지 않음",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "배송 요청은 실제 도구 인자로 주문번호 전달",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "복합 요청은 정책과 배송을 병렬 실행",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "모호한 요청은 조회 없이 추가 질문",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "배송 주문번호 항목이 없으면 도구 호출 없음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "빈 주문번호이면 도구 호출 없음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "조회에 없는 주문은 배송일을 생성하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "다른 주문번호 응답은 배송 정보 공개 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "배송 도구의 잘못된 응답 형식 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "복합 요청의 주문번호 부족은 일부 근거만 보존",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "등록하지 않은 계획은 외부 호출 전에 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "둘을 선택해 중복 실행하려는 계획 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "정책 근거가 없으면 통합 답변 생략",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "정책만 요청하면 배송 서비스를 호출하지 않음",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "배송 요청은 실제 도구 인자로 주문번호 전달",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "복합 요청은 정책과 배송을 병렬 실행",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "모호한 요청은 조회 없이 추가 질문",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "배송 주문번호 항목이 없으면 도구 호출 없음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "빈 주문번호이면 도구 호출 없음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "조회에 없는 주문은 배송일을 생성하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "다른 주문번호 응답은 배송 정보 공개 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "배송 도구의 잘못된 응답 형식 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "복합 요청의 주문번호 부족은 일부 근거만 보존",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "등록하지 않은 계획은 외부 호출 전에 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "둘을 선택해 중복 실행하려는 계획 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "정책 근거가 없으면 통합 답변 생략",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "lookup_shipment": 0
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    }
+  ],
+  "checks": 144,
+  "failures": [],
+  "externalCalls": 0,
+  "progress": {
+    "selected": 6,
+    "completed": 6,
+    "retained": 0,
+    "workers": 3,
+    "interrupted": false,
+    "updatedAt": "2026-10-23T08:39:19.822Z"
+  }
+}

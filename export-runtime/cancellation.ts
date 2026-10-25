@@ -1,0 +1,28 @@
+import { existsSync } from "node:fs";
+import { realpath } from "node:fs/promises";
+import { dirname, isAbsolute, relative, resolve } from "node:path";
+
+function inside(root: string, path: string) {
+  const part = relative(root, path);
+  return part !== "" && part !== ".." && !part.startsWith("..\\") && !part.startsWith("../") && !isAbsolute(part);
+}
+/** Queue cancellation is a presence-only local signal, never executable content. */
+export async function monitorCancellationFile(packagePath: string, supplied: string, controller: AbortController): Promise<() => void> {
+  const root = await realpath(dirname(resolve(packagePath))), target = resolve(root, supplied);
+  if (!inside(root, target)) throw new Error("취소 신호 파일은 실행 프로젝트 폴더 안에 지정해 주세요.");
+  // Resolve existing ancestors so symlink/junction paths cannot escape the package directory.
+  let parent = dirname(target);
+  for (;;) {
+    try {
+      const actual = await realpath(parent);
+      if (actual !== root && !inside(root, actual)) throw new Error("취소 신호 경로가 실행 프로젝트 폴더를 벗어났어요.");
+      break;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+      const next = dirname(parent); if (next === parent) throw error; parent = next;
+    }
+  }
+  const check = () => { if (existsSync(target)) controller.abort(); };
+  check(); const timer = setInterval(check, 100);
+  timer.unref(); return () => clearInterval(timer);
+}
