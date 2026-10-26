@@ -1,3 +1,6 @@
+/**
+ * 도구화 후보·기능군·예제 연결 및 공개 계약의 카탈로그 산출물을 만든다. 연결 목록 자체는 실제 서비스 호출이나 사용자에게 주어진 실행 권한이 아니다.
+ */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';

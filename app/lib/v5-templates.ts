@@ -1,3 +1,6 @@
+/**
+ * 파일 처리·평가·검색 등 확장 블록의 시작 템플릿. 여기의 파일명과 입력은 설명용 기본값이며 실제 로컬 파일을 만들지 않는다.
+ */
 import type { Definition, FlowNode, NodeType } from "./model";
 
 export const v5Templates=[
@@ -16,11 +19,13 @@ export const v5Templates=[
 const node=(id:string,type:NodeType,title:string,extra:Partial<FlowNode>={}):FlowNode=>({id,type,title,x:230,y:25,...extra});
 const chain=(nodes:FlowNode[]):Definition=>({schemaVersion:5,nodes:nodes.map((n,i)=>({...n,y:25+i*190})),edges:nodes.slice(1).map((n,i)=>({id:`${nodes[i].id}-${n.id}`,source:nodes[i].id,target:n.id}))});
 const input=()=>node("input","input","사용자 입력"),output=()=>node("output","output","답변 출력");
+/** 입력 양식 → 파일 확인 → 내용 추출의 공통 연결을 만든다. 파일 메타데이터가 다음 블록의 file 입력으로 전달되도록 명시한다. */
 function fileNodes(filename:string,mode:"text"|"table"|"ocr"):FlowNode[]{return [
  node("form","form","읽을 파일",{description:`예: ${JSON.stringify({file:filename})}`,form:{fields:[{key:"file",label:"파일 이름",type:"file",required:true}]}}),
  node("file","file_input","파일 확인",{fileInput:{path:"file",maxBytes:10_000_000},inputBindings:{file:{nodeId:"form",path:"data.file"}}}),
  node("extract","document_extract","문서 내용 읽기",{documentExtract:{mode,filePath:"file",maxPages:100,language:"kor+eng"},inputBindings:{file:{nodeId:"file",path:"file"}}}),
 ];}
+/** 각 기능의 연결과 분기·입출력 매핑을 포함한 설계를 반환한다. 외부 서비스 연결은 내보낸 환경의 설정이 필요하다. */
 export function v5Template(kind:string):Definition|undefined{
  if(kind==="file-text")return chain([...fileNodes("sample.txt","text"),output()]);
  if(kind==="file-ocr")return chain([...fileNodes("sample.png","ocr"),output()]);

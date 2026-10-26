@@ -1,3 +1,4 @@
+/** 로그인 사용자에게 공통 예제를 제공하고 비공개 사본 생성/다운로드를 처리한다. 클라이언트가 보낸 임의 예제 그래프는 사용하지 않는다. */
 import { env } from "cloudflare:workers";
 import { strToU8, zipSync } from "fflate";
 import { getChatGPTUser } from "../../chatgpt-auth";
@@ -10,6 +11,7 @@ import { ExportPackageError } from "../../../server/export-package";
 
 export const dynamic="force-dynamic";
 const respond=(body:unknown,status=200)=>Response.json(body,{status,headers:{"Cache-Control":"no-store"}});
+/** 서버 카탈로그의 예제만 조회한다. 접근 허용 범위는 로그인 사용자 전체다. */
 export async function GET(request:Request) {
   if(!await getChatGPTUser())return respond({error:"로그인 후 예제 프로젝트를 이용해 주세요."},401);
   const params=new URL(request.url).searchParams,id=params.get("id");
@@ -17,6 +19,7 @@ export async function GET(request:Request) {
   if(params.get("view") && !["catalog","supporting"].includes(params.get("view")!))return respond({error:"공통 흐름을 재사용하는 업무 사례는 예제 프로젝트로 제공하지 않습니다."},410);
   return respond(listExamples(params));
 }
+/** 동일 출처·작은 JSON 요청을 검사한 뒤 서버 카탈로그에서 예제를 다시 선택한다. 복제 소유자는 현재 세션 사용자다. */
 export async function POST(request:Request) {
   const user=await getChatGPTUser();if(!user)return respond({error:"로그인 후 이용해 주세요."},401);
   if(!sameOriginMutation(getAuthConfig(),request))return respond({error:"허용되지 않은 요청이에요."},403);

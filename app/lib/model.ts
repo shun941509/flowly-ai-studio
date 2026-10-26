@@ -1,3 +1,7 @@
+/**
+ * 웹 편집기와 서버가 공유하는 자료·설계·미리보기 모델.
+ * 입력 정규화는 각 domain 파서에 위임하고, 실제 모델·도구 실행은 runtime 계층과 내보낸 실행기가 담당한다.
+ */
 import { readPythonToolPreset } from "../../domain/python-tool-preset";
 import { isStartNode } from "../../domain/advanced-config";
 import { parsePredicate } from "../../domain/predicate";
@@ -10,14 +14,16 @@ import { advancedTemplate, advancedTemplates } from "./advanced-templates";
 import { parseMcpAddress, readMcpRegistration, serializeMcpRegistration } from "../../domain/mcp-registration";
 import { parseKnowledgeConfig, type KnowledgeConfig } from "../../domain/knowledge-config";
 import { parseSearchConfig, type SearchConfig } from "../../domain/search-config";
+import type { ResourceAttachment, ResourceDetails, ResourceNodeConfig } from "../../domain/resource-contract";
+import { parseResourceAttachments, parseResourceDetails, parseResourceNodeConfig } from "../../domain/resource-validation";
 export type ResourceType = "mcp" | "skill" | "prompt" | "document";
 export type Visibility = "private" | "selected" | "public";
-export type Resource = { id: string; ownerId: string; name: string; type: ResourceType; description: string; content: string; url: string; visibility: Visibility; allowedEmails: string[]; createdAt: string; updatedAt: string; sample?: boolean };
+export type Resource = { id: string; ownerId: string; name: string; type: ResourceType; description: string; content: string; url: string; visibility: Visibility; allowedEmails: string[]; createdAt: string; updatedAt: string; sample?: boolean; details?: ResourceDetails; files?: ResourceAttachment[] };
 export type NodeType = "input" | "resource" | "skill" | "ai" | "agent" | "condition" | "output" | "tool" | "transform" | "merge" | "retrieval" | "parallel" | "agent_team" | "orchestrator" | "subworkflow" | "loop" | "review" | "classify" | "form" | "memory" | "error" | "file_input" | "document_extract" | "guardrail" | "evaluate" | "file_output" | "trigger" | "compensate" | "program" | "knowledge" | "candidate_search";
-export type FlowNode = AdvancedNodeConfig & ExtendedNodeConfig & { id: string; type: NodeType; title: string; x: number; y: number; description?: string; prompt?: string; resourceId?: string; format?: string; condition?: string; predicate?: import("../../runtime/types").PredicateConfig; inputBindings?: Record<string, InputBinding>; inputSchema?: DataSchema; outputSchema?: DataSchema; allowedTools?: ToolSelection[]; pythonTools?: string[]; requireToolResult?: boolean; limits?: Partial<Limits>; tool?: ToolNodeConfig; program?: ProgramConfig; transform?: TransformConfig; merge?: MergeConfig; retrieval?: RetrievalConfig; knowledge?: KnowledgeConfig; search?: SearchConfig };
+export type FlowNode = AdvancedNodeConfig & ExtendedNodeConfig & ResourceNodeConfig & { id: string; type: NodeType; title: string; x: number; y: number; description?: string; prompt?: string; resourceId?: string; format?: string; condition?: string; predicate?: import("../../runtime/types").PredicateConfig; inputBindings?: Record<string, InputBinding>; inputSchema?: DataSchema; outputSchema?: DataSchema; allowedTools?: ToolSelection[]; pythonTools?: string[]; requireToolResult?: boolean; limits?: Partial<Limits>; tool?: ToolNodeConfig; program?: ProgramConfig; transform?: TransformConfig; merge?: MergeConfig; retrieval?: RetrievalConfig; knowledge?: KnowledgeConfig; search?: SearchConfig };
 export type FlowEdge = { id: string; source: string; target: string; branch?: string };
 export type Definition = { schemaVersion?: 1 | 2 | 3 | 4 | 5; nodes: FlowNode[]; edges: FlowEdge[] };
-export type Workflow = { id: string; name: string; description: string; definition: Definition; updatedAt: string };
+export type Workflow = { id: string; name: string; description: string; definition: Definition; updatedAt: string; ownerId?: string; visibility?: Visibility; readEmails?: string[]; editEmails?: string[]; lastModifiedBy?: string; lastModifiedName?: string; editScope?: "private" | "selected"; access?: import("../../domain/workflow-access").WorkflowAccess };
 export type RunStep = { id: string; title: string; type: NodeType; status: "completed" | "skipped"; detail: string };
 export type Run = { id: string; workflowId: string | null; workflowName: string; input: string; result: string; steps: RunStep[]; createdAt: string };
 export type Identity = { userId: string; email: string; displayName: string };
@@ -25,6 +31,7 @@ export const typeNames: Record<ResourceType, string> = { mcp: "MCP 도구", skil
 export const nodeNames: Record<NodeType, string> = { knowledge: "지식 색인 관리", candidate_search: "후보 탐색", program: "계산·검증 프로그램", input: "사용자 입력", resource: "자료 가져오기", skill: "작업 지침", ai: "AI 답변 생성", agent: "AI 에이전트", condition: "조건 분기", output: "답변 출력", tool: "도구 실행", transform: "값 변환", merge: "결과 모으기", retrieval: "문서 검색", parallel: "병렬 작업", agent_team: "에이전트 팀", orchestrator: "작업 조정", subworkflow: "하위 워크플로", loop: "반복 처리", review: "사람 검토", classify: "AI 분류", form: "입력 양식", memory: "기억 읽기·쓰기", error: "오류 처리", file_input: "파일 입력", document_extract: "문서 처리", guardrail: "민감정보 필터", evaluate: "결과 평가", file_output: "파일 출력", trigger: "자동 시작", compensate: "보상 작업" };
 export const nodeDescriptions: Record<NodeType, string> = { knowledge: "문서 변경·발행·철회와 색인 버전을 관리해요", candidate_search: "후보를 만들고 실제 계산으로 검증하며 트리·그래프로 탐색해요", program: "등록된 계산·형식·근거 검사를 정확한 규칙으로 실행해요", input: "실행할 질문이나 요청을 받아요", resource: "등록된 자료 내용을 전달해요", skill: "저장한 작업 요령을 전달해요", ai: "도구 없이 한 번 답변해요", agent: "허용한 도구로 확인하고 답해요", condition: "앞 단계 내용으로 길을 나눠요", output: "전달받은 결과를 보여줘요", tool: "지정한 도구를 정해진 입력으로 실행해요", transform: "필드를 고르거나 양식·JSON으로 바꿔요", merge: "앞 단계 결과를 한데 모아요", retrieval: "질문과 관련된 문서 조각과 출처를 찾아요", parallel: "독립된 작업을 동시에 실행하고 결과를 모아요", agent_team: "역할이 다른 에이전트가 순서대로 또는 동시에 일해요", orchestrator: "AI가 허용한 작업에서 실행할 순서를 골라요", subworkflow: "저장한 흐름의 복사본을 하나의 작업으로 실행해요", loop: "목록의 각 항목을 정해진 횟수 안에서 처리해요", review: "사람이 확인하거나 수정할 때까지 기다려요", classify: "입력을 등록한 분류 중 하나로 나눠요", form: "이름·숫자·날짜 등 정해진 형식의 입력을 받아요", memory: "내 실행 폴더에서 다음 실행에 쓸 값을 보관해요", error: "오류 분기로 받은 문제를 안내하거나 대체 답변을 만들어요", file_input: "내 실행 폴더의 파일을 안전하게 읽어요", document_extract: "본문·표를 추출하거나 이미지 글자를 읽어요", guardrail: "외부 전송 전에 민감정보를 가리거나 막아요", evaluate: "기대 조건이나 평가 지침으로 결과를 확인해요", file_output: "CSV·Excel·PDF·Word 파일로 저장해요", trigger: "예약·웹훅·이벤트로 흐름을 시작해요", compensate: "완료된 외부 변경을 승인 후 보상 처리해요" };
 export const visibilityNames: Record<Visibility, string> = { private: "나만 사용", selected: "지정 사용자", public: "전체 사용자" };
+/** 브라우저와 서버의 Web Crypto로 식별자를 만든다. 저장 소유자나 접근 권한을 증명하는 값은 아니다. */
 export function uid(prefix = "id") {
   if (typeof crypto.randomUUID === "function") return `${prefix}_${crypto.randomUUID()}`;
   const bytes = crypto.getRandomValues(new Uint8Array(16));
@@ -53,6 +60,7 @@ export const templates = [
   { id: "research", title: "자료 기반 리서치", description: "참고 자료를 연결하고 구조적인 보고서를 만들어요.", tag: "자료 활용", category: "리서치", icon: "search", count: 5 },
   { id: "blank", title: "빈 캔버스에서 시작", description: "아이디어에 맞게 필요한 블록을 직접 연결해요.", tag: "자유롭게 만들기", category: "직접 만들기", icon: "plus", count: 2 },
 ];
+/** 시작 템플릿의 설계를 새 워크플로 ID로 구성한다. 데이터베이스 저장·소유권 부여는 호출자가 별도로 처리한다. */
 export function templateWorkflow(kind = "assistant"): Workflow {
   const t = templates.find(t => t.id === kind) || templates[0];
   const advanced = advancedTemplate(kind);
@@ -95,10 +103,13 @@ export function templateWorkflow(kind = "assistant"): Workflow {
   const links = kind === "blank" ? [] : kind === "meeting" ? [["input","skill"],["skill","ai"],["ai","output"]] : [["input","resource"],["input","skill"],["resource","ai"],["skill","ai"],["ai","output"]];
   return { id: uid("flow"), name: t.title, description: t.description, definition: { nodes, edges: links.map(([source,target]) => ({ id: uid("edge"), source, target })) }, updatedAt: new Date().toISOString() };
 }
+/** 자료의 소유자·공유 범위·이메일을 비교하는 공통 정책. 서버에서는 반드시 검증된 세션의 Identity로 호출해야 한다. */
 export function canReadResource(r: Pick<Resource, "ownerId" | "visibility" | "allowedEmails"> & {sample?: boolean}, user: Identity) {
   return !!r.sample || r.ownerId === user.userId || r.visibility === "public" || (r.visibility === "selected" && r.allowedEmails.includes(user.email.toLowerCase()));
 }
+/** 샘플 원본은 수정하지 못하며 일반 자료는 소유자만 수정할 수 있다. 워크플로 공동 편집권과 별개다. */
 export function canEditResource(r: Pick<Resource,"ownerId"> & {sample?:boolean}, user: Identity) { return !r.sample && r.ownerId === user.userId; }
+/** 사용자 입력에서 자료 본문과 공개 설정만 정규화한다. id·ownerId·생성/수정 시각은 이 반환값에 포함하지 않는다. */
 export function parseResource(input: unknown): Omit<Resource,"id"|"ownerId"|"createdAt"|"updatedAt"> {
   if (!input || typeof input !== "object") throw new Error("등록 정보를 확인해 주세요.");
   const r = input as Record<string,unknown>;
@@ -108,17 +119,20 @@ export function parseResource(input: unknown): Omit<Resource,"id"|"ownerId"|"cre
   if (description.length > 300 || content.length > 200000) throw new Error("설명은 300자, 자료 내용은 200,000자까지 입력할 수 있어요.");
   if (!["mcp","skill","prompt","document"].includes(String(r.type))) throw new Error("자료 유형을 선택해 주세요.");
   if (!["private","selected","public"].includes(String(r.visibility))) throw new Error("공유 범위를 선택해 주세요.");
+  const files = r.files === undefined ? undefined : parseResourceAttachments(r.files, String(r.type));
+  const details = parseResourceDetails(r.details, String(r.type), files);
   if (r.type === "mcp") {
     const registration = readMcpRegistration({ type: "mcp", content, url });
     if (url) parseMcpAddress(url);
     if (!url && !registration) throw new Error("MCP 주소 또는 실행할 도구 정의와 주소 환경 변수 이름을 등록해 주세요.");
   } else if (url) { let u: URL; try { u = new URL(url); } catch { throw new Error("올바른 HTTPS 주소를 입력해 주세요."); } if (u.protocol !== "https:" || u.username || u.password || url.length > 2000) throw new Error("인증 정보가 포함되지 않은 HTTPS 주소를 입력해 주세요."); }
-  if (r.type !== "mcp" && !content.trim()) throw new Error("자료 내용이나 작업 지침을 입력해 주세요.");
+  if (r.type !== "mcp" && !content.trim() && !(r.type === "document" && files?.length)) throw new Error("자료 내용이나 작업 지침을 입력해 주세요.");
   if (r.type === "document") readPythonToolPreset({type:"document",content});
   const allowedEmails = r.visibility === "selected" && Array.isArray(r.allowedEmails) ? [...new Set(r.allowedEmails.map(x => String(x).trim().toLowerCase()).filter(Boolean))] : [];
   if (r.visibility === "selected" && (allowedEmails.length === 0 || allowedEmails.length > 50 || allowedEmails.some(e => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)))) throw new Error("공유할 이메일을 1~50개 입력해 주세요.");
-  return { name, description, content, url, type: r.type as ResourceType, visibility: r.visibility as Visibility, allowedEmails };
+  return { name, description, content, url, type: r.type as ResourceType, visibility: r.visibility as Visibility, allowedEmails, ...(details ? { details } : {}), ...(files !== undefined ? { files } : {}) };
 }
+/** 호환되는 설계 버전을 읽고 블록별 설정을 검사한다. 중첩 호출이 같은 budget을 공유해 전체 노드 수 우회를 막는다. */
 export function parseDefinition(value: unknown, depth = 0, budget = { nodes: 0 }): Definition {
   if (depth > 3) throw new Error("하위 워크플로는 3단계까지만 중첩할 수 있어요.");
   if (!value || typeof value !== "object") throw new Error("워크플로 형식이 올바르지 않아요.");
@@ -131,7 +145,7 @@ export function parseDefinition(value: unknown, depth = 0, budget = { nodes: 0 }
     if (!n || typeof n.id !== "string" || n.id.length > 100 || !Object.keys(nodeNames).includes(n.type) || !Number.isFinite(n.x) || !Number.isFinite(n.y) || Math.abs(n.x)>10000 || Math.abs(n.y)>10000) throw new Error("블록 정보가 올바르지 않아요.");
     if (depth > 0 && n.type === "trigger") throw new Error("자동 시작은 최상위 워크플로에서만 사용할 수 있어요.");
     if (!n.id || n.id==="prototype" || Object.hasOwn(Object.prototype,n.id)) throw new Error("블록 ID가 올바르지 않아요.");
-    return { id:n.id, type:n.type, title:String(n.title||nodeNames[n.type]).slice(0,80), x:n.x, y:n.y, description:String(n.description||"").slice(0,300), prompt:String(n.prompt||"").slice(0,12000), resourceId:String(n.resourceId||"").slice(0,100), format:["텍스트","Markdown","JSON"].includes(n.format||"")?n.format:"Markdown", condition:String(n.condition||"").slice(0,200), ...(n.predicate !== undefined ? { predicate: n.type === "condition" ? parsePredicate(n.predicate) : (() => { throw new Error("비교 조건은 조건 블록에만 지정해 주세요."); })() } : {}), ...(n.knowledge !== undefined ? {knowledge: n.type === "knowledge" ? parseKnowledgeConfig(n.knowledge) : (() => { throw new Error("지식 색인 설정은 지식 색인 블록에만 지정해 주세요."); })()} : {}), ...(n.search !== undefined ? {search: n.type === "candidate_search" ? parseSearchConfig(n.search) : (() => { throw new Error("후보 탐색 설정은 후보 탐색 블록에만 지정해 주세요."); })()} : {}), ...parseNodeRuntime(n), ...parseExtendedNodeConfig(n as unknown as Record<string, unknown>), ...parseDataNodeConfig(n as unknown as Record<string, unknown>), ...parseAdvancedNodeConfig(n as unknown as Record<string, unknown>, child => parseDefinition(child, depth + 1, budget)) } as FlowNode;
+    return { id:n.id, type:n.type, title:String(n.title||nodeNames[n.type]).slice(0,80), x:n.x, y:n.y, description:String(n.description||"").slice(0,300), prompt:String(n.prompt||"").slice(0,12000), resourceId:String(n.resourceId||"").slice(0,100), format:["텍스트","Markdown","JSON"].includes(n.format||"")?n.format:"Markdown", condition:String(n.condition||"").slice(0,200), ...(n.predicate !== undefined ? { predicate: n.type === "condition" ? parsePredicate(n.predicate) : (() => { throw new Error("비교 조건은 조건 블록에만 지정해 주세요."); })() } : {}), ...(n.knowledge !== undefined ? {knowledge: n.type === "knowledge" ? parseKnowledgeConfig(n.knowledge) : (() => { throw new Error("지식 색인 설정은 지식 색인 블록에만 지정해 주세요."); })()} : {}), ...(n.search !== undefined ? {search: n.type === "candidate_search" ? parseSearchConfig(n.search) : (() => { throw new Error("후보 탐색 설정은 후보 탐색 블록에만 지정해 주세요."); })()} : {}), ...parseNodeRuntime(n), ...parseResourceNodeConfig(n as unknown as Record<string, unknown>), ...parseExtendedNodeConfig(n as unknown as Record<string, unknown>), ...parseDataNodeConfig(n as unknown as Record<string, unknown>), ...parseAdvancedNodeConfig(n as unknown as Record<string, unknown>, child => parseDefinition(child, depth + 1, budget)) } as FlowNode;
   });
   if (new Set(nodes.map(n=>n.id)).size !== nodes.length) throw new Error("중복된 블록 ID가 있어요.");
   const edges = v.edges.map(e=>{ if (!e || typeof e.id!=="string" || e.id.length>100 || !nodes.some(n=>n.id===e.source) || !nodes.some(n=>n.id===e.target) || e.source===e.target || (e.branch !== undefined && (typeof e.branch !== "string" || !safeNodeKey(e.branch)))) throw new Error("연결 정보가 올바르지 않아요."); return { id:e.id, source:e.source, target:e.target, ...(e.branch?{branch:e.branch}:{}) }; });
@@ -140,6 +154,7 @@ export function parseDefinition(value: unknown, depth = 0, budget = { nodes: 0 }
   if (depth === 0 && allNodes(definition).some(node => node.orchestration?.mode === "dynamic") && expandedNodeCount(definition) > 120) throw new Error("동적 생성·반복·재계획을 포함한 전체 실행 블록 한도는 120개예요. 생성 수 또는 반복 한도를 줄여 주세요.");
   return definition;
 }
+/** 편집 중 연결 오류를 사용자에게 안내한다. 자료 목록을 받으면 참조 가능성도 확인하지만 서버 권한 재검사를 대신하지 않는다. */
 export function validateGraph(d: Definition, available?: Resource[]): string[] {
   const errors: string[]=[]; const {nodes,edges}=d;
   if(nodes.filter(n=>isStartNode(n)).length!==1) errors.push("사용자 입력·입력 양식·자동 시작 중 시작 블록 하나가 필요해요.");
@@ -173,6 +188,7 @@ export function validateGraph(d: Definition, available?: Resource[]): string[] {
   nodes.forEach(n=>visit(n.id));if(cycle)errors.push("순환 연결이 있어요. 시작에서 끝으로 이어지도록 연결해 주세요.");
   return [...new Set(errors)];
 }
+/** 연결 구조를 설명하는 미리보기만 생성한다. 실제 모델·MCP 호출이나 모든 노드의 런타임 데이터 처리를 재현하지 않는다. */
 export function simulateFlow(workflow: Workflow,input:string,available:Resource[]): Omit<Run,"id"|"createdAt"> {
   const definition=parseDefinition(workflow.definition);
   const errors=validateGraph(definition,available);if(errors.length)throw new Error(errors.join("\n"));

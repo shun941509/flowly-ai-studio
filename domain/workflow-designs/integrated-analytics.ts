@@ -1,3 +1,7 @@
+/**
+ * 분석·실험·업무 도구를 Agent의 판단과 연결한 통합 예제다. Python 계산 결과와 모델 응답을 별개의 입출력으로 취급한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode, Resource } from '../../app/lib/model';
 import type { DataSchema, InputBinding } from '../../runtime/types';
 import type { WorkflowDesign, WorkflowScenario } from '../workflow-design';

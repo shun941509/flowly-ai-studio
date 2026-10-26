@@ -1,3 +1,4 @@
+# 기술 예제의 제약/근거/비교/관계 검색/아바타 지시용 결정적 JSON 프로그램. 모델 판단과 측정 결과를 분리한다.
 """Bounded, deterministic technical workflow programs. No network, filesystem or code execution."""
 from __future__ import annotations
 import copy
@@ -39,6 +40,7 @@ def num(value):
     return value
 
 
+# 조합은 최대 4,096개까지 확인한다. repair는 위반 조건에 관련된 필드만 바꾼다.
 def constraints(a):
     domains, rules = dict(sorted(a["domains"].items())), a["rules"]
     if not 1 <= len(domains) <= 6 or math.prod(len(v) for v in domains.values()) > 4096:
@@ -77,6 +79,7 @@ def sensitivity(a):
     return {"baseline":baseline,"trials":trials,"largestImpact":ranked[0] if ranked else None,"formula":"volume * unitCost + fixedCost","passed":bool(trials)}
 
 
+# 인용 ID/원문 포함 여부를 검사한다. 인용 문장의 진실성 전체를 보증하는 검사는 아니다.
 def coverage(a):
     expected=set(a["expectedIds"]); covered=set(); invalid=[]
     sources={v["id"]:v["text"] for v in a["sources"]}
@@ -187,6 +190,7 @@ def join_numeric(a):
     return {"passed":not errors and len(units)==1,"mismatchedIds":errors,"rows":joined,"sum":sum(r["value"] for r in joined) if len(units)==1 else None,"unit":next(iter(units)) if len(units)==1 else None}
 
 
+# 입력의 관계를 탐색한다. 외부 지식 그래프 자동 구축이나 네트워크 자료 수집은 하지 않는다.
 def graph_search(a):
     start=a["start"];allowed=set(a["allowedSourceIds"]);queue=[(start,0,[])];seen={start};paths=[];denied=0
     if not 1<=a["maxDepth"]<=8:raise ValueError("관계 깊이는 1~8이에요.")
@@ -287,6 +291,7 @@ def alignment(a):
     return {"passed":bool(checks) and all(x["passed"] for x in checks),"checks":checks,"requiredExampleIds":[d["exampleId"] for d in a["documents"]],"extraction":"python_ast" if "codeSource" in a else "supplied_contract_snapshot"}
 
 
+# 표시용 구조/SVG 지시를 만든다. 실제 음성/영상 제공자 호출은 수행하지 않는다.
 def avatar(a):
     # A portable visual avatar cue contract, deliberately separate from TTS/media generation.
     correct=sum(x["answer"]==x["expected"] for x in a.get("checks",[]));total=len(a.get("checks",[]));passed=total>0 and correct==total
@@ -484,6 +489,7 @@ OPERATIONS={"technical."+name:fn for name,fn in {
 CONTRACTS={name:{"description":fn.__name__+": bounded deterministic technical validation; no external I/O", "exampleArguments":{}, "effect":"read"} for name,fn in OPERATIONS.items()}
 
 
+# 등록 프로그램에 제한 JSON만 분배한다. 코드처럼 보이는 입력 문자열도 임의 실행하지 않는다.
 def execute(name,args):
     if name not in OPERATIONS:raise ValueError("등록되지 않은 기술 검증 프로그램이에요.")
     if not isinstance(args,dict):raise ValueError("프로그램 입력은 객체여야 해요.")

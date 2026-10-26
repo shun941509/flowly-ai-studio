@@ -1,3 +1,7 @@
+/**
+ * 부분 후보의 트리 탐색과 다중 부모 그래프 재조합을 구분한 예제다. 후보 평가·막힌 가지·수정 후 재검증은 시나리오의 관측 출력으로 확인한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode } from "../../app/lib/model";
 import type { InputBinding, Json } from "../../runtime/types";
 import { parseSearchConfig } from "../search-config";

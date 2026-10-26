@@ -1,3 +1,7 @@
+/**
+ * 시점·수치·관계·표·자료 철회를 활용하는 RAG 예제다. 색인/문서 근거가 Agent의 최종 결과까지 연결되는 경로를 확인한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { WorkflowDesign } from '../workflow-design';
 import { b,n,graph,start,calc,out,agent,reply,check,hold,review,design,service,tool } from './completion-035-068-helpers';
 const str={type:'string' as const};

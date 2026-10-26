@@ -1,3 +1,7 @@
+/**
+ * 완료된 작업을 보존한 채 보완 입력을 기다렸다가 재개하는 예제다. 재개 후 완료 횟수와 방문 경로로 불필요한 작업 재실행을 확인한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode } from "../../app/lib/model";
 import type { WorkflowDesign } from "../workflow-design";
 import { layoutWorkflow } from "../workflow-layout";

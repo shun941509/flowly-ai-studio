@@ -1,3 +1,4 @@
+# 수치/통계/전처리/학습 도구팩. 로컬 의존성을 지연 로드하고 모수와 자료 크기를 제한한다.
 """Bounded scientific algorithms. Scientific dependencies are loaded per tool.
 
 Model state is an explicit, versioned JSON training recipe, never pickle. A
@@ -81,6 +82,7 @@ def params(args,allowed):
     return config
 
 
+# 등록 sklearn 클래스만 선택하고 기본 seed/단일 작업자를 고정한다. 사용자 클래스는 로드하지 않는다.
 def make_estimator(tool_id,config):
     mod,name=ESTIMATORS[tool_id]
     cls=getattr(dependency("sklearn."+mod,"scikit-learn"),name)
@@ -97,6 +99,7 @@ def make_estimator(tool_id,config):
     return cls(**{**defaults,**config})
 
 
+# 상태는 pickle 대신 버전 있는 학습 자료/모수 JSON이다. predict는 저장 학습 자료로 재구성하며 평가 data로 학습하지 않는다.
 def model(tool_id,args):
     operation=args.get("operation","fit_predict")
     if operation not in {"fit","predict","fit_predict"}: fail("모델 동작은 fit/predict/fit_predict예요.")
@@ -122,6 +125,7 @@ def model(tool_id,args):
     return result
 
 
+# 전처리 종류별 학습/변환 자료를 구분한다. 출력 상태 의미는 해당 알고리즘 분기를 확인한다.
 def preprocess(tool_id,args):
     np=dependency("numpy")
     if tool_id=="data_labeling":
@@ -418,6 +422,7 @@ def extended(tool_id,args):
     fail("지원하지 않는 과학 계산 도구예요.")
 
 
+# ID를 알고리즘에 매핑한다. 넓은 용어는 기준선/별칭일 수 있으므로 describe_tools의 scope도 확인한다.
 def execute_scientific(tool_id,args):
     if tool_id in PREPROCESS:return preprocess(tool_id,args)
     if tool_id in ESTIMATORS:return model(tool_id,args)

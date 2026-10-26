@@ -1,3 +1,4 @@
+# 두 실행기의 로컬 문서 읽기/추출/출력 생성기. 경로와 크기를 제한하며 외부 서비스나 자격 증명을 사용하지 않는다.
 """Bounded local file operations shared by both exported runtimes. No network or credentials."""
 from __future__ import annotations
 import csv
@@ -52,6 +53,7 @@ def no_links(path):
         if current.is_symlink() or reparse:
             raise FileFault("파일 처리 경로의 심볼릭 링크·정션은 사용할 수 없어요.", "policy")
 
+# 허용 폴더의 실제 경로만 사용한다. 상위 이동과 심볼릭 링크/정션을 통한 경계 이탈을 거절한다.
 def relative_file(root, name, prefixes=("inputs",)):
     if not isinstance(name, str) or not name or name.startswith(("/", "\\")) or len(name) > 500 or "\x00" in name or ":" in name:
         raise FileFault("입력 파일은 inputs 폴더 안의 상대 경로로 지정해 주세요.", "policy")
@@ -88,6 +90,7 @@ def bounded_text(text):
         raise FileFault("추출한 텍스트가 200,000자를 넘어요. 문서를 나누어 주세요.")
     return text
 
+# 압축 문서의 내부 파일 수/확장 크기/암호화를 먼저 확인한다.
 def safe_archive(data):
     with zipfile.ZipFile(io.BytesIO(data)) as archive:
         items = archive.infolist()
@@ -129,6 +132,7 @@ def ocr_image(image, root, language):
     os.environ["TESSDATA_PREFIX"] = str(tessdata)
     return engine.image_to_string(image, lang=language, timeout=60)
 
+# 형식과 text/table/ocr별 로컬 라이브러리를 선택한다. 의존성 누락은 미설정 오류다.
 def extract(root, source, config):
     file = value_at(source, config["filePath"])
     if not isinstance(file, dict) or not re.fullmatch(r"[a-f0-9]{64}", str(file.get("sha256", ""))):
@@ -236,6 +240,7 @@ def extract(root, source, config):
         text = bounded_text("\n\n".join("\n".join("\t".join(map(str, row)) for row in t["rows"]) for t in tables))
     return {**source, "text": text, "pages": pages, "tables": tables, "source": {"name": path.name, "sha256": file["sha256"]}}
 
+# 표를 정규화하고 수식으로 해석될 수 있는 스프레드시트 문자열을 데이터로 다룬다.
 def tabular(value):
     if not isinstance(value, list):
         raise FileFault("CSV·Excel 저장에는 객체 배열이나 행 배열을 연결해 주세요.")
@@ -289,6 +294,7 @@ def render_output(value, format):
         raise FileFault("지원하는 출력 형식을 선택해 주세요.")
     return buffer.getvalue()
 
+# 실행/노드별 요청/결과 해시로 재개 시 기존 산출물을 확인한다. 결과를 무조건 덮어쓰지 않는다.
 def write_output(root, request):
     config, source = request["config"], request["input"]
     filename, format = config["filename"], config["format"]
@@ -334,6 +340,7 @@ def write_output(root, request):
             raise FileFault("같은 이름의 파일이 이미 있어요. 덮어쓰지 않고 중단했어요.", "policy") from None
     return {**source, "file": result, "text": result["path"]}
 
+# 파일 작업의 의존성 검사다. 실제 파일 변환 결과나 외부 연결 검증 성공을 뜻하지 않는다.
 def check(config, root):
     required = set()
     needs_ocr = False

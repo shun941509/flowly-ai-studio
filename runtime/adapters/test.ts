@@ -1,6 +1,8 @@
+// 명시적인 오프라인 검증용 모델·MCP 대역. 실제 네트워크를 호출하지 않고 결과에도 테스트임을 표시한다.
 import type { Json, ModelAdapter, ModelReply, RuntimeDependencies, ToolDefinition } from "../types";
 
 /** Deliberately deterministic and explicitly labelled. Never used as a live fallback. */
+// 선택한 첫 도구의 스키마에서 고정 인자를 만들고 관찰 결과를 그대로 반환한다. 모델 품질을 평가하는 구현은 아니다.
 export class TestModelAdapter implements ModelAdapter {
   async next({ messages, tools, signal }: Parameters<ModelAdapter["next"]>[0]): Promise<ModelReply> {
     signal.throwIfAborted();
@@ -18,6 +20,7 @@ export class TestModelAdapter implements ModelAdapter {
     return { kind: "answer", text: `[테스트 결과 · 실제 AI 답변 아님]\n입력: ${JSON.stringify(input)}`, usageTokens: 30 };
   }
 }
+// test- 연결만 허용한다. onCall은 호출/멱등 키를 검증하는 관찰 지점이며 외부 변경을 수행하지 않는다.
 export function createTestToolCaller(onCall?: (call: { tool: ToolDefinition; args: Record<string, Json>; idempotencyKey: string }) => void): RuntimeDependencies["callTool"] {
   return async (tool, args, { signal, idempotencyKey }) => {
     signal.throwIfAborted();

@@ -1,3 +1,7 @@
+/**
+ * 검색·색인 또는 후보 탐색 결과를 Agent가 검토한 후 공개/보류하도록 기존 설계에 검토 분기를 연결하는 작성 도우미다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { FlowNode } from '../../app/lib/model';
 import type { WorkflowDesign } from '../workflow-design';
 import { layoutWorkflow } from '../workflow-layout';

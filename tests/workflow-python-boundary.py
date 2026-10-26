@@ -78,6 +78,19 @@ def test_post(self, url, body, headers, timeout_ms, *args, **kwargs):
         occurrence = sum(c["match"] == reply["match"] for c in previous) + 1
         log(".model-calls.jsonl", {"match": reply["match"], "occurrence": occurrence})
         log(".model-timing.jsonl", {"match": reply["match"], "occurrence": occurrence, "phase": "start", "at": time.time() * 1000})
+    # Release the lock while waiting so a genuine parallel sibling can enter.
+    # A sequential runtime cannot complete this bounded rendezvous.
+    if reply["match"] in scenario.get("parallelMatches", []):
+        deadline = time.monotonic() + 10
+        while True:
+            with lock:
+                calls = entries(".model-calls.jsonl")
+                arrived = all(any(call["match"] == match and call["occurrence"] >= occurrence for call in calls) for match in scenario["parallelMatches"])
+            if arrived:
+                break
+            assert time.monotonic() < deadline, "Parallel provider rendezvous timed out; sibling was not dispatched"
+            time.sleep(.01)
+        time.sleep(.005)
     if reply.get("delayMs"):
         time.sleep(reply["delayMs"] / 1000)
     with lock:

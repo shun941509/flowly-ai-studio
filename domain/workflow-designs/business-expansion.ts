@@ -1,3 +1,7 @@
+/**
+ * 업무별 입력 양식·판정·검토·결과 전달을 조합한 예제 설계다. 같은 제목 계열이라도 실제 분기와 입력 매핑을 기준으로 동작을 읽는다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode } from "../../app/lib/model";
 import type { DataSchema, FormConfig, InputBinding } from "../../runtime/types";
 import type { WorkflowDesign, WorkflowScenario } from "../workflow-design";

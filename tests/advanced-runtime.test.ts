@@ -251,15 +251,26 @@ test("a completed child write remains completed when an identical sibling is lat
   assert.equal(run.checkpoint.groups!.group.children[1].checkpoint.calls[0].status, "denied");
 });
 
-test("sequential child provider timeout shrinks to the current ancestor remaining time", async () => {
+test("sequential child provider timeout shrinks to the current ancestor remaining time", async context => {
+  // Assert the actual deadline, independent of host event-loop contention.
+  context.mock.timers.enable({ apis: ["setTimeout", "Date"], now: 1000 });
   const run = create(advancedTemplate("agent-team")!, "input", { maxDurationMs: 240 });
   let calls = 0; let elapsedAtSecond = 0; let secondWait = 0;
+  let firstEntered!: () => void, secondEntered!: () => void;
+  const first = new Promise<void>(resolve => { firstEntered = resolve; });
+  const second = new Promise<void>(resolve => { secondEntered = resolve; });
   const h = harness({ model: { next: async ({ signal }) => {
     calls++;
-    if (calls === 1) { await new Promise(resolve => setTimeout(resolve, 150)); return answer("first role"); }
+    if (calls === 1) { firstEntered(); await new Promise(resolve => setTimeout(resolve, 150)); return answer("first role"); }
     elapsedAtSecond = run.checkpoint.activeMs; const started = Date.now();
+    secondEntered();
     return new Promise((_, reject) => signal.addEventListener("abort", () => { secondWait = Date.now() - started; reject(new Error("ancestor deadline")); }, { once: true }));
   } } });
-  await executeRun(run, h.deps); assert.equal(run.status, "budget_exceeded"); assert.equal(calls, 2);
-  assert.ok(secondWait <= 240 - elapsedAtSecond + 35, `child waited ${secondWait}ms with ancestor remaining ${240 - elapsedAtSecond}ms`);
+  const pending = executeRun(run, h.deps);
+  await first; context.mock.timers.tick(150); await second;
+  const remaining = 240 - elapsedAtSecond;
+  assert.equal(remaining, 90);
+  context.mock.timers.tick(remaining - 1); assert.equal(secondWait, 0);
+  context.mock.timers.tick(1); assert.equal(secondWait, remaining);
+  await pending; assert.equal(run.status, "budget_exceeded"); assert.equal(calls, 2);
 });

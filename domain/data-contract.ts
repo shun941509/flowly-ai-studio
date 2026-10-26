@@ -1,3 +1,7 @@
+/**
+ * 편집기의 출력 필드 선택지와 입력 매핑 진단을 실행 계약에 맞춰 제공한다.
+ * 예시 경로는 실제 값의 존재를 보장하지 않으며 실행 시 스키마 검사를 대신하지 않는다.
+ */
 import type { Definition, FlowNode } from "../app/lib/model";
 import type { DataSchema, InputBinding } from "../runtime/types";
 import { safeDataPath } from "./node-config";
@@ -9,11 +13,17 @@ const obj = (properties: Record<string, DataSchema> = {}): DataSchema => ({ type
 const text: DataSchema = { type: "string" }, number: DataSchema = { type: "number" }, bool: DataSchema = { type: "boolean" };
 const list: DataSchema = { type: "array" };
 
+/**
+ * 명시적인 매핑을 우선하고 이전 형식의 설계에는 연결 순서에 따른 기본 매핑을 제공한다.
+ */
 export function effectiveBindings(definition: Definition, node: FlowNode): Record<string, InputBinding> {
   return node.inputBindings ?? Object.fromEntries(definition.edges.filter(edge => edge.target === node.id).map((edge, index) => [index ? `context_${index}` : "text", { nodeId: edge.source, path: "text" }]));
 }
 
 /** Field discovery is a hint, never a generated sample answer or a proof of runtime presence. */
+/**
+ * 블록의 실제 반환 형태·사용자 출력 선언·연결된 입력을 바탕으로 선택 가능한 경로를 계산한다. 재귀 방문 집합으로 순환 추론을 막는다.
+ */
 export function outputFields(node: FlowNode, definition?: Definition, visiting = new Set<string>()): OutputField[] {
   if (visiting.has(node.id)) return [];
   const seen = new Set(visiting).add(node.id), fields = new Map<string, OutputField>();
@@ -87,6 +97,9 @@ function pathSchema(schema: DataSchema | undefined, path: string): DataSchema | 
   return current;
 }
 export type MappingIssue = { nodeId: string; field: string; message: string; severity: "error" | "warning" };
+/**
+ * 직접 선행 관계와 필수 입력을 검사한다. 알려진 자료형의 불일치와 분기에서 값이 빠질 가능성은 경고로 구분한다.
+ */
 export function mappingIssues(definition: Definition, node: FlowNode): MappingIssue[] {
   const result: MappingIssue[] = [];
   for (const [field, binding] of Object.entries(effectiveBindings(definition, node))) {
@@ -95,6 +108,9 @@ export function mappingIssues(definition: Definition, node: FlowNode): MappingIs
     if (!safeDataPath(binding.path)) { result.push({ nodeId: node.id, field, severity: "error", message: `‘${node.title}’의 ${field} 결과 경로를 확인해 주세요.` }); continue; }
     const actual = pathSchema(source.outputSchema, binding.path)?.type ?? outputFields(source, definition).find(item => item.path === binding.path)?.type;
     const expected = node.inputSchema?.properties?.[field]?.type;
+    const pending=[source.id],seen=new Set<string>();let conditional=false;
+    while(pending.length){const id=pending.pop()!;if(seen.has(id))continue;seen.add(id);for(const edge of definition.edges.filter(item=>item.target===id)){if(edge.branch)conditional=true;pending.push(edge.source);}}
+    if(conditional)result.push({nodeId:node.id,field,severity:"warning",message:`‘${node.title}’의 ${field}는 분기에서 건너뛸 수 있는 ‘${source.title}’의 값이에요. 실행되지 않은 경로에는 값이 없으므로 필수 입력·합류 처리를 확인하세요.`});
     if (actual && expected && actual !== expected) result.push({ nodeId: node.id, field, severity: "warning", message: `‘${node.title}’의 ${field}: ‘${source.title}’의 ${binding.path}는 ${dataTypeNames[actual]}이고 받을 형식은 ${dataTypeNames[expected]}이에요. 값 변환 또는 형식을 확인하세요. 실제 실행에서 형식을 검사해요.` });
   }
   for (const field of node.inputSchema?.required ?? []) if (!Object.hasOwn(effectiveBindings(definition, node), field) && !(field === "text" && !["merge", "transform"].includes(node.type) && Object.keys(effectiveBindings(definition, node)).some(key => key.startsWith("context_"))) && !["input", "trigger"].includes(node.type) && !(node.type === "form" && node.form?.mode !== "request")) result.push({ nodeId: node.id, field, severity: "error", message: `‘${node.title}’의 필수 입력 ${field}를 연결해 주세요.` });
@@ -102,6 +118,9 @@ export function mappingIssues(definition: Definition, node: FlowNode): MappingIs
 }
 
 /** Edit the already supported schema contract; no workflow format change. */
+/**
+ * 기존 출력 스키마를 복제해 필드를 추가·변경·제거한다. 배열의 0 경로는 항목 스키마 편집을 뜻한다.
+ */
 export function setOutputField(schema: DataSchema | undefined, path: string, type?: DataSchema["type"]): DataSchema | undefined {
   const parts = path.split(".");
   if (!parts.length || parts.length > 8 || parts.some((part,index) => !safeField(part) && !(index>0&&part==="0"))) throw new Error("출력 항목은 영문 필드 이름을 점으로 연결해 주세요. 목록 항목은 0으로 표시해요. 예: data.items.0.title");

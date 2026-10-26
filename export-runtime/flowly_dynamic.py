@@ -1,9 +1,11 @@
+# Node dynamic-agents.ts의 동적 배정 계약. 등록 템플릿에 역할/목표를 배정하며 새 코드나 권한을 생성하지 않는다.
 """Bounded dynamic assignment contracts; no credentials, networking or code execution."""
 import copy
 import json
 import re
 
 
+# 개수/필드/템플릿/스키마를 검사하고 의존 관계를 위상 정렬한다. 순환과 미등록 선행 작업은 거절한다.
 def parse_plan(value, config, assert_schema):
     def fail(message):
         raise ValueError(message)
@@ -48,6 +50,7 @@ def parse_plan(value, config, assert_schema):
     return ordered
 
 
+# 설계를 깊은 복사하고 지정 Agent의 지침만 보강한다. 도구/승인/한도는 원본 정의를 따른다.
 def instantiate(agents, config):
     tasks = []
     for agent in agents:
@@ -65,5 +68,6 @@ def instantiate(agents, config):
     return tasks
 
 
+# 배정 정보와 완료된 선행 산출물을 명시적 필드로 전달해 부모 입력과 구분한다.
 def child_input(agent, input_data, artifacts=None):
     return {"text": input_data.get("text", "") if isinstance(input_data.get("text", ""), str) else "", "assignment": {"id": agent["id"], "role": agent["role"], "goal": agent["goal"], "input": copy.deepcopy(agent["input"])}, "artifacts": copy.deepcopy(artifacts or {})}

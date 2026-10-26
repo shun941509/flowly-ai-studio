@@ -1,3 +1,4 @@
+/** 공통 예제를 일반 내보내기 생성기에 연결한다. 기대 결과/합성 입력은 안내 자료이며 실제 모델 실행 결과가 아니다. */
 import { strToU8, unzipSync, zipSync } from "fflate";
 import type { Identity } from "../app/lib/model";
 import type { ExampleProject } from "../domain/example-types";
@@ -6,12 +7,14 @@ import { buildExportManifest } from "./export-package";
 import { buildCopyPrompt } from "./export-ai-documents";
 import { exportExecution } from "./export-execution";
 
+/** 서버가 선택한 예제 자료로 같은 manifest를 만든 뒤 복사용 AI 지시문을 생성한다. */
 export async function buildExamplePrompt(project: ExampleProject, user: Identity, language: "node" | "python") {
   const manifest = await buildExportManifest({ user, workflow: project.workflow, connections: [], resolveResources: async () => project.resources, language, kind: "prompt" });
   return buildCopyPrompt(manifest);
 }
 
 /** Server-selected, public synthetic fixtures only. No user graph, key or token. */
+/** 표준 실행 ZIP에 예제 입력과 평가 기준을 추가한다. 서비스 연결이나 테스트 응답 생성은 이 단계에서 수행하지 않는다. */
 export async function buildExampleExport(project: ExampleProject, user: Identity, language: "node" | "python", kind: "runtime" | "agent" = "runtime") {
   const bytes = await buildExecutableExportPackage({ user, workflow: project.workflow, connections: [], resolveResources: async () => project.resources, language, kind });
   const files = unzipSync(bytes);

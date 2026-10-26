@@ -1,3 +1,7 @@
+/**
+ * 대표 병렬 검토와 조사·작성·검토·수정 협업 예제다. 하위 작업 정의와 결과 집계 경로를 통해 병렬/순차의 차이를 드러낸다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode } from "../../app/lib/model";
 import type { DataSchema, InputBinding } from "../../runtime/types";
 import type { WorkflowDesign, WorkflowScenario } from "../workflow-design";

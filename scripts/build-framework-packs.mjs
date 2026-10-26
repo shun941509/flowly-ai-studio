@@ -1,3 +1,6 @@
+/**
+ * manifest에 허용된 프레임워크 예제 파일을 묶고 설계·검증 배지를 다시 생성한다. 패키지 밖 경로·.env 등 금지 경로·알려진 비밀 패턴을 거부하며 모든 종류의 비밀을 탐지하는 검사는 아니다.
+ */
 import { spawnSync } from "node:child_process";
 import { mkdir, readdir, readFile, writeFile, lstat, realpath } from "node:fs/promises";
 import { dirname, resolve, sep } from "node:path";

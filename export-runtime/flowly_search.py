@@ -1,3 +1,4 @@
+# Node candidate-search.ts의 공개 후보 탐색 계약. 목표 합계를 풀며 모든 문제 영역의 범용 ToT/GoT 추론 엔진은 아니다.
 """Bounded public candidate search. No network, arbitrary code, or hidden reasoning."""
 import copy
 import hashlib
@@ -12,6 +13,7 @@ def _fail(message):
     raise ValueError(message)
 
 
+# JavaScript 키 순서/정수 표현에 맞춘 상태 해시. 직렬화 방식 변경은 기존 재개 검증에 영향을 준다.
 def _canonical(value):
     def normalize(item, depth=0):
         if depth > 24:
@@ -99,6 +101,7 @@ def _redact(text):
     return re.sub(r"\bBearer\s+[A-Za-z0-9._~+\/-]+=*", "Bearer [비밀 값 숨김]", text, flags=re.I)
 
 
+# 모델 제안/저장/한도를 hooks로 주입한다. 제안과 성공 판정을 분리하고 비공개 사고 원문은 저장하지 않는다.
 def run_candidate_search(raw_config, input_data, saved, hooks):
     """hooks: model(prompt,input)->JSON, persist(state), check(); all synchronous."""
     config = parse_search_config(raw_config)
@@ -121,6 +124,7 @@ def run_candidate_search(raw_config, input_data, saved, hooks):
         persist()
     values = {item["id"]: item["value"] for item in source["items"]}
 
+    # actions와 짧은 공개 설명만 받는다. 점수/성공 여부는 원본 데이터로 실행기가 계산한다.
     def public_reply(value):
         response = _object(value)
         if any(key not in ("actions", "summary") for key in response) or not isinstance(response.get("actions"), list) or len(response["actions"]) > config["branchFactor"] or "summary" in response and (not isinstance(response["summary"], str) or len(response["summary"].encode("utf-16-le", errors="surrogatepass")) // 2 > 300):
@@ -138,6 +142,7 @@ def run_candidate_search(raw_config, input_data, saved, hooks):
     def event(kind, candidate_id=None, details=None):
         state["events"].append({"type": kind, "iteration": state["iteration"], **({"candidateId": candidate_id} if candidate_id else {}), **({"details": details} if details is not None else {})})
 
+    # 거리/깊이/ID 순서로 정렬하고 beamWidth 밖 후보를 가지치기하여 탐색 크기를 제한한다.
     def rebuild():
         ordered = sorted((candidate for candidate in state["candidates"] if candidate["status"] == "frontier"), key=lambda c: (c["distance"], c["depth"], int(c["id"][1:])))
         for candidate in ordered[config["beamWidth"]:]:

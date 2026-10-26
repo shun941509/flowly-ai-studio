@@ -1,3 +1,4 @@
+/** 웹 테스트 실행 API. 사용자별 실행 저장소를 사용하며 live 실행은 capabilities에서 차단한다. 실제 서비스 실행은 내보낸 실행기의 영역이다. */
 import { env } from "cloudflare:workers";
 import { getChatGPTUser } from "../../chatgpt-auth";
 import { compileDefinition, referencedResourceIds } from "../../../domain/workflow";
@@ -13,6 +14,7 @@ import { hashRequest } from "../../../server/request-hash";
 import { registeredConnections } from "../../../server/example-connections";
 export const dynamic="force-dynamic";
 const respond=(body:unknown,status=200)=>Response.json(body,{status,headers:{"Cache-Control":"no-store"}});
+/** 저장된 본인 실행 또는 설정 가능 도구 목록을 반환한다. 등록 MCP 표시는 연결 성공이 아니므로 unconfigured로 제공한다. */
 export async function GET(request:Request) {
   const user=await getChatGPTUser();if(!user)return respond({error:"로그인 후 이용해 주세요."},401);
   try {
@@ -24,6 +26,7 @@ export async function GET(request:Request) {
     return respond({capabilities,runs:(await repository().list(user.userId)).map(publicRun)});
   } catch {return respond({error:"실행 저장소 또는 연결 설정을 확인해 주세요."},503);}
 }
+/** 세션·요청 형식을 검사하고 시작/취소/승인/보완 입력을 지속 저장 계층에 전달한다. 실행 ID만으로 다른 사용자 상태를 변경하지 않는다. */
 export async function POST(request:Request) {
   const user=await getChatGPTUser();if(!user)return respond({error:"로그인 후 이용해 주세요."},401);
   const origin=request.headers.get("origin");
@@ -51,6 +54,7 @@ export async function POST(request:Request) {
       const now=new Date().toISOString();
       const workflow={id:String(body.workflow?.id||"").slice(0,100),name:String(body.workflow?.name||"워크플로").slice(0,80),description:String(body.workflow?.description||"").slice(0,300),definition,updatedAt:now};
       await getDb().insert(users).values({id:user.userId,email:user.email.toLowerCase(),name:user.displayName,createdAt:now}).onConflictDoUpdate({target:users.id,set:{email:user.email.toLowerCase(),name:user.displayName}});
+      /** 같은 요청 키라도 입력·설계·모드가 달라지면 재사용을 거절하도록 요청 의미를 함께 해시한다. */
       const hash=await hashRequest({mode:body.mode,input,definition,workflowId:workflow.id});
       const run=await repository().create(createRun({owner:user,mode:body.mode,workflow,resources,input}),key,hash);
       if(run.mode==="test")schedule(processRun(user.userId,run.id));

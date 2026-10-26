@@ -183,10 +183,10 @@ try {
       const cross = await exportRequest("bob", flow, "node", kind, { origin: "https://attacker.example" }); assert.equal(cross.status, 403); await cross.arrayBuffer();
     }
   });
-  await check("Agent download is rejected for model-only flows and enabled for explicit nested Agent blocks", async () => {
+  await check("Agent download supports model-only flows without adding Agents and preserves explicit nested Agents", async () => {
     const modelOnly = workflow({ tool: null }); modelOnly.definition.nodes[1].type = "ai"; delete modelOnly.definition.nodes[1].allowedTools;
     for (const language of ["node", "python"]) {
-      const denied = await exportRequest("alice", modelOnly, language, "agent"); assert.equal(denied.status, 409); await denied.arrayBuffer();
+      const plain = await exportRequest("alice", modelOnly, language, "agent"); assert.equal(plain.status, 200); const plainFiles=unzipSync(new Uint8Array(await plain.arrayBuffer())); assert.deepEqual(JSON.parse(strFromU8(plainFiles["agent-manifest.json"])).agents,[]); assert.ok(plainFiles["START_HERE.md"]);
       const prompt = await exportRequest("alice", modelOnly, language, "prompt"); assert.equal(prompt.status, 200); await prompt.arrayBuffer();
       const nested = workflow({ tool: null });
       nested.definition.nodes[1] = node("agent", "subworkflow", { subworkflow: { definition: workflow({ tool: null }).definition } });

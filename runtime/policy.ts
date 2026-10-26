@@ -1,3 +1,4 @@
+// 실행 한도, 허용 JSON, 인자 해시와 비밀 값 제거의 공통 정책. 승인·재개 비교에 쓰이는 정규화 규칙은 호환성 계약이다.
 import { DEFAULT_LIMITS, type Json, type Limits } from "./types";
 
 export { DEFAULT_LIMITS } from "./types";
@@ -5,6 +6,7 @@ const CEILINGS: Limits = { maxTurns: 20, maxToolCalls: 20, maxTokens: 32000, max
 export class RuntimeFault extends Error {
   constructor(public readonly code: "failed" | "cancelled" | "expired" | "budget_exceeded" | "unknown_outcome", message: string) { super(message); }
 }
+// 누락 값은 공통 기본값으로 보완하고 환경의 상한을 넘는 값은 거절한다. 하위 실행 예산 분배는 engine에서 처리한다.
 export function normalizeLimits(value: Partial<Limits> = {}, ceiling: Limits = CEILINGS): Limits {
   const result = { ...DEFAULT_LIMITS };
   for (const key of Object.keys(result) as (keyof Limits)[]) {
@@ -14,6 +16,7 @@ export function normalizeLimits(value: Partial<Limits> = {}, ceiling: Limits = C
   }
   return result;
 }
+// 키 순서·숫자·중첩·크기를 정규화한다. argsHash가 이 바이트열에 의존하므로 편의상 직렬화 방식을 바꾸면 승인 비교가 달라진다.
 export function canonicalJson(value: unknown): string {
   function normalize(item: unknown, depth: number): Json {
     if (depth > 24) throw new RuntimeFault("failed", "도구 입력 구조가 너무 깊어요.");
@@ -49,6 +52,7 @@ export function redactJson(value: Json): Json {
   if (value && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, /^(authorization|api[_-]?key|access[_-]?token|refresh[_-]?token|password|secret|client[_-]?secret)$/i.test(key) ? "[비밀 값 숨김]" : redactJson(item)]));
   return value;
 }
+// 알려진 자격 증명 원문을 문자열과 객체 키에서 제거한다. 패턴 기반 redactText만으로 잡히지 않는 값에 사용한다.
 export function redactSecret(value: Json, secret?: string): Json {
   if (!secret) return value;
   if (typeof value === "string") return value.split(secret).join("[비밀 값 숨김]");

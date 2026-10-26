@@ -1,9 +1,16 @@
+/**
+ * 노드 입출력에 사용하는 제한된 JSON 스키마와 런타임 설정의 검증 경계.
+ * 지원하지 않는 스키마 조건을 조용히 무시하지 않으며 객체 필드와 경로의 위험한 이름을 차단한다.
+ */
 import type { DataSchema, InputBinding, Json, Limits, ToolSelection } from "../runtime/types";
 import { safeDataPath } from "./node-config";
 import { getToolCandidate } from "./tool-catalog";
 
 const dangerous = new Set(["__proto__", "prototype", "constructor"]);
 export function safeField(value: string) { return /^[a-zA-Z_][a-zA-Z0-9_-]{0,79}$/.test(value) && !dangerous.has(value); }
+/**
+ * 지원하는 자료형·필수 항목·중첩 깊이만 허용해 선언을 정규화한다. 일반 JSON Schema 전체 구현은 아니다.
+ */
 export function parseSchema(value: unknown, depth = 0): DataSchema {
   if (!value || typeof value !== "object" || Array.isArray(value) || depth > 8) throw new Error("입출력 형식을 확인해 주세요.");
   const s = value as DataSchema;
@@ -20,6 +27,9 @@ export function parseSchema(value: unknown, depth = 0): DataSchema {
   if (s.additionalProperties !== undefined) { if (s.type !== "object" || typeof s.additionalProperties !== "boolean") throw new Error("추가 필드 허용 여부를 확인해 주세요."); out.additionalProperties = s.additionalProperties; }
   return out;
 }
+/**
+ * 실제 값을 선언과 대조한다. 문자열을 숫자로 바꾸는 자동 변환은 하지 않으며 required는 필드의 존재를 뜻한다.
+ */
 export function assertSchema(value: unknown, schema?: DataSchema, label = "데이터"): asserts value is Json {
   if (!schema) return;
   const matches = schema.type === "array" ? Array.isArray(value) : schema.type === "object" ? value !== null && typeof value === "object" && !Array.isArray(value) : typeof value === schema.type;
@@ -35,6 +45,9 @@ export function assertSchema(value: unknown, schema?: DataSchema, label = "데�
   }
   if (schema.type === "array" && schema.items) (value as unknown[]).forEach((v,i) => assertSchema(v,schema.items,`${label}[${i}]`));
 }
+/**
+ * 입력 매핑·입출력 스키마·허용 도구·실행 한도를 검사한다. 도구 목록의 형식 통과와 현재 사용자 권한은 별개다.
+ */
 export function parseNodeRuntime(value: unknown) {
   const n = value as Record<string, unknown>;
   const out: {inputBindings?: Record<string,InputBinding>; inputSchema?:DataSchema; outputSchema?:DataSchema; allowedTools?:ToolSelection[]; pythonTools?:string[]; requireToolResult?:boolean; limits?:Partial<Limits>} = {};

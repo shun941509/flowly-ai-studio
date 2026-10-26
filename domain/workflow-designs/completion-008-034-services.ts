@@ -1,3 +1,7 @@
+/**
+ * 문서 접수·대체 서비스·응답 신뢰성·표/데이터 분석을 도구 계약과 연결한 예제다. 서비스 응답의 테스트 대역은 제품 실행 데이터와 구분된다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Resource } from '../../app/lib/model';
 import {ai,arr,b,calc,form,gate,graph,input,make,mem,merge,n,note,obj,out,parse,reply,result,review,str,svc,tool} from './completion-008-034-support';
 

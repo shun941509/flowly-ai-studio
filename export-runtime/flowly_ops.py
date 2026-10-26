@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 두 내보내기 실행기의 로컬 운영 계층. 프로필/대기열/승인/백업/보고를 제공하며 중앙 웹의 세션/DB와 분리한다.
 """Local, user-started operations for either exported runner. Python 3.11+, stdlib.
 
 No provider credentials are inherited by child processes. Network probes happen only
@@ -7,6 +8,7 @@ through the explicit probe action; check, reports and maintenance remain offline
 from __future__ import annotations
 
 import argparse
+import base64
 from contextlib import contextmanager, ExitStack
 import csv
 from datetime import datetime, timezone
@@ -63,6 +65,7 @@ def safe_id(value):
     return value
 
 
+# 프로젝트 내부 경로만 허용하고 링크/정션을 거절한다. 입력 경로를 그대로 파일 작업에 넘기지 않는다.
 def relative(root, value):
     if not isinstance(value, str) or not value or len(value) > 500 or "\\" in value or re.search(r"[\x00-\x1f:]", value):
         raise OperationsFault("프로젝트 안의 상대 경로를 지정해 주세요.")
@@ -166,6 +169,16 @@ def load_env(path):
 
 def secrets_in(env):
     return [value for key, value in env.items() if value and (key in ("OPENAI_API_KEY", "FLOWLY_TRIGGER_SECRET") or key.startswith("FLOWLY_MCP_TOKEN_"))]
+
+
+def workflow_nodes(definition):
+    """Traverse exported child definitions without guessing nodes from labels."""
+    for node in definition.get("nodes", []):
+        yield node
+        key = {"parallel": "parallel", "agent_team": "team", "orchestrator": "orchestration"}.get(node.get("type"))
+        children = [task["definition"] for task in node.get(key, {}).get("tasks", [])] if key else [node[node["type"]]["definition"]] if node.get("type") in ("loop", "subworkflow") and node["type"] in node else []
+        for child in children:
+            yield from workflow_nodes(child)
 
 
 def vector_node_present(definition, depth=0):
@@ -329,7 +342,7 @@ class Operations:
             if previous and previous[0] != execution:
                 raise OperationsFault("실행 진입점이 변경됐어요. 원본을 복구하거나 새 폴더에서 운영을 시작해 주세요.")
             db.execute("INSERT OR IGNORE INTO metadata VALUES('execution',?)", (execution,))
-            db.execute("INSERT OR IGNORE INTO profiles VALUES('development','.env',0)")
+            db.execute("INSERT OR IGNORE INTO profiles VALUES('production','.env',1)")
         try:
             os.chmod(self.database, 0o600)
         except OSError:
@@ -361,7 +374,7 @@ class Operations:
         if current != self.agent_hash:
             raise OperationsFault("Agent 실행 구성이 변경되어 운영 작업을 중단했어요.")
 
-    def profile(self, name="development"):
+    def profile(self, name="production"):
         if not isinstance(name, str) or not PROFILE.fullmatch(name):
             raise OperationsFault("프로필 이름은 영문 소문자로 시작하는 40자 이하 식별자여야 해요.")
         with self.db() as db:
@@ -369,10 +382,115 @@ class Operations:
         if row is None:
             raise OperationsFault("등록된 프로필을 선택해 주세요.")
         relative(self.root, row["env"])
-        return {"name": name, "env": row["env"], "state": f".flowly-profiles/{name}/runs", "production": bool(row["production"])}
+        # Older packages stored a development flag. Keep their names, environment
+        # files and run directories intact, but apply the same operational
+        # confirmation to every environment. No fake execution mode is available.
+        return {"name": name, "env": row["env"], "state": f".flowly-profiles/{name}/runs", "production": True}
 
     def environment(self, profile):
         return load_env(relative(self.root, profile["env"]))
+
+    # 필요한 환경 변수만 안내한다. 토큰 변수를 주소/모델처럼 공개 표시하지 않도록 이름 역할을 검사한다.
+    def setup_fields(self):
+        nodes = list(workflow_nodes(self.package["workflow"]["definition"]))
+        ai = any(node.get("type") in ("ai", "agent", "classify", "orchestrator", "candidate_search") or node.get("evaluation", {}).get("mode") == "model" or node.get("retrieval", {}).get("mode") == "web" for node in nodes)
+        vector = any(node.get("retrieval", {}).get("mode") == "vector" or node.get("knowledge", {}).get("mode") == "vector" and node["knowledge"].get("action") in ("stage", "query", "evaluate") for node in nodes)
+        fields = []
+        if ai or vector:
+            fields.append({"key": "OPENAI_API_KEY", "label": "OpenAI API 키", "secret": True, "required": True})
+        if ai:
+            fields.append({"key": "FLOWLY_MODEL", "label": "사용할 OpenAI 모델", "secret": False, "required": True})
+        if vector:
+            fields.append({"key": "FLOWLY_EMBEDDING_MODEL", "label": "문서 검색 임베딩 모델", "secret": False, "required": False, "default": "text-embedding-3-small"})
+        for connection in self.package.get("connections", []):
+            for field, label, secret in (("endpointEnv", "MCP 주소", False), ("tokenEnv", "MCP 인증 토큰", True)):
+                if field not in connection:
+                    continue
+                key = connection.get(field)
+                pattern = r"FLOWLY_MCP_TOKEN_[A-Z0-9_]+" if secret else r"FLOWLY_MCP_ENDPOINT_[A-Z0-9_]+"
+                # Validate every role before reading .env. A modified manifest
+                # must never relabel a credential as a visible endpoint/model.
+                if not isinstance(key, str) or len(key) > 100 or not re.fullmatch(pattern, key):
+                    raise OperationsFault("MCP 주소와 토큰의 환경 변수 이름을 확인해 주세요. 주소는 FLOWLY_MCP_ENDPOINT_, 토큰은 FLOWLY_MCP_TOKEN_으로 시작해야 해요.")
+                if not any(item["key"] == key for item in fields):
+                    fields.append({"key": key, "label": f"{connection.get('name', '등록한 연결')} · {label}", "secret": secret, "required": field == "endpointEnv" and not connection.get("endpoint"), "default": connection.get("endpoint", "") if field == "endpointEnv" else ""})
+        return fields
+
+    # 선택 로컬 환경 파일에 설정을 저장한다. 기존 비밀 값은 UI에 반환하지 않으며 빈 입력은 기존 값을 유지한다.
+    def setup(self, request, save=False):
+        profile = self.profile(request.get("profile", "production"))
+        fields, env = self.setup_fields(), self.environment(profile)
+        if save:
+            self.confirm(request, profile)
+            values = request.get("values")
+            allowed = {field["key"] for field in fields}
+            if not isinstance(values, dict) or set(values) - allowed:
+                raise OperationsFault("이 프로젝트에 표시된 연결 설정만 저장할 수 있어요.")
+            for key, value in values.items():
+                if not isinstance(value, str) or len(value) > 4000 or re.search(r"[\x00-\x1f]", value):
+                    raise OperationsFault("연결 설정은 줄바꿈 없는 4,000자 이하 값으로 입력해 주세요.")
+                if value:  # A blank password field preserves the existing secret.
+                    env[key] = value
+            # Serialize literal values: .env parsers do not interpolate shell syntax.
+            content = "# Flowly local configuration. Do not upload or share this file.\n" + "\n".join(f'{key}="{value}"' for key, value in env.items()) + "\n"
+            if len(content.encode("utf-8")) > 64000:
+                raise OperationsFault("환경 파일은 64KB 이하여야 해요.")
+            path = relative(self.root, profile["env"])
+            with self.db() as db:
+                db.execute("BEGIN IMMEDIATE")
+                # Multiple profiles may intentionally share one environment file.
+                # Freeze that file while any of its consumers can still execute.
+                peers = [row["name"] for row in db.execute("SELECT name,env FROM profiles") if relative(self.root, row["env"]).resolve() == path.resolve()]
+                for name in peers:
+                    if db.execute("SELECT 1 FROM jobs WHERE profile=? AND status IN ('queued','dispatching','running')", (name,)).fetchone():
+                        raise OperationsFault("같은 환경 파일을 사용하는 프로필에 대기 또는 실행 중인 작업이 있어요. 작업을 끝낸 뒤 연결 설정을 저장해 주세요.")
+                    directory = relative(self.root, f".flowly-profiles/{name}/runs")
+                    if any((directory / lock).exists() for lock in (".runner.lock", ".unlock.lock")):
+                        raise OperationsFault("같은 환경 파일을 사용하는 실행기 잠금이 있어요. 실행이 끝난 뒤 연결 설정을 저장해 주세요.")
+                path.parent.mkdir(parents=True, exist_ok=True)
+                temporary = path.with_name(path.name + "." + uuid.uuid4().hex + ".tmp")
+                try:
+                    with os.fdopen(os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), "w", encoding="utf-8") as stream:
+                        stream.write(content)
+                        stream.flush()
+                        os.fsync(stream.fileno())
+                    no_links(path)
+                    os.replace(temporary, path)
+                finally:
+                    temporary.unlink(missing_ok=True)
+        return scrub({"envFile": profile["env"], "fields": [{**field, "configured": bool(env.get(field["key"])), **({"value": env.get(field["key"], field.get("default", ""))} if not field["secret"] else {})} for field in fields],
+                "python": sys.version.split()[0], "nodeInstalled": bool(shutil.which("node")), "language": self.package["language"], "entrypoint": self.entrypoint,
+                "requiresPython": True, "networkChecked": False, "saved": save,
+                "nextAction": "설정 확인 후 요청을 입력하고 새 실행 시작을 누르세요. 실제 연결은 실행할 때 확인됩니다."}, secrets_in(env))
+
+    def upload_input(self, filename, data):
+        self.assert_package()
+        if not isinstance(filename, str) or len(filename) > 120 or re.search(r'[\\/:*?"<>|\x00-\x1f]', filename) or filename.startswith(".") or filename.endswith((".", " ")) or re.match(r"^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\.|$)", filename, re.I):
+            raise OperationsFault("일반 파일 이름으로 다시 선택해 주세요.")
+        if not isinstance(data, bytes) or not 0 < len(data) <= 10_000_000:
+            raise OperationsFault("입력 파일은 비어 있지 않은 10MB 이하 파일이어야 해요.")
+        folder = relative(self.root, "inputs/uploads/" + uuid.uuid4().hex)
+        folder.mkdir(parents=True, exist_ok=False)
+        path = relative(self.root, folder.relative_to(self.root).as_posix() + "/" + filename)
+        with os.fdopen(os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), "wb") as stream:
+            stream.write(data)
+        return {"path": path.relative_to(self.root / "inputs").as_posix(), "projectPath": path.relative_to(self.root).as_posix(), "name": filename, "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
+
+    def output_files(self, profile, ident):
+        run = self.raw_run(profile, ident)
+        found = {}
+        def collect(value):
+            if isinstance(value, dict):
+                name = value.get("path")
+                if isinstance(name, str) and name.startswith("outputs/"):
+                    path = relative(self.root, name)
+                    if path.is_file() and path.stat().st_size <= 10_000_000:
+                        found[name] = {"path": name, "name": path.name, "bytes": path.stat().st_size}
+                for child in value.values(): collect(child)
+            elif isinstance(value, list):
+                for child in value: collect(child)
+        collect(run.get("checkpoint", {}))
+        return list(found.values())
 
     def state(self, profile):
         return relative(self.root, profile["state"])
@@ -397,6 +515,7 @@ class Operations:
             raise OperationsFault("패키지의 기본 실행기 파일이 없어요.")
         return ["node", str(path)] if filename.endswith("mjs") else [sys.executable, "-X", "utf8", str(path)]
 
+    # 언어에 맞는 실제 Node/Python 진입점을 실행한다. 상위 프로세스의 제공자 키는 자동 상속하지 않는다.
     def cli(self, profile, arguments, cancel_path=None, cancelled=None):
         self.assert_package()
         package_options = [] if self.agent_hash is not None else ["--package", str(self.package_path)]
@@ -470,8 +589,9 @@ class Operations:
             raise OperationsFault("작업 기록을 찾을 수 없어요.")
         return {"id": row["id"], "profile": row["profile"], "priority": row["priority"], "status": row["status"], "runId": row["run_id"], "createdAt": row["created"], "updatedAt": row["updated"], "cancelRequested": bool(row["cancel_requested"]), **({"error": row["error"]} if row["error"] else {})}
 
+    # 새 실행과 재개를 구분해 지속 대기열에 넣는다. 작업 확보 단계와 연결해 같은 기록의 동시 처리를 막는다.
     def enqueue(self, request, resume=False):
-        profile = self.profile(request.get("profile", "development"))
+        profile = self.profile(request.get("profile", "production"))
         self.confirm(request, profile)
         priority = request.get("priority", 0)
         if type(priority) is not int or not -100 <= priority <= 100:
@@ -485,8 +605,8 @@ class Operations:
                 raise OperationsFault("결정을 마친 queued 실행만 명시적으로 재개할 수 있어요. 불명확한 외부 변경은 재시도하지 않아요.")
         else:
             text = request.get("input", "")
-            if not isinstance(text, str) or not text.strip() or len(text) > 12000:
-                raise OperationsFault("실행 입력은 1~12,000자로 작성해 주세요.")
+            if not isinstance(text, str) or len(text.encode("utf-16-le", errors="surrogatepass")) // 2 > 20000:
+                raise OperationsFault("실행 입력은 20,000자 이하의 텍스트로 작성해 주세요.")
             text = scrub(text, secrets_in(self.environment(profile)))
             path = self.home / "inputs" / (ident + ".txt")
             no_links(path)
@@ -497,8 +617,11 @@ class Operations:
         try:
             with self.db() as db:
                 db.execute("BEGIN IMMEDIATE")
-                current_profile = db.execute("SELECT env,production FROM profiles WHERE name=?", (profile["name"],)).fetchone()
-                if current_profile is None or current_profile["env"] != profile["env"] or bool(current_profile["production"]) != profile["production"]:
+                current_profile = db.execute("SELECT env FROM profiles WHERE name=?", (profile["name"],)).fetchone()
+                # All profiles require operational confirmation now. A legacy
+                # stored flag is not an environment change; the env path still
+                # has to match atomically before a job is registered.
+                if current_profile is None or current_profile["env"] != profile["env"]:
                     raise OperationsFault("작업을 등록하는 동안 프로필이 바뀌었어요. 새 설정을 확인한 뒤 다시 요청해 주세요.")
                 if run_id and db.execute("SELECT 1 FROM jobs WHERE run_id=? AND status IN ('queued','dispatching','running')", (run_id,)).fetchone():
                     raise OperationsFault("같은 실행이 이미 대기열에 있어요.")
@@ -539,6 +662,7 @@ class Operations:
             if path.exists() and read_json(path, 2000).get("token") == token:
                 path.unlink()
 
+    # 작업을 확보해 처리한다. 승인/입력 대기와 불명확한 실패를 성공으로 바꾸거나 자동 재시도하지 않는다.
     def worker(self, once=False):
         processed = []
         with self.worker_lock():
@@ -609,10 +733,11 @@ class Operations:
             raise OperationsFault("현재 프로필과 패키지의 실행 기록이 아니에요.")
         return record["run"]
 
+    # 사용자 확인을 받은 실제 모델/MCP 점검이다. 오프라인 검사와 구분하고 비밀 값/응답 원문 노출을 피한다.
     def probe(self, request):
         if request.get("confirm") is not True or request.get("target") not in ("openai", "embeddings", "mcp", "all"):
             raise OperationsFault("외부 호출이 발생하는 프로브는 target과 confirm=true를 명시해 주세요.")
-        profile = self.profile(request.get("profile", "development"))
+        profile = self.profile(request.get("profile", "production"))
         self.confirm(request, profile)
         env = self.environment(profile)
         probe_embeddings = request["target"] == "embeddings" or request["target"] == "all" and vector_node_present(self.package["workflow"]["definition"])
@@ -720,6 +845,9 @@ class Operations:
                             actual = next((tool for tool in listed if tool.get("name") == expected.get("toolName")), None)
                             if actual is None or canonical(actual.get("inputSchema")) != canonical(expected.get("inputSchema")) or expected.get("effect") == "read" and actual.get("annotations", {}).get("readOnlyHint") is not True:
                                 changed.append(expected["toolName"])
+                            elif expected.get("outputSchema") is not None and expected.get("outputTarget", "structuredContent") == "structuredContent" and canonical(actual.get("outputSchema")) != canonical(expected["outputSchema"]):
+                                # MCP 서버의 출력 스키마는 structuredContent에 대응한다. 전체 result 래퍼 스키마는 실행기에서만 검사한다.
+                                changed.append(expected["toolName"])
                         item.update(status="changed" if changed else "connected", changedTools=changed, listedTools=len(listed))
                     except Exception:
                         item.update(status="failed", error="MCP 초기 협상 또는 도구 목록을 확인하지 못했어요. 연결 설정과 공개 도구 스키마를 확인해 주세요.")
@@ -805,7 +933,7 @@ class Operations:
         return files
 
     def backup(self, request):
-        profile = self.profile(request.get("profile", "development"))
+        profile = self.profile(request.get("profile", "production"))
         if not request.get("_locked"):
             self.idle(profile)
         selected = self.files(profile, request.get("scopes", ["state"]))
@@ -830,10 +958,11 @@ class Operations:
         os.replace(target, target.with_suffix(".zip"))
         return {"backupId": ident, "files": len(selected), "scopes": request.get("scopes", ["state"])}
 
+    # 백업 경로/패키지/유휴 상태를 검사한다. 복원한 외부 변경 기록은 조회 전용으로 다뤄 재전송을 막는다.
     def restore(self, request):
         if request.get("confirm") is not True:
             raise OperationsFault("복원에는 confirm=true가 필요해요.")
-        profile = self.profile(request.get("profile", "development"))
+        profile = self.profile(request.get("profile", "production"))
         if not request.get("_locked"):
             self.idle(profile)
         source = self.home / "backups" / (safe_id(request.get("backupId")) + ".zip")
@@ -890,7 +1019,7 @@ class Operations:
         days = request.get("olderThanDays")
         if request.get("confirm") is not True or type(days) is not int or not 1 <= days <= 3650:
             raise OperationsFault("정리 기간은 1~3650일이며 confirm=true가 필요해요.")
-        profile = self.profile(request.get("profile", "development"))
+        profile = self.profile(request.get("profile", "production"))
         if not request.get("_locked"):
             self.idle(profile)
         selected = self.files(profile, request.get("scopes", ["state"]))
@@ -909,8 +1038,9 @@ class Operations:
             removed.append(scope + "/" + name)
         return {"removed": removed}
 
+    # 선택 프로필의 실제 실행기로 평가한다. 명시적 대역이 없으면 모델/MCP 노드는 실제 연결을 사용한다.
     def evaluate(self, request):
-        profile = self.profile(request.get("profile", "development"))
+        profile = self.profile(request.get("profile", "production"))
         self.confirm(request, profile)
         dataset = read_json(relative(self.root, request.get("dataset")), 1_000_000)
         cases = dataset.get("cases") if isinstance(dataset, dict) else None
@@ -973,21 +1103,38 @@ class Operations:
         low, high = sorted((price["input_rate"], price["output_rate"]))
         return {"status": "estimated", "model": model, "totalTokens": tokens, "range": {"minimum": tokens * low / 1_000_000, "maximum": tokens * high / 1_000_000}, "currency": price["currency"], "asOf": price["as_of"], "label": "수동 단가 추정 · 실제 청구 아님", "limitations": "전체 토큰만 저장되어 입력·출력 비율은 범위로 표시해요. 검색·도구 요금과 여러 모델 사용분은 별도 확인이 필요해요."}
 
+    # 허용 운영 작업으로 분배한다. 확인이 필요한 변경은 대상 함수의 확인 조건을 거친다.
     def dispatch(self, request):
         if not isinstance(request, dict):
             raise OperationsFault("운영 요청은 JSON 객체여야 해요.")
         self.assert_package()
         action = request.get("action")
+        if action in ("setup.status", "setup.save"):
+            return self.setup(request, save=action == "setup.save")
+        if action in ("outputs.list", "outputs.download"):
+            profile = self.profile(request.get("profile", "production"))
+            files = self.output_files(profile, safe_id(request.get("runId")))
+            if action == "outputs.list":
+                return {"files": files, "directory": "outputs/"}
+            item = next((item for item in files if item["path"] == request.get("path")), None)
+            if item is None:
+                raise OperationsFault("선택한 실행에서 생성한 결과 파일만 받을 수 있어요.")
+            path = relative(self.root, item["path"])
+            if path.stat().st_size > 10_000_000:
+                raise OperationsFault("결과 파일은 10MB 이하만 받을 수 있어요.")
+            return {**item, "base64": base64.b64encode(path.read_bytes()).decode("ascii")}
         if action == "profiles.list":
             with self.db() as db:
                 names = [row[0] for row in db.execute("SELECT name FROM profiles ORDER BY name")]
             return {"profiles": [self.profile(name) for name in names]}
         if action == "profiles.set":
             name, env = request.get("name"), request.get("env")
-            if not isinstance(name, str) or not PROFILE.fullmatch(name) or not isinstance(env, str) or not (Path(env).name.startswith(".env") or env.endswith(".env")) or type(request.get("production", False)) is not bool:
+            if not isinstance(name, str) or not PROFILE.fullmatch(name) or not isinstance(env, str) or not (Path(env).name.startswith(".env") or env.endswith(".env")):
                 raise OperationsFault("프로필 이름과 로컬 .env 경로를 확인해 주세요.")
+            if request.get("production", True) is not True:
+                raise OperationsFault("운영 환경만 등록할 수 있어요. production=false는 지원하지 않습니다.")
             relative(self.root, env)
-            if request.get("production") and request.get("confirmProduction") is not True:
+            if request.get("confirmProduction") is not True:
                 raise OperationsFault("운영 프로필 등록에는 confirmProduction=true가 필요해요.")
             with self.db() as db:
                 db.execute("BEGIN IMMEDIATE")
@@ -996,12 +1143,17 @@ class Operations:
                 directory = relative(self.root, f".flowly-profiles/{name}/runs")
                 if (directory / ".runner.lock").exists() or (directory / ".unlock.lock").exists():
                     raise OperationsFault("실행기 잠금이 있는 프로필은 설정을 바꿀 수 없어요.")
-                db.execute("INSERT INTO profiles VALUES(?,?,?) ON CONFLICT(name) DO UPDATE SET env=excluded.env,production=excluded.production", (name, env, int(request.get("production", False))))
+                db.execute("INSERT INTO profiles VALUES(?,?,1) ON CONFLICT(name) DO UPDATE SET env=excluded.env,production=1", (name, env))
             return {"profile": self.profile(name)}
         if action == "jobs.list":
             with self.db() as db:
                 ids = [row[0] for row in db.execute("SELECT id FROM jobs ORDER BY created DESC,id DESC LIMIT 200")]
             return {"jobs": [self.job(ident) for ident in ids]}
+        if action == "jobs.cancel_active":
+            # The control path must not inherit the UI's latest-200 pagination.
+            with self.db() as db:
+                ids = [row[0] for row in db.execute("SELECT id FROM jobs WHERE status IN ('dispatching','running')")]
+            return {"jobs": [self.dispatch({"action": "jobs.cancel", "jobId": ident})["job"] for ident in ids]}
         if action in ("jobs.enqueue", "runs.resume"):
             return self.enqueue(request, resume=action == "runs.resume")
         if action == "jobs.cancel":
@@ -1016,7 +1168,7 @@ class Operations:
                 atomic_json(self.home / "cancel" / (ident + ".json"), {"cancelled": True})
             return {"job": self.job(ident)}
         if action in ("runs.list", "runs.status", "runs.decision", "runs.submit_input", "check"):
-            profile = self.profile(request.get("profile", "development"))
+            profile = self.profile(request.get("profile", "production"))
             if action == "runs.list":
                 return {"runs": self.runs(profile)}
             if action == "check":
@@ -1053,15 +1205,15 @@ class Operations:
         if action == "probe":
             return self.probe(request)
         if action == "backup":
-            profile = self.profile(request.get("profile", "development"))
+            profile = self.profile(request.get("profile", "production"))
             with self.maintenance(profile, bool(set(request.get("scopes", ["state"])) & {"outputs", "reports"})):
                 return self.backup({**request, "_locked": True})
         if action == "restore":
-            profile = self.profile(request.get("profile", "development"))
+            profile = self.profile(request.get("profile", "production"))
             with self.maintenance(profile, True):
                 return self.restore({**request, "_locked": True})
         if action == "prune":
-            profile = self.profile(request.get("profile", "development"))
+            profile = self.profile(request.get("profile", "production"))
             with self.maintenance(profile, bool(set(request.get("scopes", ["state"])) & {"outputs", "reports"})):
                 return self.prune({**request, "_locked": True})
         if action == "evaluate":
@@ -1093,7 +1245,7 @@ class Operations:
                 db.execute("INSERT INTO prices VALUES(?,?,?,?,?) ON CONFLICT(model) DO UPDATE SET input_rate=excluded.input_rate,output_rate=excluded.output_rate,currency=excluded.currency,as_of=excluded.as_of", (model, *rates, currency, date))
             return {"price": {key: request[key] for key in ("model", "inputPerMillion", "outputPerMillion", "currency", "asOf")}}
         if action == "prices.estimate":
-            return self.estimate(self.profile(request.get("profile", "development")), request.get("runId"), request.get("model"))
+            return self.estimate(self.profile(request.get("profile", "production")), request.get("runId"), request.get("model"))
         if action == "bills.import":
             path = relative(self.root, request.get("path"))
             if path.suffix.lower() != ".csv" or path.stat().st_size > 1_000_000:
@@ -1116,7 +1268,7 @@ class Operations:
                 db.executemany("INSERT OR IGNORE INTO bills VALUES(?,?,?,?,?,?,?,?)", prepared)
             return {"rows": len(prepared)}
         if action == "bills.compare":
-            profile = self.profile(request.get("profile", "development"))
+            profile = self.profile(request.get("profile", "production"))
             if request.get("runId"):
                 estimate = self.estimate(profile, request["runId"], request.get("model"))
             else:

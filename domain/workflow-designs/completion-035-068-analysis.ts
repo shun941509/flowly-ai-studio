@@ -1,3 +1,7 @@
+/**
+ * 제약·민감도·협상·영향·버전 및 감사 관점의 분석 예제다. Agent 판단과 규칙 기반 확인을 서로 다른 노드로 연결한 부분을 확인한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Json } from '../../runtime/types';
 import type { WorkflowDesign } from '../workflow-design';
 import { b,n,graph,start,calc,out,agent,reply,check,hold,review,design } from './completion-035-068-helpers';

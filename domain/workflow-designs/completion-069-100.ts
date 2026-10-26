@@ -1,3 +1,7 @@
+/**
+ * 069~100 범위의 등록 작업 기반 예제와 통합 변형을 작성한다. 공통 생성기 이후 추가하는 분기·복구·동적 작업 연결까지 확인해야 최종 설계를 알 수 있다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode } from '../../app/lib/model';
 import type { InputBinding, Json } from '../../runtime/types';
 import type { WorkflowDesign, WorkflowScenario } from '../workflow-design';

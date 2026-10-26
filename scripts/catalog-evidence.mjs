@@ -1,3 +1,6 @@
+/**
+ * 실행 검증 증거가 현재 소스/생성 번들과 같은지 판정할 지문을 만든다. 소스 바이트를 해시하므로 주석 변경도 증거를 만료시킬 수 있다.
+ */
 import { createHash } from "node:crypto";
 import { readdir, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";

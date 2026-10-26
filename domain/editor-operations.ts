@@ -1,3 +1,7 @@
+/**
+ * 캔버스 좌표·선택·복사/붙여넣기·실행 취소를 위한 순수 설계 연산.
+ * 서버 저장과 별개로 사본을 반환하여 UI가 하나의 편집 이력 단위로 적용할 수 있게 한다.
+ */
 import { parseDefinition, type Definition, type FlowNode } from '../app/lib/model';
 import { isStartNode } from './advanced-config';
 import { WORKFLOW_NODE_HEIGHT, WORKFLOW_NODE_WIDTH } from './workflow-layout';
@@ -5,7 +9,13 @@ import { WORKFLOW_NODE_HEIGHT, WORKFLOW_NODE_WIDTH } from './workflow-layout';
 export type EditorPoint = {x:number;y:number};
 export type EditorView = EditorPoint & {zoom:number};
 export type EditorRect = EditorPoint & {width:number;height:number};
+/**
+ * 화면 좌표에서 이동·확대 비율을 제거해 노드의 설계 좌표를 구한다.
+ */
 export const screenToWorld = (point:EditorPoint,view:EditorView):EditorPoint => ({x:(point.x-view.x)/view.zoom,y:(point.y-view.y)/view.zoom});
+/**
+ * 확대 전후 같은 포인터 위치가 같은 설계 지점을 가리키도록 이동 값을 보정한다.
+ */
 export function zoomAt(view:EditorView,point:EditorPoint,zoom:number):EditorView {
  const next=Math.max(.03,Math.min(1.6,zoom)),world=screenToWorld(point,view);
  return {zoom:next,x:point.x-world.x*next,y:point.y-world.y*next};
@@ -28,6 +38,9 @@ export function disconnectedInputs(definition:Definition,node:FlowNode):string[]
  if(node.compensation&&!definition.nodes.some(n=>n.id===node.compensation?.sourceNodeId))fields.push('보상 대상');
  return fields;
 }
+/**
+ * 선택 노드와 연관 연결을 제거하고 남은 입력 매핑의 참조를 정리한다.
+ */
 export function removeSelection(definition:Definition,ids:readonly string[],edgeIds:readonly string[]=[]):Definition {
  const nodes=new Set(ids),edges=new Set(edgeIds);
  // Preserve explicit missing bindings so the inspector requires reconnection rather than silently changing data flow.
@@ -37,12 +50,18 @@ export type EditorFragment={kind:'flowly-selection';version:1;definition:Definit
 export function canApplyClipboard(snapshot:{workflowId:string;definition:Definition},current:{workflowId:string;definition:Definition},gestureActive:boolean):boolean {
  return !gestureActive&&snapshot.workflowId===current.workflowId&&snapshot.definition===current.definition;
 }
+/**
+ * 선택한 노드와 선택 내부의 연결을 복사 가능한 조각으로 만든다.
+ */
 export function selectionFragment(definition:Definition,ids:readonly string[]):EditorFragment {
  const selected=new Set(ids);
  const nodes=definition.nodes.filter(n=>selected.has(n.id)).map(n=>({...structuredClone(n),inputBindings:n.inputBindings??Object.fromEntries(definition.edges.filter(e=>e.target===n.id).map((e,i)=>[i===0?'text':`context_${i}`,{nodeId:e.source,path:'text'}]))}));
  if(!nodes.length)throw new Error('복사할 블록을 선택해 주세요.');
  return {kind:'flowly-selection',version:1,definition:{schemaVersion:definition.schemaVersion,nodes,edges:structuredClone(definition.edges.filter(e=>selected.has(e.source)&&selected.has(e.target)))}};
 }
+/**
+ * 클립보드 문서의 종류·버전·크기를 검사한다. 임의 클립보드 내용을 설계로 신뢰하지 않는다.
+ */
 export function parseEditorFragment(text:string):EditorFragment {
  if(text.length>2_000_000)throw new Error('붙여넣을 블록 데이터가 너무 큽니다.');
  let raw:unknown;try{raw=JSON.parse(text);}catch{throw new Error('Flowly에서 복사한 블록을 붙여넣어 주세요.');}
@@ -53,6 +72,9 @@ export function parseEditorFragment(text:string):EditorFragment {
  if(!definition.nodes.length)throw new Error('붙여넣을 블록이 없습니다.');
  return {kind:'flowly-selection',version:1,definition};
 }
+/**
+ * 새 ID로 노드·연결·내부 참조를 함께 치환한다. 전체 설계 한도를 검증한 후에만 붙여넣기 결과를 반환한다.
+ */
 export function appendFragment(definition:Definition,fragment:EditorFragment,makeId:(prefix:string)=>string,position?:EditorPoint):{definition:Definition;ids:string[]} {
  const source=parseEditorFragment(JSON.stringify(fragment)).definition;
  if(definition.nodes.length+source.nodes.length>40)throw new Error('붙여넣은 뒤 블록이 40개를 넘습니다. 전체 작업을 취소했어요.');

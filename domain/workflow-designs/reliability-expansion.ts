@@ -1,3 +1,7 @@
+/**
+ * 운영·데이터 신뢰성 관점의 오류·검증·분기 예제다. 성공 경로만이 아니라 잘못된 값과 누락/실패 상황의 기대 결과를 함께 둔다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode } from "../../app/lib/model";
 import type { DataSchema, FormConfig, InputBinding, Json, PredicateConfig } from "../../runtime/types";
 import type { WorkflowDesign, WorkflowScenario } from "../workflow-design";

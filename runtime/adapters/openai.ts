@@ -1,3 +1,4 @@
+// 내보낸 실행 환경용 OpenAI Responses/Embeddings 어댑터. 웹 설계 화면에서 생성하지 않으며 키와 모델이 없으면 실패한다.
 import type { Json, ModelAdapter, ModelReply } from "../types";
 import { canonicalJson, redactText, RuntimeFault } from "../policy";
 import { readBody } from "./http";
@@ -25,10 +26,12 @@ export class OpenAIModelAdapter implements ModelAdapter {
     if (!response.ok) { await response.body?.cancel().catch(() => {}); throw new RuntimeFault("failed", response.status === 401 || response.status === 403 ? "AI 제공자 인증에 실패했어요. 모델 연결 설정을 확인해 주세요." : response.status === 429 ? "AI 제공자의 사용 한도에 도달했어요. 잠시 후 다시 실행해 주세요." : "AI 제공자가 요청을 처리하지 못했어요. 모델 설정을 확인해 주세요."); }
     return response;
   }
+  // 완료 상태와 토큰 사용량이 확인된 응답만 확정한다. 부분 답변이나 사용량 누락을 성공으로 처리하지 않는다.
   private validate(data: ResponseData) {
     if (data?.status !== "completed" || !Array.isArray(data.output) || !Number.isSafeInteger(data.usage?.total_tokens) || data.usage!.total_tokens! < 0) throw new RuntimeFault("failed", "AI 답변이 완료되지 않았거나 사용량이 누락됐어요. 입력과 사용 한도를 확인해 주세요.");
     return data;
   }
+  // 스트리밍 조각은 비밀 값이 경계에 걸릴 가능성을 고려해 일부를 버퍼에 남긴다. completed 이벤트가 있어야 최종 답변이 된다.
   private async response(body: Record<string, unknown>, signal: AbortSignal, onDelta?: Delta): Promise<ResponseData> {
     const response = await this.post("responses", { model: this.model, instructions: INSTRUCTIONS, store: false, ...(this.reasoningEffort ? { reasoning: { effort: this.reasoningEffort } } : {}), ...body, ...(onDelta ? { stream: true } : {}) }, signal);
     if (!onDelta) { let data; try { data = JSON.parse(await readBody(response)); } catch { throw new RuntimeFault("failed", "AI 응답 형식을 확인할 수 없어요."); } return this.validate(data); }
@@ -62,6 +65,7 @@ export class OpenAIModelAdapter implements ModelAdapter {
       return completed;
     } finally { await reader.cancel().catch(() => {}); }
   }
+  // 엔진의 대화 계약을 Responses 입력으로 변환하고 한 번에 도구 하나만 요청하도록 제한한다.
   async next({ messages, tools, maxTokens, signal, onDelta }: Parameters<ModelAdapter["next"]>[0]): Promise<ModelReply> {
     const input = messages.map(m => m.role === "tool" ? { type: "function_call_output", call_id: m.callId, output: m.content } : m.role === "assistant" && m.toolName ? { type: "function_call", call_id: m.callId, name: m.toolName, arguments: JSON.stringify(m.args ?? {}) } : { role: m.role, content: m.content });
     if (tools.some(t => !/^[a-zA-Z0-9_-]{1,64}$/.test(t.name))) throw new RuntimeFault("failed", "연결된 도구의 이름 형식을 확인해 주세요.");
@@ -79,6 +83,7 @@ export class OpenAIModelAdapter implements ModelAdapter {
     if (!text) throw new RuntimeFault("failed", "AI가 답변을 생성하지 않았어요. 요청 내용을 확인해 주세요.");
     return { kind: "answer", text: this.clean(text), usageTokens: data.usage!.total_tokens! };
   }
+  // 벡터 개수·차원·유한 값·요청 모델 일치를 검사하여 다른 모델의 캐시와 섞이지 않게 한다.
   async embed({ texts, signal }: { texts: string[]; maxTokens: number; signal: AbortSignal }) {
     if (!texts.length || texts.length > 2048 || texts.some(text => !text)) throw new RuntimeFault("failed", "임베딩할 텍스트 입력을 확인해 주세요.");
     const response = await this.post("embeddings", { model: this.embeddingModel, input: texts, encoding_format: "float" }, signal);
@@ -90,6 +95,7 @@ export class OpenAIModelAdapter implements ModelAdapter {
     if (data.model !== this.embeddingModel) throw new RuntimeFault("failed", "요청한 임베딩 모델과 실제 응답 모델이 달라요.");
     return { vectors: ordered.map((item: { embedding: number[] }) => item.embedding), usageTokens: data.usage.total_tokens as number, model: data.model as string };
   }
+  // 제공자가 검색을 완료하고 HTTPS 인용을 반환했는지 확인한다. 검색 없이 생성한 문장을 검색 결과로 취급하지 않는다.
   async search({ query, maxTokens, signal, onDelta }: { query: string; maxTokens: number; signal: AbortSignal; onDelta?: Delta }) {
     const data = await this.response({ input: query, tools: [{ type: "web_search" }], tool_choice: "required", max_tool_calls: 1, max_output_tokens: maxTokens }, signal, onDelta);
     const searches = data.output!.filter(item => item.type === "web_search_call");

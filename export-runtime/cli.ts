@@ -1,3 +1,4 @@
+// Node 실행기의 사용자 명령 진입점. 선택한 .env 파일만 읽고 runCommand로 전달하며 실제 오류 원문과 자격 증명은 출력하지 않는다.
 import { resolve } from "node:path";
 import { parseEnv } from "node:util";
 import { runCommand, type RunnerCommand } from "./runner";
@@ -25,6 +26,7 @@ report는 저장 기록으로 HTML을 만들며 기존 파일을 덮어쓰지 �
 승인과 거절은 결정만 저장합니다. resume로 이어서 실행하세요.
 종료된 프로세스의 잠금만 unlock으로 해제할 수 있습니다.`;
 
+// 명령마다 허용 옵션을 제한해 run 입력, 검토 수정값, 보완 입력을 서로 혼동하지 않게 한다.
 export async function main(args: string[]) {
   if (!args.length || args.includes("--help") || args.includes("-h")) { console.log(usage); return; }
   const positional: string[] = [], flags: Record<string, string> = {};
@@ -75,6 +77,7 @@ export async function main(args: string[]) {
       }
     }
   }
+  // 터미널 종료 신호와 운영 화면의 취소 파일을 같은 AbortController로 합쳐 실행기에 전달한다.
   const controller = new AbortController();
   const packagePath = resolve(flags.package ?? "workflow.json");
   const stopMonitoring = flags["cancel-file"] === undefined ? undefined : await monitorCancellationFile(packagePath, flags["cancel-file"], controller);

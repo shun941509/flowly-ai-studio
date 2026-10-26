@@ -1,4 +1,6 @@
+/** 인증 환경값을 검증하고 사용 가능한 어댑터를 결정한다. 구성 검사는 SSO 서비스의 연결 성공을 의미하지 않는다. */
 export type AuthMode = "unconfigured" | "test" | "oidc" | "sites";
+/** 서버 전용 설정이다. sessionSecret·assertionSecret·clientSecret이 있으므로 객체 전체를 화면이나 로그에 노출하지 않는다. */
 export type AuthConfig = {
   mode: AuthMode;
   environment: string;
@@ -17,6 +19,7 @@ export function isLoopback(hostname: string): boolean {
 }
 
 /** Reads explicit server configuration only; request headers cannot select an adapter. */
+/** 인증 방식은 명시적인 서버 환경값으로만 정한다. 테스트 모드는 로컬 개발/테스트 주소에서만 구성 가능하다. */
 export function parseAuthConfig(values: Record<string, unknown>): AuthConfig {
   const value = (key: string) => typeof values[key] === "string" ? String(values[key]).trim() : "";
   const selected = value("FLOWLY_AUTH_MODE");
@@ -58,10 +61,12 @@ export function parseAuthConfig(values: Record<string, unknown>): AuthConfig {
 }
 
 export type AuthDisplay = Pick<AuthConfig, "mode" | "configured" | "reason">;
+/** 화면에는 구성 여부와 안내만 전달하고 비밀값은 반환하지 않는다. */
 export function authDisplay(config: AuthConfig): AuthDisplay {
   return { mode: config.mode, configured: config.configured, reason: config.reason };
 }
 
+/** 외부 이동과 인증 경로의 반복 리다이렉트를 막기 위해 동일 사이트의 상대 경로만 허용한다. */
 export function safeReturnPath(value: string | null | undefined): string {
   if (!value || !value.startsWith("/") || value.startsWith("//") || /[\\\u0000-\u001f]/.test(value)) return "/";
   try {

@@ -1,3 +1,7 @@
+/**
+ * 사전에 허용한 작업 틀로 실행 중 역할과 의존 관계를 생성하는 예제다. 생성 계획의 오류·작업 한도·결과 집계는 시나리오에서 별도로 확인한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode } from "../../app/lib/model";
 import type { DynamicAgentSpec } from "../../runtime/types";
 import type { WorkflowDesign, WorkflowScenario } from "../workflow-design";

@@ -10,6 +10,7 @@ import tempfile
 import threading
 import time
 import unittest
+from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location("flowly_local",ROOT/"export-runtime"/"flowly_local.py")
@@ -96,6 +97,75 @@ class LocalTests(unittest.TestCase):
         self.ops.dispatch=failed
         code,value=self.request();self.assertEqual(code,409);self.assertNotIn("sk-private",json.dumps(value))
 
+    def test_one_click_start_and_resume_enqueue_before_starting_worker(self):
+        with patch.object(self.server.worker, "start", return_value={"running": True}) as started:
+            status,value=self.request(body=json.dumps({"action":"local.run.start","input":"입력","profile":"production"}))
+            self.assertEqual(status,200,value)
+            self.assertEqual(self.ops.calls[-1]["action"],"jobs.enqueue")
+            self.assertEqual(self.ops.calls[-1]["input"],"입력")
+            self.assertEqual(value["worker"],{"running":True})
+            self.assertEqual(started.call_count,1)
+            status,_=self.request(body=json.dumps({"action":"local.run.resume","runId":"run_one"}))
+            self.assertEqual(status,200)
+            self.assertEqual(self.ops.calls[-1]["action"],"runs.resume")
+            self.assertEqual(started.call_count,2)
+        def reject(_):raise ValueError("invalid input")
+        self.ops.dispatch=reject
+        with patch.object(self.server.worker,"start") as started:
+            self.assertEqual(self.request("local.run.start")[0],400)
+            started.assert_not_called()
+
+    def test_file_upload_uses_same_auth_boundary_and_binary_size_limit(self):
+        uploaded=[]
+        self.ops.upload_input=lambda name,data:uploaded.append((name,data)) or {"path":"uploads/test/input.txt"}
+        status,value=self.request(path="/upload",body=b"input file",headers={"Content-Type":"application/octet-stream","X-Flowly-Filename":"input.txt"})
+        self.assertEqual(status,200,value)
+        self.assertEqual(uploaded,[("input.txt",b"input file")])
+        self.assertEqual(self.request(path="/upload",body=b"blocked",headers={"Content-Type":"application/octet-stream","X-Flowly-Token":"wrong"})[0],403)
+        self.assertEqual(len(uploaded),1)
+        self.assertEqual(self.request(path="/upload",body=b"",headers={"Content-Type":"application/octet-stream","Content-Length":"10000001"})[0],413)
+
+    def test_unconfigured_actual_runner_never_enqueues_new_or_resumed_job(self):
+        package={"format":"flowly-executable-export","version":1,"language":"python","owner":{"userId":"alice","email":"alice@example.test","displayName":"Alice"},"workflow":{"id":"flow","name":"미설정 Agent","definition":{"schemaVersion":5,"nodes":[{"id":"input","type":"input","title":"입력","x":0,"y":0},{"id":"agent","type":"agent","title":"Agent","prompt":"검증 입력에 답하세요.","x":250,"y":0,"allowedTools":[]},{"id":"output","type":"output","title":"출력","x":500,"y":0}],"edges":[{"id":"one","source":"input","target":"agent"},{"id":"two","source":"agent","target":"output"}]}},"resources":[],"connections":[],"limits":{"maxTurns":8,"maxToolCalls":12,"maxTokens":8000,"maxDurationMs":120000}}
+        (self.root/"workflow.json").write_text(json.dumps(package),encoding="utf-8")
+        shutil.copyfile(ROOT/"export-runtime"/"runner.py",self.root/"runner.py")
+        real=operations.Operations(self.root)
+        self.ops.dispatch=real.dispatch
+        with patch.object(self.server.worker,"start") as started, patch.object(real.transport,"post",side_effect=AssertionError("network forbidden")) as remote:
+            for action in ("local.run.start","local.run.resume"):
+                status,value=self.request(body=json.dumps({"action":action,"input":"test","runId":"run_waiting"}))
+                self.assertEqual(status,409,value)
+                self.assertEqual(value["status"],"unconfigured",value)
+                self.assertIn("OPENAI_API_KEY",value["missingEnv"])
+                self.assertFalse(value["networkChecked"])
+            self.assertEqual(real.dispatch({"action":"jobs.list"})["jobs"],[])
+            started.assert_not_called();remote.assert_not_called()
+
+    def test_stop_uses_active_cancellation_instead_of_paginated_job_list(self):
+        calls=[]
+        def dispatch(request):
+            calls.append(request)
+            return {}
+        self.ops.dispatch=dispatch
+        self.server.worker.stop()
+        self.assertEqual(calls,[{"action":"jobs.cancel_active"}])
+
+    def test_worker_rechecks_cancel_if_stop_arrived_before_job_dispatch(self):
+        state={"dispatched":False,"cancelled":False}
+        worker=local.Worker(self.root,lambda:state.update(cancelled=state["dispatched"]))
+        class DelayedProcess:
+            def __init__(self,*args,**kwargs):
+                worker.stopping.set()
+                worker.cancel_active()
+            def wait(self,timeout=None):
+                if not state["dispatched"]:
+                    state["dispatched"]=True
+                    raise subprocess.TimeoutExpired("delayed dispatcher",timeout)
+                return 0
+        with patch.object(local.subprocess,"Popen",DelayedProcess): worker.loop()
+        self.assertTrue(state["cancelled"])
+        self.assertEqual(worker.last_code,0)
+
     @unittest.skipUnless(shutil.which("node"), "Node.js is required for browser script parsing")
     def test_browser_script_parses_including_review_decision_callback(self):
         script=re.search(r'<script nonce="NONCE">(.*?)</script>',local.HTML,re.S).group(1)
@@ -131,13 +201,38 @@ global.fetch=()=>{throw Error('network forbidden')};global.setInterval=()=>{};
         result=subprocess.run([shutil.which("node"),str(path)],capture_output=True,text=True)
         self.assertEqual(result.returncode,0,result.stderr)
 
-    def test_default_snapshot_with_real_operations_uses_development_profile(self):
+    @unittest.skipUnless(shutil.which("node"), "Node.js is required for local UI selection execution")
+    def test_job_auto_selection_is_one_time_and_profile_scoped(self):
+        script=re.search(r'<script nonce="NONCE">(.*?)</script>',local.HTML,re.S).group(1)
+        bootstrap=r'''
+const assert=require('node:assert/strict');
+class Element{constructor(tag){this.tagName=tag.toUpperCase();this.children=[];this.value='';}append(...items){this.children.push(...items)}replaceChildren(...items){this.children=items}reportValidity(){return true}}
+const elements=new Map();global.document={getElementById(id){if(!elements.has(id))elements.set(id,new Element('div'));return elements.get(id)},createElement(tag){return new Element(tag)},activeElement:null};
+global.location={hash:'',pathname:'/'};global.sessionStorage={getItem(){return null},setItem(){}};global.history={replaceState(){}};global.setInterval=()=>{};
+'''
+        assertions=r'''
+(async()=>{
+ $('profile').value='production';drawStartForm=()=>{};renderRuns=()=>{};renderJobs=()=>{};draw=()=>{};
+ const snapshots={name:'test',definition:{nodes:[],edges:[]},profiles:[{name:'production'},{name:'second'}],runs:[],jobs:[{id:'job',profile:'production',runId:'run_new',status:'succeeded'}],worker:{running:false}};
+ request=async()=>snapshots;loadRun=async()=>{selected={id:$('runId').value}};
+ activeJob={id:'job',profile:'production'};await refresh();assert.equal(selected.id,'run_new');assert.equal(activeJob,null);
+ selected={id:'run_old'};$('runId').value='run_old';await refresh();assert.equal(selected.id,'run_old');
+ activeJob={id:'job',profile:'production'};$('profile').value='second';selected=null;$('runId').value='';await refresh();assert.equal(selected,null);assert.equal($('runId').value,'');
+ loadSetup=async()=>{};$('profile').onchange();assert.equal(activeJob,null);
+ activeJob={id:'job',profile:'production'};$('runId').value='run_manual';$('loadRun').onclick();assert.equal(activeJob,null);assert.equal(selected.id,'run_manual');
+})().catch(e=>{console.error(e);process.exitCode=1});
+'''
+        path=self.root/"selection-local-ui.js";path.write_text(bootstrap+script+assertions,encoding="utf-8")
+        result=subprocess.run([shutil.which("node"),str(path)],capture_output=True,text=True)
+        self.assertEqual(result.returncode,0,result.stderr)
+
+    def test_default_snapshot_with_real_operations_uses_production_profile(self):
         package={"format":"flowly-executable-export","version":1,"language":"python","owner":{"userId":"alice","email":"alice@example.test","displayName":"Alice"},"workflow":{"id":"flow","name":"실제 운영 상태","definition":{"schemaVersion":5,"nodes":[],"edges":[]}},"resources":[],"connections":[],"limits":{"maxTurns":8,"maxToolCalls":12,"maxTokens":8000,"maxDurationMs":120000}}
         (self.root/"workflow.json").write_text(json.dumps(package),encoding="utf-8")
         real_ops=operations.Operations(self.root)
         self.ops.dispatch=real_ops.dispatch
         status,value=self.request("local.snapshot")
-        self.assertEqual(status,200,value);self.assertEqual(value["profiles"][0]["name"],"development")
+        self.assertEqual(status,200,value);self.assertEqual(value["profiles"][0]["name"],"production")
         self.assertEqual(value["jobs"],[]);self.assertEqual(value["runs"],[])
 
 if __name__=="__main__":unittest.main()

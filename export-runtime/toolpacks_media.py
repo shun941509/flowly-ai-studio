@@ -1,3 +1,4 @@
+# 로컬 영상/음성/언어/콘텐츠 서명/격리 HTML 도구팩. 모델이 필요한 기능은 준비된 로컬 모델을 사용한다.
 """Local media and controlled-document automation adapters. Never download models."""
 from __future__ import annotations
 import base64
@@ -45,6 +46,7 @@ def audio_array(args):
     return values,rate
 
 
+# object_detection은 임계값 연결 성분 검출이며 의미 클래스가 있는 범용 객체 탐지 모델은 아니다.
 def vision(tool_id,args):
     np=dependency("numpy")
     if tool_id=="nms":
@@ -127,6 +129,7 @@ def features(tool_id,args):
     return {"descriptor":clean(feature.hog(data,orientations=9,pixels_per_cell=(8,8),cells_per_block=(2,2),feature_vector=True))}
 
 
+# 로컬 임베딩/재정렬/언어 모델을 사용한다. 모델 누락을 외부 API/다운로드로 대체하지 않는다.
 def language(tool_id,args):
     path=model_path(tool_id)
     if tool_id=="ner":
@@ -151,6 +154,7 @@ def language(tool_id,args):
     fail("지원하지 않는 언어 모델 도구예요.")
 
 
+# 화자 분리의 음향 군집 번호는 검증된 실제 화자 신원과 다르다. 도구별 출력 범위를 구분한다.
 def audio(tool_id,args):
     np=dependency("numpy")
     if tool_id=="tts":
@@ -186,6 +190,7 @@ def audio(tool_id,args):
     return {"segments":[{"start":i*frame/rate,"end":min((i+1)*frame,len(samples))/rate,"cluster":int(label)} for i,label in zip(active,labels)],"method":"acoustic_frame_clustering","speakerIdentityVerified":False}
 
 
+# Flowly HMAC/콘텐츠 해시 검증이다. 일반 C2PA 호환이나 AI 저작 여부 증명은 아니다.
 def credentials(tool_id,args):
     if tool_id=="watermark":
         key=os.environ.get("FLOWLY_WATERMARK_KEY")
@@ -206,6 +211,7 @@ def credentials(tool_id,args):
     return {"valid":manifest.get("sha256")==digest and hmac.compare_digest(signature,expected),"scheme":"flowly-content-hmac-v1","claimsVerified":"manifest_signature_and_content_hash","c2paSupported":False}
 
 
+# 제공 HTML만 네트워크/JavaScript 없이 처리한다. 외부 사이트/데스크톱 앱 접근 경로가 아니다.
 def browser(tool_id,args):
     # Isolated supplied HTML only. External applications remain registered MCPs.
     html=text(args.get("html"),100_000);actions=array(args.get("actions",[]),0,30)

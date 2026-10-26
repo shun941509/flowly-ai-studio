@@ -150,10 +150,10 @@ class CoreToolTests(unittest.TestCase):
                     self.assertTrue(all(reason["code"] in {"missing_dependency","missing_model","missing_configuration"} for reason in state["missing"]))
 
     def test_cli_json_protocol(self):
-        result=subprocess.run([sys.executable,str(ROOT/"export-runtime/flowly_tools.py")],input=json.dumps({"toolId":"jsonl","arguments":{"text":"{}"}}),text=True,capture_output=True,timeout=15)
+        result=subprocess.run([sys.executable,str(ROOT/"export-runtime/flowly_tools.py")],input=json.dumps({"toolId":"jsonl","arguments":{"text":"{}"}}),text=True,encoding="utf-8",capture_output=True,timeout=15)
         self.assertEqual(result.returncode,0)
         self.assertEqual(json.loads(result.stdout),{"ok":True,"result":{"records":[{}],"count":1}})
-        bad=subprocess.run([sys.executable,str(ROOT/"export-runtime/flowly_tools.py")],input='{bad',text=True,capture_output=True,timeout=15)
+        bad=subprocess.run([sys.executable,str(ROOT/"export-runtime/flowly_tools.py")],input='{bad',text=True,encoding="utf-8",capture_output=True,timeout=15)
         self.assertEqual(json.loads(bad.stdout)["error"]["code"],"invalid_input")
 
     @unittest.skipUnless(importlib.util.find_spec("jsonschema"),"jsonschema not installed")

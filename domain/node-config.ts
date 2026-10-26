@@ -1,8 +1,15 @@
+/**
+ * 도구·일반 프로그램·값 변환·합류·검색 블록의 데이터 설정 파서.
+ * 실행 가능한 작업을 고정된 종류로 제한하며 실제 실행은 runtime/export-runtime에서 처리한다.
+ */
 import type { Json, ProgramConfig, MergeConfig, RetrievalConfig, ToolNodeConfig, TransformConfig } from "../runtime/types";
 import { getToolCandidate } from "./tool-catalog";
 
 const forbidden = new Set(["__proto__", "prototype", "constructor"]);
 const field = (s: string) => /^[A-Za-z_][A-Za-z0-9_-]{0,79}$/.test(s) && !forbidden.has(s);
+/**
+ * 점으로 구분한 객체 필드와 숫자 인덱스만 허용한다. JavaScript 식을 평가하는 경로 문법이 아니다.
+ */
 export const safeDataPath = (s: string) => s.length <= 500 && s.split(".").every((p, i) => field(p) || (i > 0 && /^(0|[1-9][0-9]{0,5})$/.test(p)));
 function object(v: unknown): Record<string, unknown> {
   if (!v || typeof v !== "object" || Array.isArray(v)) throw new Error("블록 설정은 객체 형식으로 입력해 주세요.");
@@ -11,6 +18,9 @@ function object(v: unknown): Record<string, unknown> {
 function keys(v: Record<string, unknown>, allowed: string[]) {
   if (Object.keys(v).some(k => !allowed.includes(k))) throw new Error("지원하지 않는 블록 설정이 있어요.");
 }
+/**
+ * 깊이·유한 숫자·객체 키를 검사해 전달 가능한 JSON 값만 남긴다.
+ */
 export function validateJson(value: unknown, depth = 0): asserts value is Json {
   if (depth > 16) throw new Error("데이터 중첩이 너무 깊어요.");
   if (value === null || typeof value === "string" || typeof value === "boolean") return;
@@ -31,6 +41,9 @@ function paths(v: unknown): Record<string, string> {
   for (const [key, path] of Object.entries(o)) if (!field(key) || typeof path !== "string" || !safeDataPath(path)) throw new Error("값 연결의 필드 이름과 경로를 확인해 주세요.");
   return { ...o } as Record<string, string>;
 }
+/**
+ * 블록 종류와 설정 필드의 대응 및 각 한도를 검증한다. Python 도구 ID는 실행 중 입력 매핑으로 교체할 수 없다.
+ */
 export function parseDataNodeConfig(n: Record<string, unknown>): { program?: ProgramConfig; tool?: ToolNodeConfig; transform?: TransformConfig; merge?: MergeConfig; retrieval?: RetrievalConfig } {
   const out: ReturnType<typeof parseDataNodeConfig> = {};
   for (const key of ["tool", "program", "transform", "merge", "retrieval"]) if (n[key] !== undefined && n.type !== key) throw new Error("다른 종류의 블록 설정이 포함되어 있어요.");

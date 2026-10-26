@@ -1,0 +1,68 @@
+/* 최종 편집기 배치 재정의. 패널 높이·스크롤·크기 조절 핸들은 이 파일에서 조정하고 실제 패널 비율은 Workbench가 관리한다. */
+/* Workbench layout owns containment, scrolling and pane sizing. No Tailwind dependency. */
+.editor-page { padding: 18px 20px 0; height: calc(100dvh - 63px); min-height: 600px; gap: 0; }
+.demo-mode .editor-page { height: calc(100dvh - 95px); min-height: 600px; }
+.editor-heading { padding-bottom: 14px; gap: 16px; flex-wrap: wrap; }
+.editor-title-area { flex: 1 1 320px; }
+.title-with-status > input { flex: 1; min-width: 0; width: min(100%, 700px); max-width: none; font-size: 22px; letter-spacing: -.5px; }
+.editor-title-area > p { font-size: 12px; line-height: 1.6; }
+.editor-header-actions { flex-wrap: wrap; gap: 8px; padding-top: 0; }
+.editor-header-actions .btn { font-size: 13px; min-height: 38px; padding: 8px 12px; }
+.editor-tabbar { margin-bottom: 12px; min-height: 36px; }
+.editor-tabbar > div > button { font-size: 12px; }
+.editor-footer { min-height: 30px; height: auto; flex-wrap: wrap; gap: 6px; font-size: 11px; flex-shrink: 0; padding: 6px 0; }
+.workbench.resizable-workbench { display: flex !important; flex-direction: column; position: relative; flex: 1 1 auto; min-height: 340px !important; height: auto !important; max-height: none !important; overflow: hidden !important; isolation: isolate; }
+.workbench.resizable-workbench.workbench-compact { min-height: 560px !important; flex-shrink: 0; }
+.studio-app .editor-page:has(> .workbench-compact) { height: auto; min-height: calc(100dvh - 63px); }
+.nested-editor-dialog:has(> .workbench-compact) { overflow-y: auto; }
+.workbench-tools { display: flex; align-items: center; gap: 12px; padding: 5px 10px; flex-shrink: 0; min-height: 38px; background: var(--surface, #fff); border-bottom: 1px solid var(--line, #dfe5ee); color: var(--muted, #64748b); }
+.workbench-tools > span { flex: 1; font-size: 12px; }
+.workbench-tools > button:last-child { margin-left: auto; }
+.workbench-compact .workbench-tools > span { display: none; }
+.workbench-panels { flex: 1; min-height: 0; min-width: 0; }
+.workbench-panel { display: flex; min-width: 0; min-height: 0; height: 100%; overflow: hidden; }
+.workbench-resize-handle { position: relative; flex-shrink: 0; width: 7px; background: #edf0f6; border-inline: 1px solid #e0e6ef; touch-action: none; }
+.workbench-resize-handle::after { content: ""; position: absolute; left: 2px; top: calc(50% - 18px); width: 1px; height: 36px; background: #94a3b8; }
+.workbench-resize-handle:hover, .workbench-resize-handle:focus-visible { background: #c7d2fe; outline: 2px solid #6366f1; outline-offset: -2px; z-index: 2; }
+.workbench-compact .workbench-resize-handle { height: 7px; width: auto; border-inline: 0; border-block: 1px solid #e0e6ef; }
+.workbench-compact .workbench-resize-handle::after { top: 2px; left: calc(50% - 18px); width: 36px; height: 1px; }
+.resizable-workbench .node-palette { display: flex !important; width: 100% !important; padding: 14px 12px; height: 100%; min-height: 0; max-height: none; overflow: auto; border: 0; }
+.resizable-workbench .node-inspector { position: static !important; width: 100% !important; max-width: none !important; height: 100%; min-height: 0; max-height: none; display: flex; flex-direction: column; overflow: hidden; border: 0; box-shadow: none; }
+.resizable-workbench .inspector-body { flex: 1 1 0; min-height: 0; overflow: auto; overscroll-behavior: contain; padding: 16px; }
+.resizable-workbench .node-inspector > header, .resizable-workbench .inspector-footer { flex-shrink: 0; }
+.inspector-fields { min-width: 0; border: 0; margin: 0; padding: 0; }
+.inspector-readonly-note { padding: 10px 12px; margin-bottom: 12px; border: 1px solid #c7d2fe; border-radius: 8px; background: #eef2ff; color: #3730a3; font-size: 12px; line-height: 1.6; }
+.resizable-workbench .flow-canvas { width: 100%; height: 100%; flex: 1; min-height: 0 !important; }
+.resizable-workbench .palette-heading h3 { font-size: 14px; }
+.resizable-workbench .palette-item { padding: 9px 5px; gap: 10px; }
+.resizable-workbench .palette-item strong { font-size: 13px; }
+.resizable-workbench .palette-item small { font-size: 12px; line-height: 1.5; }
+.resizable-workbench .palette-sub, .resizable-workbench .palette-group h4, .resizable-workbench .palette-tip { font-size: 12px; }
+.resizable-workbench .palette-library small { font-size: 12px; }
+.resizable-workbench .palette-library strong { font-size: 12px; }
+.resizable-workbench .canvas-actions { top: 10px; right: 10px; max-width: calc(100% - 20px); flex-wrap: wrap; }
+.resizable-workbench .canvas-hint { top: 54px; max-width: calc(100% - 30px); }
+.resizable-workbench .canvas-hint > span { font-size: 10px; }
+.resizable-workbench .canvas-toolbar { gap: 3px; padding: 5px; flex-wrap: wrap; justify-content: center; max-width: calc(100% - 20px); }
+.resizable-workbench .canvas-bottom { left: 0; right: 0; bottom: 10px; display: flex; justify-content: center; }
+.resizable-workbench .canvas-text-action, .workbench-tools .canvas-text-action { font-size: 12px; display: inline-flex; align-items: center; gap: 5px; min-height: 30px; }
+.resizable-workbench .canvas-shortcuts-panel { max-height: calc(100% - 100px); overflow: auto; }
+.resizable-workbench .canvas-selection-summary { top: 88px; bottom: auto; max-width: calc(100% - 28px); flex-wrap: wrap; }
+.workbench-palette-drawer { position: absolute; inset: 38px auto 0 0; width: min(300px, 90%); display: flex; flex-direction: column; z-index: 20; background: #fff; border-right: 1px solid #c7d2fe; box-shadow: 10px 0 30px #0f172a20; }
+.workbench-palette-drawer > header { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid var(--line); }
+.workbench-palette-drawer .node-palette { flex: 1; }
+.canvas-focus .editor-page { height: 100dvh; min-height: 600px; padding: 10px 12px 0; }
+.canvas-focus .resizable-workbench { grid-template-columns: none !important; }
+.studio-app.canvas-focus .resizable-workbench .node-palette { align-items: stretch; padding: 14px 12px; }
+.studio-app.canvas-focus .resizable-workbench .palette-item { width: 100%; min-height: 50px; justify-content: flex-start; padding: 9px 5px; margin: 0; }
+.studio-app.canvas-focus .resizable-workbench .palette-item > span:nth-child(2), .studio-app.canvas-focus .resizable-workbench .palette-sub, .studio-app.canvas-focus .resizable-workbench .palette-group h4 { display: block; }
+.studio-app.canvas-focus .resizable-workbench .palette-heading, .studio-app.canvas-focus .resizable-workbench .search-field, .studio-app.canvas-focus .resizable-workbench .palette-tip, .studio-app.canvas-focus .resizable-workbench .palette-library { display: flex; }
+.studio-app.canvas-focus .resizable-workbench .palette-heading { justify-content: space-between; }
+.studio-app.canvas-focus .resizable-workbench .palette-group { margin-top: 19px; }
+.nested-editor-dialog .resizable-workbench { border-radius: 0; }
+.nested-editor-actions { flex-wrap: wrap; }
+.nested-editor-footer { flex-wrap: wrap; }
+.workflow-explanation { flex-shrink: 0; }
+.workflow-explanation[open] { max-height: min(30vh, 240px); overflow: auto; }
+@media (max-width: 1350px) { .editor-title-area { flex-basis: 100%; } .editor-header-actions { width: 100%; } .editor-header-actions > .btn.primary { margin-left: auto; } .editor-heading { gap: 10px; } }
+@media (max-width: 800px) { .editor-page, .demo-mode .editor-page { padding: 12px 10px 0; min-height: 680px; } .editor-title-area { flex-basis: 100%; } .title-with-status > input { font-size: 19px; } .editor-header-actions .btn { font-size: 12px; padding: 7px 9px; } .workbench-tools > span { display: none; } .editor-tabbar { flex-wrap: wrap; height: auto; } .save-status { font-size: 10px; } .editor-footer > span:last-child { display: none; } .resizable-workbench .canvas-hint { display: none; } .nested-editor-dialog { min-width: 0; } }

@@ -1,3 +1,6 @@
+/**
+ * 작업 묶음·검토·반복 등의 시작 템플릿. 예제의 실제 연결과 설정을 만들며 카탈로그 메타데이터와 실행 결과는 다루지 않는다.
+ */
 import type { Definition, FlowNode, NodeType } from "./model";
 import { v5Template, v5Templates } from "./v5-templates";
 
@@ -15,6 +18,7 @@ export const advancedTemplates = [
 const node = (id: string, type: NodeType, extra: Partial<FlowNode> = {}): FlowNode => ({ id, type, title: id, x: 230, y: 30, ...extra });
 const chain = (nodes: FlowNode[]): Definition => ({ schemaVersion: 4, nodes: nodes.map((n, i) => ({ ...n, y: 25 + i * 190 })), edges: nodes.slice(1).map((n, i) => ({ id: `${nodes[i].id}-${n.id}`, source: nodes[i].id, target: n.id })) });
 const task = (template: string) => chain([node("input", "input", { title: "작업 입력" }), node("format", "transform", { title: "값 정리", transform: { mode: "template", template } }), node("output", "output", { title: "작업 결과" })]);
+/** 지원하는 템플릿 ID에만 설계를 반환한다. v5 확장 템플릿을 먼저 확인하고 나머지는 호출자의 기본 템플릿으로 넘긴다. */
 export function advancedTemplate(kind: string): Definition | undefined {
   const extended = v5Template(kind); if (extended) return extended;
   const input = node("input", "input", { title: "사용자 입력" }), output = node("output", "output", { title: "답변 출력" });

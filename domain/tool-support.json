@@ -1,0 +1,3367 @@
+{
+  "version": 1,
+  "basis": "source_only",
+  "count": 195,
+  "tools": {
+    "ab_test": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "ab_test",
+      "outputFields": [
+        "statistic",
+        "pValue",
+        "meanDifference",
+        "method",
+        "assumption"
+      ],
+      "outputDescription": "독립 표본 Welch t검정과 평균 차이를 반환합니다.",
+      "limitation": "실험 배정·표본 수집을 하지 않으며 통계 가정의 충족을 검증하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "accuracy": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.accuracy_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "accuracy_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "adaboost": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.ensemble.AdaBoostClassifier",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.ensemble.AdaBoostClassifier로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "adjusted_mutual_info": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.adjusted_mutual_info_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "adjusted_mutual_info_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "adjusted_rand": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.adjusted_rand_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "adjusted_rand_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "affinity_propagation": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "sklearn.cluster.AffinityPropagation",
+      "outputFields": [
+        "labels",
+        "centers"
+      ],
+      "outputDescription": "sklearn.cluster.AffinityPropagation로 입력 행의 군집 번호를 반환합니다.",
+      "limitation": "centers는 알고리즘이 cluster_centers_를 제공할 때만 포함됩니다. 군집 번호에 업무 의미나 실제 신원을 부여하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "ai_citation": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "privacy",
+      "sourceLine": 326,
+      "sourceFingerprint": "2ab324e4e282d060c272de356b8e0b6629d3521f71b06f0eba93c737260caeb3",
+      "algorithm": "ai_citation",
+      "outputFields": [
+        "valid",
+        "citations",
+        "checks"
+      ],
+      "outputDescription": "인용 ID의 문서에 인용 문자열이 그대로 있는지 검사합니다.",
+      "limitation": "주장의 진실성·인용의 적절성·출처 신뢰도를 판단하지 않습니다.",
+      "scope": "exact_source_and_quote_only",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "ann": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "ann",
+      "outputFields": [
+        "indices",
+        "distances",
+        "method",
+        "approximate"
+      ],
+      "outputDescription": "정확 최근접 이웃 기준선의 번호·거리를 반환합니다.",
+      "limitation": "이 이름의 구현은 근사 검색이 아닙니다. 근사 검색은 hnsw·ivf_flat을 선택합니다.",
+      "scope": "exact_nearest_neighbors_baseline",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "anomaly_detection": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "isolation_forest",
+      "outputFields": [
+        "scores",
+        "predictions",
+        "inlier",
+        "outlier"
+      ],
+      "outputDescription": "격리 숲의 이상 점수와 정상1·이상-1 판정을 반환합니다.",
+      "limitation": "기준 학습 자료가 필요하며 모든 이상을 탐지한다고 보장하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "isolation_forest"
+      ]
+    },
+    "anonymization": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "privacy",
+      "sourceLine": 326,
+      "sourceFingerprint": "2ab324e4e282d060c272de356b8e0b6629d3521f71b06f0eba93c737260caeb3",
+      "algorithm": "pattern_redaction",
+      "outputFields": [
+        "findings",
+        "sensitive",
+        "method",
+        "completeDetection",
+        "text",
+        "anonymityGuaranteed"
+      ],
+      "outputDescription": "패턴에 일치한 위치를 종류 이름으로 가린 문자열과 탐지 내역을 반환합니다.",
+      "limitation": "익명성을 보장하지 않습니다. 의미·문맥·이미지에 포함된 민감정보는 검사하지 않습니다.",
+      "scope": "pattern_redaction_without_anonymity_guarantee",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "redaction"
+      ]
+    },
+    "ard": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.linear_model.ARDRegression",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.linear_model.ARDRegression로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "average_precision": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.average_precision_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "average_precision_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "balanced_accuracy": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.balanced_accuracy_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "balanced_accuracy_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "bayesian_ridge": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.linear_model.BayesianRidge",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.linear_model.BayesianRidge로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "benchmark": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "basic",
+      "sourceLine": 210,
+      "sourceFingerprint": "41cbe93944e77be489d9dd20b8c2174d06e7a6cd1fddd386af5e3729638e0989",
+      "algorithm": "provided_case_comparison",
+      "outputFields": [
+        "results",
+        "passed",
+        "total"
+      ],
+      "outputDescription": "예상값과 실제값을 exact·contains·numeric 방식으로 비교한 항목별 통과 여부와 합계를 반환합니다.",
+      "limitation": "모델·테스트 프로그램을 직접 실행하지 않습니다. 비교할 실제값을 앞 단계에서 전달해야 합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "evals"
+      ]
+    },
+    "bilateral_filter": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "bilateral_filter",
+      "outputFields": [
+        "image"
+      ],
+      "outputDescription": "설정한 영상 연산을 적용한 픽셀·수치 배열을 image에 반환합니다.",
+      "limitation": "작은 입력 영상의 고전적 처리입니다. 객체 의미·이미지 설명을 생성하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "birch": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "sklearn.cluster.Birch",
+      "outputFields": [
+        "labels",
+        "centers"
+      ],
+      "outputDescription": "sklearn.cluster.Birch로 입력 행의 군집 번호를 반환합니다.",
+      "limitation": "centers는 알고리즘이 cluster_centers_를 제공할 때만 포함됩니다. 군집 번호에 업무 의미나 실제 신원을 부여하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "bm25": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "search",
+      "sourceLine": 152,
+      "sourceFingerprint": "a0f0318246586c25c0ab4821e55dced0a656541b8ab6d7d4be0f0000bc15a71b",
+      "algorithm": "bm25",
+      "outputFields": [
+        "results",
+        "method"
+      ],
+      "outputDescription": "제공 문서의 토큰 빈도·길이에 따른 BM25 점수 순서를 반환합니다.",
+      "limitation": "현재 호출의 문서만 대상으로 하며 외부 검색 서비스·영구 색인을 만들지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "brier_score": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.brier_score_loss",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "brier_score_loss의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "calibration": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "calibration",
+      "outputFields": [
+        "probabilities",
+        "method",
+        "trainingRows"
+      ],
+      "outputDescription": "보정용 확률·이진 정답으로 적합한 등위 회귀 보정 확률을 반환합니다.",
+      "limitation": "별도 보정 자료가 필요하며 모델의 정확도를 보장하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "calinski_harabasz": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.calinski_harabasz_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "calinski_harabasz_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "canny": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "canny",
+      "outputFields": [
+        "image"
+      ],
+      "outputDescription": "설정한 영상 연산을 적용한 픽셀·수치 배열을 image에 반환합니다.",
+      "limitation": "작은 입력 영상의 고전적 처리입니다. 객체 의미·이미지 설명을 생성하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "causal_inference": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "causal_inference",
+      "outputFields": [
+        "statistic",
+        "pValue",
+        "meanDifference",
+        "method",
+        "assumption",
+        "estimand",
+        "causalAssumptionsVerified"
+      ],
+      "outputDescription": "무작위 배정 확인을 받은 두 집단의 평균 차이와 Welch 검정을 반환합니다.",
+      "limitation": "관측 자료의 일반 인과 추론이 아닙니다. 무작위 배정·인과 가정을 실제로 검증하지 않습니다.",
+      "scope": "randomized_difference_in_means",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "cca": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "cca",
+      "outputFields": [
+        "data",
+        "targets"
+      ],
+      "outputDescription": "cross_decomposition.CCA로 축소·변환된 수치 배열을 반환합니다.",
+      "limitation": "CCA는 두 입력의 변환 data·targets를 반환합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "cholesky": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "signal",
+      "sourceLine": 266,
+      "sourceFingerprint": "1615690febd3c2c5559678858012184c29b469a33ea65a8ef01afd6dc919f2ee",
+      "algorithm": "cholesky",
+      "outputFields": [
+        "lower"
+      ],
+      "outputDescription": "양의 정부호 행렬의 하삼각 인자를 반환합니다.",
+      "limitation": "입력 차원·유한 수치·알고리즘별 행렬 조건을 만족해야 합니다. 실패 시 오류를 반환하며 업무 의미를 해석하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "chunking": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "basic",
+      "sourceLine": 210,
+      "sourceFingerprint": "41cbe93944e77be489d9dd20b8c2174d06e7a6cd1fddd386af5e3729638e0989",
+      "algorithm": "chunking",
+      "outputFields": [
+        "chunks",
+        "unit"
+      ],
+      "outputDescription": "분할된 글과 각 조각의 시작·끝 위치를 chunks에 반환합니다.",
+      "limitation": "유니코드 코드 포인트 길이로 분할하며 문단·의미·모델 토큰 경계를 해석하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "classification": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.linear_model.LogisticRegression",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.linear_model.LogisticRegression로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "logistic_regression"
+      ]
+    },
+    "classification_threshold": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "basic",
+      "sourceLine": 210,
+      "sourceFingerprint": "41cbe93944e77be489d9dd20b8c2174d06e7a6cd1fddd386af5e3729638e0989",
+      "algorithm": "classification_threshold",
+      "outputFields": [
+        "predictions",
+        "threshold"
+      ],
+      "outputDescription": "확률이 임계값 이상이면 1, 미만이면 0인 목록을 반환합니다.",
+      "limitation": "확률 생성·모델 학습·확률 보정은 별도입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "clustering": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "sklearn.cluster.KMeans",
+      "outputFields": [
+        "labels",
+        "centers"
+      ],
+      "outputDescription": "sklearn.cluster.KMeans로 입력 행의 군집 번호를 반환합니다.",
+      "limitation": "centers는 알고리즘이 cluster_centers_를 제공할 때만 포함됩니다. 군집 번호에 업무 의미나 실제 신원을 부여하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "kmeans"
+      ]
+    },
+    "cohen_kappa": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.cohen_kappa_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "cohen_kappa_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "computer_use": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "browser",
+      "sourceLine": 215,
+      "sourceFingerprint": "d99b01390f88ded8245c11422f9d27b19c109e1135130f3a550f67eacbe96f8d",
+      "algorithm": "isolated_supplied_html",
+      "outputFields": [
+        "observations",
+        "mode",
+        "networkAllowed",
+        "externalApplicationAccess"
+      ],
+      "outputDescription": "제공된 HTML에서 fill·check·read·count 동작의 관측 목록을 반환합니다.",
+      "limitation": "JavaScript·네트워크를 끈 격리 HTML만 처리합니다. 실제 회사 사이트·데스크톱 조작은 등록한 MCP가 필요합니다.",
+      "scope": "isolated_supplied_html_without_network",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "rpa"
+      ]
+    },
+    "computer_vision": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "computer_vision",
+      "outputFields": [
+        "width",
+        "height",
+        "channels",
+        "meanBrightness",
+        "edgePixelCount",
+        "method"
+      ],
+      "outputDescription": "영상 크기·채널·밝기 평균·경계 픽셀 수를 반환합니다.",
+      "limitation": "영상의 의미 설명이나 범용 비전 모델이 아닌 수치 통계입니다.",
+      "scope": "image_statistics",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "conformal_prediction": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "conformal_prediction",
+      "outputFields": [
+        "intervals",
+        "radius",
+        "alpha",
+        "assumption"
+      ],
+      "outputDescription": "보정 오차의 분위수로 새 예측값의 구간을 반환합니다.",
+      "limitation": "보정·검사 자료의 교환가능성 가정이 필요합니다. 필요한 보정 표본 수가 부족하면 거절합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "confusion_matrix": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.confusion_matrix",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "confusion_matrix의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "connected_components": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "threshold_connected_components",
+      "outputFields": [
+        "labels",
+        "components",
+        "method",
+        "semanticClasses"
+      ],
+      "outputDescription": "임계값 이상의 연결 성분 라벨·상자·면적·중심을 반환합니다.",
+      "limitation": "사람·차량 같은 의미 클래스를 인식하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "object_detection"
+      ]
+    },
+    "content_credentials": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "credentials",
+      "sourceLine": 194,
+      "sourceFingerprint": "805945eac5e863bafb5b775c53d6433455f7d800e181893c17170fe7b442fc66",
+      "algorithm": "content_credentials",
+      "outputFields": [
+        "valid",
+        "scheme",
+        "claimsVerified",
+        "c2paSupported"
+      ],
+      "outputDescription": "Flowly manifest의 서명과 콘텐츠 해시 일치 여부를 반환합니다.",
+      "limitation": "C2PA 호환 검증이나 콘텐츠 주장 자체의 사실 확인은 지원하지 않습니다.",
+      "scope": "flowly_hmac_manifest_not_c2pa",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "contingency_matrix": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.contingency_matrix",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "contingency_matrix의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "cosine_similarity": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "search",
+      "sourceLine": 152,
+      "sourceFingerprint": "a0f0318246586c25c0ab4821e55dced0a656541b8ab6d7d4be0f0000bc15a71b",
+      "algorithm": "cosine_similarity",
+      "outputFields": [
+        "score",
+        "zeroVector"
+      ],
+      "outputDescription": "두 벡터의 코사인 점수와 영벡터 포함 여부를 반환합니다.",
+      "limitation": "차원이 같은 수치 벡터가 필요합니다. 영벡터의 점수는 0입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "crf": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "crf",
+      "outputFields": [
+        "labels"
+      ],
+      "outputDescription": "제공한 토큰 특징·정답 시퀀스로 학습해 새 시퀀스의 라벨을 반환합니다.",
+      "limitation": "단순 특징 객체만 허용하며 원문 특징 생성·범용 언어 모델은 포함되지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "cross_validation": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "cross_validation",
+      "outputFields": [
+        "scores",
+        "mean",
+        "estimator"
+      ],
+      "outputDescription": "허용된 추정기를 교차 검증한 분할별 점수와 평균을 반환합니다.",
+      "limitation": "일반 코드 평가가 아닙니다. 입력 자료 수와 알고리즘별 라벨 조건이 필요합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "data_augmentation": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "data_augmentation",
+      "outputFields": [
+        "data",
+        "method"
+      ],
+      "outputDescription": "입력 수치 배열에 지정한 크기의 정규 잡음을 더합니다.",
+      "limitation": "이미지·언어 증강이 아닌 수치 배열 잡음 증강입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "data_classification": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "privacy",
+      "sourceLine": 326,
+      "sourceFingerprint": "2ab324e4e282d060c272de356b8e0b6629d3521f71b06f0eba93c737260caeb3",
+      "algorithm": "data_classification",
+      "outputFields": [
+        "findings",
+        "sensitive",
+        "method",
+        "completeDetection",
+        "classification"
+      ],
+      "outputDescription": "탐지 패턴으로 restricted·personal·unclassified 값을 반환합니다.",
+      "limitation": "패턴이 없는 자료를 안전한 공개 자료로 판정하지 않습니다. 조직의 분류 정책을 대신하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "data_drift": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "data_drift",
+      "outputFields": [
+        "statistic",
+        "pValue",
+        "driftDetected",
+        "method",
+        "scope",
+        "modelQualityMeasured"
+      ],
+      "outputDescription": "제공된 두 수치 분포의 KS 통계·유의확률·변화 판정을 반환합니다.",
+      "limitation": "모델 정답률 하락을 직접 측정하지 않습니다. 비교 자료와 유의수준을 사용자가 정합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "model_drift"
+      ]
+    },
+    "data_labeling": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "data_labeling",
+      "outputFields": [
+        "records",
+        "method"
+      ],
+      "outputDescription": "사용자가 제공한 자료와 같은 순서의 라벨을 묶어 반환합니다.",
+      "limitation": "AI나 규칙으로 라벨을 새로 예측하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "data_quality": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "basic",
+      "sourceLine": 210,
+      "sourceFingerprint": "41cbe93944e77be489d9dd20b8c2174d06e7a6cd1fddd386af5e3729638e0989",
+      "algorithm": "data_quality",
+      "outputFields": [
+        "rowCount",
+        "duplicateCount",
+        "columns"
+      ],
+      "outputDescription": "행 수·완전히 같은 행 수·열별 누락 수와 Python 값 종류를 반환합니다.",
+      "limitation": "업무 규칙·값의 사실 여부·자동 정제는 검사하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "davies_bouldin": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.davies_bouldin_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "davies_bouldin_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "dbscan": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "sklearn.cluster.DBSCAN",
+      "outputFields": [
+        "labels",
+        "centers"
+      ],
+      "outputDescription": "sklearn.cluster.DBSCAN로 입력 행의 군집 번호를 반환합니다.",
+      "limitation": "centers는 알고리즘이 cluster_centers_를 제공할 때만 포함됩니다. 군집 번호에 업무 의미나 실제 신원을 부여하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "dct": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "signal",
+      "sourceLine": 266,
+      "sourceFingerprint": "1615690febd3c2c5559678858012184c29b469a33ea65a8ef01afd6dc919f2ee",
+      "algorithm": "dct",
+      "outputFields": [
+        "values"
+      ],
+      "outputDescription": "이산 코사인 변환 수치를 반환합니다.",
+      "limitation": "입력 차원·유한 수치·알고리즘별 행렬 조건을 만족해야 합니다. 실패 시 오류를 반환하며 업무 의미를 해석하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "decision_tree": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.tree.DecisionTreeClassifier",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.tree.DecisionTreeClassifier로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "differential_privacy": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "privacy",
+      "sourceLine": 326,
+      "sourceFingerprint": "2ab324e4e282d060c272de356b8e0b6629d3521f71b06f0eba93c737260caeb3",
+      "algorithm": "differential_privacy",
+      "outputFields": [
+        "value",
+        "epsilonSpent",
+        "mechanism",
+        "compositionManaged"
+      ],
+      "outputDescription": "단일 수치 질의에 Laplace 잡음을 더하고 사용한 epsilon을 반환합니다.",
+      "limitation": "사용자가 민감도와 단일 질의를 확인해야 합니다. 누적 개인정보 예산 관리와 익명성 보증은 제공하지 않습니다.",
+      "scope": "single_scalar_laplace_without_composition_ledger",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "distance_transform": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "distance_transform",
+      "outputFields": [
+        "image"
+      ],
+      "outputDescription": "설정한 영상 연산을 적용한 픽셀·수치 배열을 image에 반환합니다.",
+      "limitation": "작은 입력 영상의 고전적 처리입니다. 객체 의미·이미지 설명을 생성하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "dtw": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "signal",
+      "sourceLine": 266,
+      "sourceFingerprint": "1615690febd3c2c5559678858012184c29b469a33ea65a8ef01afd6dc919f2ee",
+      "algorithm": "dtw",
+      "outputFields": [
+        "distance",
+        "localCost"
+      ],
+      "outputDescription": "두 수치 시퀀스의 동적 시간 왜곡 누적 거리를 반환합니다.",
+      "limitation": "입력 차원·유한 수치·알고리즘별 행렬 조건을 만족해야 합니다. 실패 시 오류를 반환하며 업무 의미를 해석하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "dwt": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "signal",
+      "sourceLine": 266,
+      "sourceFingerprint": "1615690febd3c2c5559678858012184c29b469a33ea65a8ef01afd6dc919f2ee",
+      "algorithm": "dwt",
+      "outputFields": [
+        "approximation",
+        "detail",
+        "wavelet"
+      ],
+      "outputDescription": "지정 웨이블릿의 근사·상세 계수를 반환합니다.",
+      "limitation": "입력 차원·유한 수치·알고리즘별 행렬 조건을 만족해야 합니다. 실패 시 오류를 반환하며 업무 의미를 해석하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "eigen": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "signal",
+      "sourceLine": 266,
+      "sourceFingerprint": "1615690febd3c2c5559678858012184c29b469a33ea65a8ef01afd6dc919f2ee",
+      "algorithm": "eigen",
+      "outputFields": [
+        "values",
+        "vectors"
+      ],
+      "outputDescription": "행렬의 고윳값과 고유벡터를 반환합니다.",
+      "limitation": "입력 차원·유한 수치·알고리즘별 행렬 조건을 만족해야 합니다. 실패 시 오류를 반환하며 업무 의미를 해석하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "elastic_net": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.linear_model.ElasticNet",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.linear_model.ElasticNet로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "embedding": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "language",
+      "sourceLine": 133,
+      "sourceFingerprint": "e9aa0b332838fc530701316521c23d1bb49f6dd376760318b0d69265a41d4f38",
+      "algorithm": "embedding",
+      "outputFields": [
+        "vectors",
+        "modelSource"
+      ],
+      "outputDescription": "로컬 SentenceTransformer 모델로 정규화한 문장 벡터를 반환합니다.",
+      "limitation": "사용자가 준비한 호환 로컬 모델과 패키지가 필요합니다. 모델 다운로드·외부 AI API 호출·모델 품질 검증은 수행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "evals": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "basic",
+      "sourceLine": 210,
+      "sourceFingerprint": "41cbe93944e77be489d9dd20b8c2174d06e7a6cd1fddd386af5e3729638e0989",
+      "algorithm": "provided_case_comparison",
+      "outputFields": [
+        "results",
+        "passed",
+        "total"
+      ],
+      "outputDescription": "예상값과 실제값을 exact·contains·numeric 방식으로 비교한 항목별 통과 여부와 합계를 반환합니다.",
+      "limitation": "모델·테스트 프로그램을 직접 실행하지 않습니다. 비교할 실제값을 앞 단계에서 전달해야 합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "benchmark"
+      ]
+    },
+    "extra_trees": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.ensemble.ExtraTreesClassifier",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.ensemble.ExtraTreesClassifier로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "f1": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.f1_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "f1_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "factor_analysis": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "factor_analysis",
+      "outputFields": [
+        "data",
+        "explainedVarianceRatio"
+      ],
+      "outputDescription": "decomposition.FactorAnalysis로 축소·변환된 수치 배열을 반환합니다.",
+      "limitation": "explainedVarianceRatio는 추정기가 해당 속성을 제공할 때만 포함됩니다. 각 호출에서 새로 적합합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "feature_binarization": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "Binarizer",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "Binarizer의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "feature_discretization": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "KBinsDiscretizer",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "KBinsDiscretizer의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "feature_engineering": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "PolynomialFeatures",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "PolynomialFeatures의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "features"
+      ]
+    },
+    "feature_hashing": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "feature_hashing",
+      "outputFields": [
+        "data",
+        "hash",
+        "nFeatures"
+      ],
+      "outputDescription": "범주 문자열을 SHA-256 기반 부호 해시 벡터로 변환합니다.",
+      "limitation": "해시 충돌이 가능하며 범주의 원래 의미를 복원하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "feature_importance": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "feature_importance",
+      "outputFields": [
+        "mean",
+        "std",
+        "method",
+        "explains"
+      ],
+      "outputDescription": "별도 검증 자료에서 열을 섞었을 때의 예측 점수 변화 평균·표준편차를 반환합니다.",
+      "limitation": "모든 설명 가능한 AI 기법이나 인과적 중요도 분석을 제공하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "xai"
+      ]
+    },
+    "feature_selection": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "VarianceThreshold",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "VarianceThreshold의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "features": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "PolynomialFeatures",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "PolynomialFeatures의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "feature_engineering"
+      ]
+    },
+    "fft": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "signal",
+      "sourceLine": 266,
+      "sourceFingerprint": "1615690febd3c2c5559678858012184c29b469a33ea65a8ef01afd6dc919f2ee",
+      "algorithm": "fft",
+      "outputFields": [
+        "real",
+        "imag",
+        "magnitudes"
+      ],
+      "outputDescription": "주파수 변환의 실수·허수·크기를 반환합니다.",
+      "limitation": "입력 차원·유한 수치·알고리즘별 행렬 조건을 만족해야 합니다. 실패 시 오류를 반환하며 업무 의미를 해석하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "fowlkes_mallows": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.fowlkes_mallows_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "fowlkes_mallows_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "frequency_encoding": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "frequency_encoding",
+      "outputFields": [
+        "data",
+        "categories",
+        "unknownCount"
+      ],
+      "outputDescription": "학습 범주를 기준으로 변환한 값·범주 목록·알 수 없는 범주 수를 반환합니다.",
+      "limitation": "label·ordinal은 정렬한 범주의 순번이며 사용자 순서를 입력받지 않습니다. target은 별도 data 배치가 필요하고 알 수 없는 범주는 전체 평균을 사용합니다. frequency는 빈도, onehot은 지시자 배열입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "gamma_correction": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "gamma_correction",
+      "outputFields": [
+        "image"
+      ],
+      "outputDescription": "설정한 영상 연산을 적용한 픽셀·수치 배열을 image에 반환합니다.",
+      "limitation": "작은 입력 영상의 고전적 처리입니다. 객체 의미·이미지 설명을 생성하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "gaussian_filter": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "gaussian_filter",
+      "outputFields": [
+        "image"
+      ],
+      "outputDescription": "설정한 영상 연산을 적용한 픽셀·수치 배열을 image에 반환합니다.",
+      "limitation": "작은 입력 영상의 고전적 처리입니다. 객체 의미·이미지 설명을 생성하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "gaussian_process": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.gaussian_process.GaussianProcessRegressor",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.gaussian_process.GaussianProcessRegressor로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "glcm": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "features",
+      "sourceLine": 119,
+      "sourceFingerprint": "57d4487fd0d46700a809175c2014aff3ef40109b9a7743a34b0c707dc1311e69",
+      "algorithm": "glcm",
+      "outputFields": [
+        "contrast",
+        "homogeneity",
+        "energy"
+      ],
+      "outputDescription": "회색조 동시발생 행렬의 대비·균질성·에너지를 반환합니다.",
+      "limitation": "회색조 이미지의 제한된 방향·거리 텍스처 특징입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "gmm": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "sklearn.mixture.GaussianMixture",
+      "outputFields": [
+        "labels",
+        "centers"
+      ],
+      "outputDescription": "sklearn.mixture.GaussianMixture로 입력 행의 군집 번호를 반환합니다.",
+      "limitation": "centers는 알고리즘이 cluster_centers_를 제공할 때만 포함됩니다. 군집 번호에 업무 의미나 실제 신원을 부여하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "gradient_boosting": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.ensemble.GradientBoostingClassifier",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.ensemble.GradientBoostingClassifier로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "hamming_loss": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.hamming_loss",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "hamming_loss의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "harris_corners": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "harris_corners",
+      "outputFields": [
+        "image"
+      ],
+      "outputDescription": "설정한 영상 연산을 적용한 픽셀·수치 배열을 image에 반환합니다.",
+      "limitation": "작은 입력 영상의 고전적 처리입니다. 객체 의미·이미지 설명을 생성하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "hdbscan": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "sklearn.cluster.HDBSCAN",
+      "outputFields": [
+        "labels",
+        "centers"
+      ],
+      "outputDescription": "sklearn.cluster.HDBSCAN로 입력 행의 군집 번호를 반환합니다.",
+      "limitation": "centers는 알고리즘이 cluster_centers_를 제공할 때만 포함됩니다. 군집 번호에 업무 의미나 실제 신원을 부여하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "hessenberg": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "signal",
+      "sourceLine": 266,
+      "sourceFingerprint": "1615690febd3c2c5559678858012184c29b469a33ea65a8ef01afd6dc919f2ee",
+      "algorithm": "hessenberg",
+      "outputFields": [
+        "h",
+        "q"
+      ],
+      "outputDescription": "Hessenberg 분해 행렬을 반환합니다.",
+      "limitation": "입력 차원·유한 수치·알고리즘별 행렬 조건을 만족해야 합니다. 실패 시 오류를 반환하며 업무 의미를 해석하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "hierarchical_clustering": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "sklearn.cluster.AgglomerativeClustering",
+      "outputFields": [
+        "labels",
+        "centers"
+      ],
+      "outputDescription": "sklearn.cluster.AgglomerativeClustering로 입력 행의 군집 번호를 반환합니다.",
+      "limitation": "centers는 알고리즘이 cluster_centers_를 제공할 때만 포함됩니다. 군집 번호에 업무 의미나 실제 신원을 부여하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "histogram_equalization": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "histogram_equalization",
+      "outputFields": [
+        "image"
+      ],
+      "outputDescription": "설정한 영상 연산을 적용한 픽셀·수치 배열을 image에 반환합니다.",
+      "limitation": "작은 입력 영상의 고전적 처리입니다. 객체 의미·이미지 설명을 생성하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "hmm": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "hmm",
+      "outputFields": [
+        "states",
+        "logLikelihood",
+        "transitionMatrix"
+      ],
+      "outputDescription": "가우시안 HMM의 예측 상태·로그 가능도·전이행렬을 반환합니다.",
+      "limitation": "숨은 상태에 업무 의미를 자동 부여하지 않으며 호출마다 학습합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "hnsw": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "hnsw",
+      "outputFields": [
+        "indices",
+        "distances",
+        "metric"
+      ],
+      "outputDescription": "로컬 HNSW 색인으로 이웃 번호와 제곱 L2 거리를 반환합니다.",
+      "limitation": "근사 검색이며 영구 색인 저장·접근 제어는 없습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "hog": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "features",
+      "sourceLine": 119,
+      "sourceFingerprint": "57d4487fd0d46700a809175c2014aff3ef40109b9a7743a34b0c707dc1311e69",
+      "algorithm": "hog",
+      "outputFields": [
+        "descriptor"
+      ],
+      "outputDescription": "방향 기울기 히스토그램의 1차원 특징 벡터를 반환합니다.",
+      "limitation": "회색조 영상의 고정 셀·블록 설정이며 객체 분류를 수행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "huber_regression": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.linear_model.HuberRegressor",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.linear_model.HuberRegressor로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "hungarian": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "signal",
+      "sourceLine": 266,
+      "sourceFingerprint": "1615690febd3c2c5559678858012184c29b469a33ea65a8ef01afd6dc919f2ee",
+      "algorithm": "hungarian",
+      "outputFields": [
+        "assignments",
+        "totalCost"
+      ],
+      "outputDescription": "일대일 최소 비용 배정과 총비용을 반환합니다.",
+      "limitation": "입력 차원·유한 수치·알고리즘별 행렬 조건을 만족해야 합니다. 실패 시 오류를 반환하며 업무 의미를 해석하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "hybrid_search": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "search",
+      "sourceLine": 152,
+      "sourceFingerprint": "a0f0318246586c25c0ab4821e55dced0a656541b8ab6d7d4be0f0000bc15a71b",
+      "algorithm": "reciprocal_rank_fusion",
+      "outputFields": [
+        "results"
+      ],
+      "outputDescription": "제공된 순위 목록을 역순위 융합한 ID·점수 목록을 반환합니다.",
+      "limitation": "hybrid_search는 이미 계산한 lexicalResults·vectorResults 두 목록의 RRF입니다. 검색·임베딩을 자동 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "rrf"
+      ]
+    },
+    "ica": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "ica",
+      "outputFields": [
+        "data",
+        "explainedVarianceRatio"
+      ],
+      "outputDescription": "decomposition.FastICA로 축소·변환된 수치 배열을 반환합니다.",
+      "limitation": "explainedVarianceRatio는 추정기가 해당 속성을 제공할 때만 포함됩니다. 각 호출에서 새로 적합합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "image_segmentation": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "otsu_binary_segmentation",
+      "outputFields": [
+        "image",
+        "threshold",
+        "method"
+      ],
+      "outputDescription": "Otsu 임계값과 이진 분할 영상을 반환합니다.",
+      "limitation": "의미 분할·객체 분류 모델이 아닙니다.",
+      "scope": "otsu_binary_segmentation",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "otsu"
+      ]
+    },
+    "imputation": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "SimpleImputer(median)",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "SimpleImputer(median)의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "isolation_forest": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "isolation_forest",
+      "outputFields": [
+        "scores",
+        "predictions",
+        "inlier",
+        "outlier"
+      ],
+      "outputDescription": "격리 숲의 이상 점수와 정상1·이상-1 판정을 반환합니다.",
+      "limitation": "기준 학습 자료가 필요하며 모든 이상을 탐지한다고 보장하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "anomaly_detection"
+      ]
+    },
+    "isomap": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "isomap",
+      "outputFields": [
+        "data",
+        "explainedVarianceRatio"
+      ],
+      "outputDescription": "manifold.Isomap로 축소·변환된 수치 배열을 반환합니다.",
+      "limitation": "explainedVarianceRatio는 추정기가 해당 속성을 제공할 때만 포함됩니다. 각 호출에서 새로 적합합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "ivf_flat": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "ivf_flat",
+      "outputFields": [
+        "indices",
+        "distances",
+        "metric",
+        "approximate"
+      ],
+      "outputDescription": "KMeans 군집을 일부 탐색하여 이웃 번호와 제곱 L2 거리를 반환합니다.",
+      "limitation": "선택한 군집의 후보 수가 적으면 topK보다 적은 결과를 반환할 수 있습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "json_schema": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "basic",
+      "sourceLine": 210,
+      "sourceFingerprint": "41cbe93944e77be489d9dd20b8c2174d06e7a6cd1fddd386af5e3729638e0989",
+      "algorithm": "json_schema",
+      "outputFields": [
+        "valid",
+        "errors",
+        "draft"
+      ],
+      "outputDescription": "JSON 형식 검사 결과와 실패 위치·검사 규칙을 반환합니다.",
+      "limitation": "Draft 2020-12. 외부 참조와 임의 정규식 스키마는 허용하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "jsonl": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "basic",
+      "sourceLine": 210,
+      "sourceFingerprint": "41cbe93944e77be489d9dd20b8c2174d06e7a6cd1fddd386af5e3729638e0989",
+      "algorithm": "jsonl",
+      "outputFields": [
+        "records",
+        "count"
+      ],
+      "outputDescription": "각 행의 JSON을 records로 묶고 빈 행을 제외한 개수를 count로 반환합니다.",
+      "limitation": "최대 2,000행. 잘못된 한 행이 있으면 전체 호출을 거절합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "kalman": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "signal",
+      "sourceLine": 266,
+      "sourceFingerprint": "1615690febd3c2c5559678858012184c29b469a33ea65a8ef01afd6dc919f2ee",
+      "algorithm": "kalman",
+      "outputFields": [
+        "states",
+        "model"
+      ],
+      "outputDescription": "1차원 무작위 보행 모형의 평균·분산 필터 추정값을 반환합니다.",
+      "limitation": "입력 차원·유한 수치·알고리즘별 행렬 조건을 만족해야 합니다. 실패 시 오류를 반환하며 업무 의미를 해석하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "kde": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "kde",
+      "outputFields": [
+        "logDensity"
+      ],
+      "outputDescription": "기준 자료의 커널 밀도로 검사 자료의 로그 밀도를 계산합니다.",
+      "limitation": "밀도 점수만 반환하며 임계값 기반 업무 판정은 별도입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "kernel_pca": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "kernel_pca",
+      "outputFields": [
+        "data",
+        "explainedVarianceRatio"
+      ],
+      "outputDescription": "decomposition.KernelPCA로 축소·변환된 수치 배열을 반환합니다.",
+      "limitation": "explainedVarianceRatio는 추정기가 해당 속성을 제공할 때만 포함됩니다. 각 호출에서 새로 적합합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "kmeans": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "sklearn.cluster.KMeans",
+      "outputFields": [
+        "labels",
+        "centers"
+      ],
+      "outputDescription": "sklearn.cluster.KMeans로 입력 행의 군집 번호를 반환합니다.",
+      "limitation": "centers는 알고리즘이 cluster_centers_를 제공할 때만 포함됩니다. 군집 번호에 업무 의미나 실제 신원을 부여하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "clustering"
+      ]
+    },
+    "knn": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.neighbors.KNeighborsClassifier",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.neighbors.KNeighborsClassifier로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "knowledge_graph": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "basic",
+      "sourceLine": 210,
+      "sourceFingerprint": "41cbe93944e77be489d9dd20b8c2174d06e7a6cd1fddd386af5e3729638e0989",
+      "algorithm": "knowledge_graph",
+      "outputFields": [
+        "nodes",
+        "edges",
+        "method",
+        "extraction"
+      ],
+      "outputDescription": "제공된 관계에서 시작 노드의 연결을 깊이 제한으로 탐색합니다.",
+      "limitation": "관계 자동 추출·그래프 DB·문서별 권한 검사는 이 도구 범위에 포함되지 않습니다.",
+      "scope": "provided_relations_traversal",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "l1_normalization": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "Normalizer(l1)",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "Normalizer(l1)의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "l2_normalization": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "Normalizer(l2)",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "Normalizer(l2)의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "label_encoding": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "sorted_category_indices",
+      "outputFields": [
+        "data",
+        "categories",
+        "unknownCount"
+      ],
+      "outputDescription": "학습 범주를 기준으로 변환한 값·범주 목록·알 수 없는 범주 수를 반환합니다.",
+      "limitation": "label·ordinal은 정렬한 범주의 순번이며 사용자 순서를 입력받지 않습니다. target은 별도 data 배치가 필요하고 알 수 없는 범주는 전체 평균을 사용합니다. frequency는 빈도, onehot은 지시자 배열입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "ordinal_encoding"
+      ]
+    },
+    "laplacian": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "laplacian",
+      "outputFields": [
+        "image"
+      ],
+      "outputDescription": "설정한 영상 연산을 적용한 픽셀·수치 배열을 image에 반환합니다.",
+      "limitation": "작은 입력 영상의 고전적 처리입니다. 객체 의미·이미지 설명을 생성하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "lbp": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "features",
+      "sourceLine": 119,
+      "sourceFingerprint": "57d4487fd0d46700a809175c2014aff3ef40109b9a7743a34b0c707dc1311e69",
+      "algorithm": "lbp",
+      "outputFields": [
+        "image"
+      ],
+      "outputDescription": "국소 이진 패턴 배열을 반환합니다.",
+      "limitation": "회색조 8방향·반경1·uniform 패턴 설정입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "lda": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.discriminant_analysis.LinearDiscriminantAnalysis",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.discriminant_analysis.LinearDiscriminantAnalysis로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "lle": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "lle",
+      "outputFields": [
+        "data",
+        "explainedVarianceRatio"
+      ],
+      "outputDescription": "manifold.LocallyLinearEmbedding로 축소·변환된 수치 배열을 반환합니다.",
+      "limitation": "explainedVarianceRatio는 추정기가 해당 속성을 제공할 때만 포함됩니다. 각 호출에서 새로 적합합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "lof": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "lof",
+      "outputFields": [
+        "scores",
+        "predictions",
+        "inlier",
+        "outlier"
+      ],
+      "outputDescription": "기준 자료로 적합한 LOF의 새 자료 점수와 정상1·이상-1 판정을 반환합니다.",
+      "limitation": "통계적 이상 판정이며 실제 오류·위협의 증명이 아닙니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "logistic_regression": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.linear_model.LogisticRegression",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.linear_model.LogisticRegression로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "classification"
+      ]
+    },
+    "lu": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "signal",
+      "sourceLine": 266,
+      "sourceFingerprint": "1615690febd3c2c5559678858012184c29b469a33ea65a8ef01afd6dc919f2ee",
+      "algorithm": "lu",
+      "outputFields": [
+        "p",
+        "l",
+        "u"
+      ],
+      "outputDescription": "순열·하삼각·상삼각 분해 행렬을 반환합니다.",
+      "limitation": "입력 차원·유한 수치·알고리즘별 행렬 조건을 만족해야 합니다. 실패 시 오류를 반환하며 업무 의미를 해석하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "maxabs_scaling": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "MaxAbsScaler",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "MaxAbsScaler의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "mcc": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.matthews_corrcoef",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "matthews_corrcoef의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "mean_shift": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "sklearn.cluster.MeanShift",
+      "outputFields": [
+        "labels",
+        "centers"
+      ],
+      "outputDescription": "sklearn.cluster.MeanShift로 입력 행의 군집 번호를 반환합니다.",
+      "limitation": "centers는 알고리즘이 cluster_centers_를 제공할 때만 포함됩니다. 군집 번호에 업무 의미나 실제 신원을 부여하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "median_filter": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "median_filter",
+      "outputFields": [
+        "image"
+      ],
+      "outputDescription": "설정한 영상 연산을 적용한 픽셀·수치 배열을 image에 반환합니다.",
+      "limitation": "작은 입력 영상의 고전적 처리입니다. 객체 의미·이미지 설명을 생성하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "minmax_scaling": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "MinMaxScaler",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "MinMaxScaler의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "model_drift": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "data_drift",
+      "outputFields": [
+        "statistic",
+        "pValue",
+        "driftDetected",
+        "method",
+        "scope",
+        "modelQualityMeasured"
+      ],
+      "outputDescription": "제공된 두 수치 분포의 KS 통계·유의확률·변화 판정을 반환합니다.",
+      "limitation": "모델 정답률 하락을 직접 측정하지 않습니다. 비교 자료와 유의수준을 사용자가 정합니다.",
+      "scope": "provided_value_distribution_ks_test",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "data_drift"
+      ]
+    },
+    "moderation": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "privacy",
+      "sourceLine": 326,
+      "sourceFingerprint": "2ab324e4e282d060c272de356b8e0b6629d3521f71b06f0eba93c737260caeb3",
+      "algorithm": "moderation",
+      "outputFields": [
+        "blocked",
+        "ruleIndexes",
+        "method",
+        "completeDetection"
+      ],
+      "outputDescription": "입력에 금지 문구가 포함됐는지와 해당 규칙 번호를 반환합니다.",
+      "limitation": "대소문자를 무시하는 문자열 검사이며 일반 의미 기반 안전성 모델이 아닙니다.",
+      "scope": "configured_phrase_rules",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "morphology": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "morphology",
+      "outputFields": [
+        "image"
+      ],
+      "outputDescription": "설정한 영상 연산을 적용한 픽셀·수치 배열을 image에 반환합니다.",
+      "limitation": "작은 입력 영상의 고전적 처리입니다. 객체 의미·이미지 설명을 생성하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "multimodal": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "execute_media",
+      "sourceLine": 245,
+      "sourceFingerprint": "41e29c848de5a3482d11e5126969e81fdc2ab6f176edf479fd81a8ecad5592e5",
+      "algorithm": "multimodal",
+      "outputFields": [
+        "text",
+        "modelSource"
+      ],
+      "outputDescription": "로컬 Vision2Seq 모델에 영상과 프롬프트를 넣어 텍스트를 반환합니다.",
+      "limitation": "호환 로컬 모델이 필요하며 최대 생성 토큰은 256입니다. 외부 AI 연결이나 모델 자동 다운로드는 수행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "naive_bayes": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.naive_bayes.GaussianNB",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.naive_bayes.GaussianNB로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "nearest_centroid": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.neighbors.NearestCentroid",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.neighbors.NearestCentroid로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "ner": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "language",
+      "sourceLine": 133,
+      "sourceFingerprint": "e9aa0b332838fc530701316521c23d1bb49f6dd376760318b0d69265a41d4f38",
+      "algorithm": "ner",
+      "outputFields": [
+        "entities",
+        "modelSource"
+      ],
+      "outputDescription": "로컬 spaCy 모델의 개체 문자열·라벨·시작·끝 위치를 반환합니다.",
+      "limitation": "사용자가 준비한 호환 로컬 모델과 패키지가 필요합니다. 모델 다운로드·외부 AI API 호출·모델 품질 검증은 수행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "nmf": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "nmf",
+      "outputFields": [
+        "data",
+        "explainedVarianceRatio"
+      ],
+      "outputDescription": "decomposition.NMF로 축소·변환된 수치 배열을 반환합니다.",
+      "limitation": "explainedVarianceRatio는 추정기가 해당 속성을 제공할 때만 포함됩니다. 각 호출에서 새로 적합합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "nms": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "nms",
+      "outputFields": [
+        "indices",
+        "boxes",
+        "scores"
+      ],
+      "outputDescription": "이미 주어진 상자·점수에서 중복 상자를 억제한 결과를 반환합니다.",
+      "limitation": "객체를 직접 검출하지 않습니다. 입력은 x1,y1,x2,y2 좌표입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "object_detection": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "threshold_connected_components",
+      "outputFields": [
+        "labels",
+        "components",
+        "method",
+        "semanticClasses"
+      ],
+      "outputDescription": "임계값 이상의 연결 성분 라벨·상자·면적·중심을 반환합니다.",
+      "limitation": "사람·차량 같은 의미 클래스를 인식하지 않습니다.",
+      "scope": "threshold_components_without_semantic_classes",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "connected_components"
+      ]
+    },
+    "object_tracking": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "object_tracking",
+      "outputFields": [
+        "box",
+        "distance",
+        "method"
+      ],
+      "outputDescription": "하나의 템플릿과 가장 가까운 영상 영역을 반환합니다.",
+      "limitation": "단일 템플릿 매칭이며 다중 객체·장기 추적·재식별을 제공하지 않습니다.",
+      "scope": "single_template_matching",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "ocr": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "execute_media",
+      "sourceLine": 245,
+      "sourceFingerprint": "41e29c848de5a3482d11e5126969e81fdc2ab6f176edf479fd81a8ecad5592e5",
+      "algorithm": "ocr",
+      "outputFields": [
+        "text",
+        "engine"
+      ],
+      "outputDescription": "로컬 Tesseract 엔진의 인식 텍스트를 반환합니다.",
+      "limitation": "Tesseract 실행 파일과 선택 언어 자료가 필요합니다. 표 구조·문서 레이아웃 복원은 제공하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "omp": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.linear_model.OrthogonalMatchingPursuit",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.linear_model.OrthogonalMatchingPursuit로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "onehot_encoding": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "onehot_encoding",
+      "outputFields": [
+        "data",
+        "categories",
+        "unknownCount"
+      ],
+      "outputDescription": "학습 범주를 기준으로 변환한 값·범주 목록·알 수 없는 범주 수를 반환합니다.",
+      "limitation": "label·ordinal은 정렬한 범주의 순번이며 사용자 순서를 입력받지 않습니다. target은 별도 data 배치가 필요하고 알 수 없는 범주는 전체 평균을 사용합니다. frequency는 빈도, onehot은 지시자 배열입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "ood": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "ood",
+      "outputFields": [
+        "scores",
+        "outOfDistribution",
+        "method",
+        "threshold"
+      ],
+      "outputDescription": "열별 z점수 절댓값의 최댓값과 임계값 초과 여부를 반환합니다.",
+      "limitation": "다변량 의미 분석이나 모델 신뢰도 추정이 아닌 수치 기준선입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "optical_flow": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "optical_flow",
+      "outputFields": [
+        "flow",
+        "method"
+      ],
+      "outputDescription": "같은 크기의 이전·현재 영상에서 Farneback 이동 벡터를 계산합니다.",
+      "limitation": "카메라 이동과 실제 객체 이동을 의미적으로 구분하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "optics": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "sklearn.cluster.OPTICS",
+      "outputFields": [
+        "labels",
+        "centers"
+      ],
+      "outputDescription": "sklearn.cluster.OPTICS로 입력 행의 군집 번호를 반환합니다.",
+      "limitation": "centers는 알고리즘이 cluster_centers_를 제공할 때만 포함됩니다. 군집 번호에 업무 의미나 실제 신원을 부여하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "ordinal_encoding": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "sorted_category_indices",
+      "outputFields": [
+        "data",
+        "categories",
+        "unknownCount"
+      ],
+      "outputDescription": "학습 범주를 기준으로 변환한 값·범주 목록·알 수 없는 범주 수를 반환합니다.",
+      "limitation": "label·ordinal은 정렬한 범주의 순번이며 사용자 순서를 입력받지 않습니다. target은 별도 data 배치가 필요하고 알 수 없는 범주는 전체 평균을 사용합니다. frequency는 빈도, onehot은 지시자 배열입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "label_encoding"
+      ]
+    },
+    "otsu": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "otsu_binary_segmentation",
+      "outputFields": [
+        "image",
+        "threshold",
+        "method"
+      ],
+      "outputDescription": "Otsu 임계값과 이진 분할 영상을 반환합니다.",
+      "limitation": "의미 분할·객체 분류 모델이 아닙니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "image_segmentation"
+      ]
+    },
+    "pair_confusion_matrix": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.pair_confusion_matrix",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "pair_confusion_matrix의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "pca": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "pca",
+      "outputFields": [
+        "data",
+        "explainedVarianceRatio"
+      ],
+      "outputDescription": "decomposition.PCA로 축소·변환된 수치 배열을 반환합니다.",
+      "limitation": "explainedVarianceRatio는 추정기가 해당 속성을 제공할 때만 포함됩니다. 각 호출에서 새로 적합합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "perceptron": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.linear_model.Perceptron",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.linear_model.Perceptron로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "pii": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "privacy",
+      "sourceLine": 326,
+      "sourceFingerprint": "2ab324e4e282d060c272de356b8e0b6629d3521f71b06f0eba93c737260caeb3",
+      "algorithm": "pii",
+      "outputFields": [
+        "findings",
+        "sensitive",
+        "method",
+        "completeDetection"
+      ],
+      "outputDescription": "등록된 패턴에 일치한 민감정보 위치와 종류를 반환합니다.",
+      "limitation": "이메일·전화번호·주민번호·비밀 형식 패턴의 부분 탐지이며 완전한 탐지를 보장하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "pls": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.cross_decomposition.PLSRegression",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.cross_decomposition.PLSRegression로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "poisson_regression": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.linear_model.PoissonRegressor",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.linear_model.PoissonRegressor로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "pose_estimation": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "execute_media",
+      "sourceLine": 245,
+      "sourceFingerprint": "41e29c848de5a3482d11e5126969e81fdc2ab6f176edf479fd81a8ecad5592e5",
+      "algorithm": "pose_estimation",
+      "outputFields": [
+        "poses",
+        "modelSource"
+      ],
+      "outputDescription": "로컬 MediaPipe 모델의 자세 점 x·y·z·가시성을 반환합니다.",
+      "limitation": "RGB 영상과 호환 로컬 모델이 필요하며 실제 모델 정확도는 별도 검증 대상입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "power_transform": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "PowerTransformer",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "PowerTransformer의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "precision": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.precision_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "precision_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "product_quantization": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "product_quantization",
+      "outputFields": [
+        "codes",
+        "codebooks",
+        "reconstructed"
+      ],
+      "outputDescription": "부분공간별 KMeans 코드북·코드·복원값을 반환합니다.",
+      "limitation": "호출마다 새로 학습하며 영구 벡터 DB를 만들지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "qda": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.discriminant_analysis.QuadraticDiscriminantAnalysis",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.discriminant_analysis.QuadraticDiscriminantAnalysis로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "qr": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "signal",
+      "sourceLine": 266,
+      "sourceFingerprint": "1615690febd3c2c5559678858012184c29b469a33ea65a8ef01afd6dc919f2ee",
+      "algorithm": "qr",
+      "outputFields": [
+        "q",
+        "r"
+      ],
+      "outputDescription": "직교·상삼각 분해 행렬을 반환합니다.",
+      "limitation": "입력 차원·유한 수치·알고리즘별 행렬 조건을 만족해야 합니다. 실패 시 오류를 반환하며 업무 의미를 해석하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "quantile_regression": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.linear_model.QuantileRegressor",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.linear_model.QuantileRegressor로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "quantile_transform": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "QuantileTransformer",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "QuantileTransformer의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "query_expansion": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "search",
+      "sourceLine": 152,
+      "sourceFingerprint": "a0f0318246586c25c0ab4821e55dced0a656541b8ab6d7d4be0f0000bc15a71b",
+      "algorithm": "query_expansion",
+      "outputFields": [
+        "queries",
+        "method"
+      ],
+      "outputDescription": "명시한 동의어 사전으로 확장한 질문 문자열 목록을 반환합니다.",
+      "limitation": "최대 50개이며 AI가 동의어를 생성하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "random_forest": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.ensemble.RandomForestClassifier",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.ensemble.RandomForestClassifier로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "random_projection": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "random_projection",
+      "outputFields": [
+        "data",
+        "explainedVarianceRatio"
+      ],
+      "outputDescription": "random_projection.GaussianRandomProjection로 축소·변환된 수치 배열을 반환합니다.",
+      "limitation": "explainedVarianceRatio는 추정기가 해당 속성을 제공할 때만 포함됩니다. 각 호출에서 새로 적합합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "ransac": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.linear_model.RANSACRegressor",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.linear_model.RANSACRegressor로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "recall": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.recall_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "recall_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "recommender": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "recommender",
+      "outputFields": [
+        "recommendations",
+        "method",
+        "missingRating"
+      ],
+      "outputDescription": "사용자 평점 코사인 유사도로 미평가 항목의 추천 순위를 계산합니다.",
+      "limitation": "0을 미평가 값으로 취급하며 온라인 학습·후보 DB를 제공하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "redaction": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "privacy",
+      "sourceLine": 326,
+      "sourceFingerprint": "2ab324e4e282d060c272de356b8e0b6629d3521f71b06f0eba93c737260caeb3",
+      "algorithm": "pattern_redaction",
+      "outputFields": [
+        "findings",
+        "sensitive",
+        "method",
+        "completeDetection",
+        "text",
+        "anonymityGuaranteed"
+      ],
+      "outputDescription": "패턴에 일치한 위치를 종류 이름으로 가린 문자열과 탐지 내역을 반환합니다.",
+      "limitation": "익명성을 보장하지 않습니다. 의미·문맥·이미지에 포함된 민감정보는 검사하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "anonymization"
+      ]
+    },
+    "regression": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.linear_model.LinearRegression",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.linear_model.LinearRegression로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "reranking": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "language",
+      "sourceLine": 133,
+      "sourceFingerprint": "e9aa0b332838fc530701316521c23d1bb49f6dd376760318b0d69265a41d4f38",
+      "algorithm": "reranking",
+      "outputFields": [
+        "results",
+        "modelSource"
+      ],
+      "outputDescription": "로컬 CrossEncoder의 질문·문서 점수 순위를 반환합니다.",
+      "limitation": "사용자가 준비한 호환 로컬 모델과 패키지가 필요합니다. 모델 다운로드·외부 AI API 호출·모델 품질 검증은 수행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "robust_scaling": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "RobustScaler",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "RobustScaler의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "roc_auc": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.roc_auc_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "roc_auc_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "rpa": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "browser",
+      "sourceLine": 215,
+      "sourceFingerprint": "d99b01390f88ded8245c11422f9d27b19c109e1135130f3a550f67eacbe96f8d",
+      "algorithm": "isolated_supplied_html",
+      "outputFields": [
+        "observations",
+        "mode",
+        "networkAllowed",
+        "externalApplicationAccess"
+      ],
+      "outputDescription": "제공된 HTML에서 fill·check·read·count 동작의 관측 목록을 반환합니다.",
+      "limitation": "JavaScript·네트워크를 끈 격리 HTML만 처리합니다. 실제 회사 사이트·데스크톱 조작은 등록한 MCP가 필요합니다.",
+      "scope": "isolated_supplied_html_without_network",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "computer_use"
+      ]
+    },
+    "rrf": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "search",
+      "sourceLine": 152,
+      "sourceFingerprint": "a0f0318246586c25c0ab4821e55dced0a656541b8ab6d7d4be0f0000bc15a71b",
+      "algorithm": "reciprocal_rank_fusion",
+      "outputFields": [
+        "results"
+      ],
+      "outputDescription": "제공된 순위 목록을 역순위 융합한 ID·점수 목록을 반환합니다.",
+      "limitation": "hybrid_search는 이미 계산한 lexicalResults·vectorResults 두 목록의 RRF입니다. 검색·임베딩을 자동 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "hybrid_search"
+      ]
+    },
+    "scalar_quantization": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "scalar_quantization",
+      "outputFields": [
+        "codes",
+        "minimum",
+        "scale",
+        "reconstructed",
+        "bits"
+      ],
+      "outputDescription": "열별 최소값과 폭을 이용해 양자화 코드·복원값을 반환합니다.",
+      "limitation": "손실이 있는 수치 압축이며 원래 값을 정확히 복원한다고 보장하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "schur": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "signal",
+      "sourceLine": 266,
+      "sourceFingerprint": "1615690febd3c2c5559678858012184c29b469a33ea65a8ef01afd6dc919f2ee",
+      "algorithm": "schur",
+      "outputFields": [
+        "t",
+        "z"
+      ],
+      "outputDescription": "Schur 분해 행렬을 반환합니다.",
+      "limitation": "입력 차원·유한 수치·알고리즘별 행렬 조건을 만족해야 합니다. 실패 시 오류를 반환하며 업무 의미를 해석하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "semantic_search": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "search",
+      "sourceLine": 152,
+      "sourceFingerprint": "a0f0318246586c25c0ab4821e55dced0a656541b8ab6d7d4be0f0000bc15a71b",
+      "algorithm": "semantic_search",
+      "outputFields": [
+        "results",
+        "method"
+      ],
+      "outputDescription": "제공한 질문 벡터와 문서 벡터의 정확 코사인 검색 순위를 반환합니다.",
+      "limitation": "임베딩 생성·근사 벡터 DB 검색은 별도입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "sentiment": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "language",
+      "sourceLine": 133,
+      "sourceFingerprint": "e9aa0b332838fc530701316521c23d1bb49f6dd376760318b0d69265a41d4f38",
+      "algorithm": "sentiment",
+      "outputFields": [
+        "predictions",
+        "modelSource"
+      ],
+      "outputDescription": "로컬 분류 모델의 라벨·점수 목록을 반환합니다.",
+      "limitation": "사용자가 준비한 호환 로컬 모델과 패키지가 필요합니다. 모델 다운로드·외부 AI API 호출·모델 품질 검증은 수행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "sift": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "sift",
+      "outputFields": [
+        "points",
+        "descriptors"
+      ],
+      "outputDescription": "특징점의 좌표·크기·각도와 기술자 배열을 반환합니다.",
+      "limitation": "특징이 없으면 빈 목록입니다. 객체 신원·대응을 자동 확정하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "silhouette": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.silhouette_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "silhouette_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "sparse_pca": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "sparse_pca",
+      "outputFields": [
+        "data",
+        "explainedVarianceRatio"
+      ],
+      "outputDescription": "decomposition.SparsePCA로 축소·변환된 수치 배열을 반환합니다.",
+      "limitation": "explainedVarianceRatio는 추정기가 해당 속성을 제공할 때만 포함됩니다. 각 호출에서 새로 적합합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "speaker_diarization": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "audio",
+      "sourceLine": 158,
+      "sourceFingerprint": "c24dbdf3deefd858a6e153c518df2d164755132f1be93b4f8250a3a53b3165d2",
+      "algorithm": "speaker_diarization",
+      "outputFields": [
+        "segments",
+        "method",
+        "speakerIdentityVerified"
+      ],
+      "outputDescription": "활성 음향 구간을 특징값으로 군집화한 시간·군집 번호를 반환합니다.",
+      "limitation": "개인 화자 신원 확인·검증된 다화자 분리 모델이 아닌 음향 군집 기준선입니다.",
+      "scope": "acoustic_clustering_without_verified_identity",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "spectral_clustering": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "sklearn.cluster.SpectralClustering",
+      "outputFields": [
+        "labels",
+        "centers"
+      ],
+      "outputDescription": "sklearn.cluster.SpectralClustering로 입력 행의 군집 번호를 반환합니다.",
+      "limitation": "centers는 알고리즘이 cluster_centers_를 제공할 때만 포함됩니다. 군집 번호에 업무 의미나 실제 신원을 부여하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "ssml": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "basic",
+      "sourceLine": 210,
+      "sourceFingerprint": "41cbe93944e77be489d9dd20b8c2174d06e7a6cd1fddd386af5e3729638e0989",
+      "algorithm": "ssml",
+      "outputFields": [
+        "ssml"
+      ],
+      "outputDescription": "입력 문장을 이스케이프하여 말하기 속도가 포함된 SSML 문자열을 만듭니다.",
+      "limitation": "음성을 생성하지 않습니다. 실제 음성 합성은 별도 엔진이 필요합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "standard_scaling": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "StandardScaler",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "StandardScaler의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "stt": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "audio",
+      "sourceLine": 158,
+      "sourceFingerprint": "c24dbdf3deefd858a6e153c518df2d164755132f1be93b4f8250a3a53b3165d2",
+      "algorithm": "stt",
+      "outputFields": [
+        "text",
+        "segments",
+        "language",
+        "modelSource"
+      ],
+      "outputDescription": "로컬 Whisper 모델의 전체 텍스트와 시간 구간을 반환합니다.",
+      "limitation": "16,000Hz 표본 입력과 로컬 모델이 필요합니다. 실제 인식 품질은 별도 검증 대상입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "svd": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "svd",
+      "outputFields": [
+        "data",
+        "explainedVarianceRatio"
+      ],
+      "outputDescription": "decomposition.TruncatedSVD로 축소·변환된 수치 배열을 반환합니다.",
+      "limitation": "explainedVarianceRatio는 추정기가 해당 속성을 제공할 때만 포함됩니다. 각 호출에서 새로 적합합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "svm": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.svm.SVC",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.svm.SVC로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "synthetic_data": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "synthetic_data",
+      "outputFields": [
+        "data",
+        "method",
+        "preservesRealDistribution"
+      ],
+      "outputDescription": "설정한 평균·표준편차의 독립 정규분포 수치 자료를 생성합니다.",
+      "limitation": "원자료의 분포·상관관계나 개인정보보호를 보장하는 합성 데이터 엔진이 아닙니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "target_encoding": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "target_encoding",
+      "outputFields": [
+        "data",
+        "categories",
+        "unknownCount"
+      ],
+      "outputDescription": "학습 범주를 기준으로 변환한 값·범주 목록·알 수 없는 범주 수를 반환합니다.",
+      "limitation": "label·ordinal은 정렬한 범주의 순번이며 사용자 순서를 입력받지 않습니다. target은 별도 data 배치가 필요하고 알 수 없는 범주는 전체 평균을 사용합니다. frequency는 빈도, onehot은 지시자 배열입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "tfidf": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "search",
+      "sourceLine": 152,
+      "sourceFingerprint": "a0f0318246586c25c0ab4821e55dced0a656541b8ab6d7d4be0f0000bc15a71b",
+      "algorithm": "tfidf",
+      "outputFields": [
+        "results",
+        "method"
+      ],
+      "outputDescription": "질문 토큰별 빈도와 역문서 빈도의 합으로 문서 순서를 반환합니다.",
+      "limitation": "정규화된 TF-IDF 벡터의 코사인 계산이 아니라 구현에 정의된 빈도 가중 합입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "theil_sen": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "model",
+      "sourceLine": 103,
+      "sourceFingerprint": "0a879e1a883f325d8fefc19a541885ead4a6904040d62074501b5357bfe70bda",
+      "algorithm": "sklearn.linear_model.TheilSenRegressor",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "trainingRows",
+        "predictions",
+        "probabilities"
+      ],
+      "outputDescription": "sklearn.linear_model.TheilSenRegressor로 학습한 JSON 학습 레시피와, fit 외 동작에서 예측값을 반환합니다.",
+      "limitation": "predict는 state의 학습 자료로 모델을 다시 구성합니다. probabilities는 해당 추정기가 predict_proba를 지원할 때만 반환합니다. 평가 자료로 학습하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "throughput": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "basic",
+      "sourceLine": 210,
+      "sourceFingerprint": "41cbe93944e77be489d9dd20b8c2174d06e7a6cd1fddd386af5e3729638e0989",
+      "algorithm": "throughput",
+      "outputFields": [
+        "itemsPerSecond",
+        "count",
+        "seconds"
+      ],
+      "outputDescription": "사용자가 제공한 건수 ÷ 초로 초당 처리량을 계산합니다.",
+      "limitation": "실행 시간을 직접 측정하거나 부하를 발생시키지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "time_series_forecast": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "time_series_forecast",
+      "outputFields": [
+        "predictions",
+        "method",
+        "confidenceInterval"
+      ],
+      "outputDescription": "일차 선형 추세를 연장한 다음 값들을 반환합니다.",
+      "limitation": "계절성·외생 변수·신뢰구간은 지원하지 않습니다.",
+      "scope": "linear_trend_baseline",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "tokenizer": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "basic",
+      "sourceLine": 210,
+      "sourceFingerprint": "41cbe93944e77be489d9dd20b8c2174d06e7a6cd1fddd386af5e3729638e0989",
+      "algorithm": "local_tokenizer_encode",
+      "outputFields": [
+        "count",
+        "ids",
+        "tokens",
+        "offsets"
+      ],
+      "outputDescription": "로컬 토크나이저로 토큰 수·ID·문자열·원문 위치를 함께 반환합니다.",
+      "limitation": "사용자가 제공한 tokenizer 파일 기준입니다. 선택한 외부 AI 서비스의 실제 과금 토큰 수와 같다고 보장하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "tokens"
+      ]
+    },
+    "tokens": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "basic",
+      "sourceLine": 210,
+      "sourceFingerprint": "41cbe93944e77be489d9dd20b8c2174d06e7a6cd1fddd386af5e3729638e0989",
+      "algorithm": "local_tokenizer_encode",
+      "outputFields": [
+        "count",
+        "ids",
+        "tokens",
+        "offsets"
+      ],
+      "outputDescription": "로컬 토크나이저로 토큰 수·ID·문자열·원문 위치를 함께 반환합니다.",
+      "limitation": "사용자가 제공한 tokenizer 파일 기준입니다. 선택한 외부 AI 서비스의 실제 과금 토큰 수와 같다고 보장하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "tokenizer"
+      ]
+    },
+    "tsne": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "tsne",
+      "outputFields": [
+        "data",
+        "explainedVarianceRatio"
+      ],
+      "outputDescription": "manifold.TSNE로 축소·변환된 수치 배열을 반환합니다.",
+      "limitation": "explainedVarianceRatio는 추정기가 해당 속성을 제공할 때만 포함됩니다. 각 호출에서 새로 적합합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "tts": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "audio",
+      "sourceLine": 158,
+      "sourceFingerprint": "c24dbdf3deefd858a6e153c518df2d164755132f1be93b4f8250a3a53b3165d2",
+      "algorithm": "tts",
+      "outputFields": [
+        "samples",
+        "sampleRate",
+        "modelSource"
+      ],
+      "outputDescription": "로컬 모델의 음성 표본과 표본 속도를 반환합니다.",
+      "limitation": "호환 로컬 모델이 필요하며 출력은 최대 100,000개 표본입니다. 파일 저장·재생은 별도입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "umap": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "cluster_reduce",
+      "sourceLine": 220,
+      "sourceFingerprint": "f3fc1b34ce21500fa984cd009cbd8b7f95b0a5522d8263f8b72e77a6a123f523",
+      "algorithm": "umap",
+      "outputFields": [
+        "data",
+        "explainedVarianceRatio"
+      ],
+      "outputDescription": "umap.UMAP로 축소·변환된 수치 배열을 반환합니다.",
+      "limitation": "explainedVarianceRatio는 추정기가 해당 속성을 제공할 때만 포함됩니다. 각 호출에서 새로 적합합니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "v_measure": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "metric",
+      "sourceLine": 252,
+      "sourceFingerprint": "e620051925c8b26b7184c6cae16051236fd66a783118d642a202dfc8e40155e2",
+      "algorithm": "sklearn.metrics.v_measure_score",
+      "outputFields": [
+        "value",
+        "metric"
+      ],
+      "outputDescription": "v_measure_score의 결과를 value에 반환합니다. 지표에 따라 숫자 또는 행렬입니다.",
+      "limitation": "앞 단계의 실제값·정답 또는 군집 자료가 필요합니다. F1·정밀도·재현율은 macro 평균이며 모델을 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "vad": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "audio",
+      "sourceLine": 158,
+      "sourceFingerprint": "c24dbdf3deefd858a6e153c518df2d164755132f1be93b4f8250a3a53b3165d2",
+      "algorithm": "vad",
+      "outputFields": [
+        "frames",
+        "method",
+        "semanticSpeechDetection"
+      ],
+      "outputDescription": "구간별 RMS 에너지가 임계값을 넘는지와 시간 범위를 반환합니다.",
+      "limitation": "사람의 말을 의미적으로 인식하지 않으며 소음도 활성 구간이 될 수 있습니다.",
+      "scope": "energy_threshold_not_semantic_speech_detection",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "watermark": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "credentials",
+      "sourceLine": 194,
+      "sourceFingerprint": "805945eac5e863bafb5b775c53d6433455f7d800e181893c17170fe7b442fc66",
+      "algorithm": "watermark",
+      "outputFields": [
+        "text",
+        "watermark",
+        "valid",
+        "scheme",
+        "aiAuthorshipProven"
+      ],
+      "outputDescription": "sign은 HMAC 서명·본문을, verify는 제공한 서명의 일치 여부를 반환합니다.",
+      "limitation": "Flowly 전용 텍스트 서명입니다. AI 저작 여부나 일반 워터마크 검출을 증명하지 않습니다.",
+      "scope": "flowly_hmac_mark_not_ai_authorship_detection",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "watershed": {
+      "source": "export-runtime/toolpacks_media.py",
+      "handler": "vision",
+      "sourceLine": 50,
+      "sourceFingerprint": "c64983d9efbadd1603c8234d3ff2f531fb14ea000c421b0f2991b6ab63ce2e25",
+      "algorithm": "watershed",
+      "outputFields": [
+        "markers"
+      ],
+      "outputDescription": "사용자가 제공한 시작 마커로 분할한 라벨 배열을 반환합니다.",
+      "limitation": "마커 생성과 의미 분류는 별도입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "wer": {
+      "source": "export-runtime/flowly_tools.py",
+      "handler": "basic",
+      "sourceLine": 210,
+      "sourceFingerprint": "41cbe93944e77be489d9dd20b8c2174d06e7a6cd1fddd386af5e3729638e0989",
+      "algorithm": "wer",
+      "outputFields": [
+        "distance",
+        "referenceWords",
+        "wer"
+      ],
+      "outputDescription": "공백으로 구분한 단어의 편집 거리와 단어 오류율을 반환합니다.",
+      "limitation": "기준 문장이 필요하며 음성 인식이나 의미 평가를 실행하지 않습니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "whitening": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "preprocess",
+      "sourceLine": 129,
+      "sourceFingerprint": "d14f440048e84411aa060fd8e5872fffb7fde098fb3baebe53e1949d41996768",
+      "algorithm": "PCA(whiten)",
+      "outputFields": [
+        "state",
+        "stateFormat",
+        "data"
+      ],
+      "outputDescription": "PCA(whiten)의 학습 레시피를 반환하고 fit 이외 동작에서 변환 data를 제공합니다.",
+      "limitation": "transform은 저장한 학습 자료로 변환기를 재구성합니다. 특징 선택은 분산 기준, 특징 공학은 제한된 다항 확장, 결측 대체는 중앙값 기준입니다.",
+      "scope": "registered_local_algorithm",
+      "verification": "source_audited",
+      "sharedImplementationIds": []
+    },
+    "xai": {
+      "source": "export-runtime/toolpacks_scientific.py",
+      "handler": "extended",
+      "sourceLine": 315,
+      "sourceFingerprint": "139f138de32ab1512857a81a1f4f3412c2a6e2613bac6e33503c3cae02ac7aed",
+      "algorithm": "feature_importance",
+      "outputFields": [
+        "mean",
+        "std",
+        "method",
+        "explains"
+      ],
+      "outputDescription": "별도 검증 자료에서 열을 섞었을 때의 예측 점수 변화 평균·표준편차를 반환합니다.",
+      "limitation": "모든 설명 가능한 AI 기법이나 인과적 중요도 분석을 제공하지 않습니다.",
+      "scope": "heldout_permutation_importance",
+      "verification": "source_audited",
+      "sharedImplementationIds": [
+        "feature_importance"
+      ]
+    }
+  }
+}

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 내보낸 Python 독립 실행기. TypeScript runtime/engine.ts 계약에 대응하며 미설정이면 가짜 실제 답변을 만들지 않는다.
 """Flowly standalone Python runner. Standard library only; never falls back to fake AI.
 
 Credentials are read only from the explicitly selected .env file. Exported resources
@@ -34,6 +35,7 @@ from contextlib import contextmanager
 from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
 from datetime import datetime, timezone, date
 
+# Node runtime/types.ts 및 policy.ts와 함께 관리하는 기본값/상한. 변경 시 두 실행기의 같은 조건을 확인한다.
 DEFAULT_LIMITS = {"maxTurns": 8, "maxToolCalls": 12, "maxTokens": 8000, "maxDurationMs": 120000}
 DEFAULT_ORCHESTRATION_MAX_ROUNDS = 3
 CEILINGS = {"maxTurns": 20, "maxToolCalls": 20, "maxTokens": 32000, "maxDurationMs": 120000}
@@ -62,6 +64,7 @@ class Paused(Exception):
     """Internal cooperative pause; a sibling awaits a human decision or failed."""
 
 
+# 카탈로그와 계약에 등록된 도구만 노출한다. 모델이 임의 Python 코드 경로를 지정하는 인터페이스가 아니다.
 def python_tool_definition(tool_id):
     catalog_path = Path(__file__).with_name("tool-catalog.json")
     if not catalog_path.is_file() and Path(__file__).parent.name == "export-runtime":
@@ -89,6 +92,7 @@ def selected_completion_operations(definition):
                    if node["type"] == "program" and node.get("program", {}).get("name") == "completion"})
 
 
+# 파일 원문과 로컬 설정을 고정한다. 주석 변경도 fingerprint가 바뀌므로 코드 교체 후 기존 실행 재개와 혼합하지 않는다.
 def python_tools_fingerprint(configuration=None, completion=False):
     root = Path(__file__).resolve().parent
     files = {}
@@ -130,9 +134,10 @@ runpy.run_path(sys.argv[0],run_name='__main__')
 """
 
 
+# 고정 도우미만 격리 프로세스로 실행한다. 입출력 한도와 프로세스 트리 취소를 적용하며 모델/MCP 토큰은 넘기지 않는다.
 def python_tool_worker(payload, timeout_ms=120000, cancelled=None, configuration=None, helper_name="flowly_tools.py"):
     root = Path(__file__).resolve().parent
-    if helper_name not in ("flowly_tools.py", "flowly_completions.py"):
+    if helper_name not in ("flowly_tools.py", "flowly_completions.py", "flowly_skills.py"):
         raise ProtectedFault("등록되지 않은 Python 실행 도우미예요.")
     helper = root / helper_name
     if not helper.is_file():
@@ -142,7 +147,7 @@ def python_tool_worker(payload, timeout_ms=120000, cancelled=None, configuration
         raise Fault("Python 도구 입력이 2MB 한도를 넘었어요.")
     environment = {key: os.environ[key] for key in ("SystemRoot", "WINDIR", "PATH", "TEMP", "TMP", "HOME", "USERPROFILE", "LANG") if key in os.environ}
     environment.update({"PYTHONUTF8": "1", "PYTHONDONTWRITEBYTECODE": "1", "OMP_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1", "MKL_NUM_THREADS": "1"})
-    for key in ("FLOWLY_TOOL_MODELS", "FLOWLY_WATERMARK_KEY", "FLOWLY_CONTENT_CREDENTIALS_KEY"):
+    for key in (() if helper_name == "flowly_skills.py" else ("FLOWLY_TOOL_MODELS", "FLOWLY_WATERMARK_KEY", "FLOWLY_CONTENT_CREDENTIALS_KEY")):
         if (configuration or {}).get(key):
             environment[key] = configuration[key]
     child = subprocess.Popen([sys.executable, "-X", "utf8", "-I", "-c", PYTHON_TOOL_BOOTSTRAP, str(helper)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
@@ -233,6 +238,13 @@ def python_tool_worker(payload, timeout_ms=120000, cancelled=None, configuration
 
 
 def require_python_tools_ready(package, configuration):
+    assert_resource_files(package["resources"])
+    for node in all_nodes(package["workflow"]["definition"]):
+        if node["type"] == "skill" and node.get("skillExecution"):
+            resource = next(item for item in package["resources"] if item["id"] == node["resourceId"])
+            result = python_tool_worker({"operation": "check", "resource": skill_execution_material(resource, node["skillExecution"]["entryId"]), "entryId": node["skillExecution"]["entryId"]}, 10000, helper_name="flowly_skills.py")
+            if result.get("status") != "ready":
+                raise ProtectedFault("Skill 미설정: " + ", ".join(result.get("missing", [])))
     operations = selected_completion_operations(package["workflow"]["definition"])
     if operations:
         result = python_tool_worker({"operation": "check", "operations": operations}, 10000, configuration=configuration, helper_name="flowly_completions.py")
@@ -311,11 +323,13 @@ def finite_number(value):
         return False
 
 
+# JavaScript UTF-16 길이로 두 실행기의 텍스트 한도를 맞춘다. Python len의 코드 포인트 개수와 구분한다.
 def js_length(value):
     """Match the shared TypeScript configuration limits; chunking uses codepoints."""
     return len(value.encode("utf-16-le", errors="surrogatepass")) // 2
 
 
+# 승인/인자/상태 비교용 정규 JSON. 키 순서와 숫자 표현을 바꾸면 기존 해시와 호환되지 않을 수 있다.
 def canonical(value, depth=0) -> str:
     def check(item, level):
         if level > 24:
@@ -366,6 +380,7 @@ def read_path(value, path):
     return copy.deepcopy(value)
 
 
+# 활성 연결과 명시적 바인딩으로 앞 단계 결과를 읽는다. 건너뛴 분기의 출력을 정상 값으로 사용하지 않는다.
 def resolve_input(definition, node, outputs, skipped, branches=None, routes=None):
     result = {}
     for target, binding in node.get("inputBindings", {}).items():
@@ -382,6 +397,7 @@ def resolve_input(definition, node, outputs, skipped, branches=None, routes=None
     return result
 
 
+# 이전 설계 버전의 순차 변환 시작점. 기존 의미를 보존하며 이후 변환과 구조 검증을 거친다.
 def migrate_v1(definition):
     migrated = copy.deepcopy(definition)
     migrated["schemaVersion"] = 2
@@ -528,6 +544,7 @@ def validate_node_config(node):
             raise Fault("검색 개수와 문서 조각 크기를 확인해 주세요.")
 
 
+# 중첩 설계/병렬/검토/입력 대기 설정을 검사한다. 실제 출력과 누적 한도는 Engine에서 확인한다.
 def validate_advanced_config(node):
     mapping = {"parallel": "parallel", "agent_team": "team", "orchestrator": "orchestration", "subworkflow": "subworkflow",
                "loop": "loop", "review": "review", "classify": "classification", "form": "form", "memory": "memory", "error": "error"}
@@ -825,6 +842,15 @@ def retrieval_tokens(query):
     return list(dict.fromkeys(candidates))[:64]
 
 
+def resource_search_text(resource):
+    document = resource.get("details", {}).get("document") if resource["type"] == "document" else None
+    if document and document.get("extractionStatus") == "provided":
+        return document["extractedText"]
+    if document and (document.get("originalFileId") or document.get("extractionStatus") in ("pending_local", "failed")):
+        raise Fault(resource["name"] + ": Document 텍스트 추출이 완료되지 않았어요. 원본을 파일 입력 → 문서 내용 추출로 처리한 뒤 추출 텍스트를 등록하거나 지식 색인의 문서 입력으로 연결해 주세요.")
+    return resource["content"]
+
+
 def retrieve_documents(config, input_data, resources):
     query = input_data.get("text")
     if not isinstance(query, str) or not query.strip():
@@ -837,7 +863,7 @@ def retrieve_documents(config, input_data, resources):
         resource = next((r for r in resources if r["id"] == resource_id), None)
         if not resource or resource["type"] not in ("document", "prompt"):
             raise ProtectedFault("검색할 문서 또는 프롬프트 자료를 찾을 수 없어요.")
-        content = resource["content"]
+        content = resource_search_text(resource)
         for index, start in enumerate(range(0, len(content), step)):
             excerpt = content[start:start + size]
             score = sum(token in excerpt.lower() for token in tokens)
@@ -1014,6 +1040,7 @@ def safe_endpoint(value):
         raise Fault("인증 정보·쿼리·프래그먼트가 없는 HTTP 또는 HTTPS 연결 주소가 필요해요. 내부망 주소와 사용자 지정 포트를 사용할 수 있어요.") from None
 
 
+# 명시한 환경 파일에서만 설정을 읽는다. 상위 프로세스 모델 키를 자동으로 가져오지 않는다.
 def load_env(path: Path):
     """No os.environ fallback, shell expansion, command execution, or key logging."""
     if not path.exists():
@@ -1085,6 +1112,226 @@ def local_secrets(env):
     return [value for key, value in env.items() if value and (key in ("OPENAI_API_KEY", "FLOWLY_TRIGGER_SECRET", "FLOWLY_WATERMARK_KEY", "FLOWLY_CONTENT_CREDENTIALS_KEY") or re.fullmatch(r"FLOWLY_MCP_TOKEN_[A-Z0-9_]+", key))]
 
 
+# format/version과 자료/연결/그래프를 검사한다. 원격 공유 철회가 로컬 자료 사본을 회수하는 기능은 아니다.
+def validate_resource_extensions(resource):
+    # 웹 TypeScript 계약의 로컬 대응 검사. 첨부 바이트 검사는 실행 직전에 별도로 수행한다.
+    def fields(value, allowed, label):
+        if not isinstance(value, dict) or set(value) - set(allowed):
+            raise Fault(label + "에 지원하지 않는 필드가 있어요.")
+
+    def text(value, maximum, label, nonempty=False):
+        if not isinstance(value, str) or js_length(value) > maximum or nonempty and not value.strip():
+            raise Fault(label + "의 텍스트 길이와 값을 확인해 주세요.")
+
+    def date(value):
+        text(value, 80, "자료 날짜", True)
+        try:
+            if not math.isfinite(stamp(value)):
+                raise ValueError()
+        except (ValueError, TypeError, OverflowError):
+            raise Fault("자료 날짜 형식을 확인해 주세요.") from None
+
+    files = resource.get("files", [])
+    if not isinstance(files, list) or len(files) > 40:
+        raise Fault("자료 첨부는 40개까지 사용할 수 있어요.")
+    identifiers, paths = set(), set()
+    for item in files:
+        if not isinstance(item, dict) or set(item) - {"id", "path", "mimeType", "size", "sha256", "createdAt", "exportPath"}:
+            raise Fault("자료 첨부 메타데이터를 확인해 주세요.")
+        path, exported = item.get("path"), item.get("exportPath")
+        prefix = "skills/" if resource.get("type") == "skill" else "inputs/resources/"
+        if not isinstance(path, str) or not isinstance(exported, str) or not exported.startswith(prefix) or not exported.endswith("/" + path):
+            raise Fault("자료 첨부의 내보내기 상대 경로를 확인해 주세요.")
+        text(path, 240, "첨부 경로", True)
+        text(exported, 500, "내보낸 첨부 경로", True)
+        text(item.get("mimeType"), 120, "첨부 MIME", True)
+        date(item.get("createdAt"))
+        for value in (path, exported):
+            if "\\" in value or ":" in value or re.search(r"\.(pem|key)$", value, re.I) or any(ord(char) < 32 or ord(char) == 127 for char in value) or any(part in ("", ".", "..", ".git", "node_modules", "__pycache__") or re.match(r"^\.env(?:\.|$)", part, re.I) or part.endswith((".", " ")) or re.match(r"^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\.|$)", part, re.I) for part in value.split("/")):
+                raise Fault("자료 첨부 경로는 안전한 상대 경로여야 해요.")
+        if not isinstance(item.get("id"), str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,99}", item["id"]) or item["id"] in identifiers or path.lower() in paths or resource.get("type") == "skill" and path.lower() == "skill.md":
+            raise Fault("자료 첨부 ID·경로가 중복되었거나 SKILL.md 정본과 겹쳐요.")
+        if type(item.get("size")) is not int or not 0 <= item["size"] <= 5000000 or not isinstance(item.get("sha256"), str) or not re.fullmatch(r"[a-f0-9]{64}", item["sha256"]):
+            raise Fault("자료 첨부 크기와 해시를 확인해 주세요.")
+        identifiers.add(item["id"])
+        paths.add(path.lower())
+    if sum(item["size"] for item in files) > 20000000:
+        raise Fault("자료 첨부의 전체 크기는 20MB 이하여야 해요.")
+    details = resource.get("details")
+    if details is None:
+        return
+    if not isinstance(details, dict) or type(details.get("version")) is not int or details.get("version") != 1 or set(details) - {"version", "purpose", "whenToUse", "inputExample", "outputExample", "limitations", "verification", "prompt", "skill", "document"} or len(json.dumps(details, ensure_ascii=False, allow_nan=False, separators=(",", ":")).encode("utf-8")) > 1300000:
+        raise Fault("자료 상세 설정 버전과 크기를 확인해 주세요.")
+    for key in ("purpose", "whenToUse", "limitations"):
+        if key in details:
+            text(details[key], 4000, key)
+    for key in ("inputExample", "outputExample"):
+        if key in details:
+            validate_data_json(details[key])
+            if js_length(json.dumps(details[key], ensure_ascii=False, separators=(",", ":"))) > 20000:
+                raise Fault("입출력 예시는 각각 20,000자 이내로 작성해 주세요.")
+    if "verification" in details:
+        value = details["verification"]
+        fields(value, ("kind", "checkedAt", "environment", "scope", "outcome"), "검증 기록")
+        if value.get("kind") != "user_reported" or value.get("outcome") not in ("passed", "failed"):
+            raise Fault("검증 기록은 사용자가 확인한 범위로 구분해 주세요.")
+        date(value.get("checkedAt"))
+        text(value.get("environment"), 500, "검증 환경", True)
+        text(value.get("scope"), 2000, "검증 범위", True)
+    if any(key in details and key != resource.get("type") for key in ("prompt", "skill", "document")):
+        raise Fault("자료 종류와 상세 설정이 맞지 않아요.")
+    prompt = details.get("prompt")
+    if "prompt" in details:
+        fields(prompt, ("variables", "role", "goal", "outputFormat", "sampleInput"), "Prompt")
+        if not isinstance(prompt, dict) or not isinstance(prompt.get("variables"), list) or len(prompt["variables"]) > 40:
+            raise Fault("Prompt 변수 목록을 확인해 주세요.")
+        for key in ("role", "goal", "outputFormat"):
+            if key in prompt:
+                text(prompt[key], 4000, "Prompt " + key)
+        names = set()
+        for variable in prompt["variables"]:
+            fields(variable, ("name", "type", "required", "defaultValue", "description"), "Prompt 변수")
+            if not isinstance(variable, dict) or not safe_field(variable.get("name")) or variable["name"] in names or type(variable.get("required")) is not bool:
+                raise Fault("Prompt 변수 이름·필수 여부를 확인해 주세요.")
+            text(variable["name"], 64, "Prompt 변수 이름", True)
+            if "description" in variable:
+                text(variable["description"], 500, "Prompt 변수 설명")
+            names.add(variable["name"])
+            check_schema({"type": variable.get("type")})
+            if "defaultValue" in variable:
+                validate_data_json(variable["defaultValue"])
+                assert_schema(variable["defaultValue"], {"type": variable["type"]}, "Prompt 기본값")
+        if "sampleInput" in prompt:
+            sample = prompt["sampleInput"]
+            if not isinstance(sample, dict) or set(sample) - names:
+                raise Fault("샘플 입력은 선언한 변수 이름의 객체여야 해요.")
+            validate_data_json(sample)
+            for variable in prompt["variables"]:
+                if variable["name"] in sample:
+                    assert_schema(sample[variable["name"]], {"type": variable["type"]}, "Prompt 샘플")
+    skill = details.get("skill")
+    if "skill" in details:
+        fields(skill, ("kind", "executions"), "Skill")
+        if not isinstance(skill, dict) or skill.get("kind") not in ("instruction", "package", "executable"):
+            raise Fault("Skill 종류를 확인해 주세요.")
+        entries = skill.get("executions", [])
+        if not isinstance(entries, list) or len(entries) > 8 or skill["kind"] == "executable" and not entries or skill["kind"] != "executable" and "executions" in skill:
+            raise Fault("Skill 실행 정의를 확인해 주세요.")
+        names = set()
+        for entry in entries:
+            fields(entry, ("id", "language", "entryFileId", "inputSchema", "outputSchema", "dependencies", "timeoutMs", "maxOutputBytes", "effect"), "Skill 실행")
+            file = next((item for item in files if item["id"] == entry.get("entryFileId")), None)
+            if not file or not file["path"].startswith("scripts/") or entry.get("language") not in ("python", "javascript") or not file["path"].lower().endswith(".py" if entry["language"] == "python" else ".mjs") or not isinstance(entry.get("id"), str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,99}", entry["id"]) or entry["id"] in names:
+                raise Fault("Skill 실행 ID와 scripts/ 진입 파일을 확인해 주세요.")
+            names.add(entry["id"])
+            for key in ("inputSchema", "outputSchema"):
+                check_schema(entry.get(key))
+            if entry["inputSchema"]["type"] != "object" or entry.get("effect") not in ("read", "write"):
+                raise Fault("Skill 입력은 JSON 객체이며 모든 코드 실행에는 승인이 필요해요.")
+            if type(entry.get("timeoutMs")) is not int or not 100 <= entry["timeoutMs"] <= 120000 or type(entry.get("maxOutputBytes")) is not int or not 1 <= entry["maxOutputBytes"] <= 1000000:
+                raise Fault("Skill 실행 시간·출력 한도를 확인해 주세요.")
+            deps = entry.get("dependencies")
+            if not isinstance(deps, list) or len(deps) > 20 or any(not isinstance(dep, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*(?:==[A-Za-z0-9_.+-]+)?", dep) for dep in deps) or entry["language"] == "javascript" and deps:
+                raise Fault("Skill 의존성 형식을 확인해 주세요.")
+    document = details.get("document")
+    if "document" in details:
+        fields(document, ("source", "authoredAt", "sourceUpdatedAt", "originalFileId", "extractionStatus", "extractedText", "extractionError"), "Document")
+        if not isinstance(document, dict) or document.get("extractionStatus") not in ("not_requested", "pending_local", "provided", "failed") or document.get("originalFileId") is not None and document["originalFileId"] not in identifiers:
+            raise Fault("Document 원본·추출 상태를 확인해 주세요.")
+        if "originalFileId" in document and document["originalFileId"] not in identifiers:
+            raise Fault("Document 원본 파일을 현재 첨부에서 선택해 주세요.")
+        for key in ("source", "extractionError"):
+            if key in document:
+                text(document[key], 2000, "Document " + key)
+        for key in ("authoredAt", "sourceUpdatedAt"):
+            if key in document and document[key] != "":
+                date(document[key])
+        if "extractedText" in document and (not isinstance(document["extractedText"], str) or js_length(document["extractedText"]) > 200000) or document["extractionStatus"] == "provided" and not document.get("extractedText", "").strip():
+            raise Fault("Document 추출 텍스트를 확인해 주세요.")
+
+
+def assert_resource_files(resources):
+    root = Path(__file__).resolve().parent
+    for resource in resources:
+        for item in resource.get("files", []):
+            path = root / item["exportPath"]
+            for current in (path, *path.parents):
+                if current == root:
+                    break
+                if current.is_symlink() or getattr(current, "is_junction", lambda: False)():
+                    raise ProtectedFault("자료 첨부에 심볼릭 링크나 정션을 사용할 수 없어요.")
+            if not path.resolve().is_relative_to(root) or not path.is_file() or path.stat().st_size != item["size"] or hashlib.sha256(path.read_bytes()).hexdigest() != item["sha256"]:
+                raise ProtectedFault("자료 원본 파일 위치·크기·해시가 바뀌었어요. 수정본을 새 버전으로 등록해 주세요.")
+
+
+def skill_execution_material(resource, entry_id):
+    entry = next((item for item in resource.get("details", {}).get("skill", {}).get("executions", []) if item["id"] == entry_id), None)
+    if not entry:
+        raise ProtectedFault("선택한 Skill 실행 정의가 없어요.")
+    return {"files": resource.get("files", []), "details": {"skill": {"kind": "executable", "executions": [entry]}}}
+
+
+def skill_definition(node, resources):
+    resource = next((item for item in resources if item["id"] == node.get("resourceId") and item["type"] == "skill"), None)
+    skill = (resource or {}).get("details", {}).get("skill", {})
+    entry = next((item for item in skill.get("executions", []) if item["id"] == node.get("skillExecution", {}).get("entryId")), None)
+    if node["type"] != "skill" or skill.get("kind") != "executable" or not entry:
+        raise ProtectedFault("명시적으로 선택한 Skill 실행 정의가 없어요.")
+    return {"resourceId": resource["id"], "connectionId": "local-skill", "toolName": entry["id"], "name": "skill_" + entry["id"][:58],
+            "description": resource["name"] + ": 선택한 " + entry["language"] + " 코드를 실행합니다. 코드 실행 승인이 필요합니다.",
+            "inputSchema": entry["inputSchema"], "outputSchema": entry["outputSchema"], "outputTarget": "result", "effect": "write", "implementation": "skill",
+            "skillExecutionId": entry["id"], "skillResourceVersion": resource["updatedAt"]}
+
+
+def resource_output(node, resource, input_data):
+    # Node와 같은 단일 치환이다. 입력 문자열 속 지시문/치환 구문을 다시 해석하지 않는다.
+    prompt = resource.get("details", {}).get("prompt") if resource["type"] == "prompt" else None
+    values, bindings, resolved = node.get("resourceValues", {}), node.get("resourceBindings", {}), {}
+    text = resource["content"]
+    if prompt:
+        names = {variable["name"] for variable in prompt["variables"]}
+        if set(values) - names or set(bindings) - names:
+            raise Fault("등록되지 않은 Prompt 변수예요.")
+        for variable in prompt["variables"]:
+            name = variable["name"]
+            if name in bindings:
+                value = read_path(input_data, bindings[name])
+            elif name in values:
+                value = values[name]
+            elif "defaultValue" in variable:
+                value = variable["defaultValue"]
+            elif variable["required"]:
+                raise Fault("Prompt 필수 변수 " + name + " 값을 입력하거나 연결해 주세요.")
+            else:
+                continue
+            assert_schema(value, {"type": variable["type"]}, "Prompt 변수 " + name)
+            resolved[name] = copy.deepcopy(value)
+
+        def replace(match):
+            name = match.group(1)
+            if name not in names:
+                raise Fault("본문의 " + name + " 변수가 정의되지 않았어요.")
+            return "" if name not in resolved else resolved[name] if isinstance(resolved[name], str) else canonical(resolved[name])
+        text = re.sub(r"\{\{\s*([A-Za-z_][A-Za-z0-9_-]{0,79})\s*\}\}", replace, text)
+        if js_length(text) > 200000:
+            raise Fault("치환한 Prompt는 200,000자 이하여야 해요.")
+    elif values or bindings:
+        raise Fault("변수 정의가 없는 자료에는 Prompt 변수를 연결할 수 없어요.")
+    document = resource.get("details", {}).get("document")
+    content = document["extractedText"] if document and document.get("extractionStatus") == "provided" else text
+    files = copy.deepcopy(resource.get("files", []))
+    for file in files:
+        file.pop("createdAt", None)
+    output = {**input_data, "text": str(input_data.get("text", "")) + "\n\n[" + resource["name"] + "]\n" + content,
+              "resource": {"id": resource["id"], "version": resource.get("updatedAt", ""), "type": resource["type"], "content": content, **({"files": files} if files else {})}}
+    if prompt:
+        output["prompt"] = {"text": text, "values": resolved}
+    if document:
+        original = next((file for file in files if file["id"] == document.get("originalFileId")), None)
+        output["document"] = {"extractionStatus": document["extractionStatus"], **({"originalPath": original["exportPath"]} if original else {}), **({"source": document["source"]} if document.get("source") else {})}
+    return output
+
+
 def validate_package(manifest, _depth=0, _count=None):
     if _depth > 3:
         raise Fault("하위 워크플로는 3단계까지만 중첩할 수 있어요.")
@@ -1130,9 +1377,10 @@ def validate_package(manifest, _depth=0, _count=None):
     for resource in resources:
         if not isinstance(resource.get("content"), str) or js_length(resource["content"]) > 200000:
             raise Fault("자료 내용은 200,000자 이하의 텍스트여야 해요.")
+        validate_resource_extensions(resource)
     connection_ids = set()
     for connection in connections:
-        if connection.get("id") == "local-python" or connection.get("resourceId") == "local-python":
+        if connection.get("id") in ("local-python", "local-skill") or connection.get("resourceId") == "local-python":
             raise Fault("Python 도구용 예약 이름은 MCP 연결에서 사용할 수 없어요.")
         if connection.get("ownerId") != owner["userId"] or connection.get("resourceId") not in resource_ids or connection.get("id") in connection_ids:
             raise Fault("사용할 수 없는 서비스 연결이에요.")
@@ -1144,11 +1392,15 @@ def validate_package(manifest, _depth=0, _count=None):
         if connection.get("tokenEnv") and not re.fullmatch(r"FLOWLY_MCP_TOKEN_[A-Z0-9_]+", connection["tokenEnv"]):
             raise Fault("서비스 토큰의 환경 변수 이름이 올바르지 않아요.")
         for tool in connection.get("tools", []):
-            if "implementation" in tool or "pythonToolId" in tool:
+            if any(key in tool for key in ("implementation", "pythonToolId", "skillExecutionId", "skillResourceVersion")):
                 raise Fault("MCP 도구 정의로 Python 실행을 지정할 수 없어요.")
             if tool.get("connectionId") != connection["id"] or tool.get("resourceId") != connection["resourceId"] or tool.get("effect") not in ("read", "write") or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", tool.get("name", "")) or not tool.get("toolName"):
                 raise Fault("허용 도구 설정을 확인해 주세요.")
             check_schema(tool.get("inputSchema"))
+            if "outputSchema" in tool:
+                check_schema(tool["outputSchema"])
+            if tool.get("outputTarget", "structuredContent") not in ("structuredContent", "result"):
+                raise Fault("MCP 출력 검사 대상을 확인해 주세요.")
     for node in nodes:
         kind = node.get("type")
         if _depth > 0 and kind == "trigger":
@@ -1159,6 +1411,16 @@ def validate_package(manifest, _depth=0, _count=None):
             raise Fault("블록의 시작과 끝 연결을 확인해 주세요.")
         if kind in ("resource", "skill") and node.get("resourceId") not in resource_ids:
             raise Fault("블록에서 참조하는 자료가 없어요.")
+        if "resourceValues" in node or "resourceBindings" in node:
+            if kind not in ("resource", "skill") or not isinstance(node.get("resourceValues", {}), dict) or len(node.get("resourceValues", {})) > 40 or not isinstance(node.get("resourceBindings", {}), dict) or len(node.get("resourceBindings", {})) > 40 or any(not safe_field(key) or not safe_path(path) for key, path in node.get("resourceBindings", {}).items()):
+                raise Fault("자료 변수 값과 앞 단계 연결을 확인해 주세요.")
+            validate_data_json(node.get("resourceValues", {}))
+        if "skillExecution" in node:
+            config = node["skillExecution"]
+            if not isinstance(config, dict) or set(config) != {"entryId", "arguments", "bindings"} or not isinstance(config["arguments"], dict) or not isinstance(config["bindings"], dict) or len(config["bindings"]) > 40 or any(not safe_field(key) or not safe_path(path) for key, path in config["bindings"].items()):
+                raise Fault("Skill 실행 입력·연결을 확인해 주세요.")
+            validate_data_json(config["arguments"])
+            skill_definition(node, resources)
         if kind in ("ai", "agent", "orchestrator", "classify") and not str(node.get("prompt", "")).strip():
             raise Fault("AI 작업 지침을 입력해 주세요.")
         if kind == "condition" and "predicate" not in node and not str(node.get("condition", "")).strip():
@@ -1285,6 +1547,7 @@ def durable_path(value):
     return Path(absolute)
 
 
+# 잠금과 임시 파일 교체로 상태를 저장한다. Node와 실행 의미를 맞추되 상태 파일을 언어 간 재개용으로 교환하지 않는다.
 class Store:
     def __init__(self, directory):
         self.directory = durable_path(directory)
@@ -1383,6 +1646,7 @@ class Store:
         with self.mutex:
             self._save(package_hash, run)
 
+    # 동일 스냅샷의 파일 교체만 재시도한다. 기록에 담긴 외부 도구를 다시 호출하지 않는다.
     def replace_snapshot(self, temporary, target):
         # A concurrent status reader on Windows can briefly hold a non-delete-sharing handle.
         for attempt in range(6):
@@ -1555,6 +1819,7 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
         raise Fault("외부 연결의 리디렉션은 허용하지 않아요.")
 
 
+# 외부 전송의 시간/크기/취소 경계. 제공자 오류 본문은 사용자 기록에 그대로 전달하지 않는다.
 class Http:
     def __init__(self, cancellation=None):
         owner = self
@@ -1695,6 +1960,7 @@ class Http:
                 raise Fault("외부 연결 시간 한도에 도달했어요.", "budget_exceeded")
 
 
+# 실제 모델/임베딩/검색/MCP 구현. 테스트는 명시적 대역을 주입하며 미설정의 자동 대체로 사용하지 않는다.
 class Providers:
     def __init__(self, env, connections, http=None, require_model=True, require_key=False):
         if require_model and (not env.get("OPENAI_API_KEY", "").strip() or not env.get("FLOWLY_MODEL", "").strip()):
@@ -1864,9 +2130,10 @@ class Providers:
         return redact(result, self.secrets)
 
 
+# 새 실행은 별도 ID와 빈 체크포인트로 시작하며 기존 승인/호출 기록을 다른 요청에 가져오지 않는다.
 def new_run(package, input_text, initial_input=None, assigned_limits=None):
-    if initial_input is None and (not input_text.strip() or len(input_text) > 12000):
-        raise Fault("실행 입력은 1~12,000자로 작성해 주세요.")
+    if initial_input is None and (not isinstance(input_text, str) or js_length(input_text) > 20000):
+        raise Fault("실행 입력은 20,000자 이하의 텍스트로 작성해 주세요.")
     now = utcnow()
     return {"id": "run_" + uuid.uuid4().hex, "owner": copy.deepcopy(package["owner"]), "mode": "live", "status": "queued",
             "workflow": copy.deepcopy(package["workflow"]), "resources": copy.deepcopy(package["resources"]), "input": input_text,
@@ -1876,6 +2143,7 @@ def new_run(package, input_text, initial_input=None, assigned_limits=None):
                            "toolCalls": 0, "tokens": 0, "activeMs": 0, "nodeUsage": {}, "routes": {}, "groups": {}}}
 
 
+# 자식 상태를 부모 체크포인트에 반영한다. 부모 잠금/예산/실패 조건을 자식에도 적용한다.
 class ChildStore:
     def __init__(self, parent, node, group, index, stop, pause):
         self.parent, self.node, self.group, self.index, self.stop, self.pause = parent, node, group, index, stop, pause
@@ -1931,6 +2199,7 @@ class ChildStore:
             return self.parent.store.vector_cache(key, value)
 
 
+# 노드 스케줄러와 Agent 반복의 중심부. 사람 대기와 활동 시간, 복구 가능한 오류와 정책 오류를 구분한다.
 class Engine:
     def __init__(self, package, package_hash, store, providers, run, memory_workflow_id=None):
         self.package, self.hash, self.store, self.providers, self.run = package, package_hash, store, providers, run
@@ -1984,11 +2253,15 @@ class Engine:
         except Fault as error:
             raise ProtectedFault(str(error), error.code) from None
 
+    # 취소/코드/연결/모델/저장 잠금/남은 시간을 검사한다. 바뀐 설계나 연결에 기존 승인을 재사용하지 않는다.
     def guard(self, node=None):
         if getattr(self.providers, "cancelled", lambda: False)():
             raise ProtectedFault("사용자가 실행을 취소했어요.", "cancelled")
         if self.root_run.get("pythonToolsFingerprint") and self.root_run["pythonToolsFingerprint"] != python_tools_fingerprint(getattr(self.providers, "env", {}), bool(selected_completion_operations(self.root_run["workflow"]["definition"]))):
             raise ProtectedFault("실행을 시작한 Python 도구 코드·계약·로컬 설정이 변경됐어요. 원래 파일과 설정으로 복구하거나 새 실행을 시작해 주세요.")
+        assert_resource_files(self.package["resources"])
+        if self.root_run.get("skillRuntimeFingerprint") and self.root_run["skillRuntimeFingerprint"] != hashlib.sha256(Path(__file__).with_name("flowly_skills.py").read_bytes()).hexdigest():
+            raise ProtectedFault("Skill 감독 코드가 변경됐어요. 원래 파일로 복구하거나 새 실행을 시작해 주세요.")
         if self.root_run.get("connectionTargets") is not None:
             current = {c["id"]: c["endpoint"] for c in self.providers.connections if c.get("endpointEnv")}
             if current != self.root_run["connectionTargets"]:
@@ -2014,8 +2287,11 @@ class Engine:
             raise Fault("실행 시간 한도에 도달했어요.", "budget_exceeded")
         return remaining
 
+    # 현재 블록 선택과 본인 연결에 모두 존재하는 도구만 반환한다. 자료 ID만 일치한다고 실행을 허용하지 않는다.
     def tools(self, node):
         result = []
+        if node["type"] == "skill" and node.get("skillExecution"):
+            result.append(skill_definition(node, self.package["resources"]))
         if node["type"] == "agent":
             result.extend(python_tool_definition(tool_id) for tool_id in node.get("pythonTools", []))
         elif node["type"] == "program" and node.get("program", {}).get("name") == "python_tool":
@@ -2035,7 +2311,7 @@ class Engine:
         if len(tools) != 1:
             raise Fault("도구 실행 블록에는 도구 하나를 선택해 주세요.")
         tool = tools[0]
-        config = node["program"] if node["type"] == "program" else node["tool"]
+        config = node["skillExecution"] if node["type"] == "skill" else node["program"] if node["type"] == "program" else node["tool"]
         args = copy.deepcopy(config["arguments"])
         for name, path in config["bindings"].items():
             args[name] = read_path(input_data, path)
@@ -2076,6 +2352,7 @@ class Engine:
         if not any(m.get("callId") == call["id"] and m["role"] == "tool" for m in self.cp["messages"]):
             self.cp["messages"].append({"role": "tool", "callId": call["id"], "toolName": call["tool"]["name"], "content": canonical(call.get("result", {"error": "도구 결과가 없어요."}))})
 
+    # 쓰기를 공통 잠금으로 직렬화하고 자식 실행의 완료/거절/불명확한 동일 요청을 찾아 중복 부작용을 막는다.
     def dispatch(self, node, call):
         if call["tool"]["effect"] != "write":
             return self._dispatch(node, call)
@@ -2122,6 +2399,7 @@ class Engine:
                                     saved["status"] = "unknown_outcome"
                 raise
 
+    # 호출 의도를 저장한 뒤 전송한다. 읽기는 제한 재시도하지만 쓰기 전송 실패는 unknown_outcome으로 멈춘다.
     def _dispatch(self, node, call):
         if call["status"] in ("completed", "failed", "denied"):
             self.observe(call)
@@ -2173,9 +2451,21 @@ class Engine:
                     raise Fault("승인 기한이 지났어요. 변경 작업을 호출하지 않았어요.", "expired")
                 # Covers initialize + notification + tools/call as one deadline.
                 timeout = min(timeout, approval_remaining)
+            output_schema_failed = False
             try:
-                result = python_tool_worker({"toolId": tool["pythonToolId"], "arguments": copy.deepcopy(call["args"])}, timeout, getattr(self.providers, "cancelled", None), getattr(self.providers, "env", {})) if tool.get("implementation") == "python" else self.providers.tool(tool, copy.deepcopy(call["args"]), f"{self.run['id']}:{call['id']}:{call['argsHash']}", timeout)
+                if tool.get("implementation") == "skill":
+                    resource = next(item for item in self.package["resources"] if item["id"] == tool["resourceId"])
+                    result = python_tool_worker({"operation": "execute", "resource": skill_execution_material(resource, tool["skillExecutionId"]), "entryId": tool["skillExecutionId"], "arguments": copy.deepcopy(call["args"])}, timeout, getattr(self.providers, "cancelled", None), helper_name="flowly_skills.py")
+                else:
+                    result = python_tool_worker({"toolId": tool["pythonToolId"], "arguments": copy.deepcopy(call["args"])}, timeout, getattr(self.providers, "cancelled", None), getattr(self.providers, "env", {})) if tool.get("implementation") == "python" else self.providers.tool(tool, copy.deepcopy(call["args"]), f"{self.run['id']}:{call['id']}:{call['argsHash']}", timeout)
                 canonical(result)
+                if "outputSchema" in tool:
+                    target = result if tool.get("outputTarget") == "result" else result.get("structuredContent") if isinstance(result, dict) else None
+                    try:
+                        assert_schema(target, tool["outputSchema"], "도구 출력")
+                    except Fault:
+                        output_schema_failed = True
+                        raise
             except Exception as error:
                 if tool.get("implementation") == "python" and isinstance(error, Fault):
                     call["status"] = "failed"
@@ -2187,6 +2477,13 @@ class Engine:
                 if tool["effect"] == "write":
                     call["status"] = "unknown_outcome"
                     raise Fault("외부 변경의 성공 여부가 불명확해요. 서비스에서 확인해 주세요. 자동 반복하지 않아요.", "unknown_outcome") from None
+                if output_schema_failed:
+                    call["status"] = "failed"
+                    call["result"] = {"error": str(error)}
+                    self.observe(call)
+                    self.event("tool_failed", str(error), node)
+                    self.persist()
+                    raise
                 if call["attempts"] < max_attempts:
                     call["status"] = "planned"
                     self.event("tool_retry", "읽기 연결을 한 번 더 시도해요.", node)
@@ -2208,6 +2505,7 @@ class Engine:
         self.observe(call)
         self.persist()
 
+    # 저장 대화/도구 관찰에서 재개하며 턴/도구/토큰 예산을 제한한다. 최종 답변의 형식과 필수 도구 결과도 검사한다.
     def agent(self, node, input_data):
         tools = self.tools(node)
         def has_required_tool_result():
@@ -2385,6 +2683,7 @@ class Engine:
             raise error_type(redact(result.get("error", "파일 처리에 실패했어요."), self.secrets) if isinstance(result, dict) else "파일 처리에 실패했어요.")
         return result
 
+    # 보조 모델 호출도 같은 토큰 예약과 시간 제한을 적용해 전체 실행 예산 밖으로 나가지 않게 한다.
     def provider_operation(self, node, kind, payload):
         method = getattr(self.providers, kind, None)
         if method is None:
@@ -2442,7 +2741,7 @@ class Engine:
             resource = next((item for item in self.run["resources"] if item["id"] == ident and item["type"] in ("document", "prompt")), None)
             if not resource:
                 raise ProtectedFault("벡터 검색 자료에 접근할 수 없어요.")
-            docs.append(resource)
+            docs.append({**resource, "content": resource_search_text(resource)})
         model = getattr(self.providers, "embedding_model", "text-embedding-3-small")
         key = digest({"ownerId": self.run["owner"]["userId"], "workflowId": self.memory_workflow_id, "model": model, "chunkSize": config["chunkSize"], "indexKey": config.get("indexKey", "default"),
                       "resources": [{"id": doc["id"], "version": doc.get("updatedAt", ""), "hash": hashlib.sha256(doc["content"].encode("utf-8")).hexdigest()} for doc in docs]})
@@ -2517,6 +2816,7 @@ class Engine:
         self.cp["branches"][node["id"]] = approved
         return {**copy.deepcopy(review.get("output", review["input"])), "approved": approved}
 
+    # 보완 입력 요청을 저장하고 대기한다. 값 제출은 기록 변경이며 다음 노드는 별도 resume에서 실행한다.
     def request_input(self, node, input_data):
         input_data = redact(input_data, self.secrets)
         request = next((item for item in self.run["inputRequests"] if item["nodeId"] == node["id"]), None)
@@ -2625,6 +2925,7 @@ class Engine:
         self.persist()
         return False
 
+    # 병렬/팀/반복/하위 흐름의 자식 결과와 사용량을 부모에 합산한다. 승인/입력 대기도 부모에 전파한다.
     def composite(self, node, input_data):
         kind = node["type"]
         group = self.cp["groups"].get(node["id"])
@@ -2783,6 +3084,7 @@ class Engine:
         spec.loader.exec_module(module)
         return module
 
+    # 등록 템플릿으로 구체화한 배정 계획을 고정한다. 자유로운 코드 생성이나 도구 권한 확장이 아니다.
     def dynamic(self, node, input_data):
         config, helper = node["orchestration"], self.dynamic_helper()
         group = self.cp["groups"].get(node["id"])
@@ -2826,6 +3128,7 @@ class Engine:
             result["completionChecks"] = group["completionChecks"]
         return result
 
+    # 등록 작업의 다음 라운드를 선택한다. 완료 조건 없이 최대 라운드에 도달하면 한도 오류로 종료한다.
     def adaptive(self, node, input_data):
         config = node["orchestration"]
         group = self.cp["groups"].get(node["id"])
@@ -2933,6 +3236,7 @@ class Engine:
         except ValueError as error:
             raise Fault(str(error)) from None
 
+    # 종류별 분기점. 데이터/고정 프로그램/모델/MCP/파일은 각각의 구현 경계를 거친다.
     def process_node(self, node, input_data):
         kind = node["type"]
         if kind == "knowledge":
@@ -3067,11 +3371,12 @@ class Engine:
             # The standalone launcher authenticates receipts and filters event types.
             return {"text": raw, "data": value}
         if kind in ("resource", "skill"):
+            if kind == "skill" and node.get("skillExecution"):
+                return self.direct_tool(node, input_data)
             resource = next((item for item in self.run["resources"] if item["id"] == node["resourceId"]), None)
             if not resource:
                 raise ProtectedFault("자료에 접근할 수 없어요.")
-            return {**input_data, "text": str(input_data.get("text", "")) + "\n\n[" + resource["name"] + "]\n" + resource["content"],
-                    "resource": {"id": resource["id"], "version": resource.get("updatedAt", ""), "type": resource["type"], "content": resource["content"]}}
+            return resource_output(node, resource, input_data)
         if kind == "condition":
             matched = evaluate_predicate(node["predicate"], input_data) if "predicate" in node else str(node["condition"]).lower() in str(input_data.get("text", "")).lower()
             self.cp["branches"][node["id"]] = matched
@@ -3079,6 +3384,7 @@ class Engine:
             return {**input_data, "matched": matched}
         return {**input_data, "text": str(input_data.get("text", ""))} if kind == "output" else input_data
 
+    # 선행 노드가 완료/건너뜀인 다음 노드를 고르고 활성 경로만 실행한다. 정책 오류는 error 분기로 우회하지 않는다.
     def execute(self):
         if self.root_run.get("restoredReadOnly"):
             raise ProtectedFault("외부 변경이 가능한 복원 기록은 조회 전용이에요. 외부 상태를 확인한 뒤 새 실행을 시작하세요.")
@@ -3176,6 +3482,7 @@ def expire_decision(path, message):
     raise Fault(message, "expired")
 
 
+# 승인 대상/기한/소유자/인자 해시를 확인하고 결정만 변경한다. 실제 쓰기는 이후 재개에서 수행한다.
 def decide(run, approval_id, decision, owner_id):
     if run.get("restoredReadOnly"):
         raise Fault("외부 변경이 가능한 복원 기록은 조회 전용이에요. 새 실행을 시작하세요.")
@@ -3236,6 +3543,7 @@ def decide_review(run, review_id, decision, owner_id, edited=None):
                              "message": "검토 결과를 수락했어요." if desired == "accepted" else "검토 결과를 거절했어요."})
 
 
+# 중첩 요청의 조상과 입력/설정 해시를 확인한다. 같은 값 재제출은 허용하지만 제출 완료된 값을 교체하지 않는다.
 def submit_input(run, request_id, owner_id, values):
     if run.get("restoredReadOnly"):
         raise Fault("외부 변경이 가능한 복원 기록은 조회 전용이에요. 새 실행을 시작하세요.")
@@ -3316,12 +3624,23 @@ def environment_for(package, path):
     return load_env(Path(path))
 
 
+# 패키지/환경/의존성의 로컬 검사. ready는 실제 OpenAI/MCP 응답 성공을 확인한 상태가 아니다.
 def check_project(package_path, env_path):
     """Offline structural/configuration readiness only; never constructs a provider."""
     result = {"status": "invalid", "language": "python", "counts": {"nodes": 0, "resources": 0, "tools": 0},
               "requiresModel": False, "missingEnv": [], "errors": []}
     try:
         package, _ = load_package(package_path)
+        try:
+            assert_resource_files(package["resources"])
+            for node in all_nodes(package["workflow"]["definition"]):
+                if node["type"] == "skill" and node.get("skillExecution"):
+                    resource = next(item for item in package["resources"] if item["id"] == node["resourceId"])
+                    checked = python_tool_worker({"operation": "check", "resource": skill_execution_material(resource, node["skillExecution"]["entryId"]), "entryId": node["skillExecution"]["entryId"]}, 10000, helper_name="flowly_skills.py")
+                    if checked.get("status") != "ready":
+                        result["errors"].append("Skill 미설정: " + ", ".join(checked.get("missing", [])))
+        except (Fault, OSError) as error:
+            result["errors"].append(str(error))
         result["counts"] = {"nodes": len(list(all_nodes(package["workflow"]["definition"]))), "resources": len(package["resources"]),
                             "tools": sum(len(c.get("tools", [])) for c in package["connections"]) + len(selected_python_tools(package["workflow"]["definition"]))}
         result["requiresModel"] = requires_model(package)
@@ -3457,6 +3776,7 @@ def write_report(path, run):
     return str(Path(path).resolve())
 
 
+# 상태 조회/결정 저장/재개/새 실행을 구분한다. 외부 오류 본문이나 환경 비밀 값을 그대로 출력하지 않는다.
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Flowly Python 실행기 · 사용자 환경에서 실제 AI를 호출합니다.")
     parser.add_argument("command", choices=("run", "status", "resume", "approve", "deny", "accept", "reject", "submit", "unlock", "check", "report"))
@@ -3538,6 +3858,8 @@ def main(argv=None):
                 else:
                     input_text = args.input or ""
                 run = new_run(package, redact(input_text, store.secrets))
+                if any(node.get("skillExecution") for node in all_nodes(package["workflow"]["definition"])):
+                    run["skillRuntimeFingerprint"] = hashlib.sha256(Path(__file__).with_name("flowly_skills.py").read_bytes()).hexdigest()
                 if any(c.get("endpointEnv") for c in used_connections(package)):
                     run["connectionTargets"] = {c["id"]: c["endpoint"] for c in provider.connections if c.get("endpointEnv")}
                 run["provider"] = {**({"model": env["FLOWLY_MODEL"].strip()} if requires_response_model(package) else {}),
@@ -3548,6 +3870,9 @@ def main(argv=None):
                 Engine(package, package_hash, store, provider, run).execute()
             else:
                 run = store.load(package_hash, args.run_id)
+                assert_resource_files(package["resources"])
+                if any(node.get("skillExecution") for node in all_nodes(package["workflow"]["definition"])) and run.get("skillRuntimeFingerprint") != hashlib.sha256(Path(__file__).with_name("flowly_skills.py").read_bytes()).hexdigest():
+                    raise ProtectedFault("Skill 감독 코드가 변경됐어요. 원래 파일로 복구하거나 새 실행을 시작해 주세요.")
                 if selected_python_tools(package["workflow"]["definition"]) or selected_completion_operations(package["workflow"]["definition"]):
                     tool_config = load_env(Path(args.env)) if Path(args.env).exists() else {}
                     if run.get("pythonToolsFingerprint") != python_tools_fingerprint(tool_config, bool(selected_completion_operations(package["workflow"]["definition"]))):

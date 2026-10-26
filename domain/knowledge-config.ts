@@ -1,3 +1,7 @@
+/**
+ * RAG 색인의 준비·평가·발행·조회·철회·복구·상태 확인에 대한 선언 계약.
+ * 여기서는 허용 자료와 입력 경로를 검증하며 색인 파일을 읽거나 쓰지 않는다.
+ */
 import { safeDataPath } from "./node-config";
 
 export type KnowledgeConfig = {
@@ -15,6 +19,9 @@ export type KnowledgeConfig = {
   evaluation?: { query: string; resourceId: string }[];
 };
 
+/**
+ * 자료 목록과 작업별 필수 버전 경로·평가 질문을 확인한다. 자료 ID가 목록에 있다는 사실만으로 서버 사용 권한을 부여하지 않는다.
+ */
 export function parseKnowledgeConfig(value: unknown): KnowledgeConfig {
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("지식 색인 설정은 객체여야 해요.");
   const c = value as Record<string, unknown>;

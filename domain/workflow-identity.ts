@@ -1,3 +1,7 @@
+/**
+ * 예제 중복 감사를 위한 그래프 정규화. 이름·프롬프트·좌표 변경만으로 새 워크플로로 세지 않는다.
+ * 구조(topology)와 실행 설정(execution)을 따로 비교하며 AI 답변의 동등성이나 업무 품질을 증명하는 검사는 아니다.
+ */
 import { isStartNode } from "./advanced-config";
 import type { Definition } from "../app/lib/model";
 
@@ -45,6 +49,9 @@ function without(value: object, names: string[]): Record<string, unknown> {
   return Object.fromEntries(Object.entries(value).filter(([key]) => !names.includes(key)));
 }
 
+/**
+ * 정점 분할과 제한된 개별화를 거쳐 방향·라벨이 있는 전체 그래프의 표준 표현을 찾는다. 탐색 예산이 부족하면 추측하지 않고 거절한다.
+ */
 function canonicalGraph(graph: Graph, budget: Budget): string {
   const incoming = graph.labels.map(() => [] as { vertex: number; label: string }[]);
   const outgoing = graph.labels.map(() => [] as { vertex: number; label: string }[]);
@@ -191,11 +198,17 @@ function identify(definition: Definition, budget: Budget, depth: number): Workfl
   } finally { budget.ancestors.delete(definition); }
 }
 
+/**
+ * 검증된 설계의 구조와 실행 서명을 계산한다. 서명에는 설정 값이 들어갈 수 있으므로 공개 로그나 권한 토큰으로 사용하지 않는다.
+ */
 export function workflowIdentity(definition: Definition): WorkflowIdentity {
   return identify(definition, { nodes: 0, states: 0, ancestors: new Set() }, 0);
 }
 
 /** Includes singleton groups; entry IDs are labels only and must be unique. */
+/**
+ * 같은 구조/실행 서명을 가진 예제를 묶어 중복 감사에 필요한 그룹을 만든다.
+ */
 export function groupWorkflowIdentities(entries: { id: string; definition: Definition }[]): { topology: string; execution: string; ids: string[] }[] {
   const ids = new Set<string>();
   const groups = new Map<string, { topology: string; execution: string; ids: string[] }>();

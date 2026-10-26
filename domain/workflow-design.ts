@@ -1,3 +1,7 @@
+/**
+ * 작성된 예제 설계와 검증 시나리오의 공통 타입.
+ * 설계 정의·샘플 입력·검증 기대값의 관계는 workflow-designs 아래의 실제 작성 파일에서 확인한다.
+ */
 import type { Definition, Resource } from "../app/lib/model";
 
 /** An independently authored executable graph, never a prompt-only case variant. */

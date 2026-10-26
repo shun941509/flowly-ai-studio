@@ -1,3 +1,4 @@
+// Node 패키지의 오프라인 사전 검사와 저장 기록 HTML 보고서 생성. ready는 로컬 설정 준비이며 실제 외부 연결 성공을 뜻하지 않는다.
 import { isStartNode } from "../domain/advanced-config";
 import { open } from "node:fs/promises";
 import { extname, resolve } from "node:path";
@@ -27,6 +28,7 @@ export function selectedConnections(manifest: ExportManifest) {
   const selected = allNodes(manifest.workflow.definition).filter(node => ["agent", "tool", "compensate"].includes(node.type) || node.type === "memory" && node.memory?.backend === "mcp").flatMap(node => node.allowedTools || []);
   return manifest.connections.filter(connection => selected.some(tool => tool.connectionId === connection.id && tool.resourceId === connection.resourceId));
 }
+// 실제 사용하는 중첩 노드와 연결에서 필요한 변수 이름만 반환한다. 비밀 값 자체는 진단 결과에 담지 않는다.
 export function missingEnvironment(manifest: ExportManifest, env: Record<string, string | undefined>): string[] {
   const names = modelRequired(manifest) ? ["OPENAI_API_KEY"] : [];
   if (allNodes(manifest.workflow.definition).some(nodeRequiresResponseModel)) names.push("FLOWLY_MODEL");
@@ -38,6 +40,7 @@ export function missingEnvironment(manifest: ExportManifest, env: Record<string,
 }
 
 /** Structural and local-setting checks only. Never constructs a provider or sends a request. */
+// 제공자 어댑터를 만들지 않고 구조·자료·설정만 검사한다. 네트워크 연결 점검은 로컬 운영 기능의 별도 동작이다.
 export function checkPackage(value: unknown, env: Record<string, string | undefined> = {}, environmentError?: string): CheckResult {
   const result: CheckResult = { status: "invalid", language: "node", counts: { nodes: 0, resources: 0, tools: 0 }, requiresModel: false, missingEnv: [], errors: [] };
   let manifest: ExportManifest;
@@ -73,6 +76,7 @@ const detail = (label: string, value: unknown) => `<details><summary>${escapeHtm
 const number = (value: number | undefined) => Number.isFinite(value) ? value!.toLocaleString("ko-KR") : "미기록";
 const statusNames: Record<string, string> = { queued: "대기", running: "실행 중", waiting_approval: "승인 대기", waiting_review: "검토 대기", waiting_input: "입력 대기", submitted: "입력 제출", succeeded: "완료", failed: "실패", cancelled: "취소", expired: "만료", budget_exceeded: "한도 초과", unknown_outcome: "결과 확인 필요", pending: "결정 대기", approved: "승인", denied: "거절", accepted: "검토 수락", rejected: "검토 거절", planned: "호출 준비", dispatching: "호출 중", completed: "완료", skipped: "건너뜀" };
 const state = (value: string) => escapeHtml(statusNames[value] || value);
+// 저장된 아바타 출력도 외부 입력으로 취급하여 허용한 SVG 형식만 표시한다.
 function avatarPreview(output: Record<string, Json> | undefined): string {
   const value = output?.data;
   if (!value || typeof value !== "object" || Array.isArray(value)) return "";

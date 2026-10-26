@@ -1,0 +1,6156 @@
+{
+  "version": 1,
+  "fingerprint": "85066862b298fe72e8146253d463d7cb004c69ee99fddf718884ca592e7358d6",
+  "scope": "explicit workflow branch/data/state scenarios on actual exported CLIs; test-only provider responses, not live model quality",
+  "projects": [
+    {
+      "id": "completed-008-bounded-followup",
+      "designHash": "1b383c0b38a0cb9d4401dde8c8c852cafa24314c6c14f158a8b2fe37d6ef5b5d",
+      "executionHash": "9b9178f68d803fe0dfa44827a498a356fc77191f3f18f6c001be82a9d3a228a4",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "b1e4af6ed938f365cb8aa310e79c81784f537585347462f924c1eda93d341018",
+        "python": "ef90b757dab48919245408843a91324944d0a756f5985af23d32e56b42d34a9b"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 참조에서 추가 질문을 만들어 근거 계보 보존",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C008_QUESTION:": 1,
+            "C008_ANSWER:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "search_relations": 2
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "이미 방문한 대상은 반복 조회 전에 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C008_QUESTION:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "search_relations": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "미해결 참조가 없으면 추가 조회 생략",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C008_QUESTION:": 1,
+            "C008_DIRECT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "search_relations": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "실제 참조에서 추가 질문을 만들어 근거 계보 보존",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C008_QUESTION:": 1,
+            "C008_ANSWER:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "search_relations": 2
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "이미 방문한 대상은 반복 조회 전에 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C008_QUESTION:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "search_relations": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "미해결 참조가 없으면 추가 조회 생략",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C008_QUESTION:": 1,
+            "C008_DIRECT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "search_relations": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-009-applicable-policy",
+      "designHash": "9322b91fdc7bb25956d71c113dc444c70b14246705d1d8a32daa742a47c7789b",
+      "executionHash": "61e531b1a3d15a09dcd24928b45677b88532509dcd3240d269f68e5a8e5bf467",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "3375abb89233c592b38a7fef13cd0e1ca1d583bd64aa6ca7420f8b72e73e2006",
+        "python": "d13490f4c26402c4717531274114e612e9b44126fc4072ed1d8b1be112c9301f"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "권위가 높아도 만료된 규정은 배제",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C009_EXPLAIN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "동급 충돌은 보완 입력 후 현재 후보 재검사",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C009_SELECTED:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "보완 입력으로 과거 규정을 되살릴 수 없음",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "권위가 높아도 만료된 규정은 배제",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C009_EXPLAIN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "동급 충돌은 보완 입력 후 현재 후보 재검사",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C009_SELECTED:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "보완 입력으로 과거 규정을 되살릴 수 없음",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-010-policy-change-impact",
+      "designHash": "d5b218d8e9bdc76f20243aa7a7f9eaf062ad1f64e6b71d1b735405c8e7e249dc",
+      "executionHash": "c2cbe3acf99a8dcc31689749f685bac1c77f81e67128efacfb6815932847d70b",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "42eb1b79bcbabf37a9a4866234bc531a16c369f0965c7682c3b54cfda786819e",
+        "python": "91076e5a2b20624f8e093a769f3f6dbc803c83a14b2167b47f8a364f5228b117"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 30일→60일 변경을 등록 업무와 연결",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C010_IMPACT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_policy_task_registry": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "변경 없음은 외부 조회·판단 생략",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "사람 거절 시 영향 보고 발행 안 함",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C010_IMPACT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_policy_task_registry": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "실제 30일→60일 변경을 등록 업무와 연결",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C010_IMPACT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_policy_task_registry": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "변경 없음은 외부 조회·판단 생략",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "사람 거절 시 영향 보고 발행 안 함",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C010_IMPACT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_policy_task_registry": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-011-reviewed-index-intake",
+      "designHash": "31c12ba7014b8bab66772da757208580412932c31e3481881207227b6eb00574",
+      "executionHash": "29279ff0932fc9b7c3357ca54fa7ab0ace98a2049ee8cb61c51d286645119e81",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "bed77215dc296145a35b4150dc6b80811cf365e86336ac89d05e0f6e6959ef53",
+        "python": "628a28c9137e6ba2cff48f6779236ccaf76f25ca439b33348ad88fa62658fa43"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "허가 자료만 반입하고 권한 밖 자료 격리",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C011_ASSESS:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_material_permissions": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "같은 문서 해시는 다음 실행에서 재색인하지 않음",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_material_permissions": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "다른 자료 추가 반입도 기존 원장과 검색 원문을 보존",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C011_ASSESS:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_material_permissions": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "다른 자료 반입 뒤 최초 자료 재요청도 중복으로 건너뜀",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_material_permissions": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "권한 검사에서 모두 거절하면 색인·모델 호출 없음",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_material_permissions": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "반입 검토 거절은 준비 세대조차 만들지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C011_ASSESS:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_material_permissions": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "허가 자료만 반입하고 권한 밖 자료 격리",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C011_ASSESS:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_material_permissions": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "같은 문서 해시는 다음 실행에서 재색인하지 않음",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_material_permissions": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "다른 자료 추가 반입도 기존 원장과 검색 원문을 보존",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C011_ASSESS:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_material_permissions": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "다른 자료 반입 뒤 최초 자료 재요청도 중복으로 건너뜀",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_material_permissions": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "권한 검사에서 모두 거절하면 색인·모델 호출 없음",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_material_permissions": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "반입 검토 거절은 준비 세대조차 만들지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C011_ASSESS:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_material_permissions": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-012-revocation-recheck",
+      "designHash": "afec729d2619a48c88ac919c297a66f83e08e298145925a5fae2b5147255bc63",
+      "executionHash": "b748eda3507b075f256f1702e230f7bc32350bd72f1c7b51fc673808c8549a4c",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "c1fa3984a77aa77cd170ee31b43b6df1a472b791dc81c08254456cf60cfe186f",
+        "python": "669e1c6b9b89549d27d9e751dff4f6cdb1f19f19e3ab6f1b977bf51c6903ccb0"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "사람 검토 후 현재 권한을 재검사하고 공개",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C012_DRAFT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "authorize_current_material": 2,
+            "read_authorized_material": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "검토 중 공유 철회는 최종 답변 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C012_DRAFT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "authorize_current_material": 2,
+            "read_authorized_material": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "권한 검사 연결 실패는 실패로 중단",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "authorize_current_material": 2
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "사람 검토 후 현재 권한을 재검사하고 공개",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C012_DRAFT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "authorize_current_material": 2,
+            "read_authorized_material": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "검토 중 공유 철회는 최종 답변 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C012_DRAFT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "authorize_current_material": 2,
+            "read_authorized_material": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "권한 검사 연결 실패는 실패로 중단",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "authorize_current_material": 2
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-013-contracted-plan",
+      "designHash": "faa7d423b294d408cf2fc5c8c03bf480ac0058892245562d3db5c379172f108f",
+      "executionHash": "ae1852b5aeb70b1b59471854d6bdf2edc4c82172bd4573c16e2424a64f050e47",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "15a1e1b0d7d231b46acacf5ff15e25b65bd345651e5942ff639dd9e6aadfde70",
+        "python": "c27173a885e2c84b120791a46c18e2251dc7e4ff8957827031302ff9de3e3725"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "목표 보완 뒤 계획 의존성과 완료 결과 저장",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "C013_PLAN:": 1,
+            "C013_ANALYZE:": 1,
+            "C013_VERIFY:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "독립 검증 실패는 완료 상태 금지",
+          "status": "failed",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "C013_PLAN:": 1,
+            "C013_ANALYZE:": 1,
+            "C013_VERIFY:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "목표 보완 뒤 계획 의존성과 완료 결과 저장",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "C013_PLAN:": 1,
+            "C013_ANALYZE:": 1,
+            "C013_VERIFY:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "독립 검증 실패는 완료 상태 금지",
+          "status": "failed",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "C013_PLAN:": 1,
+            "C013_ANALYZE:": 1,
+            "C013_VERIFY:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-015-same-criteria-candidates",
+      "designHash": "f786c572f73a0759656b0e5e5cc092301f9f310960f92fbd26aa63772d8ce9dd",
+      "executionHash": "1acd915cedb963110736568035b8b511f89421b2d5e55c857ee82276b8ea2989",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "3fcd2617f91e0aeeff0849880c08f9d5c39b22aaede99fb29cc666751d9e6b51",
+        "python": "4bd2a4f99348775051d941f3933ceb29c395df21cfa72091d07cf73c6a62d243"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "독립 후보 A 효용8이 B 효용7보다 높음",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C015_A:": 1,
+            "C015_B:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "동일 점수는 자동 확정하지 않고 검토",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C015_A:": 1,
+            "C015_B:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "독립 후보 A 효용8이 B 효용7보다 높음",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C015_A:": 1,
+            "C015_B:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "동일 점수는 자동 확정하지 않고 검토",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C015_A:": 1,
+            "C015_B:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-016-issue-evidence-debate",
+      "designHash": "904652a6264a03a4433515518ac5e4d710ae6735b57517a16161db2063ade1df",
+      "executionHash": "b70d7276436d9dc9a702e1f0c9281bd13d7da147b551d4ddc3e355face7f19c7",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "1c268dbfb8eca821dc7d1e234a1ca277e2348b8a173fbe6e5bca1be5c5078a9e",
+        "python": "ba10d1af26ab67739ae92c039dcfd252763d11a4ae2f7bb1e3ec3358b1242aec"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "쟁점 ID와 양측 인용을 대조한 뒤 독립 판단",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "C016_CLAIM:": 1,
+            "C016_REBUT:": 1,
+            "C016_JUDGE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "없는 인용은 판정 대신 미해결 검토",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C016_CLAIM:": 1,
+            "C016_REBUT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "쟁점 ID와 양측 인용을 대조한 뒤 독립 판단",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "C016_CLAIM:": 1,
+            "C016_REBUT:": 1,
+            "C016_JUDGE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "없는 인용은 판정 대신 미해결 검토",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C016_CLAIM:": 1,
+            "C016_REBUT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-018-edited-version-decision",
+      "designHash": "49ef6b16fd01b4b6e65b098f380fd76ef1068e9318a84ab4fde74f933df9e078",
+      "executionHash": "b06aba2f1c333ca9361f12f95b2c7fa4e25b5244a7479d1312481752209aea07",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "51d8d5fa3b2f6668ed11ae9fc3be05b8492a64431df3f602bae62add5abc9c2c",
+        "python": "8bac921407b10a4bb2ba12d4db19cf36a927ade077e8ac603ceecb50816f87d8"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "초안 검토에서 대기하고 모델 판단 전에는 완료 아님",
+          "status": "waiting_review",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C018_DRAFT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "편집한 현재 버전과 보완 조건으로 판단하고 최종 검토",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C018_DRAFT:": 1,
+            "C018_DECIDE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "옛 버전에 묶인 결정은 보완 재개 뒤 거절",
+          "status": "failed",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C018_DRAFT:": 1,
+            "C018_DECIDE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "초안 검토에서 대기하고 모델 판단 전에는 완료 아님",
+          "status": "waiting_review",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C018_DRAFT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "편집한 현재 버전과 보완 조건으로 판단하고 최종 검토",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C018_DRAFT:": 1,
+            "C018_DECIDE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "옛 버전에 묶인 결정은 보완 재개 뒤 거절",
+          "status": "failed",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C018_DRAFT:": 1,
+            "C018_DECIDE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-020-runtime-budget-plan",
+      "designHash": "1480c561d07ba56a2db9057c45ea6e67cb32a66d9fa58b1d526b32be4d5da3cb",
+      "executionHash": "4740f5c4858332fdee95b02237303d7a9b9f3e7ded374e6f8561a51594459ced",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "462791b1916e9e8d0123370e23188f0fd2a44ef22d020f41b60611ea4638f1c5",
+        "python": "bd2825864b6beee73eed39e88e288cfc4ab1b734ab2f11f57e7b1bf7f933b982"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 한도보다 큰 선택 작업을 생략하고 필수 범위만 실행",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C020_ESSENTIAL:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "선택 작업도 실제 남은 예산 안이면 별도 검토 Agent 실행",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C020_ESSENTIAL:": 1,
+            "C020_OPTIONAL:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "필수 작업도 과도하면 모델 호출 전 중단",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "사용자가 실행 예산을 위조할 수 없음",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 한도보다 큰 선택 작업을 생략하고 필수 범위만 실행",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C020_ESSENTIAL:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "선택 작업도 실제 남은 예산 안이면 별도 검토 Agent 실행",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C020_ESSENTIAL:": 1,
+            "C020_OPTIONAL:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "필수 작업도 과도하면 모델 호출 전 중단",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "사용자가 실행 예산을 위조할 수 없음",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-021-typed-fallback",
+      "designHash": "acefe549541e56d6a24f715d12ebc343ae0a059434f0f708cb6c28c544d89413",
+      "executionHash": "b65fb616e150383e9b2c12d51fc0bbdbdac49bd60eab2701b78ffd3830b50cb3",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "5e7226903df81a07bd6e632fb0dfb0bfd3bbc045e2d010061b41cd4b29def089",
+        "python": "7f4fd8493edec2e29e03ad2f7cfdffe9ad2aaca5dc614895de77988fe8efffe0"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "자료 없음은 연결 성공 상태에서 대체 조회",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C021_EMPTY:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_primary_status": 1,
+            "read_secondary_status": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "연결 오류는 읽기 두 번 후 다른 서비스 호출",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C021_ERROR:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_primary_status": 2,
+            "read_secondary_status": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "대체 연결도 실패하면 답변 만들지 않음",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_primary_status": 2,
+            "read_secondary_status": 2
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "자료 없음은 연결 성공 상태에서 대체 조회",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C021_EMPTY:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_primary_status": 1,
+            "read_secondary_status": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "연결 오류는 읽기 두 번 후 다른 서비스 호출",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C021_ERROR:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_primary_status": 2,
+            "read_secondary_status": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "대체 연결도 실패하면 답변 만들지 않음",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_primary_status": 2,
+            "read_secondary_status": 2
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-023-durable-agent-resume",
+      "designHash": "ad59c91c8f09d018a7f25e24f4fb6669b7117eac8f4651e29bb044882bd796cc",
+      "executionHash": "b79ed08959631eda8772088d67cda4bdd8f004d0d2d209610b7eecb06a78269e",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "94af640e6c6d40d017f51374681b9c60f9817b7d8b6e26b5d79684df53c1fba4",
+        "python": "a13600221e169c44205e1821be465d11694633837aea986bae17f1c8d5d4ecb4"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "지속 체크포인트 이후 보완 입력을 기다림",
+          "status": "waiting_input",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "보완 입력 재개는 계산 한 번만 수행",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C023_AFTER:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "지속 체크포인트 이후 보완 입력을 기다림",
+          "status": "waiting_input",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "보완 입력 재개는 계산 한 번만 수행",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C023_AFTER:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-024-correlated-response-trust",
+      "designHash": "ac1d58b43d826751fe4510fc023d870dae6bb4b1f3d68e459c03b30c602a91dc",
+      "executionHash": "688c21dc06b88c7082febe834b8f8336f023198a1954634359ce50517d50bf27",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "6165ba764f24703efb795150dc9948ebe9633a673479ad496ae8070afdc241c2",
+        "python": "4f946f5c5772181dbca42940e9920ceef563db9be0e430abb0bf5bca25e71bd8"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "요청·대상·시점이 맞는 실제 값만 설명",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C024_ANSWER:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_correlated_status": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "오래된 응답은 재조회 후 사람 검토",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_correlated_status": 1,
+            "read_independent_status": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "유효 응답끼리 값이 다르면 충돌을 자동 해소하지 않음",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_correlated_status": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "요청·대상·시점이 맞는 실제 값만 설명",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C024_ANSWER:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_correlated_status": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "오래된 응답은 재조회 후 사람 검토",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_correlated_status": 1,
+            "read_independent_status": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "유효 응답끼리 값이 다르면 충돌을 자동 해소하지 않음",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_correlated_status": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-025-raw-table-unit-join",
+      "designHash": "bbdcd3ae04a3159fd15994045584682ab451e6a9861be340bf5ce92da17e8cc9",
+      "executionHash": "bf8bd6681876699892cb2ac133db0473ebd096a2290061e0720b6efc58020b39",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "d42bd09e101e26dca14d813b7362ac589b70ed0ee874743ee0d0d8d6a5736567",
+        "python": "0f2039a293f354fa954f50ef8c49b92ecc95df9c02a78172d8d24003f7964c36"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "2kg와 2000g, kg당1000과 g당1을 실제 대조",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C025_MATCH:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "단가가 다르면 원본 수정 없이 검토",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C025_DIFFER:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "지원하지 않는 단위는 계산 실패",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "2kg와 2000g, kg당1000과 g당1을 실제 대조",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C025_MATCH:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "단가가 다르면 원본 수정 없이 검토",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C025_DIFFER:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "지원하지 않는 단위는 계산 실패",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-026-query-contract-calculation",
+      "designHash": "9ecaab313832a5175b14d472a7df1e783526638161e573384ee020c32ab233f9",
+      "executionHash": "978508722f1e91fc559a3de4d83ef6c71a50606460ae724182e30c7e2c54eea2",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "63fb4adc8b2beb7a21ad879112675e370729ce5765c3b2151b032e64f71a9be8",
+        "python": "47ccc755c78d7cbd3ef8c65bb19d6743a91a7b329e50ee318347b40d67609829"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "검증된 두 행을 합계30으로 계산",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C026_ROUTE:": 1,
+            "C026_EXPLAIN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "registered_weekly_counts": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "숫자 문자열 응답은 모델 해석 전에 차단",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C026_ROUTE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "registered_weekly_counts": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "검증된 두 행을 합계30으로 계산",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C026_ROUTE:": 1,
+            "C026_EXPLAIN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "registered_weekly_counts": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "숫자 문자열 응답은 모델 해석 전에 차단",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C026_ROUTE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "registered_weekly_counts": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-027-deduplicated-followup",
+      "designHash": "6377654433cca86439bbb69fdddaad644b0f1ebc2d213534f9c5c52edce8197b",
+      "executionHash": "7846d0659ca5f3faa260b63e614a4d5148e2d7902bb921ef34e24c6144dced6d",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "2834662b9828140a1bcb97e25d46f44ee46c64881780d6a80b77a38c35080226",
+        "python": "bc234a066d12b4d0f64d9221bc893c660e62e56c4fdab00de32f400ed01da871"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "담당·기한 보완 후 중복 확인·승인·등록 ID 저장",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C027_EXTRACT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "find_followup": 1,
+            "create_followup": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "동일 회의·업무는 기존 ID만 반환",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C027_EXTRACT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "find_followup": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "변경 승인 거절은 등록 도구 호출하지 않음",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C027_EXTRACT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "find_followup": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "담당·기한 보완 후 중복 확인·승인·등록 ID 저장",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C027_EXTRACT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "find_followup": 1,
+            "create_followup": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "동일 회의·업무는 기존 ID만 반환",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C027_EXTRACT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "find_followup": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "변경 승인 거절은 등록 도구 호출하지 않음",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C027_EXTRACT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "find_followup": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-028-retained-notification-ledger",
+      "designHash": "dc0470d4c475267d66be37382ccd164c4253d58d18d369e4b953dd33c83e8785",
+      "executionHash": "4e325d318a955601269c5dcc29e185d93dfa01c7cc5202521535cffccf3e2323",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "3675b9db752e8a565492074f3cd0c9a966c02586c4dc794cbbe287ddf7fcadae",
+        "python": "3a5b403ace8015d53e1e569cb6605403aee80e3035c6a6180250d68a5d9d0de8"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "변경 사건을 승인 후 전송하고 영수증 저장",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C028_MESSAGE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "send_event_notification": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "같은 사건은 다음 실행에서도 전송 안 함",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "승인 거절한 pending 사건은 자동 전송하지 않음",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C028_MESSAGE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "전송 응답 유실은 pending 원장을 보존",
+          "status": "unknown_outcome",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C028_MESSAGE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "send_event_notification": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "pending 사건은 재전송 없이 영수증 조회로 완료",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "find_event_receipt": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "변경 사건을 승인 후 전송하고 영수증 저장",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C028_MESSAGE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "send_event_notification": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "같은 사건은 다음 실행에서도 전송 안 함",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "승인 거절한 pending 사건은 자동 전송하지 않음",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C028_MESSAGE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "전송 응답 유실은 pending 원장을 보존",
+          "status": "unknown_outcome",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C028_MESSAGE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "send_event_notification": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "pending 사건은 재전송 없이 영수증 조회로 완료",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "find_event_receipt": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-029-cross-service-reconcile",
+      "designHash": "3ceed5a08edd05e4edcfe81a6d6a8e4b2f1220bc1d51a279198eee12fce717bf",
+      "executionHash": "6a13d5cbcd489c58af05606bc949b33faa9da1338c9587c9fc2804a3a0a651f4",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "9da5cbbd41300a5838215646540e841793cdb0e8d6e052414f9938b21c169fcb",
+        "python": "460de5697475e1eaf6ca8171b0d32fa9f374a23b64ed0845107520ad210e86a9"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "구형 단일 영수증이 있는 상태 폴더는 신규 쓰기 전에 전환 필요로 중단",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C029_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_crm_case": 0,
+            "create_linked_ticket": 0,
+            "reconcile_transfer": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "R1 승인 등록과 다른 요청 원장 보존",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C029_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_crm_case": 1,
+            "create_linked_ticket": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "R2 승인 등록과 다른 요청 원장 보존",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C029_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_crm_case": 1,
+            "create_linked_ticket": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "R2 등록 이후 R1 create 재요청도 쓰기 없이 기존 ID 조정",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C029_PLAN:": 1,
+            "C029_RECONCILE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "reconcile_transfer": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "같은 요청 ID의 다른 업무 내용은 외부 호출 전에 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C029_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "티켓 명시적 실패는 조정 조회와 사람 확인",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C029_PLAN:": 1,
+            "C029_DIAGNOSE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_crm_case": 1,
+            "create_linked_ticket": 1,
+            "reconcile_transfer": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "티켓 응답 유실은 예약·CRM 원장 보존 후 재시도 금지",
+          "status": "unknown_outcome",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C029_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_crm_case": 1,
+            "create_linked_ticket": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "응답 유실 뒤 create 재요청도 읽기 조회만 수행",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C029_PLAN:": 1,
+            "C029_RECONCILE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "reconcile_transfer": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "구형 단일 영수증이 있는 상태 폴더는 신규 쓰기 전에 전환 필요로 중단",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C029_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_crm_case": 0,
+            "create_linked_ticket": 0,
+            "reconcile_transfer": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "R1 승인 등록과 다른 요청 원장 보존",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C029_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_crm_case": 1,
+            "create_linked_ticket": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "R2 승인 등록과 다른 요청 원장 보존",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C029_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_crm_case": 1,
+            "create_linked_ticket": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "R2 등록 이후 R1 create 재요청도 쓰기 없이 기존 ID 조정",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C029_PLAN:": 1,
+            "C029_RECONCILE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "reconcile_transfer": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "같은 요청 ID의 다른 업무 내용은 외부 호출 전에 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C029_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "티켓 명시적 실패는 조정 조회와 사람 확인",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C029_PLAN:": 1,
+            "C029_DIAGNOSE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_crm_case": 1,
+            "create_linked_ticket": 1,
+            "reconcile_transfer": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "티켓 응답 유실은 예약·CRM 원장 보존 후 재시도 금지",
+          "status": "unknown_outcome",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C029_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "create_crm_case": 1,
+            "create_linked_ticket": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "응답 유실 뒤 create 재요청도 읽기 조회만 수행",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C029_PLAN:": 1,
+            "C029_RECONCILE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "reconcile_transfer": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-030-verified-project-memory",
+      "designHash": "0e26575b06d3f5f3f0e73712cdbd0ee36c3b48b41e5de72996ad7eba2d994fa6",
+      "executionHash": "78ec9187697ddb24161821d695afa8fed4f8440ef23596666f12eb6c8ac2a5ba",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "f974c4affd857bcbb826e314aff84112efa68f6f718cb0b730546cc6f8d7173a",
+        "python": "a48665860de318d085db355627c538cb928a2d9893f3e4236ab506d889d624ca"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 인용을 검증하고 사람 수락한 프로젝트 교훈 저장",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C030_LEARN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "같은 프로젝트의 상충 교훈은 검토 뒤 이전 기억을 이력으로 보존",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C030_LEARN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "없는 근거 인용은 저장과 사람 검토 전에 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C030_LEARN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "프로젝트 바꿔 저장하려는 교훈 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C030_LEARN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 인용을 검증하고 사람 수락한 프로젝트 교훈 저장",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C030_LEARN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "같은 프로젝트의 상충 교훈은 검토 뒤 이전 기억을 이력으로 보존",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C030_LEARN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "없는 근거 인용은 저장과 사람 검토 전에 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C030_LEARN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "프로젝트 바꿔 저장하려는 교훈 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C030_LEARN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-032-dependency-impact-replan",
+      "designHash": "c33387947b0d07c8478a52aa5dad9c6048e4d639e24fd67c92f75b557509d96e",
+      "executionHash": "55be6c1a7a6ea6e3643c364b24c2d3f102b8b05ae0c474c4a145f0af51b91f74",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "9400a5c07d568f1121fd90b4ae7b5b62ee629086f2b0a32ab23088c104fd103c",
+        "python": "6d2aefc9a2d70ed77ff6e91210ed311f94c853931e95b4e1e3a56850dbd98f6d"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "0 경계 실패를 재배정하고 facts 보존·하위 영향 재계산",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "modelCallCounts": {
+            "C032_INITIAL:": 1,
+            "C032_REASSIGN:": 1,
+            "C032_REPAIR:": 1,
+            "C032_REPORT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "검토자에게 재배정하면 별도 검토 Agent와 사람 확인 경로 실행",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "C032_INITIAL:": 1,
+            "C032_REASSIGN:": 1,
+            "C032_REVIEWER:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "등록 밖 새 담당자는 실행 전에 거절",
+          "status": "failed",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C032_INITIAL:": 1,
+            "C032_REASSIGN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "0 경계 실패를 재배정하고 facts 보존·하위 영향 재계산",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "modelCallCounts": {
+            "C032_INITIAL:": 1,
+            "C032_REASSIGN:": 1,
+            "C032_REPAIR:": 1,
+            "C032_REPORT:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "검토자에게 재배정하면 별도 검토 Agent와 사람 확인 경로 실행",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "C032_INITIAL:": 1,
+            "C032_REASSIGN:": 1,
+            "C032_REVIEWER:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "등록 밖 새 담당자는 실행 전에 거절",
+          "status": "failed",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C032_INITIAL:": 1,
+            "C032_REASSIGN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-033-discriminating-hypotheses",
+      "designHash": "53c760cff7d7fb16bd73e8052068464acb5af100c9f0876502b5fce8a7c289a7",
+      "executionHash": "f0665601b5103357da7179f1ae2e27c148f7adac583c5d4b4fa6221d6853f1c7",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "4583c4968818929fa7a5b6b2c496141960ea32eea4b3a9f1a991c65c6e955b9a",
+        "python": "c3f81896b6b8cfa2f8630184da235662772ddd333cb433cb002a76f69218d8e2"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "CPU 관찰로 network 반증·compute 지지",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C033_CHOOSE:": 1,
+            "C033_JUDGE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "observe_discriminating_feature": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "구별하지 못하는 미등록 특징 선택 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C033_CHOOSE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "어느 가설도 맞지 않으면 미해결 검토",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C033_CHOOSE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "observe_discriminating_feature": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "CPU 관찰로 network 반증·compute 지지",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C033_CHOOSE:": 1,
+            "C033_JUDGE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "observe_discriminating_feature": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "구별하지 못하는 미등록 특징 선택 거절",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C033_CHOOSE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "어느 가설도 맞지 않으면 미해결 검토",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "C033_CHOOSE:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "observe_discriminating_feature": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-034-counterexample-regression",
+      "designHash": "d4723e5619ce97a05c04ed413dca673748d48d2e91f97c185312ceed22d8bf46",
+      "executionHash": "2a990d8597246d6a0e00f7093596864f94efafc515d68e43210692c72f44e9bd",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "d4b6e53104c5e3c93a22274d6e6455368ba5d8b8d01173fdbd5844eb3958095a",
+        "python": "ccb66687bf6f0e7d6e377f3ce1db81e1e26fb8b86dd344e06104fe141534e3b2"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "0 경계 반례를 실제 확인하고 기존 1 사례까지 회귀 검사",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "C034_CANDIDATE:": 1,
+            "C034_ATTACK:": 1,
+            "C034_REPAIR:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "실제로 같은 답을 내는 사례는 반례로 인정 안 함",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C034_CANDIDATE:": 1,
+            "C034_ATTACK:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "수정이 기존 성공 사례를 깨면 자동 완료하지 않음",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "C034_CANDIDATE:": 1,
+            "C034_ATTACK:": 1,
+            "C034_REPAIR:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "0 경계 반례를 실제 확인하고 기존 1 사례까지 회귀 검사",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "C034_CANDIDATE:": 1,
+            "C034_ATTACK:": 1,
+            "C034_REPAIR:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제로 같은 답을 내는 사례는 반례로 인정 안 함",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "C034_CANDIDATE:": 1,
+            "C034_ATTACK:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "수정이 기존 성공 사례를 깨면 자동 완료하지 않음",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "C034_CANDIDATE:": 1,
+            "C034_ATTACK:": 1,
+            "C034_REPAIR:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-035-constraint-repair",
+      "designHash": "faf14d3d7e136954d3da387ad2d2542c8381e94b168048634ac3db3fce6ff483",
+      "executionHash": "0fbe4463357537a80dbbb4f7b6584fb18e569fc0bd2e336a27032f2347f875a9",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "54439fcc94859b629166fdee73fedabe55b32d2fcce261bf04ea1c5cf0203949",
+        "python": "57c5cedb067ed4c7990b1b6348799f19495e0001ff649708fbb2c987fda4579b"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "위반값만 보완하고 고정 변수 보존",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_035_propose:": 1,
+            "COMPLETED_035_repair_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "유한 후보 전체가 불가능하면 해 없음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_035_propose:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "위반값만 보완하고 고정 변수 보존",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_035_propose:": 1,
+            "COMPLETED_035_repair_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "유한 후보 전체가 불가능하면 해 없음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_035_propose:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-036-first-sufficient-evidence",
+      "designHash": "49985c9062b49cebd3766ebfb7b40e23e879ca52b7bdd9ba4bea7b76c00f91bb",
+      "executionHash": "5e0e647252f89fb1a0f8030e41a73e51baa9e638ac21e87f87cd3adb760f21fb",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "d171871a7cd526a013e1af6a6fffd9912dc73ecdf86049f5a26b91020582f791",
+        "python": "6dda6302bf914cf8e6909038ef257abb2ffd5a7a598ca82fcb5b6839ad4ae07e"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "먼저검증된답확정·느린작업취소",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_036_fast:": 1,
+            "COMPLETED_036_slow:": 1,
+            "COMPLETED_036_final:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "모든답근거불충분이면확정없음",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_036_fast:": 1,
+            "COMPLETED_036_slow:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "먼저검증된답확정·느린작업취소",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_036_fast:": 1,
+            "COMPLETED_036_slow:": 1,
+            "COMPLETED_036_final:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "모든답근거불충분이면확정없음",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_036_fast:": 1,
+            "COMPLETED_036_slow:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-037-hierarchical-provenance-summary",
+      "designHash": "ff13ee98ccc2aefdf6d23e03c0293d94b2cebc6cc58687950b112ae81cf166b9",
+      "executionHash": "ea257a2a939c9d75b541ea5cc2bca1934b6cedf717517c46aa3673f1652bef04",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "0ef417b6fbb5d9715e705f943ea30805a1b694f35c64624bececbce6aa0203f6",
+        "python": "78940988384491d3affd5b625ab345a833f72448e4793ad9ecbbd5d6c33b0386"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "두청크와상위요약모두원문계보보존",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "modelCallCounts": {
+            "COMPLETED_037_chunk:": 2,
+            "COMPLETED_037_merge:": 1,
+            "COMPLETED_037_final:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "상위병합에서출처하나누락시사람검토",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_037_chunk:": 2,
+            "COMPLETED_037_merge:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "두청크와상위요약모두원문계보보존",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "modelCallCounts": {
+            "COMPLETED_037_chunk:": 2,
+            "COMPLETED_037_merge:": 1,
+            "COMPLETED_037_final:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "상위병합에서출처하나누락시사람검토",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_037_chunk:": 2,
+            "COMPLETED_037_merge:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-038-semantic-document-image-check",
+      "designHash": "43374b89021608ffd29fa144440dd7a1462bf87abc7c7b9ad0eb44b461d99e29",
+      "executionHash": "5b3c83bdd61681279729c91e14d67cfa8e6c4fcd448720062eb882859ae15230",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "df0e8688085aec3bea421884176eb17f0b257cf073145c164a05fb5c6aafd162",
+        "python": "9ac068223671ff7433bb81f34e281f938c938187babca538fe1a7ca5a148ac9e"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "서버2개문장과비전관찰2개일치",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_038_claims:": 1,
+            "COMPLETED_038_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "inspect_image_regions": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "낮은시각신뢰도는일치로승격하지않음",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_038_claims:": 1,
+            "COMPLETED_038_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "inspect_image_regions": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "서버2개문장과비전관찰2개일치",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_038_claims:": 1,
+            "COMPLETED_038_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "inspect_image_regions": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "낮은시각신뢰도는일치로승격하지않음",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_038_claims:": 1,
+            "COMPLETED_038_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "inspect_image_regions": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-039-sensitivity-scenarios",
+      "designHash": "360d5e83c3d6f23fecbb639bf9242bf18fe4342c1fc240ffd43f182f5b626a17",
+      "executionHash": "ea2ae03ea5696fb2f208ea29b1b61407eefb1c6c6418d2c90a35ab0ce2c9e37e",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "24f93d7651f9ece0d0ff50f1e13e7917caa05a7ad593d0b7d5cb06a40a777084",
+        "python": "a876d67c788d4dc8000fd1746d58e6b9d78a3d01b7ed61c23c70da4e87fff5a7"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "기준340과 단가변화100 실제 비교",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_039_demand:": 1,
+            "COMPLETED_039_cost:": 1,
+            "COMPLETED_039_compare:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "비수치 시나리오는 Agent 전에 거절",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "기준340과 단가변화100 실제 비교",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_039_demand:": 1,
+            "COMPLETED_039_cost:": 1,
+            "COMPLETED_039_compare:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "비수치 시나리오는 Agent 전에 거절",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-040-persistent-event-correlation",
+      "designHash": "554cbd6bdb61c3a0b0328633c1f82088a72d4a9934ff329a01f8fc22a2a24521",
+      "executionHash": "39d96bf15054d0915e9ba19d68a568a95f0b3bff8fde475ab0dd5ed3640743b0",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "1c7a16a77c632f3a40cf7fcae32a570f2f73a64eeaf7373fc0d7efa06b2e1ae6",
+        "python": "c3e277a39a70f4ed070533bc5d5deb89f6fc74d1b395ede4b3dcf1762c67ef17"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "중복e1제외후동일상관키2건사건",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_040_incident:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "다음프로세스동일관찰은다시사건만들지않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_040_normal_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "중복e1제외후동일상관키2건사건",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_040_incident:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "다음프로세스동일관찰은다시사건만들지않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_040_normal_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-041-two-stage-technical-tribunal",
+      "designHash": "79b12782b9d6f15f22a34a3a05f53cac44b866df2731d5405639e195236b207e",
+      "executionHash": "99e8fc21d9312f3aa340ae171ba34b3063ca5573f84de8ec7925b04b25cd6547",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "5310de9df3fd728af347166b45def07b437e564b28099f739cb3d1988e0628fb",
+        "python": "f37372257469864e761c49b5c28120009240aef211dfdde18e98dcfb3e92d14c"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "두단계병렬심사와독립검증후판정",
+          "status": "succeeded",
+          "modelCalls": 6,
+          "modelCallCounts": {
+            "COMPLETED_041_business:": 1,
+            "COMPLETED_041_operation:": 1,
+            "COMPLETED_041_verify:": 1,
+            "COMPLETED_041_performance:": 1,
+            "COMPLETED_041_security:": 1,
+            "COMPLETED_041_judge:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "독립검증실패시전문심사호출없음",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_041_operation:": 1,
+            "COMPLETED_041_business:": 1,
+            "COMPLETED_041_verify:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "두단계병렬심사와독립검증후판정",
+          "status": "succeeded",
+          "modelCalls": 6,
+          "modelCallCounts": {
+            "COMPLETED_041_operation:": 1,
+            "COMPLETED_041_business:": 1,
+            "COMPLETED_041_verify:": 1,
+            "COMPLETED_041_security:": 1,
+            "COMPLETED_041_performance:": 1,
+            "COMPLETED_041_judge:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "독립검증실패시전문심사호출없음",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_041_business:": 1,
+            "COMPLETED_041_operation:": 1,
+            "COMPLETED_041_verify:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-042-leased-taskboard-cas",
+      "designHash": "b458e4bec9a69571557dd0feb59349a8981fdf1a3006976e37c6bc0482a74749",
+      "executionHash": "3812311b4cd415337e61ec24331feedcd1aa10271264fb44f6ab346eed0f5f74",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "3ca7e72ca65b59e947f50f889a8410740a38222dc8c93b7e36a2f9880c18618b",
+        "python": "e94fac4203f151194f035922030352afda5c4f4d7c6a7ba9906a988210c3eb04"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "점유 갱신 후 분석과 의존 구현 Agent를 각각 실행·게시",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_042_work:": 1,
+            "COMPLETED_042_implement:": 1,
+            "COMPLETED_042_next:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "실제 임대 만료 후 게시와 후속 Agent 실행 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_042_work:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "만료 작업을 다른 작업자가 새 토큰으로 재점유 후 후속 실행",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_042_work:": 1,
+            "COMPLETED_042_implement:": 1,
+            "COMPLETED_042_next:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "다음 실행의 오래된 리비전 점유 거절",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "점유 갱신 후 분석과 의존 구현 Agent를 각각 실행·게시",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_042_work:": 1,
+            "COMPLETED_042_implement:": 1,
+            "COMPLETED_042_next:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 임대 만료 후 게시와 후속 Agent 실행 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_042_work:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "만료 작업을 다른 작업자가 새 토큰으로 재점유 후 후속 실행",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_042_work:": 1,
+            "COMPLETED_042_implement:": 1,
+            "COMPLETED_042_next:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "다음 실행의 오래된 리비전 점유 거절",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-043-capacity-counterproposal",
+      "designHash": "3c348d056833c3d74db6c1cd8c53fe522deab9d3db17d85de679254c3f3f8d97",
+      "executionHash": "433f8106a82133508a8d23228869198afab956182c8706444238852de13a8e66",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "d3271086bbbe996335d849db406ee7b6be297ff109855505d310b25a64c54347",
+        "python": "baf41d72570551cd23f971ea420165783a76dcc07f4b492d2c93fa191fae50da"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "전체10 한도 배분과 두 참여자의 수락",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_043_b:": 1,
+            "COMPLETED_043_a:": 1,
+            "COMPLETED_043_record:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "최소수요 초과 시 협상 모델 호출 없음",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "전체10 한도 배분과 두 참여자의 수락",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_043_b:": 1,
+            "COMPLETED_043_a:": 1,
+            "COMPLETED_043_record:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "최소수요 초과 시 협상 모델 호출 없음",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-044-correlated-response-resume",
+      "designHash": "770da140cb45e0bec7683993c2f8a0dcfdcdcef0474230bc3713662ec8a9d203",
+      "executionHash": "2ed77a75d5b2e39906e03b8445cb957528e23d4def8c7322de384e01bc543301",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "f1fa3f666f6800a4ffec062a1221cef4eaf97668d54eb5c6161c04a688b82de4",
+        "python": "568ee782fe15930498b2b5e0a5870eebd5b78b5c12be6f6ddd03467a0aaf65d6"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "open 이벤트로 사건 저장·승인한 기한 예약 확인",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_044_opened:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "register_case_deadline": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "새 response 실행이 저장된 사건을 이어 종료",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_044_status:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "동일 응답 이벤트 재전달은 외부 호출과 상태 변경 없음",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "기한 대기 사건의 open 별도 실행",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_044_opened:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "register_case_deadline": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "deadline 이벤트는 한 번 예약하고 승인된 재촉 영수증 확인",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_044_reminded:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "send_case_reminder": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "기한 이후 응답은 완료로 바꾸지 않고 지연 응답 보존",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_044_status:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "같은 이벤트 ID의 다른 본문은 거절",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "open 이벤트로 사건 저장·승인한 기한 예약 확인",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_044_opened:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "register_case_deadline": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "새 response 실행이 저장된 사건을 이어 종료",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_044_status:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "동일 응답 이벤트 재전달은 외부 호출과 상태 변경 없음",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "기한 대기 사건의 open 별도 실행",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_044_opened:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "register_case_deadline": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "deadline 이벤트는 한 번 예약하고 승인된 재촉 영수증 확인",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_044_reminded:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "send_case_reminder": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "기한 이후 응답은 완료로 바꾸지 않고 지연 응답 보존",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_044_status:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "같은 이벤트 ID의 다른 본문은 거절",
+          "status": "failed",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-045-document-review-invalidation",
+      "designHash": "808f3f3094c945f879cc8638c6132bd160ee9f7d734610de3530e9e9353873a1",
+      "executionHash": "72b39d5fd5ae13bf2bf8b8443331f3c5ce4d315fd0b3bb01e95727d500b5699b",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "2d6685293ce72f1bdaf4a8daf6aade3b83d1ab2e7aa2c06fb67d196e3932a48c",
+        "python": "4a67b0704868818f46c2bbb1c8834645fe53d231e69c4fabc5e43621df2b3afa"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "security만 다시 심사하고 performance 보존",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_045_reviewer:": 1,
+            "COMPLETED_045_finalize:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "확정 검토 거절 시 최종 버전 보고 없음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_045_reviewer:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "security만 다시 심사하고 performance 보존",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_045_reviewer:": 1,
+            "COMPLETED_045_finalize:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "확정 검토 거절 시 최종 버전 보고 없음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_045_reviewer:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-046-registered-development-team",
+      "designHash": "d42267d7fb4f2f9e784aaab9b806b8ff6828945b491f729b6cb3ed21b3d1c5cf",
+      "executionHash": "9f331e2a893d22481582d0b802d60b15db97e26427316e7d5d111440fa0be15e",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "0a37408b79337952441a38cd3f3522317709b80e3694ba8ee91e8e1bffb19589",
+        "python": "98bfe1725e784e244faa47d8dd4960bb18f26afa9e0f6d5cb9c464d24660db5a"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "등록소스실제파일·독립시험·빌드후승인통합",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "modelCallCounts": {
+            "COMPLETED_046_requirements:": 1,
+            "COMPLETED_046_implement:": 1,
+            "COMPLETED_046_independent:": 1,
+            "COMPLETED_046_final:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "integrate_reviewed_artifact": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "잘못된등록후보는실제독립시험실패로통합차단",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_046_requirements:": 1,
+            "COMPLETED_046_implement:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "등록소스실제파일·독립시험·빌드후승인통합",
+          "status": "succeeded",
+          "modelCalls": 4,
+          "modelCallCounts": {
+            "COMPLETED_046_requirements:": 1,
+            "COMPLETED_046_implement:": 1,
+            "COMPLETED_046_independent:": 1,
+            "COMPLETED_046_final:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "integrate_reviewed_artifact": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "잘못된등록후보는실제독립시험실패로통합차단",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_046_requirements:": 1,
+            "COMPLETED_046_implement:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-047-diagnose-recover-verify",
+      "designHash": "3854e3fc16af798c1a4f53e3a7b95ffd4fa7bd98ffb905ec477253715a6d3262",
+      "executionHash": "3e67de41112053a15a5decc7aa20b87b85f6dcc29439b0aedd6b3a8f3beb8450",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "dd982412e57d185ee685b0f95e9fff0e0cf1ed51454c10a1d4dad1868c81d645",
+        "python": "6bc4e7640379104008d7614404b9f6cad60e69a892511359e07e20ed587d226f"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제상태조회·검토·승인후독립확인",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_047_plan:": 1,
+            "COMPLETED_047_success:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "diagnose_service": 1,
+            "recover_registered_service": 1,
+            "verify_service": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "조치후검사실패는별도보상승인과재검증",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_047_plan:": 1,
+            "COMPLETED_047_recovered:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "diagnose_service": 1,
+            "recover_registered_service": 1,
+            "verify_service": 2,
+            "restore_service_snapshot": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "복구승인거절은외부변경0회",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_047_plan:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "diagnose_service": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "실제상태조회·검토·승인후독립확인",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_047_plan:": 1,
+            "COMPLETED_047_success:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "diagnose_service": 1,
+            "recover_registered_service": 1,
+            "verify_service": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "조치후검사실패는별도보상승인과재검증",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_047_plan:": 1,
+            "COMPLETED_047_recovered:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "diagnose_service": 1,
+            "recover_registered_service": 1,
+            "verify_service": 2,
+            "restore_service_snapshot": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "복구승인거절은외부변경0회",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_047_plan:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "diagnose_service": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-048-role-minimized-analysis",
+      "designHash": "18c9ed268182bee387f7ce5e8299ef813c7c9a827c22692c2de2752262cb2a1c",
+      "executionHash": "0847ecb9259a90dfdbce2acbfca98b70cd05b4e292db5297966dfc38d67805c2",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "13afc21eee99f46cfe9b93b0fdaf9f4c5b5d153a9c8a460646528f62e095b3a2",
+        "python": "b4b00271838a93715930d1271dfde0fcbb664401f28301209219dad9a6aeddd9"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "역할입력필드제한과허용출력결합",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_048_technical:": 1,
+            "COMPLETED_048_finance:": 1,
+            "COMPLETED_048_combine:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent임의출력필드는결합전에실제제거",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_048_finance:": 1,
+            "COMPLETED_048_technical:": 1,
+            "COMPLETED_048_combine:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "역할입력필드제한과허용출력결합",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_048_finance:": 1,
+            "COMPLETED_048_technical:": 1,
+            "COMPLETED_048_combine:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent임의출력필드는결합전에실제제거",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_048_technical:": 1,
+            "COMPLETED_048_finance:": 1,
+            "COMPLETED_048_combine:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-049-adaptive-registered-experiments",
+      "designHash": "dc49791553c1d658f243a9f99190a817090a8f2b77d90bf640eccdad9b556560",
+      "executionHash": "64b3aedde9375efa7260e7b0461eb07e151da379d2a0a2cf09c1ca065b79e345",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "b052ce584297a0a229877f33c9c7deef914dadbc400191e7337daeeba4ab12ab",
+        "python": "b7cb3e91fcd2985eeaa15877bb1280cc54c45555216f6c904e807ca2abf08aee"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "첫오차관측후제곱후보를독립데이터로평가",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_049_next:": 1,
+            "COMPLETED_049_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "추가실험중단결정은확인계산을실행안함",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_049_next:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "첫오차관측후제곱후보를독립데이터로평가",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_049_next:": 1,
+            "COMPLETED_049_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "추가실험중단결정은확인계산을실행안함",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_049_next:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-050-goal-change-cancel-lineage",
+      "designHash": "df43571bddc9a6e82a5e1d241a3db40342af95ba473c8279902126308c3ea998",
+      "executionHash": "2285382025f30926c515a361ccbb3890a74997d461c9302e20ebe784474141dd",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "afee67cad7417e8c46437cd90b61183becb831f2012f0e0a1252deaefca319cc",
+        "python": "59ada4c1a7bde9bef5a41484bb5e140207397c7d3e376b9e3783af08eab29857"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "새목표수락후이전승인취소·영향판단만재실행",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_050_propose:": 1,
+            "COMPLETED_050_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "publish_goal_report": 0
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "목표변경과기존게시를모두거절하면외부변경없음",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_050_propose:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "publish_goal_report": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "새목표수락후이전승인취소·영향판단만재실행",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_050_propose:": 1,
+            "COMPLETED_050_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "publish_goal_report": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "목표변경과기존게시를모두거절하면외부변경없음",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_050_propose:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "publish_goal_report": 0
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-051-independent-ledger-audit",
+      "designHash": "9cc13abd9fe5520efc2df140f3641bf48c8fa42e33fb85f60b7604c6cc893781",
+      "executionHash": "215dc9a0351410c0de242f42608613ef9a16cebe0f6e42758832fbb02ff018f6",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "b1ab383952bc72ae2fe588679287365f19e40d2648074ccc367e1b4fc3d23604",
+        "python": "cbabfe99f8966fc16f1772d94d390b4d81c35131dd0e25d6fcc93347ceb65b6f"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "성공으로 기록됐어도 승인 누락 검출",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_051_scope:": 1,
+            "COMPLETED_051_findings:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "읽기 원장은 외부 변경 승인 대상 아님",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_051_scope:": 1,
+            "COMPLETED_051_clean:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "성공으로 기록됐어도 승인 누락 검출",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_051_scope:": 1,
+            "COMPLETED_051_findings:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "읽기 원장은 외부 변경 승인 대상 아님",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_051_scope:": 1,
+            "COMPLETED_051_clean:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-053-cross-store-revocation",
+      "designHash": "64ad24d076fb13fbfae928055c4f561e5eda41cc8a2e9b10978728ac5355eadb",
+      "executionHash": "f13d9fd1c9e588d860ffd51c7ce5829aca43e1b71351c0477ec120ec3797cda0",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "9c244a392261e5c3af5df3efb5643a0a1bddcf45c48a09e12139b5676e741025",
+        "python": "6bdd8ec060a56222dd559742822aae9d69396e8baf362fa2407d98138619cbb8"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "로컬원문벡터관계삭제와두서비스확인",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_053_scope:": 1,
+            "COMPLETED_053_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "propagate_revocation": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "외부전파거절시로컬철회보존·외부호출0",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_053_scope:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "propagate_revocation": 0
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "로컬원문벡터관계삭제와두서비스확인",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_053_scope:": 1,
+            "COMPLETED_053_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "propagate_revocation": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "외부전파거절시로컬철회보존·외부호출0",
+          "status": "failed",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_053_scope:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "propagate_revocation": 0
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-054-feedback-evaluate-publish",
+      "designHash": "e5d045b776894e8cb257128bc1728d8411b620d40d3e7180c0695fab92ae5fcb",
+      "executionHash": "ca9434f924cab5c985cf4e54512e7d452e0367ed1fe939eaaa40bccea11e7865",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "61645c27b476d94b4870d1a3d064a4e9b5b6199e26d87347991c9d8611778d9a",
+        "python": "f841cf55180546ee02b976bd84027593a97d95992f8a5cc7c0f050da5915baa2"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제검색실패→수정후통과→검토게시",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_054_diagnose:": 1,
+            "COMPLETED_054_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "누락 질의를 고쳐도 기존 backup·rollback 회귀가 실패하면 게시 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_054_diagnose:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "이미통과한자료는개선으로부풀리지않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_054_diagnose:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제검색실패→수정후통과→검토게시",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_054_diagnose:": 1,
+            "COMPLETED_054_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "누락 질의를 고쳐도 기존 backup·rollback 회귀가 실패하면 게시 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_054_diagnose:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "이미통과한자료는개선으로부풀리지않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_054_diagnose:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-055-temporal-permission-rag",
+      "designHash": "8fa6f83e1cc17438dfd718a3cd7e6746a53bb999c0b1c2908da6c8bf5390e76a",
+      "executionHash": "3f4901a779ec132303c43e5e6a49b84b101bb025da42040f9f6c7606019f482c",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "2024e07c9493765fb7a3657e21e89c14052e4196c0756bf81e8371b1a0afbc20",
+        "python": "5262d0490696841b1d0f815967429f9e188e1d39b6449e4ecca49081d00dab0a"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "2024년 규정과 현재 권한이 모두 유효",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_055_answer:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_current_document_access": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "사용자허용플래그가참이어도서버권한철회면제외",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_current_document_access": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "2024년 규정과 현재 권한이 모두 유효",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_055_answer:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_current_document_access": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "사용자허용플래그가참이어도서버권한철회면제외",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_current_document_access": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-056-structured-document-join",
+      "designHash": "0437a28e80bcef7f60e0f0ea6ebd6eca55d5a33af7b7f88a506c422132a66f28",
+      "executionHash": "885c4bb5aaff02fdcfa3403a6991b364ecae2870e3fa6092100f50760c7bd768",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "d642b6242675c15998cea594c5f4467fc5b3a8df555d5a2e95690e5d74e471b4",
+        "python": "6605f2c553ceb33d5204f031b2ed93bcc319b671748a5b71d4e2c2e32fd1490c"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "두 실제 조회결과를 결합하여200KRW 계산",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_056_explain:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_approved_metric": 1,
+            "search_metric_notes": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "다른 단위의 문서가 섞이면 집계 설명 차단",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_approved_metric": 1,
+            "search_metric_notes": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "두 실제 조회결과를 결합하여200KRW 계산",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_056_explain:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_approved_metric": 1,
+            "search_metric_notes": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "다른 단위의 문서가 섞이면 집계 설명 차단",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_approved_metric": 1,
+            "search_metric_notes": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-057-permission-lineage-graph",
+      "designHash": "297950ebcbc64cfe29f7c69adfb7a9d858e090e38d9e3c0a61edc91908db4e65",
+      "executionHash": "0d208146810b83b5477045dd3a9d336f002de46312915d389f4f335285ee07af",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "ebda46d269e8179046f327a22b2b1ef3ba4882ba3b4f8576a2d853a818ed8cec",
+        "python": "41012c075fba379fdd83b195d2c978681ba79a5119a56a5593a5f665a9d29dd8"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "허용관계2단계·순환억제·비공개간선제외",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_057_answer:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "권한 없는 간선만 있으면 답변 Agent 생략",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "허용관계2단계·순환억제·비공개간선제외",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_057_answer:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "권한 없는 간선만 있으면 답변 Agent 생략",
+          "status": "succeeded",
+          "modelCalls": 0,
+          "modelCallCounts": {},
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-058-cell-grounded-calculation",
+      "designHash": "7110507db7dea166940bf050d91dc115151c7880004a7ebae04b06e188c262f7",
+      "executionHash": "5c1b236517f04a93d91e35d2cd75584bbfb4cd48fa072ac36ad3ad17b7d5622b",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "6b28004fbc321204c5f13af6f296ad45b818c8ab15edfe417c445579c45b79a8",
+        "python": "f3453a1ef2cb796c3ae36a564a1ed5d8a0bcec7e9ddb6f085a5887d00eba3482"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "두 셀의합30과SUM수식 보존",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_058_scope:": 1,
+            "COMPLETED_058_answer:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "기간이 다른셀은 합계확정금지",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_058_scope:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "두 셀의합30과SUM수식 보존",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_058_scope:": 1,
+            "COMPLETED_058_answer:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "기간이 다른셀은 합계확정금지",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_058_scope:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-060-api-consumer-contracts",
+      "designHash": "85109b6c266fec1c84ca7b9053c4f56f3a6be3b69addbdf2ca70829512f3d991",
+      "executionHash": "2e4f31c74ab6277fe9e9ca3cb6bc837c2b5431da560c25e6a78c6937d835778f",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "d1d0a549635e0f794efa15db9b541e2b394041d8ed711b5147eb359fc2bcbb2c",
+        "python": "4e19bc506b9bb766a67f5f10f8423354968fd26c938259cf2384bed3923efa1c"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "추가필드는호환이며실제시험결과확인",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_060_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "run_registered_contract_tests": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "amount삭제는billing영향으로시험전차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_060_breaking:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "추가필드는호환이며실제시험결과확인",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_060_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "run_registered_contract_tests": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "amount삭제는billing영향으로시험전차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_060_breaking:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-061-migration-transformation-evidence",
+      "designHash": "619d268b2afe219333c5b2d7635139cdee43fe6bcfd87869f0c1ae1bd87f4d19",
+      "executionHash": "63eeb967afb2457b070dd0097bdfc61882cb2dd37a4af76cdbfdaf2f4b296070",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "b9a1767822f0212977aedd93073793236bdab5de0078f26ce6e8a24fba30281a",
+        "python": "78f6b3da6a1f0a0c5f552c0b2ed5a3ffdae092f5f447e63633fa42fa1cc316e1"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제oldId→id변환과두행보존",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_061_requirements:": 1,
+            "COMPLETED_061_handoff:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "깨진참조면검토및DB변경진입금지",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_061_requirements:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제oldId→id변환과두행보존",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_061_requirements:": 1,
+            "COMPLETED_061_handoff:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "깨진참조면검토및DB변경진입금지",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_061_requirements:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-062-stateful-learning-avatar",
+      "designHash": "f343e873b9fd10368d3cecb05301472d5c418747434b6d487db4153e3f903d15",
+      "executionHash": "89c48ed166d2bf090c0950753feee2476341b6ba30682edbb1ac37b501a98f4a",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "3578ac13a82de0a3f8b87134c6d8a1e7cd0bd50925a068dc8ca1dec0d3713bfc",
+        "python": "538587d0a129e9b2b9ad7dc1d6ff6e1aff6d93385566d12023f01fbc342162bd"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "정답제출후수준상향과SVG생성",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_062_teach:": 1,
+            "COMPLETED_062_advance:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "다음실행오답은수준을올리지않고보완",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_062_teach:": 1,
+            "COMPLETED_062_reinforce:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정답제출후수준상향과SVG생성",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_062_teach:": 1,
+            "COMPLETED_062_advance:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "다음실행오답은수준을올리지않고보완",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_062_teach:": 1,
+            "COMPLETED_062_reinforce:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-063-executed-code-practice-avatar",
+      "designHash": "02d8f1d716b7cff7f195182517488ae70de703368e9c965e32e921df4eec8dd2",
+      "executionHash": "19ae5518354031fb3d1a8fc2ffb60bd907ace819bf781fe02497e84ea394cd5b",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "55852fe9f32d6c0d5ccae31486b0c4703e98e68569a00102dba627ea17a14c2f",
+        "python": "9cdedcef851532bc7a20a70bdecb3bf8f65a513362dc358119bb833f5b9c71c2"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제수정파일시험과아바타완료증거",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_063_coach:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "실패후보완입력으로같은실행재시험",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_063_coach:": 1,
+            "COMPLETED_063_feedback:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제수정파일시험과아바타완료증거",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_063_coach:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실패후보완입력으로같은실행재시험",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_063_coach:": 1,
+            "COMPLETED_063_feedback:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-064-roleplay-state-and-rubric",
+      "designHash": "ee8c4ae6a2eb7b824b7b0ffbcfd1d6301e35dccd98ee04a669f50e4b03b25b6c",
+      "executionHash": "10341f6959193fed22fc1bbe30c13bd6c3921160ffdf730932ccf6a65595624e",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "56272ca076ddc32182d122bef6d547af6be38c94631ce02f6072e38690a3d528",
+        "python": "ba7b91d79cd099d9e85d97f3a495b21cad8ffe36c13d40f0e8289923b5abf4fa"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "질문선택으로clarify전이·독립평가·저장",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_064_scene:": 1,
+            "COMPLETED_064_respond:": 1,
+            "COMPLETED_064_evaluate:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "저장된clarify상태에서잘못된finish차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_064_scene:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "질문선택으로clarify전이·독립평가·저장",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_064_scene:": 1,
+            "COMPLETED_064_respond:": 1,
+            "COMPLETED_064_evaluate:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "저장된clarify상태에서잘못된finish차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_064_scene:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-065-dependency-conflict-paths",
+      "designHash": "888c4b04b9ad9e6f163485614e3bdb0ea951b3672678cac4ee309797a339e317",
+      "executionHash": "3c315f5014eb05201e0b4d764a99bf48a2002f88000b1f47d0cd96e21d7b7b16",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "eb15e0b57516deb97ba2f1174087963bc1f6ab514571aaeab0764c8d63b77336",
+        "python": "269ae82321df5d5f92ab7ab271504363ea5a28b787356f599ce4031b4bf8d88b"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "버전교집합조건으로호환확인",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_065_compatible:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "충돌경로안내뒤보완버전입력재개",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_065_repair:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "버전교집합조건으로호환확인",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_065_compatible:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "충돌경로안내뒤보완버전입력재개",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_065_repair:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-066-technical-procedure-preflight",
+      "designHash": "85fa59494025a6abccb1d4770c6ac9443ebfa2130b3c8fb25ba9c93bd6cf9909",
+      "executionHash": "a59546098b87dbd046e661b7acccb64254ebd19049fa9306b52fba4dc55eb6f1",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "e26a7916e09793c7a14f616ecffc3fbf4dbadaf4d9605595bd9e7cfcc85e1024",
+        "python": "93239129296a54f531fc961ff3af75709d677e9b45edac3da2d13894452d3993"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "조회후승인변경·복구계약검증",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_066_write:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "승인없는변경은보완대기후재검사",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_066_write:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "조회후승인변경·복구계약검증",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_066_write:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "승인없는변경은보완대기후재검사",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_066_write:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-067-redacted-configuration-drift",
+      "designHash": "573e30f981be0c28aa13d57dd3914ff0edfec383b7a66faecc16ae1de14b0e9a",
+      "executionHash": "6ea79913254ff2bcd940a9e96a5076f6d2edb12b0af34d102a350fe34e21eb79",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "2f7f5e257852949d5827ab4f79e9fd6f5165d51d2bef49b6fb743749e50a56e5",
+        "python": "9a9d12b2ff9cafc99b22cb3243fd8e279f9c6a8608e1c82bcf26ebc1f5e6b268"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "비밀제외후timeout차이만보고",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_067_impact:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_redacted_configuration": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "설정일치시변경검토생략",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_067_impact:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_redacted_configuration": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "비밀제외후timeout차이만보고",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_067_impact:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_redacted_configuration": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "설정일치시변경검토생략",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_067_impact:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "read_redacted_configuration": 1
+          }
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-068-code-api-document-alignment",
+      "designHash": "505206600370a5bc14a140be14b7217ef20874e8cc0051a7b59a1aaed34c80db",
+      "executionHash": "4f66e4b58de24f0f6501ccb430d15ae2ee449d08b097e169a5188e59fc9ebbc1",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "8edb657b7499cd7dfb6e6ee2a2e997742fb3e5a9372de156355bd01a8a56666d",
+        "python": "07a1d0758a18f3df3ed79154d684735c49928bb7dde2b770d56b40add205012f"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "심벌·API·문서대응후등록예제실행",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_068_code:": 1,
+            "COMPLETED_068_documentation:": 1,
+            "COMPLETED_068_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "run_documented_examples": 1
+          }
+        },
+        {
+          "language": "node",
+          "scenario": "문서파라미터불일치면예제실행차단",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_068_documentation:": 1,
+            "COMPLETED_068_code:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "심벌·API·문서대응후등록예제실행",
+          "status": "succeeded",
+          "modelCalls": 3,
+          "modelCallCounts": {
+            "COMPLETED_068_code:": 1,
+            "COMPLETED_068_documentation:": 1,
+            "COMPLETED_068_report:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {
+            "run_documented_examples": 1
+          }
+        },
+        {
+          "language": "python",
+          "scenario": "문서파라미터불일치면예제실행차단",
+          "status": "succeeded",
+          "modelCalls": 2,
+          "modelCallCounts": {
+            "COMPLETED_068_code:": 1,
+            "COMPLETED_068_documentation:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-069-reproduce-repair",
+      "designHash": "72cdf0288aad21402729a809e89eef7552c69c8f03a245fc519643174feb8e17",
+      "executionHash": "677da4e5f589a7c33a1c04446d3a8ef4ff9ae5e6f3a87158da9609677744ad52",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "3b8cbb0f854f21e1deca3646ebeae441deada3c84b8d30c5143d85846158d8b9",
+        "python": "0c0f869197275b520d12cb1ac9fc784df66c017e5071da6977c6fcd782d74638"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_069_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_069_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_069_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_069_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_069_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_069_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_069_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_069_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-070-behavior-refactor",
+      "designHash": "cd8363fa891799c13815f0ff7e233fa443779ba43f7c028bfa5c3c8029bc9105",
+      "executionHash": "0a9ded6886741135e46f9b436ce5c47a01e56e5e0f93172d6f09ecc40385eb12",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "31a8a102ba55d117ac596322e9473dad82e301b4be0007778a0ad7e1b62cf980",
+        "python": "5de080e16e51e8cc8cd54dece4948d158027c5fa88802bdc83d0ff6f0573c469"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_070_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_070_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_070_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_070_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_070_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_070_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_070_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_070_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-071-offline-dependency-upgrade",
+      "designHash": "c73c099ae092ca95377dabf4648571fb10c8d6b088aa12237f59c2448b2451e2",
+      "executionHash": "c297b980b93be6fc5d25558265830e77018b49a5ad9b559d235cb9cd18646ffc",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "c07a24a820823ac6629b8cfc4275f8ac5e1134b6c77c79507dc42a2997facac0",
+        "python": "a8d7d2f81a198836e9e944bbda32c162f1dd0c92aaa03c5abf1ca2706a4ef612"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_071_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_071_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_071_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_071_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_071_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_071_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_071_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_071_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-072-mutation-test-gap",
+      "designHash": "984a8f70404381a32d098b083a3410ff81730a7f67037e1fb53a6d47219a88b5",
+      "executionHash": "056ff2d27219353abbf81a35318b67f6a0eb79caf1db4b7555b57e6d54f627cc",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "b841b647be420d3b084095a847bb7e0eed7a4abe9918f413b28312e180e34766",
+        "python": "229e8979e4b0dce883be5df0e65939ddd03cc917db834387676bc2cf4496991a"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_072_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_072_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_072_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_072_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_072_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_072_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-073-controlled-race-order",
+      "designHash": "d09aa9d19118251027bdeec1b6efc546cb0550b9ba51ba0f3da8b35a6396140a",
+      "executionHash": "04f30c84d024bbe11a71ba91174a7fa826b2afcd83f2db91dcc83fe955ad4337",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "08c93f8583b2bbb31dea5174de5616b93691217e86a5e7d20cc37c528dc7f9e4",
+        "python": "ca30fc25b4e42ad3c05f215669de9ecc2766639c71585297d39ef2b994c2cf09"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_073_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_073_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_073_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_073_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_073_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_073_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_073_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_073_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-074-instrumented-performance",
+      "designHash": "4cbfc68ba371b4dd4f67671f15a93d479612f3c9179f7b5e22ce342bbbf946ff",
+      "executionHash": "8b508d4c4b8df00bff40006ecd1d83f85512dcf50b1fbc525ea8fbaa51952ff5",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "69199492b66649463d7b361b0e9f39a4543a196263fc71029f6a7a06d315c2ae",
+        "python": "8c82c98e8967ff67d1df61231ee58e8d587e247e0ce685b0369bb24f5892286b"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_074_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_074_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_074_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_074_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_074_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_074_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_074_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_074_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-075-html-interaction-contract",
+      "designHash": "86028ad116c7a985f7e817ac05ffd90683b339f06ac30f65c27f551fe62f3e42",
+      "executionHash": "1fb934c79319aca2294df5a7f7e0716957c89b64c6039020a7017da9d39d61d6",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "b3a186c44ad07d7f715660128c9511f8bde5e9fcb0a93980a27324ce15709c75",
+        "python": "3780a93a8964483da6e6b2c0c6f3f09fa76d6154965b4e55ef89167c33fc56f2"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_075_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_075_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_075_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_075_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_075_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_075_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_075_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_075_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-076-reproducible-artifact",
+      "designHash": "941dfa6252f635142a2b918179c0d4a2cca0e2f41289a3f22c18e36cd17c034a",
+      "executionHash": "815f629f2497758aaa24e128728894de2f04340f90f4200808b937a58961b580",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "feda3c885e4951d59b53feb39cf216f7385395cb2b5fe72f43a62e91c59913a4",
+        "python": "6aa076dd07886beada865e6d3933258a66c5264e911e6e35b57b1638fa60c1b4"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_076_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_076_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_076_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_076_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_076_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_076_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_076_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_076_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-077-knowledge-lifecycle",
+      "designHash": "dc03a845555af469bf9bd0c0f133bc9534500aa54b8bd603be1324c16c6f2b31",
+      "executionHash": "9c3bdd9334855bc392b700fad60d34095d4eb1355154a564fae926ba0ba5a909",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "b14d423ca30d78be88d11ea4f1f8ed5d1ae70d310acf2e6844df0e08b3fd4a60",
+        "python": "6c036ba1079f4e893e6654bb580e330d45b898d865525dda716d6fa2587e02a1"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_077_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_077_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_077_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_077_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_077_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_077_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_077_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_077_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-078-evidence-impact-development",
+      "designHash": "1a8e69daa29f27b122c7c5041b658b0321999f517474afcf909d06599ec293b2",
+      "executionHash": "fbf91a06737cca441ab3b36dc15da9d43a0799238352cd30cd55550b8259bbfa",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "2c14d4a5af2d733438d596b567f0ca001d5e3f4f445a8d86bf3c00374871d3de",
+        "python": "c0b125de7240aad082862a87e77c141d9f6142a7df0e96e17b82b89c95dace9b"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_078_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_078_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_078_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_078_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_078_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_078_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_078_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_078_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-079-database-inventory",
+      "designHash": "f480eaf785d88e7dc195702870cf599cb10282e02f957e3fadc79c5fde072585",
+      "executionHash": "4dd68549c79af8099869470f1da2cb71c30f12f870218bb475d19125fdd0e1bc",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "63ae79cc451d3b80a04b8d12fe4bac9a40ce6e8640d81e8fa17484dfff86b399",
+        "python": "f7d46236e0428ef5c089d5b34be25cbe76a4c382a52ddbe70d380e3eb7c22da1"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_079_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_079_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_079_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_079_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_079_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_079_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-080-query-plan-comparison",
+      "designHash": "270a2a95cd9146c55be9318f7209c8f863890279bf10d4798efbf5144096e1c3",
+      "executionHash": "44eb7c0b587aa7b7a6fa9543dc3b8fd52dee99c85aa15a6c3a6dbbc095d10345",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "f489122406c6909f6f012d063135da771d441c99db2a9c2e372bffb520497f2e",
+        "python": "cd15081d2497ab9265b2f1ce09edc6aedfa50243fe926a27fe398c418b261531"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_080_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_080_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_080_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_080_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_080_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_080_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_080_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_080_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-081-index-plan-rollback",
+      "designHash": "71b49c3ad1966370dd75f65807ac8849a8b0ebc8b7c2fb1ecf3379484e2cf1d2",
+      "executionHash": "c6151365159753dcc9329f698804c47c2cc4e79c3bfa89f1a7e6f4067aac3489",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "a30b183862bf5bed232c7ea0ffcb91302a75f0dd4d9a5b39502477f706c2d96c",
+        "python": "b90fede802fd1286becdc8c39e9e68eaafd53628573b4e2b30d5ef58d52e49fc"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_081_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_081_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_081_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_081_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_081_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_081_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_081_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_081_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-082-deadlock-target-release",
+      "designHash": "9d2637dd679f817c11feea948bb5e794de40bcae21fb9afe87ab49fcbe5d13fd",
+      "executionHash": "9796815537dca5ec24c69bdbf3a73d49aa350eab757f6d360c09129c451f115d",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "052135a1aeefe8f2c9c60108475c8c3ba14119d5beae71f3aec6bce3c01aa4bd",
+        "python": "5cf9e58b1d4176263fab0b87c313ed584b535cd1950c72a762e95e74e64e374f"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_082_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_082_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_082_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_082_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_082_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_082_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_082_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_082_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-083-schema-deploy-and-recover",
+      "designHash": "0f29c4816d354a4b0d1a2ebca91c7bb8b8194467057e6adfc73fc8d7e50aa428",
+      "executionHash": "5f791971fcf48c35cf689ba304d52ed702fe68d24ab6baa8bbd060782dfddc1c",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "a78769f2259f6227b3b495455d9c23dfb0c12effaa2535509651bcd2e3690909",
+        "python": "7a72f9b79dfb9e6f889b916fb2c4dde9b71efd7387de12e699204e2b8172a308"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_083_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_083_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_083_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_083_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "적용 후 행 수 검증 실패는 별도 검토 후 실제 백업 복구·독립 검증",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_083_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_083_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_083_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_083_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_083_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "적용 후 행 수 검증 실패는 별도 검토 후 실제 백업 복구·독립 검증",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_083_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    },
+    {
+      "id": "completed-084-full-backup-restoration",
+      "designHash": "86f0a43b366848e07de6b219c66e92524f1cbff89ece9fef86418d204bf3a050",
+      "executionHash": "ccd2790eebe16950dfa0fd77af8ded067ec1e2016c2e921840634beec04256fa",
+      "node": true,
+      "python": true,
+      "zipHashes": {
+        "node": "cb961f5f0ecc1aa8f11729931a031b2b3dacf473e6210e37734d3eb746f84f27",
+        "python": "88792702bc7db36d92167e09affabce7afc2fd135608c08bbe7727a02de658f2"
+      },
+      "checks": [
+        {
+          "language": "node",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_084_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_084_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_084_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "node",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_084_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "실제 등록 연산과 관측 원장을 검증하고 재개해도 중복 실행하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_084_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "핵심 입력·산출물 조건 불일치가 후속 실행을 차단",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_084_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "Agent의 작업 보류 판단은 실제 연산을 시작하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_084_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        },
+        {
+          "language": "python",
+          "scenario": "정확한 관측 결과 검토 후 거절하면 변경과 완료 보고를 하지 않음",
+          "status": "succeeded",
+          "modelCalls": 1,
+          "modelCallCounts": {
+            "COMPLETED_084_PLAN:": 1
+          },
+          "embeddingCalls": 0,
+          "toolCalls": {}
+        }
+      ],
+      "configuration": {
+        "node": "unconfigured",
+        "python": "unconfigured"
+      }
+    }
+  ],
+  "checks": 558,
+  "failures": [
+    {
+      "id": "completed-014-paged-failed-only",
+      "message": "AssertionError [ERR_ASSERTION]: completed-014-paged-failed-only/python/400개 실패도 같은 페이지 처리기로 보완하고 재개 시 재실행 없음: Python 도구 실행 시간 한도에 도달했어요.\n+ actual - expected\n\n+ 'budget_exceeded'\n- 'succeeded'\n\n    at <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:329:20)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:82:178)\n    at async Promise.allSettled (index 1)\n    at async boundedWorkers (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:82:17)\n    at async main (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:256:10)\n    at async <anonymous> (C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\tests\\workflow-export-integration.ts:374:79)",
+      "artifactDirectory": "C:\\Users\\ght11111\\Documents\\Codex\\flowly-ai-studio\\outputs\\workflows\\.validation-y3IGSt\\completed-014-paged-failed-only"
+    }
+  ],
+  "externalCalls": 0,
+  "progress": {
+    "selected": 227,
+    "completed": 71,
+    "retained": 0,
+    "workers": 4,
+    "interrupted": false,
+    "updatedAt": "2026-10-26T17:59:45.610Z"
+  }
+}

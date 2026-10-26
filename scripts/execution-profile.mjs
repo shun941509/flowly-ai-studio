@@ -1,3 +1,6 @@
+/**
+ * 체크아웃 전용 실행 프로필을 읽는다. 설정이 없으면 portable로 시작하며 잘못된 설정은 감추지 않고 오류로 반환한다.
+ */
 import { readFileSync } from "node:fs";
 
 export function readExecutionProfile() {

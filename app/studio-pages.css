@@ -1,0 +1,150 @@
+/* 목록·공유·예제 맞춤 설정·가이드의 페이지별 스타일. 도움말은 편집기 모달에서도 재사용하므로 특정 가이드 페이지 아래로만 범위를 좁히지 않는다. */
+/* Page-specific layouts use the shared studio tokens. Keep help styles global:
+   the editor can render GuideHelp/WorkflowExplanation without opening a guide. */
+.page-heading-actions { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 8px; flex-shrink: 0; }
+.workflow-list .page-heading { align-items: flex-start; }
+.workflow-list .list-controls { margin: 20px 0; }
+.workflow-list .list-controls > span { color: var(--muted); font-size: 13px; }
+.workflow-list .workflow-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+.workflow-list .workflow-card { border-color: var(--line); border-radius: 12px; }
+.workflow-list .workflow-open > .mini-flow { height: 124px; background: var(--surface-subtle); }
+.workflow-list .workflow-open > div:not(.mini-flow) { padding: 20px; }
+.workflow-list .workflow-open h3 { color: var(--ink); font-size: 17px; line-height: 1.5; margin: 12px 0 8px; letter-spacing: -.3px; overflow-wrap: anywhere; }
+.workflow-list .workflow-open p { font-size: 14px; color: var(--text); line-height: 1.65; margin: 0; }
+.workflow-card-description { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 46px; }
+.workflow-access-badge { display: inline-flex; align-items: center; gap: 5px; color: var(--primary); background: var(--primary-soft); border-radius: 6px; font-size: 12px; padding: 4px 8px; line-height: 1.4; }
+.workflow-access-badge.read-only { background: #f1f5f9; color: #475569; }
+.workflow-permissions { display: grid; gap: 5px; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); line-height: 1.6; }
+.workflow-permissions strong { font-weight: 500; color: var(--text); margin-left: 7px; }
+.workflow-list .workflow-meta { display: grid; align-items: start; gap: 4px; margin-top: 12px; font-size: 12px; color: var(--muted); overflow-wrap: anywhere; line-height: 1.6; }
+.workflow-list .workflow-card > footer { min-height: 54px; padding: 10px 16px; flex-wrap: wrap; gap: 8px; border-color: var(--line); }
+.workflow-list .workflow-card > footer .text-btn { color: var(--text); font-size: 12px; }
+.workflow-list .workflow-card > footer .icon-btn { width: 32px; height: 32px; color: var(--muted); }
+.workflow-sharing-form { display: grid; gap: 18px; }
+.workflow-sharing-form > p { margin: 0; color: var(--text); }
+.workflow-sharing-form .field-label { margin: 0; }
+
+.workflow-guide { max-width: 1160px; margin: 0 auto; padding: 28px 32px 40px; color: var(--text); font-size: var(--font-size-body); line-height: 1.7; }
+.workflow-guide.modal-body { padding: 24px; }
+.workflow-guide .page-heading { margin-bottom: 24px; }
+.workflow-guide > nav { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 20px; margin-bottom: 24px; border-bottom: 1px solid var(--line); }
+.workflow-guide > nav .btn { min-height: 40px; }
+.workflow-guide h2 { color: var(--ink); font-size: 20px; line-height: 1.5; letter-spacing: -.4px; }
+.guide-section-heading { margin-bottom: 20px; }
+.guide-section-heading > p { color: var(--muted); margin-top: 6px; }
+.guide-start-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
+.guide-start-steps > li { display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--line); border-radius: 12px; padding: 20px; background: var(--surface); min-width: 0; }
+.guide-step-heading { display: flex; align-items: center; gap: 9px; color: var(--primary); }
+.guide-step-heading h3 { font-size: 16px; font-weight: 650; color: var(--ink); line-height: 1.5; }
+.guide-step-number { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; flex-shrink: 0; border-radius: 7px; background: var(--primary-soft); color: var(--primary); font-size: 12px; font-weight: 650; }
+.guide-start-steps > li > p { margin: 0; line-height: 1.7; }
+.guide-start-steps .text-btn { align-self: flex-start; margin-top: auto; font-size: 13px; color: var(--primary); padding-top: 3px; }
+.guide-boundary-note { display: flex; gap: 10px; margin-top: 20px; padding: 15px 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-subtle); font-size: 12px; line-height: 1.75; }
+.guide-boundary-note > svg { flex-shrink: 0; margin-top: 2px; color: var(--muted); }
+.guide-boundary-note p { margin: 0; }
+.workflow-guide details { margin-top: 12px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.workflow-guide summary { cursor: pointer; font-weight: 600; color: var(--ink); line-height: 1.6; }
+.workflow-guide details[open] summary { margin-bottom: 12px; }
+.workflow-guide details p { margin: 0; line-height: 1.75; }
+.workflow-guide dl { display: grid; grid-template-columns: minmax(140px, .5fr) minmax(0, 2fr); gap: 12px 20px; margin: 18px 0 0; padding-top: 16px; border-top: 1px solid var(--line); }
+.workflow-guide dt { color: var(--muted); font-size: 12px; font-weight: 600; }
+.workflow-guide dd { margin: 0; overflow-wrap: anywhere; }
+.guide-help { display: inline-flex; margin-top: 8px; color: var(--primary); font-size: 12px; line-height: 1.6; }
+.workflow-explanation { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 12px 14px; margin: 12px 0; color: var(--text); font-size: 13px; line-height: 1.7; }
+.workflow-explanation[open] { max-height: min(32vh, 280px); overflow: auto; }
+.workflow-explanation summary { font-weight: 600; color: var(--ink); cursor: pointer; }
+.workflow-explanation > p { margin: 10px 0; color: var(--muted); font-size: 12px; }
+.workflow-explanation ol { padding-left: 22px; margin: 8px 0 0; }
+.workflow-explanation li + li { margin-top: 7px; }
+
+.example-catalog .page-heading { align-items: flex-start; margin-bottom: 20px; }
+.catalog-overview-details { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 0 16px; margin-bottom: 18px; }
+.catalog-overview-details > summary { cursor: pointer; color: var(--text); font-size: 12px; padding: 12px 0; line-height: 1.6; }
+.catalog-overview-details > summary > span:first-child { font-weight: 600; color: var(--ink); margin-right: 16px; }
+.catalog-overview-details > summary > span:last-child { color: #92400e; }
+.example-catalog .catalog-overview { margin: 4px 0 12px; padding: 16px; border-radius: 8px; background: var(--surface-subtle); border-color: var(--line); color: var(--ink); gap: 20px; }
+.example-catalog .catalog-overview > div { gap: 20px; }
+.example-catalog .catalog-overview span { font-size: 12px; }
+.example-catalog .catalog-overview strong { font-size: 24px; letter-spacing: -.5px; }
+.example-catalog .catalog-overview strong small { font-size: 12px; }
+.example-catalog .catalog-count-note { font-size: 12px; line-height: 1.75; color: var(--text); margin: 10px 0 14px; }
+.example-catalog .catalog-count-note strong { font-weight: 500; color: var(--ink); }
+.example-catalog .catalog-tabs { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 0 0 18px; border-color: var(--line); }
+.example-catalog .catalog-tabs > button { padding: 10px 0 12px; font-size: 13px; color: var(--muted); }
+.example-catalog .catalog-tabs > button[aria-selected=true] { color: var(--primary); border-color: var(--primary); }
+.example-catalog .catalog-tabs > button > span { font-size: 11px; background: var(--surface-subtle); color: var(--text); }
+.example-catalog .catalog-starter-note { margin: 0 0 16px; padding: 0; color: var(--muted); font-size: 12px; line-height: 1.6; background: transparent; border: 0; }
+.example-catalog .catalog-filters { grid-template-columns: minmax(200px, 1.5fr) repeat(3, minmax(130px, 1fr)); gap: 12px; }
+.example-catalog .catalog-filters > label > span { font-size: 12px; color: var(--text); margin-bottom: 6px; }
+.example-catalog .catalog-filters > .search-field { grid-column: auto; }
+.example-catalog .catalog-filters :is(input, select) { font-size: 13px; color: var(--text); }
+.example-catalog .catalog-filters select { border-color: var(--line); border-radius: var(--radius-control); }
+.example-catalog .catalog-results-heading { margin: 16px 0; font-size: 13px; color: var(--muted); }
+.example-catalog .catalog-grid { gap: 16px; }
+.example-catalog .catalog-card { border-color: var(--line); border-radius: 12px; padding: 20px; background: var(--surface); }
+.example-catalog .catalog-card:hover { border-color: #a5b4fc; box-shadow: 0 5px 16px #0f172a09; }
+.example-catalog .catalog-card:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+.example-catalog .catalog-card-top { flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+.example-catalog :is(.catalog-category, .catalog-setup) { font-size: 11px; line-height: 1.5; }
+.example-catalog .catalog-category { color: var(--primary); background: var(--primary-soft); }
+.example-catalog .catalog-setup { color: #92400e; background: #fffbeb; }
+.example-catalog .catalog-setup.ready { color: #166534; background: #f0fdf4; }
+.example-catalog .catalog-card h2 { color: var(--ink); font-size: 17px; line-height: 1.5; margin-bottom: 10px; letter-spacing: -.3px; }
+.example-catalog .catalog-card > p { font-size: 13px; line-height: 1.7; color: var(--text); margin: 0 0 10px; }
+.example-catalog .catalog-card .catalog-card-purpose { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.example-catalog .catalog-card .catalog-card-method { font-size: 12px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.example-catalog :is(.catalog-frameworks, .catalog-node-types) { gap: 5px; margin: 5px 0; }
+.example-catalog :is(.catalog-frameworks, .catalog-node-types) > span { color: var(--text); background: var(--surface-subtle); font-size: 11px; }
+.example-catalog .catalog-verification { margin-top: 12px; }
+.example-catalog .catalog-verification > span { font-size: 11px; }
+.example-catalog .catalog-card > footer { font-size: 12px; color: var(--primary); border-color: var(--line); margin-top: auto; padding-top: 14px; }
+.example-catalog .catalog-pagination { flex-wrap: wrap; gap: 10px; font-size: 13px; color: var(--muted); }
+.catalog-graph-node strong { color: var(--ink); }
+.catalog-graph-node :is(small, span) { color: var(--muted); }
+
+.example-customizer { padding: 24px; color: var(--text); font-size: 14px; line-height: 1.7; }
+.modal-body > .example-customizer { padding: 0; }
+.customizer-heading { margin-bottom: 20px; }
+.customizer-heading h2 { font-size: 21px; color: var(--ink); line-height: 1.5; margin: 6px 0 8px; }
+.customizer-heading > p { margin: 0; color: var(--muted); }
+.example-customizer > nav { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.example-customizer > nav .btn { min-height: 38px; font-size: 13px; }
+.customizer-step-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 22px 0 18px; }
+.customizer-step-heading h3 { font-size: 17px; color: var(--ink); }
+.customizer-step-heading > span { font-size: 12px; color: var(--muted); }
+.customizer-step-content { min-height: 160px; }
+.customizer-step-content > :is(section, div:not(.workflow-explanation)) { margin: 18px 0; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-subtle); }
+.customizer-step-content > :is(section, div):first-child { margin-top: 0; }
+.customizer-step-content p { margin: 12px 0; }
+.customizer-step-content .field-label { margin: 0 0 18px; }
+.customizer-step-content details { margin: 12px 0; }
+.customizer-step-content summary { font-size: 13px; cursor: pointer; }
+.customizer-step-content pre { max-height: 240px; overflow: auto; padding: 12px; border-radius: 8px; background: var(--surface); border: 1px solid var(--line); font-size: 12px; }
+.example-customizer > .modal-footer { padding: 18px 0 0; margin-top: 24px; background: var(--surface); gap: 10px; }
+.example-customizer > .modal-footer > .text-btn { margin-right: auto; font-size: 12px; text-align: left; }
+
+@media (max-width: 1150px) {
+  .example-catalog .catalog-filters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .example-catalog .catalog-filters > .search-field { grid-column: 1 / -1; }
+  .workflow-list .page-heading { flex-wrap: wrap; gap: 16px; }
+}
+@media (max-width: 760px) {
+  .workflow-guide { padding: 22px 18px 32px; }
+  .workflow-guide.modal-body { padding: 16px; }
+  .guide-start-steps { grid-template-columns: 1fr; }
+  .guide-start-steps > li { padding: 16px; }
+  .workflow-guide dl { grid-template-columns: 1fr; gap: 5px; }
+  .workflow-guide dd + dt { margin-top: 12px; }
+  .example-catalog .page-heading { flex-wrap: wrap; gap: 14px; }
+  .page-heading-actions { justify-content: flex-start; }
+  .catalog-overview-details > summary > span:last-child { display: block; padding-left: 17px; margin-top: 4px; }
+  .example-catalog .catalog-filters { grid-template-columns: 1fr; }
+  .example-catalog .catalog-overview { display: block; }
+  .example-catalog .catalog-overview > div + div { margin-top: 16px; padding-top: 12px; border-color: var(--line); }
+  .example-customizer { padding: 16px; }
+  .example-customizer > .modal-footer > .text-btn { flex-basis: 100%; margin-bottom: 4px; }
+}
+
+/* 외부 AI 수정본: 단계와 설계/자료/코드 변경의 비교 범위를 시각적으로 구분한다. */
+.import-steps{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:0;margin:0 0 24px}.import-steps li{display:flex;align-items:center;gap:8px;padding:10px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:12px;overflow-wrap:anywhere}.import-steps li>span{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--surface-subtle);flex-shrink:0}.import-steps li.active,.import-steps li[aria-current=step]{border-color:var(--primary);background:var(--primary-soft);color:var(--primary)}.import-comparison-grid,.import-text-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.import-comparison-grid>*{min-width:0}.import-resource-card{padding:18px;border:1px solid var(--line);border-radius:12px;margin:16px 0;background:var(--surface)}.import-resource-card h3{margin-top:0}.import-text-comparison>section,.import-text-comparison>div{min-width:0}.import-text-comparison pre{max-height:300px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;background:var(--surface-subtle);padding:12px;border-radius:8px}.import-dialog-body>section{margin-block:18px}
+@media(max-width:800px){.import-comparison-grid,.import-text-comparison{grid-template-columns:1fr}.import-steps{display:flex;overflow:auto}.import-steps li{min-width:130px}}

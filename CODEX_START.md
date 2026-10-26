@@ -1,5 +1,9 @@
 # Codex에서 Flowly Agentic Workflow Builder 만들기
 
+> 최신 화면·운영용 내보내기 변경과 이번 검증은 [디자인·운영용 내보내기 통합 기록](docs/DESIGN_PRODUCTION_IMPLEMENTATION.md)에 있습니다. 기존 예제 검증 수치는 패키지 변경 뒤 자동 승계하지 않습니다.
+
+> 2026-10-26 현재 통합 계약: [통합 사용자 기능 명세](docs/INTEGRATED_USER_WORKFLOW.md), [최신 검증 결과](docs/INTEGRATED_VERIFICATION.md). 아래 날짜별 기록은 당시 구현·검증 범위입니다. Agent 다운로드의 Agent 필수 조건은 철회되었으며, 워크플로는 별도 읽기·지정 수정 공유를 지원합니다.
+
 작성일: 2026-10-21
 
 ## 목표

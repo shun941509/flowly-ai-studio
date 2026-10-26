@@ -1,4 +1,4 @@
-import { allNodes } from "../domain/advanced-config";
+/** 문서에 표시할 Node.js/Python 진입점과 실행 명령을 한곳에서 결정한다. 실행 의미와 권한 검사는 manifest/실행기의 책임이다. */
 import type { ExportManifest } from "./export-package";
 
 export type ExportExecutionTarget = "runtime" | "agent";
@@ -10,6 +10,6 @@ export function exportExecution(manifest: Pick<ExportManifest, "language">, targ
 }
 
 /** A copied prompt names the download the user can prepare; it never assumes files exist. */
-export function promptExecutionTarget(manifest: ExportManifest): ExportExecutionTarget {
-  return allNodes(manifest.workflow.definition).some(node => node.type === "agent") ? "agent" : "runtime";
+export function promptExecutionTarget(): ExportExecutionTarget {
+  return "agent";
 }

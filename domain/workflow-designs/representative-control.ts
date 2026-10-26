@@ -1,3 +1,7 @@
+/**
+ * 대표 Harness와 작업 조정 예제의 도구·한도·승인 계약이다. 도구 읽기/쓰기 효과와 승인 후 관측 결과를 구분한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode, Resource } from "../../app/lib/model";
 import type { DataSchema, InputBinding, Json } from "../../runtime/types";
 import type { WorkflowDesign, WorkflowScenario } from "../workflow-design";

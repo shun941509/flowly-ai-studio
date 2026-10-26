@@ -1,3 +1,7 @@
+/**
+ * 재검색·추가 조사·자료 충돌·변경 영향·사용 권한 판단을 다루는 예제다. 검색 근거와 후속 Agent의 입력 연결을 함께 확인한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import {ai,any,arr,b,calc,form,gate,graph,input,make,merge,note,out,parse,reply,result,review,str,svc,tool} from './completion-008-034-support';
 
 const search=svc('008',[{name:'search_relations',effect:'read',fields:{query:str}}]);

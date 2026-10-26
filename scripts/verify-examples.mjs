@@ -1,3 +1,6 @@
+/**
+ * 현재 실행기/설계 산출물을 만든 뒤 실제 내보내기 시나리오 하네스를 실행한다. 자식 환경은 허용한 운영 변수만 전달해 자격 증명을 상속하지 않는다.
+ */
 /** Build current artifacts before running all/filtered exported CLI scenarios. */
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";

@@ -1,3 +1,6 @@
+/**
+ * pnpm 설치를 잠금과 구조화된 진행 기록으로 감싼다. 설치된 프로젝트의 패키지 매니저를 임의로 바꾸지 않으며 운영 오류와 치명 오류를 구분한다.
+ */
 import { spawn } from "node:child_process";
 import { createHash } from "node:crypto";
 import {

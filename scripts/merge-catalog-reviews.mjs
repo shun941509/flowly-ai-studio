@@ -1,3 +1,6 @@
+/**
+ * 이전 문구 카탈로그의 독립 검토 기록을 현재 계약 해시와 맞춰 합친다. 이 기록만으로 현재 실행 설계의 검증 완료를 인증하지 않는다.
+ */
 import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
 import { allSeeds, contractHash } from "./build-example-catalog.mjs";
 const directory=new URL("../examples/catalog-reviews/",import.meta.url);

@@ -1,3 +1,4 @@
+# 두 실행기가 사용하는 고정 Python 도구 레지스트리. JSON 자료를 처리하며 임의 업로드 코드를 실행하지 않는다.
 """Allowlisted, bounded local tools for both exported runners.
 
 No model downloads, remote service calls, shell commands, pickle, or arbitrary
@@ -44,6 +45,7 @@ def dependency(module, package=None):
         fail(f"필요한 Python 패키지가 없어요: {package or module}. requirements-tools.txt를 확인해 주세요.", "missing_dependency")
 
 
+# 호출 전후 JSON 크기/중첩/유한 숫자를 검사해 과도한 결과 반환을 막는다.
 def bounded(value):
     count = 0
     def visit(item, depth):
@@ -103,6 +105,7 @@ def matrix(value):
     return rows
 
 
+# 설정된 로컬 모델만 사용한다. 누락 모델을 자동 다운로드하거나 외부 서비스로 대체하지 않는다.
 def model_path(tool_id):
     try: settings = json.loads(os.environ.get("FLOWLY_TOOL_MODELS", "{}"))
     except ValueError: fail("FLOWLY_TOOL_MODELS는 JSON 객체여야 해요.", "missing_configuration")
@@ -381,6 +384,7 @@ def tool_contracts():
     except (OSError,ValueError,AttributeError):fail("내보낸 tool-contracts.json 파일이 없거나 올바르지 않아요.","missing_configuration")
 
 
+# 넓은 개념의 이름이 제한된 알고리즘을 가리킬 수 있으므로 실제 구현 범위인 scope도 공개한다.
 def describe_tools():
     from toolpacks_scientific import SCIENTIFIC
     from toolpacks_media import MEDIA
@@ -409,6 +413,7 @@ def describe_tools():
 MODEL_TOOLS=set("tokenizer tokens embedding reranking ner sentiment pose_estimation stt tts multimodal".split())
 
 
+# 패키지/모델/브라우저/OCR 설치를 확인한다. networkProbed=False는 외부 연결을 검사하지 않았다는 뜻이다.
 def check_tools(ids):
     ids=array(ids,0,195)
     descriptions={item["id"]:item for item in describe_tools()}
@@ -442,6 +447,7 @@ def check_tools(ids):
     return {"status":"unconfigured" if missing else "ready","tools":tools,"missing":missing,"networkProbed":False}
 
 
+# 레지스트리와 내보낸 계약에 모두 있는 도구만 실행하고 입출력과 오류 형식을 제한한다.
 def execute_tool(tool_id,arguments):
     if not isinstance(tool_id,str) or tool_id not in registry(): fail("등록되지 않은 Python 도구예요.","unknown_tool")
     if not isinstance(arguments,dict): fail("도구 인자는 JSON 객체여야 해요.")
@@ -467,6 +473,7 @@ def execute_tool(tool_id,arguments):
         fail("로컬 도구 실행에 실패했어요. 패키지·모델 호환성과 입력을 확인해 주세요.","execution_failed")
 
 
+# 표준 입력 한 건에 JSON 응답 한 건을 반환한다. stdout 로그 추가는 실행기의 응답 파싱을 깨뜨린다.
 def main():
     try:
         raw=sys.stdin.buffer.read(MAX_BYTES+1)

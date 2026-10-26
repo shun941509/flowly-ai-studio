@@ -1,3 +1,4 @@
+/** 로그인 진입점. 서버 인증 설정과 요청 origin에 따라 테스트·Sites·OIDC 로그인으로 분기한다. */
 import { getAuthConfig } from "../../../../server/auth/environment";
 import { safeReturnPath } from "../../../../server/auth/config";
 import { allowedRequestOrigin } from "../../../../server/auth/session";
@@ -5,6 +6,7 @@ import { authPage, authRedirect, testLoginPage, unconfiguredPage } from "../../.
 import { startOidc } from "../../../../server/auth/oidc";
 
 export const dynamic = "force-dynamic";
+/** 미설정은 안내 페이지로 반환한다. return_to는 내부 경로로 제한한 뒤 해당 어댑터에 전달한다. */
 export async function GET(request: Request) {
   const config = getAuthConfig();
   if (!config.configured) return unconfiguredPage(config);

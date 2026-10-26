@@ -1,3 +1,6 @@
+/**
+ * 기존 .dev.vars를 보존하면서 파일이 없을 때만 로컬 테스트 로그인 설정을 만든다. 운영 SSO나 실제 모델/MCP를 연결하는 설정 절차는 아니다.
+ */
 import { existsSync, writeFileSync } from "node:fs";
 import { randomBytes } from "node:crypto";
 const path = new URL("../.dev.vars", import.meta.url);

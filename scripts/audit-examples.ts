@@ -1,3 +1,6 @@
+/**
+ * 작성 설계의 구조·실행 식별자와 정상/경계 시나리오를 감사한다. 서명이 다르다는 사실만으로 업무 의미의 독창성이나 모델 품질을 보증하지 않는다.
+ */
 /** Primary audit of executable designs. Different signatures are not semantic proof. */
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";

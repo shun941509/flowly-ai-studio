@@ -1,3 +1,7 @@
+/**
+ * 008~034 작성 파일이 공유하는 스키마·노드·연결·시나리오 도우미다. 여기의 기본값을 바꾸면 여러 예제의 실제 실행 계약이 함께 달라진다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode, Resource } from '../../app/lib/model';
 import type { DataSchema, InputBinding, Json } from '../../runtime/types';
 import type { WorkflowDesign, WorkflowScenario } from '../workflow-design';

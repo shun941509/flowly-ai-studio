@@ -1,3 +1,7 @@
+/**
+ * 고정 Python 도구와 Agent·변환·합류·분기를 조합한 예제다. 등록되지 않은 임의 코드 실행이 가능한 도구 목록으로 해석하지 않는다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode } from '../../app/lib/model';
 import type { DataSchema, InputBinding, PredicateConfig } from '../../runtime/types';
 import type { WorkflowDesign, WorkflowScenario } from '../workflow-design';

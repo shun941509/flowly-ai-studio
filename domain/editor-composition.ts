@@ -1,8 +1,15 @@
+/**
+ * 미완성 그래프의 연결 검사, 중첩 설계 교체, 정렬, 사용자별 로컬 초안을 담당한다.
+ * 좌표 변경과 실행 연결 변경을 구분하고 브라우저 초안을 서버 저장본처럼 취급하지 않는다.
+ */
 import { parseDefinition, type Definition, type FlowEdge, type Workflow } from '../app/lib/model';
 import { isStartNode, nodeRoutes } from './advanced-config';
 import { WORKFLOW_NODE_HEIGHT, WORKFLOW_NODE_WIDTH } from './workflow-layout';
 
 /** Check one proposed edge without requiring an unfinished graph to compile. */
+/**
+ * 편집 중 추가할 연결 하나를 검사한다. 전체 흐름이 아직 미완성이라는 이유만으로 모든 연결을 막지 않는다.
+ */
 export function connectionError(definition: Definition, edge: Pick<FlowEdge, 'source' | 'target' | 'branch'>): string | null {
  const source=definition.nodes.find(n=>n.id===edge.source),target=definition.nodes.find(n=>n.id===edge.target);
  if(!source||!target)return '연결할 블록을 찾을 수 없어요.';
@@ -19,6 +26,9 @@ export function connectionError(definition: Definition, edge: Pick<FlowEdge, 'so
 }
 
 /** Immutable identity-based replacement prevents identical sibling copies being edited together. */
+/**
+ * 내용이 같은 다른 자식까지 바꾸지 않도록 객체 참조가 일치하는 대상 하나만 교체한다.
+ */
 export function replaceEmbeddedDefinition(root:Definition,target:Definition,replacement:Definition):Definition {
  let matches=0;
  const visit=(definition:Definition):Definition=>{
@@ -35,6 +45,9 @@ export function replaceEmbeddedDefinition(root:Definition,target:Definition,repl
  if(matches!==1)throw new Error('상위 흐름이 바뀌었어요. 편집을 닫고 하위 흐름을 다시 열어 주세요.');
  return next;
 }
+/**
+ * 하위 편집 결과를 부모에 반영한 전체 그래프로 검사해 깊이·노드 예산 초과를 잡는다.
+ */
 export function validateEmbeddedChange(root:Definition,target:Definition,replacement:Definition):Definition {
  const next=replaceEmbeddedDefinition(root,target,replacement);
  parseDefinition(next); // Recursive schema, depth 3, total 120 and per-graph budgets.
@@ -42,6 +55,9 @@ export function validateEmbeddedChange(root:Definition,target:Definition,replace
 }
 
 export type Alignment='left'|'center'|'top'|'middle'|'horizontal'|'vertical';
+/**
+ * 선택 노드의 위치만 정렬한다. 연결선의 실행 순서와 입출력 매핑은 수정하지 않는다.
+ */
 export function alignSelection(definition:Definition,ids:readonly string[],mode:Alignment):Definition {
  const selected=new Set(ids),nodes=definition.nodes.filter(n=>selected.has(n.id));
  if(nodes.length<2)return definition;
@@ -61,11 +77,17 @@ export function alignSelection(definition:Definition,ids:readonly string[],mode:
 export type EditorDraft={version:1;userId:string;workflow:Workflow;savedAt:string};
 export const draftPrefix=(userId:string)=>`flowly-draft-v1:${encodeURIComponent(userId)}:`;
 export const draftKey=(userId:string,workflowId:string)=>draftPrefix(userId)+encodeURIComponent(workflowId);
+/**
+ * 편집 중인 설계와 식별 정보를 크기 제한이 있는 초안으로 직렬화한다.
+ */
 export function encodeEditorDraft(userId:string,workflow:Workflow,now=new Date().toISOString()):string {
  // Only the editable document: never the resource catalogue, runtime connections or secrets.
  const value:EditorDraft={version:1,userId,savedAt:now,workflow:{id:workflow.id,name:workflow.name,description:workflow.description,updatedAt:workflow.updatedAt,definition:parseDefinition(workflow.definition)}};
  const text=JSON.stringify(value);if(text.length>2_000_000)throw new Error('초안이 너무 커서 이 탭에 보관할 수 없어요. JSON으로 내보내 주세요.');return text;
 }
+/**
+ * 초안의 사용자·형식·저장 시각과 설계를 확인한 뒤 복구한다.
+ */
 export function decodeEditorDraft(text:string,userId:string):EditorDraft {
  if(text.length>2_000_000)throw new Error('초안 크기를 확인해 주세요.');
  const value=JSON.parse(text) as EditorDraft;

@@ -1,3 +1,7 @@
+/**
+ * 여러 블록 종류를 통합한 095 예제의 전체 설계다. 파일·색인·병렬/팀/조정·반복·후보 검증을 거쳐 보완 입력·검토·기록/보상 승인으로 이어진다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode, Resource } from '../../app/lib/model';
 import type { WorkflowDesign, WorkflowScenario } from '../workflow-design';
 import { layoutWorkflow } from '../workflow-layout';

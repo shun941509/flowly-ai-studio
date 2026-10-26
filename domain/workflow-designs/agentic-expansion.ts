@@ -1,3 +1,7 @@
+/**
+ * AI 실행·검색·협업 예제의 독립 설계를 작성한다. 공통 생성 도우미는 노드 표기와 계약을 정리하며 각 예제의 연결·분기는 개별 정의에서 확인한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode, Resource } from "../../app/lib/model";
 import type { DataSchema, FormConfig, InputBinding } from "../../runtime/types";
 import type { WorkflowDesign, WorkflowScenario } from "../workflow-design";

@@ -1,3 +1,4 @@
+// 수치 요약·스키마 검사/수정·근거/완료 조건 검사·순위 융합의 고정 프로그램. Python flowly_programs.py와 출력 계약을 맞춘다.
 import { parseDataNodeConfig } from "../domain/node-config";
 import { evaluatePredicate, parsePredicate } from "../domain/predicate";
 import { parseSchema } from "../domain/schema";
@@ -33,6 +34,7 @@ function integer(value: Json | undefined, min: number, max: number): number {
   if (!Number.isInteger(number) || number < min || number > max) return fail(`프로그램 정수는 ${min}~${max} 범위여야 해요.`);
   return number;
 }
+// 프로그램 입력을 JSON으로 복사하면서 값 개수·중첩 한도를 제한한다. 실행 가능한 객체나 코드는 받지 않는다.
 function boundedJson(value: unknown): Json {
   const copy = JSON.parse(canonicalJson(value)) as Json;
   let count = 0;
@@ -75,6 +77,7 @@ function numericSummary(args: Obj): Obj {
   const sum = finite(values.reduce((total, value) => total + value, 0));
   return { count: values.length, sum, min: Math.min(...values), max: Math.max(...values), mean: finite(sum / values.length), ...(unit ? { unit } : {}) };
 }
+// patch 모드에서도 현재 오류가 있는 경로만 한 번씩 수정한다. 전체 데이터나 정상 필드를 임의 교체하는 연산이 아니다.
 function schemaCheck(args: Obj, patch: boolean): Obj {
   keys(args, patch ? ["data", "schema", "patches"] : ["data", "schema"]);
   const schema = parseSchema(args.schema), data = boundedJson(args.data);
@@ -155,6 +158,7 @@ function rankFusion(args: Obj): Obj {
 }
 
 /** Finite registry: no network, files, shell, uploaded source, SQL or eval. */
+// 등록된 이름으로만 분기한다. 사용자 입력을 eval이나 동적 모듈로 실행하지 않는다.
 export function executeProgram(config: ProgramConfig, input: Record<string, Json>): { text: string; data: Obj } {
   if (config.name === "python_tool" || config.name === "completion") throw new Error("등록된 Python 프로그램은 내보낸 실행기의 도구 어댑터가 필요해요.");
   const parsed = parseDataNodeConfig({ type: "program", program: config }).program!;

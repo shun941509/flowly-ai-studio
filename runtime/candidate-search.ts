@@ -1,3 +1,4 @@
+// 제한된 정수 합계 문제의 공개 후보를 tree/graph로 탐색한다. 모델은 후보만 제안하고 성공 판정은 원본 데이터로 계산한다.
 import { parseSearchConfig, type SearchConfig } from "../domain/search-config";
 import { dataAt } from "./data-nodes";
 import { argsHash, canonicalJson, redactText } from "./policy";
@@ -7,6 +8,7 @@ export type { SearchConfig } from "../domain/search-config";
 type Obj = Record<string, Json>;
 type CandidateStatus = "frontier" | "expanded" | "dead_end" | "pruned" | "invalidated" | "solution";
 export type SearchCandidate = { id: string; revision: number; items: string[]; parents: { id: string; revision: number }[]; depth: number; total: number; distance: number; status: CandidateStatus };
+// 입력·설정·전체 상태의 해시와 미완료 요청을 저장하여 중단 후 응답 처리 단계를 이어간다.
 export type SearchState = {
   version: 1; configHash: string; inputHash: string; integrity: string;
   iteration: number; candidates: SearchCandidate[]; frontier: string[];
@@ -29,6 +31,7 @@ function problem(config: SearchConfig, input: Obj) {
 export const SEARCH_PROMPT = "FLOWLY_CANDIDATE_SEARCH: 원래 problem의 항목 ID만 사용하여 목표 합계를 찾는 공개 후보를 제안하세요. JSON {actions:[{type:'create',items:[ID],parents:[후보ID]} 또는 {type:'revise',id:후보ID,items:[ID]}],summary?:'짧은 공개 작업 설명'}만 반환하세요. 합계, 점수, 성공 여부는 실행기가 원본 데이터로 계산합니다. tree에서는 selected 후보의 항목을 포함하는 자식만 만드세요. graph에서는 현재 유효 후보를 최대 3개 병합하거나 기존 후보를 수정할 수 있어요. 수정한 조상의 모든 자손은 폐기됩니다. 내부 사고 과정이나 비공개 추론을 작성하지 마세요. 더 진행할 수 없으면 actions:[]를 반환하세요.";
 
 /** Persist request, then provider reply, then the entire validated transition separately. */
+// Python flowly_search.py와 같은 계약이다. 요청 저장 → 응답 저장 → 검증된 후보 일괄 반영 순서를 유지한다.
 export async function runCandidateSearch(rawConfig: SearchConfig, input: Obj, saved: SearchState | undefined, hooks: SearchHooks): Promise<Obj> {
   const config = parseSearchConfig(rawConfig), source = problem(config, input);
   const configHash = await argsHash(config as unknown as Obj), inputHash = await argsHash(input);

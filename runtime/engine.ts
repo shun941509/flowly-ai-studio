@@ -1,3 +1,4 @@
+// DAG 실행과 Agent 반복·하위 실행을 조정하는 핵심 엔진. simulateFlow 미리보기와 별개이며 모든 외부 효과 전에 저장·권한·한도를 확인한다.
 import { isStartNode } from "../domain/advanced-config";
 import { evaluatePredicate } from "../domain/predicate";
 import { uid, validateGraph, type Identity, type Resource, type Workflow, type FlowNode } from "../app/lib/model";
@@ -6,6 +7,7 @@ import type { CompositeTask, DataSchema, Json, Limits, PublicRun, RuntimeDepende
 import { executeProgram } from "./programs";
 import { completionArguments } from "./completion-programs";
 import { assertPythonArguments, assertPythonToolSelected, pythonProgramArguments, pythonToolDefinition } from "./python-tools";
+import { resourceNodeOutput, skillArguments, skillToolDefinition } from "./resource-materials";
 import { executeKnowledge } from "./knowledge";
 import { runCandidateSearch, type SearchState } from "./candidate-search";
 import { dynamicChildInput, instantiateDynamicTasks, parseDynamicPlan } from "./dynamic-agents";
@@ -31,6 +33,7 @@ function validateToolArguments(args: Record<string, Json>, tool: ToolDefinition)
   try { assertPythonArguments(args, tool.inputSchema as unknown as Record<string, Json>); }
   catch (error) { throw new NodeProcessingFault(error instanceof Error ? error.message : "Python 도구 입력을 확인해 주세요."); }
 }
+// 실행 시작 시 설계를 컴파일하고 필요한 자료만 복사한다. 이후 실행은 이 고정 스냅샷을 기준으로 진행한다.
 export function createRun(input: { id?: string; owner: Identity; mode: "test" | "live"; workflow: Workflow; resources: Resource[]; input: string; initialInput?: Record<string, Json>; limits?: Partial<Limits> }): RuntimeRun {
   if (typeof input.input !== "string" || input.input.length > 20000) throw new RuntimeFault("failed", "실행 입력은 20,000자까지 사용할 수 있어요.");
   const workflow = structuredClone(input.workflow);
@@ -45,6 +48,7 @@ export function createRun(input: { id?: string; owner: Identity; mode: "test" | 
   event(run, "queued", input.mode === "test" ? "테스트 실행을 준비했어요. 외부 AI와 서비스는 호출하지 않아요." : "실제 실행을 준비했어요.");
   return run;
 }
+// 승인/거절은 기록만 변경한다. 실제 도구 호출은 재개 시점에 현재 권한과 인자를 다시 검사한 뒤 수행한다.
 export async function decideApproval(run: RuntimeRun, approvalId: string, userId: string, decision: "approved" | "denied"): Promise<RuntimeRun> {
   if (run.owner.userId !== userId) throw new RuntimeFault("failed", "이 승인을 처리할 권한이 없어요.");
   if (run.restoredReadOnly) throw new RuntimeFault("failed", "복원한 외부 변경 실행은 조회만 가능해요. 서비스의 실제 결과를 확인한 뒤 새 실행을 시작해 주세요.");
@@ -73,6 +77,7 @@ export async function decideApproval(run: RuntimeRun, approvalId: string, userId
   event(run, decision === "approved" ? "approval_granted" : "approval_denied", decision === "approved" ? "변경 작업을 승인했어요. 현재 권한을 다시 확인한 뒤 재개해요." : "변경 작업을 거절했어요. 거절 결과를 AI에게 전달해요.", call.nodeId);
   return run;
 }
+// 내부 체크포인트 전체 대신 표시용 상태·결정 요청·사용량을 반환하고 비밀 값 패턴을 제거한다.
 export function publicRun(run: RuntimeRun): PublicRun {
   const { id, mode, status, input, result, error, createdAt, updatedAt, limits, events } = run;
   const { turns, toolCalls, tokens, activeMs } = run.checkpoint;
@@ -112,6 +117,7 @@ export async function executeRun(run: RuntimeRun, deps: EngineDependencies): Pro
     for (const key of Object.keys(limits) as (keyof Limits)[]) limits[key] = Math.min(node.limits?.[key] ?? run.limits[key], run.limits[key]);
     return limits; // Internal child allocations may be zero; public configuration remains positive.
   }
+  // 새 작업과 외부 호출 전에 취소·활동 시간·전체/노드 예산·현재 자료 접근을 함께 확인한다.
   async function guard(node?: FlowNode, tool?: ToolDefinition) {
     tick();
     if (await deps.isCancelled()) throw new RuntimeFault("cancelled", "실행을 취소했어요. 이미 완료된 외부 변경은 되돌리지 않아요.");
@@ -123,8 +129,13 @@ export async function executeRun(run: RuntimeRun, deps: EngineDependencies): Pro
       assertPythonToolSelected(node, tool);
       if (!deps.pythonTool) throw new RuntimeFault("failed", "Python 도구 미설정: 실행 프로젝트를 내보내고 Python 도우미를 설정해 주세요. 웹에서는 실행하지 않아요.");
     }
-    try { await deps.assertAccess(ids, tool?.implementation === "python" ? undefined : tool); } catch (error) { if (error instanceof PauseChild || error instanceof PersistenceFault || error instanceof RuntimeFault && error.code !== "failed") throw error; throw new RuntimeFault("failed", "자료 또는 연결을 사용할 권한이 없어요. 공유와 연결 상태를 확인해 주세요."); }
+    if (tool?.implementation === "skill") {
+      if (!node || canonicalJson(skillToolDefinition(node, run.resources)) !== canonicalJson(tool)) throw new RuntimeFault("failed", "선택한 Skill 실행 정의가 변경됐어요. 새 실행을 시작해 주세요.");
+      if (!deps.skill) throw new RuntimeFault("failed", "Skill 코드 실행 미설정: 내려받은 프로젝트에서 Python 도우미와 실행 언어를 설정해 주세요. 웹에서는 실행하지 않아요.");
+    }
+    try { await deps.assertAccess(ids, tool?.implementation ? undefined : tool); } catch (error) { if (error instanceof PauseChild || error instanceof PersistenceFault || error instanceof RuntimeFault && error.code !== "failed") throw error; throw new RuntimeFault("failed", "자료 또는 연결을 사용할 권한이 없어요. 공유와 연결 상태를 확인해 주세요."); }
   }
+  // 남은 실행 시간과 승인 만료 중 더 짧은 기한을 적용한다. 타임아웃/취소는 실제 어댑터의 AbortSignal에도 전달한다.
   async function bounded<T>(node: FlowNode, operation: (signal: AbortSignal, deadlineAt: number) => Promise<T>, approvalExpiresAt?: number): Promise<T> {
     tick();
     const executionRemaining = Math.min(run.limits.maxDurationMs - checkpoint.activeMs, nodeLimits(node).maxDurationMs - usage(node).activeMs, deps.remainingDuration?.() ?? Infinity);
@@ -150,6 +161,7 @@ export async function executeRun(run: RuntimeRun, deps: EngineDependencies): Pro
   const observe = (call: ToolCall, result: Json) => {
     if (!checkpoint.messages.some(m => m.role === "tool" && m.callId === call.id)) checkpoint.messages.push({ role: "tool", toolName: call.tool.name, callId: call.id, content: canonicalJson(result) });
   };
+  // 같은 도구·인자 쓰기는 자식 실행 간에도 직렬화한다. 이미 완료/거절/불명확한 동일 요청을 찾아 중복 부작용을 막는다.
   async function dispatch(node: FlowNode, call: ToolCall) {
     if (call.status === "completed" || call.status === "denied" || call.status === "failed") return dispatchInner(node, call);
     if (call.tool.effect !== "write") return dispatchInner(node, call);
@@ -179,13 +191,14 @@ export async function executeRun(run: RuntimeRun, deps: EngineDependencies): Pro
     } catch (error) { if (error instanceof PersistenceFault) { writeBoundary.failed = true; if (call.attempts > 0) call.status = "unknown_outcome"; } throw error; }
     finally { release(); if (writeLocks.get(key) === current) writeLocks.delete(key); }
   }
+  // planned → dispatching을 저장한 뒤 외부 호출한다. 쓰기 도중 실패하면 미실행으로 단정하지 않고 unknown_outcome으로 남긴다.
   async function dispatchInner(node: FlowNode, call: ToolCall) {
     if (call.status === "completed" || call.status === "denied" || call.status === "failed") { observe(call, call.result ?? { error: "도구 실행이 완료되지 않았어요." }); return; }
     if (call.status === "unknown_outcome" || (call.status === "dispatching" && call.tool.effect === "write")) {
       call.status = "unknown_outcome";
       throw new RuntimeFault("unknown_outcome", "외부 변경 결과를 확인할 수 없어요. 서비스에서 결과를 확인한 뒤 새 작업을 시작해 주세요. 자동 재실행하지 않아요.");
     }
-    const current = call.tool.implementation === "python" ? pythonToolDefinition(call.tool.pythonToolId ?? "") : deps.tools.find(t => t.resourceId === call.tool.resourceId && t.connectionId === call.tool.connectionId && t.toolName === call.tool.toolName && t.name === call.tool.name);
+    const current = call.tool.implementation === "python" ? pythonToolDefinition(call.tool.pythonToolId ?? "") : call.tool.implementation === "skill" ? skillToolDefinition(node, run.resources) : deps.tools.find(t => t.resourceId === call.tool.resourceId && t.connectionId === call.tool.connectionId && t.toolName === call.tool.toolName && t.name === call.tool.name);
     if (!current || canonicalJson(current) !== canonicalJson(call.tool)) throw new RuntimeFault("failed", "연결된 도구의 설정이 바뀌었어요. 새 실행을 시작해 주세요.");
     validateToolArguments(call.args, call.tool);
     if (await argsHash(call.args) !== call.argsHash) throw new RuntimeFault("failed", "저장된 도구 인자가 변경되어 실행을 중지했어요.");
@@ -213,14 +226,23 @@ export async function executeRun(run: RuntimeRun, deps: EngineDependencies): Pro
       await guard(node, current);
       let result: Json;
       try {
-        result = await bounded(node, (signal, deadlineAt) => current.implementation === "python" ? deps.pythonTool!({ toolId: current.pythonToolId!, arguments: structuredClone(call.args), signal }) : deps.callTool(current, structuredClone(call.args), { signal, deadlineAt, idempotencyKey: `${run.id}:${call.id}:${call.argsHash}` }), approvalExpiresAt);
+        result = await bounded(node, (signal, deadlineAt) => current.implementation === "python" ? deps.pythonTool!({ toolId: current.pythonToolId!, arguments: structuredClone(call.args), signal }) : current.implementation === "skill" ? deps.skill!({ resourceId: current.resourceId, entryId: current.skillExecutionId!, arguments: structuredClone(call.args), signal }) : deps.callTool(current, structuredClone(call.args), { signal, deadlineAt, idempotencyKey: `${run.id}:${call.id}:${call.argsHash}` }), approvalExpiresAt);
         canonicalJson(result);
+        // MCP 기본 검증 대상은 structuredContent다. 기존 반환 래퍼를 유지하여 data.structuredContent 연결을 바꾸지 않는다.
+        if (current.outputSchema) {
+          const target = current.outputTarget === "result" ? result : result && typeof result === "object" && !Array.isArray(result) ? result.structuredContent : undefined;
+          validateValue(target, current.outputSchema, "도구 출력");
+        }
       } catch (error) {
         if (call.tool.implementation === "python" && error instanceof RuntimeFault) {
           call.status = "failed"; call.result = { error: error.message }; observe(call, call.result);
           event(run, "tool_failed", error.message, node.id); await persist(); throw error;
         }
         if (call.tool.effect === "write") { call.status = "unknown_outcome"; throw new RuntimeFault("unknown_outcome", "외부 변경 결과를 확인할 수 없어요. 서비스에서 결과를 확인해 주세요. 자동 재실행하지 않아요."); }
+        if (error instanceof NodeProcessingFault) {
+          call.status = "failed"; call.result = { error: error.message }; observe(call, call.result);
+          event(run, "tool_failed", error.message, node.id); await persist(); throw error;
+        }
         if (error instanceof RuntimeFault) throw error;
         if (call.attempts < 2) { call.status = "planned"; event(run, "tool_retry", "읽기 연결에 실패했어요. 한 번 더 시도해요.", node.id); await persist(); await bounded(node, signal => new Promise<void>((resolve, reject) => { const timer = setTimeout(resolve, 100); signal.addEventListener("abort", () => { clearTimeout(timer); reject(new RuntimeFault("budget_exceeded", "실행 시간 한도에 도달했어요.")); }, { once: true }); })); continue; }
         call.status = "failed"; call.result = { error: "읽기 도구 연결에 실패했어요. 연결 설정을 확인해 주세요." }; observe(call, call.result); event(run, "tool_failed", "읽기 도구 연결에 실패했어요.", node.id); await persist(); return;
@@ -232,6 +254,7 @@ export async function executeRun(run: RuntimeRun, deps: EngineDependencies): Pro
     // A crash after the last read attempt must not leave an unresolved tool message.
     call.status = "failed"; call.result = { error: "읽기 도구의 재시도 한도를 사용했어요." }; observe(call, call.result); await persist();
   }
+  // 모델 응답은 최종 답변 또는 허용 도구 요청으로 나뉜다. 저장된 대화·도구 호출에서 재개하며 매 턴 토큰과 호출 수를 차감한다.
   async function agent(node: FlowNode, input: Record<string, Json>): Promise<Record<string, Json> | undefined> {
     const selected = node.type === "agent" ? node.allowedTools ?? [] : [];
     const tools = selected.map(selection => {
@@ -300,8 +323,9 @@ export async function executeRun(run: RuntimeRun, deps: EngineDependencies): Pro
   async function directTool(node: FlowNode, input: Record<string, Json>, suppliedArgs?: Record<string, Json>): Promise<Record<string, Json> | undefined> {
     const selection = node.allowedTools?.[0];
     const localProgram = node.type === "program" && node.program?.name === "python_tool";
-    const tool = localProgram ? pythonToolDefinition(String(node.program!.arguments.toolId)) : selection && deps.tools.find(t => t.resourceId === selection.resourceId && t.connectionId === selection.connectionId && t.toolName === selection.toolName);
-    if (!tool || !localProgram && node.allowedTools?.length !== 1) throw new RuntimeFault("failed", "실행할 도구를 하나 선택하고 연결 설정을 확인해 주세요.");
+    const localSkill = node.type === "skill" && !!node.skillExecution;
+    const tool = localSkill ? skillToolDefinition(node, run.resources) : localProgram ? pythonToolDefinition(String(node.program!.arguments.toolId)) : selection && deps.tools.find(t => t.resourceId === selection.resourceId && t.connectionId === selection.connectionId && t.toolName === selection.toolName);
+    if (!tool || !localProgram && !localSkill && node.allowedTools?.length !== 1) throw new RuntimeFault("failed", "실행할 도구를 하나 선택하고 연결 설정을 확인해 주세요.");
     await guard(node, tool);
     const args = suppliedArgs ?? toolArguments(node, input);
     validateToolArguments(args, tool);
@@ -324,6 +348,7 @@ export async function executeRun(run: RuntimeRun, deps: EngineDependencies): Pro
     const data = call.result ?? null;
     return { text: typeof data === "string" ? data : canonicalJson(data), data };
   }
+  // 임베딩·검색·평가 등 보조 모델 호출도 Agent와 같은 예산/취소 경계를 통과한다.
   async function auxiliary<T extends { usageTokens: number }>(node: FlowNode, payload: Json, output: boolean, operation: (signal: AbortSignal, maxTokens: number) => Promise<T>): Promise<T> {
     await guard(node); const limits = nodeLimits(node);
     if (checkpoint.turns >= run.limits.maxTurns || usage(node).turns >= limits.maxTurns || checkpoint.toolCalls >= run.limits.maxToolCalls || usage(node).toolCalls >= limits.maxToolCalls) throw new RuntimeFault("budget_exceeded", "검색·임베딩 호출 한도에 도달했어요.");
@@ -338,6 +363,7 @@ export async function executeRun(run: RuntimeRun, deps: EngineDependencies): Pro
     if (!Number.isSafeInteger(result.usageTokens) || result.usageTokens < 0) throw new RuntimeFault("failed", "검색·임베딩 사용량을 확인할 수 없어요.");
     checkpoint.tokens += result.usageTokens - reserve; usage(node).tokens += result.usageTokens - reserve; await guard(node); await persist(); return result;
   }
+  // lexical은 로컬 문서 검색, vector는 임베딩 캐시, web은 제공자의 검색 API 경로다. 설정을 바꾸어도 무조건 로컬 검색으로 대체하지 않는다.
   async function retrieval(node: FlowNode, input: Record<string, Json>): Promise<Record<string, Json>> {
     const config = node.retrieval!;
     if (!config.mode || config.mode === "lexical") return retrieveDocuments(node, input, run.resources);
@@ -463,6 +489,7 @@ export async function executeRun(run: RuntimeRun, deps: EngineDependencies): Pro
     checkpoint.routes![node.id] = data.label;
     return { ...input, label: data.label, reason: redactText(data.reason) };
   }
+  // 모델이 만든 배정은 등록 템플릿과 스키마를 통과한 계획만 저장한다. 계획/입력 해시가 바뀐 상태로 기존 자식을 재사용하지 않는다.
   async function dynamicNode(node: FlowNode, input: Record<string, Json>): Promise<Record<string, Json> | undefined> {
     const config = node.orchestration!, settings = config.dynamic!;
     let group = checkpoint.groups![node.id];
@@ -490,6 +517,7 @@ export async function executeRun(run: RuntimeRun, deps: EngineDependencies): Pro
     }
     return groupNode({ ...node, type: "parallel", parallel: { tasks, concurrency: settings.concurrency }, orchestration: { ...config, tasks, mode: "plan" } }, input);
   }
+  // 병렬·팀·반복·하위 흐름을 자식 실행으로 관리한다. 사용량은 차이만 부모에 합산하고 자식 저장을 직렬화해 체크포인트 유실을 막는다.
   async function groupNode(node: FlowNode, input: Record<string, Json>): Promise<Record<string, Json> | undefined> {
     let group = checkpoint.groups![node.id];
     const config = node.orchestration;
@@ -521,6 +549,7 @@ export async function executeRun(run: RuntimeRun, deps: EngineDependencies): Pro
     }
     let concurrency = node.parallel?.concurrency ?? node.loop?.concurrency ?? (node.team?.mode === "parallel" ? node.team.concurrency : 1);
     concurrency = Math.max(1, Math.min(4, concurrency));
+    // 남은 예산을 자식 수로 나눈다. 예산이 0인 자식은 모델을 추가 호출하지 못하도록 내부 한도를 그대로 유지한다.
     const prepare = (tasks: { id: string; name: string; definition: Workflow["definition"] }[], inputs: Record<string, Json>[]) => {
       const limits = nodeLimits(node), count = Math.max(1, tasks.length);
       const allocated: Limits = {
@@ -576,6 +605,7 @@ export async function executeRun(run: RuntimeRun, deps: EngineDependencies): Pro
       await addContracts(tasks, children);
       event(run, "group_prepared", "하위 작업과 실행 한도를 저장했어요.", node.id, { taskIds: group.taskIds, concurrency }); await persist();
     }
+    // 먼저 조건을 충족한 병렬 결과를 선택할 수 있다. 나머지 작업을 취소해도 이미 보낸 쓰기의 불명확한 결과는 숨기지 않는다.
     const firstMatch = node.parallel?.completion;
     const controllers = group.children.map(() => new AbortController());
     const peerCancelled = (index: number) => firstMatch && group.winnerIndex !== undefined && index !== group.winnerIndex && group.cancelledTaskIds?.includes(group.taskIds[index]);
@@ -762,10 +792,12 @@ export async function executeRun(run: RuntimeRun, deps: EngineDependencies): Pro
         catch (error) { if (error instanceof RuntimeFault || error instanceof PersistenceFault) throw error; throw new NodeProcessingFault(error instanceof Error ? redactText(error.message) : "값 처리 설정을 확인해 주세요."); }
       }
       else if (node.type === "condition") { const matches = node.predicate ? evaluatePredicate(node.predicate, input) : String(input.text ?? "").toLocaleLowerCase().includes((node.condition ?? "").toLocaleLowerCase()); checkpoint.branches[node.id] = matches; checkpoint.routes![node.id] = matches ? "yes" : "no"; output = { ...input, matched: matches }; }
+      else if (node.type === "skill" && node.skillExecution) output = await directTool(node, input, skillArguments(node, input));
       else if (node.type === "resource" || node.type === "skill") {
         const resource = run.resources.find(r => r.id === node.resourceId);
         if (!resource) throw new RuntimeFault("failed", "연결한 자료를 찾을 수 없어요.");
-        output = { ...input, text: `${String(input.text ?? "")}\n\n[${resource.name}]\n${resource.content}`, resource: { id: resource.id, version: resource.updatedAt, type: resource.type, content: resource.content } };
+        try { output = resourceNodeOutput(node, resource, input); }
+        catch (error) { throw new NodeProcessingFault(error instanceof Error ? error.message : "자료 변수와 입력 연결을 확인해 주세요."); }
       } else output = { ...input, text: String(input.text ?? "") };
       if ((run.status as string) === "waiting_approval" || (run.status as string) === "waiting_review" || (run.status as string) === "waiting_input") return run;
       if (!output) throw new RuntimeFault("failed", "블록 결과를 확인할 수 없어요.");

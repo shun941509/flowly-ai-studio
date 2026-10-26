@@ -1,3 +1,7 @@
+/**
+ * 기술 근거·개발·DB 작업을 의존 계획으로 연결한 통합 팀 예제다. 실제 사내 서비스는 사용자가 구현/연결해야 하며 임의 SQL 실행 서버를 제공하는 패키지는 아니다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode, Resource } from "../../app/lib/model";
 import type { DataSchema, Json } from "../../runtime/types";
 import type { WorkflowDesign, WorkflowScenario } from "../workflow-design";

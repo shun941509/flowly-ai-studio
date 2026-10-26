@@ -63,6 +63,17 @@ const boundaryFetch=async(url,init)=>{
   const occurrence=previous.filter(c=>c.match===reply.match).length+1;
   log(".model-calls.jsonl",{match:reply.match,occurrence});
   log(".model-timing.jsonl",{match:reply.match,occurrence,phase:"start",at:Date.now()});
+  // A nested branch can take longer to reach the provider while persisting its
+  // checkpoints. Hold only the declared parallel responses until every sibling
+  // reaches this real provider boundary. Sequential dispatch still times out.
+  if(scenario.parallelMatches?.includes(reply.match)) {
+    const deadline=Date.now()+10000;
+    while(!scenario.parallelMatches.every(match=>lines(".model-calls.jsonl").some(call=>call.match===match&&call.occurrence>=occurrence))) {
+      if(Date.now()>=deadline)throw new Error("Parallel provider rendezvous timed out; sibling was not dispatched");
+      await new Promise(resolve=>setTimeout(resolve,10));
+    }
+    await new Promise(resolve=>setTimeout(resolve,5));
+  }
   if(reply.delayMs)await new Promise(r=>setTimeout(r,reply.delayMs));
   log(".model-timing.jsonl",{match:reply.match,occurrence,phase:"end",at:Date.now()});
   const output=reply.toolCall?[{type:"function_call",name:reply.toolCall.name,arguments:JSON.stringify(reply.toolCall.args),call_id:reply.toolCall.callId??`${reply.match}-${occurrence}`}]:[{type:"message",content:[{type:"output_text",text:reply.text}]}];

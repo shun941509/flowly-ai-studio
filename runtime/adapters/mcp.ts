@@ -1,3 +1,4 @@
+// HTTP 기반 MCP initialize/initialized/tools-call 클라이언트. 연결과 토큰은 실행 환경 설정에서 받고 자료 본문에서 읽지 않는다.
 import type { Json, RuntimeDependencies } from "../types";
 import { canonicalJson, redactJson, redactSecret, RuntimeFault } from "../policy";
 import { readBody, safeEndpoint } from "./http";
@@ -6,6 +7,7 @@ export type McpConnection = { id: string; endpoint: string; token?: string };
 type Rpc = { jsonrpc?: string; id?: string; result?: Record<string, Json>; error?: unknown };
 const VERSION = "2025-11-25";
 
+// JSON 또는 SSE 중 요청 ID가 일치하는 응답만 수락한다. 서버가 요청한 sampling/elicitation은 실행하지 않는다.
 async function readRpc(response: Response, id: string): Promise<Rpc> {
   const kind = response.headers.get("content-type") ?? "";
   if (kind.includes("application/json")) {
@@ -38,6 +40,7 @@ async function readRpc(response: Response, id: string): Promise<Rpc> {
 }
 
 /** Exact endpoints and bearer secrets MUST come from an owner-scoped server configuration, never catalog content. */
+// 고정 도구 정의의 effect와 멱등성 지원 여부를 사용한다. 실제 토큰은 전송 헤더에만 넣고 결과에서 다시 제거한다.
 export function createMcpToolCaller(connections: McpConnection[], request: typeof fetch = fetch): RuntimeDependencies["callTool"] {
   const configured = connections.map(c => ({ ...c, endpoint: safeEndpoint(c.endpoint) }));
   return async (tool, args, { signal, deadlineAt, idempotencyKey }) => {

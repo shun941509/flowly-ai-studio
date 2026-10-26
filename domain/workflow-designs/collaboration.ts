@@ -1,3 +1,7 @@
+/**
+ * 순차 팀·선택 작업·병렬 조사 등 여러 Agent의 협업 설계다. previous 및 하위 결과 매핑으로 역할 사이에 실제로 전달되는 값을 확인할 수 있다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowEdge, FlowNode, Resource } from "../../app/lib/model";
 import type { WorkflowDesign } from "../workflow-design";
 

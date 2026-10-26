@@ -1,9 +1,15 @@
 "use client";
+/**
+ * 사용자·워크플로별 탭 초안 복구. sessionStorage는 서버 저장을 대신하지 않으며 복구 후보를 읽기 전에 현재 내용으로 덮어쓰지 않는다.
+ */
+
 import { useEffect, useRef, useState } from 'react';
 import { decodeEditorDraft, draftKey, draftPrefix, encodeEditorDraft, type EditorDraft } from '../../domain/editor-composition';
 import { uid, type Workflow } from '../lib/model';
 
+/** 서버 저장 이후 해당 문서의 복구 초안만 정리한다. 저장소 사용 불가가 정상 저장 흐름을 막지 않게 한다. */
 export function clearEditorDraft(userId:string,workflowId:string){try{sessionStorage.removeItem(draftKey(userId,workflowId));}catch{/* Saving remains possible with storage disabled. */}}
+/** 기존 초안 탐색이 끝나고 복구 후보가 없을 때만 자동 보관한다. 저장 버전이 달라진 초안은 원본 대신 복구 사본으로 연다. */
 export function EditorDraftRecovery({userId,workflow,workflows,dirty,onRestore}:{userId:string;workflow:Workflow;workflows:Workflow[];dirty:boolean;onRestore:(workflow:Workflow)=>void}){
  const [pending,setPending]=useState<EditorDraft|null>(null),[status,setStatus]=useState(''),[readyScope,setReadyScope]=useState(''),scanned=useRef(''),dismissed=useRef(new Set<string>());
  useEffect(()=>{

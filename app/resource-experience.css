@@ -1,0 +1,14 @@
+/* 자료 편집의 반복 필드는 행 단위로 압축하고, 긴 경로·본문은 카드 내부에서만 스크롤한다. */
+.resource-form .settings-card,.resource-form .resource-files,.resource-form>section{margin-block:18px;padding:18px;border:1px solid var(--border,#dce3ee);border-radius:14px;background:var(--surface,#fff)}
+.resource-form details>summary{cursor:pointer;font-weight:650;padding-block:8px}
+.resource-schema-row{display:grid;grid-template-columns:minmax(100px,1fr) minmax(90px,.6fr) auto auto;align-items:center;gap:10px;margin-block:10px}
+.resource-schema-row .field-label{margin:0}.resource-schema-row input,.resource-schema-row select{min-width:0;width:100%}
+.resource-schema-row .inline-check input{width:auto}.resource-json{margin-block:14px}.resource-json textarea{resize:vertical}
+.resource-file-tree{list-style:none;padding:0;margin:16px 0;display:grid;gap:8px}
+.resource-file-tree li{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px;border-radius:10px;background:var(--surface-soft,#f3f6fb)}
+.resource-file-tree code,.resource-file-tree a{overflow-wrap:anywhere;min-width:0}.resource-file-tree code{flex:1 1 45%}.resource-file-tree small{color:var(--text-muted,#667085)}
+.resource-readiness{margin-block:20px;padding:18px;border-radius:14px;border:1px solid var(--border,#dce3ee);background:var(--surface-soft,#f5f8fc)}
+.resource-readiness dl{display:grid;grid-template-columns:145px minmax(0,1fr);gap:12px}.resource-readiness dt{font-weight:600}.resource-readiness dd{margin:0;overflow-wrap:anywhere}
+.resource-version-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}.resource-version-compare section{min-width:0}
+.resource-version-compare pre,.resource-readiness pre{max-height:280px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;padding:12px;background:var(--surface-soft,#f4f6fb);border-radius:10px}
+@media(max-width:700px){.resource-schema-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.resource-version-compare{grid-template-columns:1fr}.resource-readiness dl{grid-template-columns:1fr;gap:6px}.resource-readiness dd{margin-bottom:12px}.resource-form .settings-card,.resource-form .resource-files{padding:12px}}

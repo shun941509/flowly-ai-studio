@@ -1,3 +1,4 @@
+// Node 실행 기록·메모리·벡터 캐시를 로컬 파일에 지속 저장한다. 프로세스 잠금과 임시 파일 교체를 함께 사용한다.
 import { createHash, randomUUID } from "node:crypto";
 import { mkdir, open, readFile, stat, unlink } from "node:fs/promises";
 import { replaceStateFile } from "./atomic-replace";
@@ -21,6 +22,7 @@ export async function readLimited(path: string, maximum: number): Promise<string
 }
 
 /** Exclusive process lock + fsync/rename checkpoints. Locks never expire during an external operation. */
+// 잠금은 시간 경과로 만료시키지 않는다. 외부 작업 중 잠금을 빼앗으면 중복 쓰기가 생길 수 있어 종료된 PID만 unlock으로 회수한다.
 export class FileRunStore {
   readonly directory: string;
   private lock?: Lock;
@@ -71,6 +73,7 @@ export class FileRunStore {
     if (value.version !== 1 || value.run?.id !== id || typeof value.packageHash !== "string") throw new Error("실행 기록 형식이 올바르지 않아요.");
     return value;
   }
+  // 동일 프로세스의 병렬 자식 메모리 작업을 큐로 직렬화하고 소유자/워크플로 범위를 해시로 나눈다.
   memory: NonNullable<RuntimeDependencies["memory"]> = operation => {
     const job = this.memoryQueue.then(async () => {
       await this.assertLock();
@@ -131,6 +134,7 @@ export class FileRunStore {
     try { await replaceStateFile(temp, target, () => this.assertLock()); } finally { await unlink(temp).catch(error => { if (!isCode(error, "ENOENT")) throw error; }); }
     return value;
   };
+  // 실행 전체를 임시 파일에 기록하고 fsync 후 교체한다. 저장 실패는 엔진의 외부 호출 진행을 중단시키는 경계다.
   async save(run: RuntimeRun, packageHash: string, create = false) {
     await this.assertLock();
     const serialized = JSON.stringify({ version: 1, packageHash, run } satisfies StoredRun);

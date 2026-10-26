@@ -1,3 +1,6 @@
+/**
+ * 호환 npm 설치의 자식 프로세스·잠금·진행 보고를 관리한다. 캐시 관측이 불완전하면 실제 재사용률을 추정해 성공처럼 보고하지 않는다.
+ */
 import { spawn, spawnSync } from "node:child_process";
 import {
   closeSync,

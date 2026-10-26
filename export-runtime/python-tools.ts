@@ -1,3 +1,4 @@
+// Node에서 고정 Python 도구/업무 프로그램을 호출하는 프로세스 경계. 도우미 소스와 계약의 fingerprint를 실행 재개에 사용한다.
 import { spawn } from "node:child_process";
 import { dirname, resolve, join } from "node:path";
 import { StringDecoder } from "node:string_decoder";
@@ -30,6 +31,7 @@ sys.argv = [sys.argv[1]]
 sys.path.insert(0,os.path.dirname(os.path.abspath(sys.argv[0])))
 runpy.run_path(sys.argv[0],run_name='__main__')
 `;
+// 파일 원문 바이트와 선택한 로컬 도구 설정의 해시다. 주석 변경도 값이 달라지므로 기존 실행을 새 코드로 재개하지 못하게 한다.
 export async function pythonToolsFingerprint(packagePath: string, configuration: Record<string, string | undefined> = {}, completion = false): Promise<string> {
   const root = dirname(resolve(packagePath));
   const files: Record<string, string> = {};
@@ -44,14 +46,15 @@ export async function pythonToolsFingerprint(packagePath: string, configuration:
 }
 
 /** Fixed packaged worker only. No shell, uploaded source, credentials or network fallback. */
-export function pythonToolWorker(packagePath: string, executable?: string, configuration?: Record<string, string | undefined>, helper: "flowly_tools.py" | "flowly_completions.py" = "flowly_tools.py") {
+// 고정 도우미만 격리 모드로 실행한다. Windows Job Object 또는 POSIX 프로세스 그룹으로 자손까지 종료해 취소 후 작업이 남지 않게 한다.
+export function pythonToolWorker(packagePath: string, executable?: string, configuration?: Record<string, string | undefined>, helper: "flowly_tools.py" | "flowly_completions.py" | "flowly_skills.py" = "flowly_tools.py") {
   const root = dirname(resolve(packagePath));
   return (payload: Record<string, Json>, signal: AbortSignal): Promise<Json> => new Promise((resolveResult, reject) => {
     if (signal.aborted) { reject(new RuntimeFault("cancelled", "Python 도구 실행을 취소했어요.")); return; }
     const encoded = canonicalJson(payload);
     if (Buffer.byteLength(encoded) > 2_000_000) { reject(new RuntimeFault("failed", "Python 도구 입력이 2MB 한도를 넘었어요.")); return; }
     const environment: NodeJS.ProcessEnv = { NODE_ENV: "production", PYTHONUTF8: "1", PYTHONDONTWRITEBYTECODE: "1", OMP_NUM_THREADS: "1", OPENBLAS_NUM_THREADS: "1", MKL_NUM_THREADS: "1", ...Object.fromEntries(["PATH", "Path", "SystemRoot", "WINDIR", "TEMP", "TMP", "HOME", "USERPROFILE", "LANG"].flatMap(key => process.env[key] ? [[key, process.env[key]!]] : [])) };
-    for (const key of ["FLOWLY_TOOL_MODELS", "FLOWLY_WATERMARK_KEY", "FLOWLY_CONTENT_CREDENTIALS_KEY"]) if (configuration?.[key]) environment[key] = configuration[key];
+    for (const key of helper === "flowly_skills.py" ? [] : ["FLOWLY_TOOL_MODELS", "FLOWLY_WATERMARK_KEY", "FLOWLY_CONTENT_CREDENTIALS_KEY"]) if (configuration?.[key]) environment[key] = configuration[key];
     const child = spawn(executable?.trim() || (process.platform === "win32" ? "python" : "python3"), ["-X", "utf8", "-I", "-c", workerBootstrap, join(root, helper)], { cwd: root, env: environment, shell: false, windowsHide: true, detached: process.platform !== "win32", stdio: ["pipe", "pipe", "pipe"] });
     let output = "", size = 0, settled = false;
     const decoder = new StringDecoder("utf8");
@@ -60,6 +63,7 @@ export function pythonToolWorker(packagePath: string, executable?: string, confi
       if (process.platform === "win32") { if (child.exitCode === null) child.kill("SIGKILL"); }
       else { try { process.kill(-child.pid, "SIGKILL"); } catch { /* Already reaped. */ } }
     };
+    // 실패 시 프로세스 트리를 종료하고 close를 기다린 뒤 거절한다. 정리 대기가 끝나지 않는 경우에도 최대 2초 후 반환한다.
     const finish = (error?: Error, result?: Json) => {
       if (settled) return; settled = true; clearTimeout(timer); signal.removeEventListener("abort", abort);
       if (!error) { resolveResult(result!); return; }

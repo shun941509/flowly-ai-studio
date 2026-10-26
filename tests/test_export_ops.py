@@ -36,18 +36,44 @@ class OperationsTests(unittest.TestCase):
         self.temp.cleanup()
 
     def request(self, action, **kwargs):
-        return self.ops.dispatch({"action": action, **kwargs})
+        return self.ops.dispatch({"action": action, "confirmProduction": True, **kwargs})
 
     def execute(self, text="확인한 입력", **kwargs):
         job = self.request("jobs.enqueue", input=text, **kwargs)["job"]
         self.ops.worker(once=True)
         return self.ops.job(job["id"])
 
+    def test_operations_only_default_and_legacy_state_are_preserved(self):
+        self.assertEqual(self.ops.profile()["name"], "production")
+        self.assertTrue(self.ops.profile()["production"])
+        with self.assertRaises(ops.OperationsFault):
+            self.ops.dispatch({"action": "jobs.enqueue", "input": "confirmation required"})
+        with self.assertRaises(ops.OperationsFault):
+            self.request("profiles.set", name="bypass", env=".env", production=False)
+        with self.ops.db() as db:
+            db.execute("INSERT INTO profiles VALUES('development','.env.old',0)")
+        old_state = self.root / ".flowly-profiles/development/runs"
+        old_state.mkdir(parents=True)
+        marker = old_state / "preserved.txt"
+        marker.write_text("old history", encoding="utf-8")
+        reopened = ops.Operations(self.root)
+        legacy = reopened.profile("development")
+        self.assertEqual(legacy["env"], ".env.old")
+        self.assertEqual(legacy["state"], ".flowly-profiles/development/runs")
+        self.assertTrue(legacy["production"])
+        self.assertEqual(marker.read_text(encoding="utf-8"), "old history")
+        with self.assertRaises(ops.OperationsFault):
+            reopened.dispatch({"action": "jobs.enqueue", "profile": "development", "input": "no confirmation"})
+        queued = reopened.dispatch({"action": "jobs.enqueue", "profile": "development", "input": "legacy history", "confirmProduction": True})["job"]
+        reopened.worker(once=True)
+        self.assertEqual(reopened.job(queued["id"])["status"], "succeeded")
+        self.assertEqual(marker.read_text(encoding="utf-8"), "old history")
+
     def test_profiles_are_isolated_and_production_requires_explicit_confirmation(self):
         profile = self.request("profiles.set", name="production", env=".env.production", production=True, confirmProduction=True)["profile"]
         self.assertEqual(profile["state"], ".flowly-profiles/production/runs")
         with self.assertRaises(ops.OperationsFault):
-            self.request("jobs.enqueue", profile="production", input="허용 안 됨")
+            self.request("jobs.enqueue", profile="production", input="허용 안 됨", confirmProduction=False)
         with self.assertRaises(ops.OperationsFault):
             self.request("profiles.set", name="escape", env="../outside.env")
         queued = self.request("jobs.enqueue", profile="production", input="별도 실행", confirmProduction=True)["job"]
@@ -69,6 +95,111 @@ class OperationsTests(unittest.TestCase):
         self.assertEqual(len(self.request("runs.list")["runs"]), 1)
         self.assertFalse(list((self.root / ".flowly-ops" / "inputs").glob("*.txt")))
 
+    def test_local_setup_keeps_credentials_on_disk_and_never_returns_secrets(self):
+        package = manifest()
+        package["workflow"]["definition"]["nodes"][0]["type"] = "agent"
+        package["connections"] = [{"name": "사내 검색", "endpointEnv": "FLOWLY_MCP_ENDPOINT_LOCAL", "tokenEnv": "FLOWLY_MCP_TOKEN_LOCAL", "endpoint": ""}]
+        (self.root / "workflow.json").write_text(json.dumps(package), encoding="utf-8")
+        # The isolated second directory represents a newly exported project.
+        second = self.root / "configured"
+        second.mkdir()
+        (second / "workflow.json").write_text(json.dumps(package), encoding="utf-8")
+        configured = ops.Operations(second)
+        (second / ".env").write_text("KEEP_SETTING=retained\n", encoding="utf-8")
+        with patch.object(ops.ProbeTransport, "post", side_effect=AssertionError("offline")):
+            value = configured.dispatch({"confirmProduction": True, "action": "setup.save", "values": {"OPENAI_API_KEY": "test-boundary-secret", "FLOWLY_MODEL": "test-model", "FLOWLY_MCP_ENDPOINT_LOCAL": "http://internal.example/mcp", "FLOWLY_MCP_TOKEN_LOCAL": "test-boundary-mcp"}})
+        self.assertFalse(value["networkChecked"])
+        self.assertNotIn("test-boundary-secret", json.dumps(value))
+        self.assertNotIn("test-boundary-mcp", json.dumps(value))
+        env = ops.load_env(second / ".env")
+        self.assertEqual(env["KEEP_SETTING"], "retained")
+        self.assertEqual(env["OPENAI_API_KEY"], "test-boundary-secret")
+        configured.dispatch({"confirmProduction": True, "action": "setup.save", "values": {"OPENAI_API_KEY": "", "FLOWLY_MODEL": "changed-model"}})
+        self.assertEqual(ops.load_env(second / ".env")["OPENAI_API_KEY"], "test-boundary-secret")
+        misplaced = configured.dispatch({"confirmProduction": True, "action": "setup.save", "values": {"FLOWLY_MODEL": "test-boundary-secret"}})
+        self.assertNotIn("test-boundary-secret", json.dumps(misplaced))
+        with self.assertRaises(ops.OperationsFault):
+            configured.dispatch({"confirmProduction": True, "action": "setup.save", "values": {"FLOWLY_PYTHON": "arbitrary program"}})
+        with self.assertRaises(ops.OperationsFault):
+            configured.dispatch({"confirmProduction": True, "action": "setup.save", "values": {"OPENAI_API_KEY": "line\nbreak"}})
+        configured.dispatch({"confirmProduction": True, "action": "jobs.enqueue", "input": "queued"})
+        with self.assertRaises(ops.OperationsFault):
+            configured.dispatch({"confirmProduction": True, "action": "setup.save", "values": {"FLOWLY_MODEL": "race"}})
+
+    def test_input_upload_preserves_original_and_rejects_paths_and_empty_files(self):
+        first = self.ops.upload_input("자료.txt", "첫 자료".encode())
+        second = self.ops.upload_input("자료.txt", "다음 자료".encode())
+        self.assertNotEqual(first["path"], second["path"])
+        self.assertEqual((self.root / first["projectPath"]).read_text(encoding="utf-8"), "첫 자료")
+        for name in ("../outside.txt", ".env", "CON", "nested/file.txt", "bad\\file.txt"):
+            with self.assertRaises(ops.OperationsFault): self.ops.upload_input(name, b"test")
+        with self.assertRaises(ops.OperationsFault): self.ops.upload_input("empty.txt", b"")
+
+    def test_setup_rejects_reserved_and_cross_role_aliases_before_reading_environment(self):
+        for index, (field, alias) in enumerate((("endpointEnv", "OPENAI_API_KEY"), ("endpointEnv", "FLOWLY_MODEL"), ("endpointEnv", "FLOWLY_EMBEDDING_MODEL"), ("endpointEnv", "FLOWLY_MCP_TOKEN_OTHER"), ("tokenEnv", "FLOWLY_MODEL"), ("tokenEnv", "FLOWLY_MCP_ENDPOINT_OTHER"), ("endpointEnv", "FLOWLY_MCP_ENDPOINT_"))):
+            with self.subTest(field=field, alias=alias):
+                folder = self.root / f"invalid-{index}"
+                folder.mkdir()
+                package = manifest()
+                package["connections"] = [{field: alias}]
+                (folder / "workflow.json").write_text(json.dumps(package), encoding="utf-8")
+                (folder / ".env").write_text("OPENAI_API_KEY=synthetic-local-secret\n", encoding="utf-8")
+                operation = ops.Operations(folder)
+                with patch.object(operation, "environment", side_effect=AssertionError("must not read any environment values")) as read:
+                    for action in ("setup.status", "setup.save"):
+                        with self.assertRaises(ops.OperationsFault): operation.dispatch({"action": action, "values": {}})
+                    read.assert_not_called()
+
+    def test_setup_blocks_every_profile_sharing_same_environment_file(self):
+        self.request("profiles.set", name="second", env=".env")
+        self.request("profiles.set", name="unrelated", env=".env.other")
+        (self.root / ".env").write_text("KEEP_SETTING=unchanged\n", encoding="utf-8")
+        job = self.request("jobs.enqueue", profile="second", input="shared setting consumer")["job"]
+        for status in ("queued", "dispatching", "running"):
+            with self.ops.db() as db: db.execute("UPDATE jobs SET status=? WHERE id=?", (status, job["id"]))
+            with self.assertRaises(ops.OperationsFault): self.request("setup.save", values={})
+            self.assertTrue(self.request("setup.save", profile="unrelated", values={})["saved"])
+            self.assertEqual((self.root / ".env").read_text(encoding="utf-8"), "KEEP_SETTING=unchanged\n")
+        with self.ops.db() as db: db.execute("UPDATE jobs SET status='cancelled' WHERE id=?", (job["id"],))
+        state = self.ops.state(self.ops.profile("second"))
+        state.mkdir(parents=True, exist_ok=True)
+        for name in (".runner.lock", ".unlock.lock"):
+            lock = state / name
+            lock.write_text("test lock", encoding="utf-8")
+            with self.assertRaises(ops.OperationsFault): self.request("setup.save", values={})
+            lock.unlink()
+        self.assertTrue(self.request("setup.save", values={})["saved"])
+
+    def test_active_cancel_is_not_hidden_by_two_hundred_newer_queued_jobs(self):
+        active = [self.request("jobs.enqueue", input="active")["job"] for _ in range(2)]
+        with self.ops.db() as db:
+            db.execute("UPDATE jobs SET status='running' WHERE id=?", (active[0]["id"],))
+            db.execute("UPDATE jobs SET status='dispatching' WHERE id=?", (active[1]["id"],))
+            for index in range(201):
+                db.execute("INSERT INTO jobs(id,profile,priority,status,created,updated,command) VALUES(?,'production',0,'queued','2099-01-01','2099-01-01','run')", (f"newer_{index}",))
+        self.assertTrue(all(job["status"] == "queued" for job in self.request("jobs.list")["jobs"]))
+        cancelled = self.request("jobs.cancel_active")["jobs"]
+        self.assertEqual({job["id"] for job in cancelled}, {job["id"] for job in active})
+        self.assertTrue(all(job["cancelRequested"] for job in cancelled))
+        self.assertTrue(all(not job["cancelRequested"] for job in self.request("jobs.list")["jobs"]))
+        for job in active: self.assertTrue((self.ops.home / "cancel" / (job["id"] + ".json")).is_file())
+
+    def test_output_download_is_bound_to_current_profile_run_and_recorded_outputs(self):
+        job = self.execute()
+        state = self.ops.state(self.ops.profile()) / (job["runId"] + ".json")
+        record = json.loads(state.read_text(encoding="utf-8"))
+        output = self.root / "outputs" / "result.txt"
+        output.parent.mkdir()
+        output.write_text("실제 결과 파일", encoding="utf-8")
+        record["run"]["checkpoint"]["outputs"]["out"] = {"file": {"path": "outputs/result.txt"}}
+        state.write_text(json.dumps(record), encoding="utf-8")
+        listed = self.request("outputs.list", runId=job["runId"])
+        self.assertEqual(listed["files"][0]["path"], "outputs/result.txt")
+        downloaded = self.request("outputs.download", runId=job["runId"], path="outputs/result.txt")
+        self.assertEqual(ops.base64.b64decode(downloaded["base64"]).decode(), "실제 결과 파일")
+        for path in (".env", "../outside.txt", "outputs/other.txt"):
+            with self.assertRaises(ops.OperationsFault): self.request("outputs.download", runId=job["runId"], path=path)
+
     def test_priority_fifo_and_cancelled_jobs_are_not_dispatched(self):
         a = self.request("jobs.enqueue", input="first", priority=1)["job"]
         b = self.request("jobs.enqueue", input="high", priority=5)["job"]
@@ -88,7 +219,7 @@ class OperationsTests(unittest.TestCase):
         (root / "workflow.json").write_text(json.dumps(data), encoding="utf-8")
         shutil.copyfile(SOURCE / "runner.py", root / "runner.py")
         operation = ops.Operations(root)
-        request = lambda action, **values: operation.dispatch({"action": action, **values})
+        request = lambda action, **values: operation.dispatch({"action": action, "confirmProduction": True, **values})
         job = request("jobs.enqueue", input="확인 요청")["job"]
         operation.worker(once=True)
         waiting = operation.job(job["id"])
@@ -365,7 +496,7 @@ class OperationsTests(unittest.TestCase):
     def test_restore_checks_hash_traversal_and_package_scope_before_write(self):
         directory = self.root / ".flowly-ops" / "backups"
         directory.mkdir()
-        metadata = {"version": 1, "profile": "development", "packageHash": self.ops.package_hash, "files": [{"path": "state/../../evil.txt", "size": 1, "sha256": "wrong"}]}
+        metadata = {"version": 1, "profile": "production", "packageHash": self.ops.package_hash, "files": [{"path": "state/../../evil.txt", "size": 1, "sha256": "wrong"}]}
         with zipfile.ZipFile(directory / "backup_bad.zip", "w") as archive:
             archive.writestr("manifest.json", json.dumps(metadata))
             archive.writestr("state/../../evil.txt", "x")
@@ -457,7 +588,7 @@ class OperationsTests(unittest.TestCase):
         path.write_text('{"action":"profiles.list"}', encoding="utf-8")
         result = subprocess.run([os.sys.executable, "-X", "utf8", str(SOURCE / "flowly_ops.py"), "request", "--root", str(self.root), "--request-file", "operation.json"], capture_output=True)
         self.assertEqual(result.returncode, 0, result.stdout)
-        self.assertEqual(json.loads(result.stdout)["profiles"][0]["name"], "development")
+        self.assertEqual(json.loads(result.stdout)["profiles"][0]["name"], "production")
 
     def test_cross_version_baseline_file_and_period_estimate_use_pinned_models(self):
         dataset = self.root / "cases.json"
@@ -541,7 +672,7 @@ class OperationsTests(unittest.TestCase):
         original = self.ops.environment
         def changed(profile):
             values = original(profile)
-            self.request("profiles.set", name="development", env=".env.changed")
+            self.request("profiles.set", name="production", env=".env.changed")
             return values
         with patch.object(self.ops, "environment", side_effect=changed), self.assertRaises(ops.OperationsFault):
             self.request("jobs.enqueue", input="work")

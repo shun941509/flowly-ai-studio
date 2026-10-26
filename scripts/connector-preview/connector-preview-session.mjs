@@ -1,3 +1,6 @@
+/**
+ * 소유 에이전트가 시작한 로컬 미리보기 세션에서 파일 큐와 표준 입출력 RPC를 연결한다. 브라우저 요청만으로 새 계정 권한을 부여하지 않는다.
+ */
 import { randomUUID } from "node:crypto";
 import {
   mkdir,

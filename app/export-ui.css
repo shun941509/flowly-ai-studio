@@ -1,0 +1,40 @@
+/* 운영 프로젝트 내보내기 화면의 종류 선택·점검 결과·단계별 안내 배치. 공통 모달/버튼 규칙 위에 export-dialog-body 범위로 적용한다. */
+/* Export dialog: shared controls and progressive disclosure for operational handoff. */
+.export-dialog-body { display: flex; flex-direction: column; gap: 18px; }
+.export-dialog-body > * { margin-block: 0; }
+.export-dialog-body .export-kind-options { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.export-dialog-body .export-kind-options button { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; min-height: 108px; padding: 15px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); text-align: left; }
+.export-dialog-body .export-kind-options button[aria-pressed="true"] { border-color: var(--primary); background: var(--primary-soft); box-shadow: inset 0 0 0 1px var(--primary); }
+.export-kind-options button strong { font-size: 14px; line-height: 1.4; }
+.export-kind-options button small { color: var(--muted); font-size: 12px; line-height: 1.5; }
+.export-configuration { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding: 16px; background: var(--surface-subtle); border: 1px solid var(--line); border-radius: 10px; }
+.export-configuration label { display: flex; flex-direction: column; gap: 8px; font-size: 13px; font-weight: 600; }
+.export-configuration select, .export-prompt-preview select { width: 100%; min-height: 40px; border: 1px solid var(--line); border-radius: var(--radius-control, 8px); padding: 9px 12px; background: var(--surface); color: var(--ink); font: inherit; }
+.export-dialog-body button:focus-visible, .export-dialog-body select:focus-visible, .export-dialog-body summary:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.export-dialog-body .export-preflight { border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+.export-preflight-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.export-dialog-body h3 { font-size: 15px; margin: 0; }
+.export-issue-group { margin-top: 12px; border-top: 1px solid var(--line); }
+.export-issue-group > summary { display: flex; align-items: center; gap: 7px; padding: 12px 0 4px; cursor: pointer; font-size: 13px; font-weight: 600; }
+.export-issue-group > summary::before { content: '›'; width: 12px; }
+.export-issue-group[open] > summary::before { content: '⌄'; }
+.export-issue-group > summary span { margin-left: auto; color: var(--muted); font-size: 12px; font-weight: 400; }
+.export-issue-error > summary { color: #b42318; }
+.export-issue-warning > summary { color: #8c5400; }
+.export-dialog-body .preflight-issues { margin: 10px 0 0; }
+.export-dialog-body .preflight-issues li { padding: 10px 12px; font-size: 13px; }
+.export-dialog-body .preflight-issues p { margin: 0; line-height: 1.65; }
+.export-issue-nodes { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 8px; }
+.export-start-guide { padding: 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-subtle); }
+.export-start-guide ol { padding-left: 22px; margin: 12px 0; font-size: 13px; line-height: 1.7; }
+.export-start-guide li + li { margin-top: 8px; }
+.export-dialog-body .result-content { max-height: 220px; overflow: auto; margin-block: 10px; }
+.export-detail { border: 1px solid var(--line); border-radius: 10px; padding: 13px 16px; }
+.export-detail > summary { cursor: pointer; font-size: 13px; font-weight: 600; }
+.export-detail[open] > summary { margin-bottom: 14px; }
+.export-dialog-body .field-help { line-height: 1.65; }
+.export-dialog-body .soft-note { padding: 12px 14px; font-size: 12px; line-height: 1.65; }
+.export-prompt-preview { border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+.export-prompt-preview .settings-card { background: var(--surface-subtle); margin-top: 12px; }
+.export-prompt-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+@media(max-width: 700px) { .export-dialog-body .export-kind-options { grid-template-columns: repeat(2, minmax(0, 1fr)); } .export-configuration { grid-template-columns: 1fr; } .export-dialog-body { gap: 14px; } }

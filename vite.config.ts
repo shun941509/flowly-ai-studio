@@ -1,3 +1,6 @@
+/**
+ * Vinext의 React 렌더링과 Cloudflare Worker 실행 환경을 연결한다. Sites 커넥터 미리보기는 프로필 조건으로 추가하며 로컬 모의 인증은 여기서 켜지 않는다.
+ */
 import vinext from "vinext";
 import { defineConfig } from "vite";
 import { readExecutionProfile } from "./scripts/execution-profile.mjs";

@@ -1,3 +1,4 @@
+/** 작성된 예제 설계와 검증 목록을 읽어 공통 카탈로그를 제공한다. 복제 시에는 원본을 보존하고 사용자 소유의 비공개 사본을 만든다. */
 import authored from "../domain/generated/workflow-designs.json";
 import type { WorkflowDesign } from "../domain/workflow-design";
 import { nodeRequiresModel } from "../domain/extended-config";
@@ -21,6 +22,7 @@ const date = "2026-10-22T00:00:00.000Z";
 const verifiedIds = new Set(catalogVerification);
 const distinct = assertDistinctExamples(designs);
 
+/** 현재 설계를 컴파일해 예제 정보를 만든다. verification은 저장된 검증 목록이며 live=false는 실제 서비스 검증을 하지 않았음을 뜻한다. */
 export function getExample(id: string): ExampleProject | undefined {
   const design=designsById.get(id);
   if(design) {
@@ -38,6 +40,7 @@ const normalizeSearch=(text:string)=>text.normalize("NFKC").toLocaleLowerCase();
 const searchable=(items:ExampleSummary[])=>items.map(s=>normalizeSearch(`${s.id} ${s.title} ${s.description} ${s.tags.join(" ")} ${s.uniqueBehavior} ${s.frameworks.join(" ")} ${s.nodeTypes.map(t=>nodeNames[t]).join(" ")}`));
 const agentSummaries=summaries.filter(summary=>summary.hasAgent),supportingSummaries=summaries.filter(summary=>!summary.hasAgent);
 const catalogStats={projects:agentSummaries.length,supporting:supportingSummaries.length,sourceGraphs:summaries.length,sourceTopologies:distinct.topologies,variants:frameworkPacks.length,target:EXAMPLE_TARGET,reviewed:0,remaining:Math.max(0,EXAMPLE_TARGET-agentSummaries.length),topologies:agentSummaries.length,verified:agentSummaries.filter(s=>s.verification.node&&s.verification.python).length};
+/** 검색/분류/페이지 처리를 담당한다. Agent 예제와 보조 흐름은 같은 원본 설계 목록에서 구분한다. */
 export function listExamples(params:URLSearchParams) {
   const q=normalizeSearch((params.get("q")||"").slice(0,120).trim());
   const framework=params.get("framework"),category=params.get("category"),workStyle=params.get("workStyle");
@@ -51,10 +54,11 @@ export function listExamples(params:URLSearchParams) {
   return {items:filtered.slice((page-1)*pageSize,page*pageSize),total:filtered.length,page,pageSize,stats:catalogStats,frameworks,categories,workStyles:Object.entries(workStyleLabels).filter(([id])=>source.some(item=>item.workStyles?.includes(id))).map(([id,label])=>({id,label}))};
 }
 
+/** 자료와 워크플로 ID를 새로 만들고 하위 흐름의 자료 참조도 치환한다. 원본 객체와 공개 권한을 사본에 그대로 재사용하지 않는다. */
 export function instantiateExample(project:ExampleProject,user:Identity) {
   const now=new Date().toISOString(),remap=new Map(project.resources.map(r=>[r.id,uid("res")]));
   const resources=project.resources.map(r=>({...r,id:remap.get(r.id)!,ownerId:user.userId,visibility:"private" as const,allowedEmails:[],sample:undefined,createdAt:now,updatedAt:now}));
-  const workflow=structuredClone(project.workflow);workflow.id=uid("flow");workflow.updatedAt=now;
+  const workflow=structuredClone(project.workflow);workflow.id=uid("flow");workflow.updatedAt=now;workflow.ownerId=user.userId;workflow.visibility="private";workflow.readEmails=[];workflow.editEmails=[];workflow.lastModifiedBy=user.userId;workflow.access={canRead:true,canEdit:true,canDelete:true,canManage:true};
   for(const node of allNodes(workflow.definition)) {
     if(node.resourceId)node.resourceId=remap.get(node.resourceId)||node.resourceId;
     if(node.knowledge){node.knowledge.resourceIds=node.knowledge.resourceIds.map(id=>remap.get(id)||id); if(node.knowledge.evaluation)node.knowledge.evaluation=node.knowledge.evaluation.map(e=>({...e,resourceId:remap.get(e.resourceId)||e.resourceId}));}
@@ -64,6 +68,7 @@ export function instantiateExample(project:ExampleProject,user:Identity) {
   return {workflow,resources};
 }
 
+/** 자료 사본·워크플로·감사 기록을 한 D1 batch로 저장해 자료 일부만 복제된 상태를 남기지 않는다. */
 export async function saveExample(db:D1Database,project:ExampleProject,user:Identity) {
   const copy=instantiateExample(project,user),now=copy.workflow.updatedAt;
   const statements=copy.resources.map(r=>db.prepare("INSERT INTO resources(id,owner_id,name,type,description,content,url,visibility,allowed_emails,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?)").bind(r.id,user.userId,r.name,r.type,r.description,r.content,r.url,"private","[]",now,now));

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { DatabaseSync } from "node:sqlite";
 import { readFileSync } from "node:fs";
 import { WorkflowHistoryRepository, HistoryError, workflowDiff } from "../server/repositories/workflow-history";
-import { templateWorkflow, type Identity } from "../app/lib/model";
+import { templateWorkflow, type Identity, type Workflow } from "../app/lib/model";
 import { compileDefinition } from "../domain/workflow";
 
 const alice: Identity = { userId: "alice", email: "alice@example.invalid", displayName: "Alice" };
@@ -13,7 +13,7 @@ const resourceInput = { name: "자료", type: "document", description: "설명",
 const status = (code: number) => (error: unknown) => error instanceof HistoryError && error.status === code;
 function setup() {
   const sqlite = new DatabaseSync(":memory:");
-  for (const file of ["0000_flat_robbie_robertson.sql", "0002_workflow_history.sql"]) sqlite.exec(readFileSync(new URL(`../drizzle/${file}`, import.meta.url), "utf8"));
+  for (const file of ["0000_flat_robbie_robertson.sql", "0002_workflow_history.sql", "0003_workflow_sharing.sql", "0004_resource_packages.sql"]) sqlite.exec(readFileSync(new URL(`../drizzle/${file}`, import.meta.url), "utf8"));
   type Statement = { sync(): { meta: { changes: number } } };
   const db = {
     prepare(sql: string) {
@@ -34,6 +34,74 @@ function setup() {
   } as unknown as D1Database;
   return { sqlite, repo: new WorkflowHistoryRepository(db) };
 }
+
+test("workflow sharing distinguishes owner, viewer, editor and stranger; edit implies read", async () => {
+  const { sqlite, repo } = setup(); const dave = { ...carol, userId: "dave", email: "dave@example.invalid" };
+  try {
+    let workflow = await repo.saveWorkflow(alice, { ...templateWorkflow("transform"), ownerId: bob.userId, visibility: "public", editEmails: [bob.email] }, undefined);
+    assert.equal(workflow.ownerId, alice.userId); assert.equal(workflow.visibility, "private");
+    await assert.rejects(() => repo.getWorkflow(bob, workflow.id), status(404));
+    workflow = await repo.shareWorkflow(alice, workflow.id, { visibility: "selected", readEmails: [bob.email], editEmails: [carol.email] }, workflow.updatedAt);
+    assert.equal((await repo.getWorkflow(bob, workflow.id)).access?.canEdit, false);
+    assert.equal((await repo.getWorkflow(carol, workflow.id)).access?.canEdit, true);
+    assert.deepEqual((await repo.getWorkflow(carol, workflow.id)).editEmails, []);
+    await assert.rejects(() => repo.getWorkflow(dave, workflow.id), status(404));
+    await assert.rejects(() => repo.saveWorkflow(bob, workflow, workflow.updatedAt), status(403));
+    workflow = await repo.saveWorkflow(carol, { ...workflow, name: "공동 수정" }, workflow.updatedAt);
+    assert.equal(workflow.lastModifiedBy, carol.userId); assert.equal(workflow.ownerId, alice.userId);
+    for (const operation of [() => repo.publish(carol, workflow.id, "stale"), () => repo.restore(carol, workflow.id, "unused", "stale")]) {
+      await assert.rejects(operation, error => { assert.ok(error instanceof HistoryError); assert.equal(error.status, 409); const current = error.current as Workflow; assert.deepEqual(current.readEmails, []); assert.deepEqual(current.editEmails, []); return true; });
+    }
+    await assert.rejects(() => repo.deleteWorkflow(carol, workflow.id), status(404));
+    await assert.rejects(() => repo.shareWorkflow(carol, workflow.id, { visibility: "public" }, workflow.updatedAt), status(404));
+    await assert.rejects(() => repo.shareWorkflow(alice, workflow.id, { visibility: "public", editVisibility: "public" }, workflow.updatedAt), status(400));
+    workflow = await repo.shareWorkflow(alice, workflow.id, { visibility: "public", editEmails: [] }, workflow.updatedAt);
+    assert.equal((await repo.getWorkflow(dave, workflow.id)).access?.canRead, true);
+    await assert.rejects(() => repo.saveWorkflow(carol, workflow, workflow.updatedAt), status(403));
+    workflow = await repo.shareWorkflow(alice, workflow.id, { visibility: "private", editEmails: [] }, workflow.updatedAt);
+    await assert.rejects(() => repo.checkExport(bob, workflow.id), status(403));
+    await assert.rejects(() => repo.getWorkflow(carol, workflow.id), status(404));
+    assert.equal((await repo.listWorkflows(bob)).length, 0);
+  } finally { sqlite.close(); }
+});
+
+test("sharing does not grant linked resource access and revocation races fail the save CAS", async () => {
+  const { sqlite, repo } = setup();
+  try {
+    const resource = await repo.createResource(alice, { ...resourceInput, visibility: "private", allowedEmails: [] });
+    const draft = templateWorkflow("rag"); draft.definition.nodes.find(n => n.retrieval)!.retrieval!.resourceIds = [resource.id];
+    let workflow = await repo.saveWorkflow(alice, draft, undefined);
+    workflow = await repo.shareWorkflow(alice, workflow.id, { visibility: "private", editEmails: [bob.email] }, workflow.updatedAt);
+    assert.equal((await repo.getWorkflow(bob, workflow.id)).access?.canEdit, true);
+    await assert.rejects(() => repo.saveWorkflow(bob, workflow, workflow.updatedAt), status(403));
+    await assert.rejects(() => repo.publish(bob, workflow.id, workflow.updatedAt), status(403));
+    const old = workflow;
+    workflow = await repo.shareWorkflow(alice, workflow.id, { visibility: "private", editEmails: [] }, workflow.updatedAt);
+    await assert.rejects(() => repo.saveWorkflow(bob, old, old.updatedAt), status(403));
+    assert.equal((await repo.getWorkflow(alice, workflow.id)).updatedAt, workflow.updatedAt);
+  } finally { sqlite.close(); }
+});
+
+test("external design import saves a private copy or atomically publishes a checked new version", async () => {
+  const { sqlite, repo } = setup();
+  try {
+    let workflow = await repo.saveWorkflow(alice, templateWorkflow("transform"), undefined);
+    const origin = { workflowId: workflow.id, updatedAt: workflow.updatedAt };
+    const copy = await repo.importWorkflow(alice, { ...workflow, name: "외부 사본", visibility: "public" }, "copy", origin);
+    assert.notEqual(copy.id, workflow.id); assert.equal(copy.visibility, "private");
+    assert.equal((await repo.getWorkflow(alice, workflow.id)).name, workflow.name);
+    workflow = await repo.importWorkflow(alice, { ...workflow, name: "외부 새 버전" }, "version", origin);
+    assert.equal((await repo.versions(alice, workflow.id)).length, 1);
+    assert.equal((await repo.getWorkflow(alice, workflow.id)).name, "외부 새 버전");
+    await assert.rejects(() => repo.importWorkflow(alice, workflow, "version", origin), status(409));
+    await assert.rejects(() => repo.importWorkflow(bob, workflow, "copy", origin), status(403));
+    const before = workflow;
+    sqlite.exec("CREATE TRIGGER import_failure BEFORE INSERT ON audit_events WHEN NEW.action='workflow.import' BEGIN SELECT RAISE(ABORT,'test import rollback'); END;");
+    await assert.rejects(() => repo.importWorkflow(alice, { ...workflow, name: "실패해야 함" }, "version", { workflowId: workflow.id, updatedAt: workflow.updatedAt }), /test import rollback/);
+    assert.equal((await repo.getWorkflow(alice, workflow.id)).updatedAt, before.updatedAt);
+    assert.equal((await repo.versions(alice, workflow.id)).length, 1);
+  } finally { sqlite.close(); }
+});
 
 test("workflow updates require the original token and only one concurrent edit commits with its audit", async () => {
   const { sqlite, repo } = setup();
@@ -63,6 +131,7 @@ test("immutable numbered versions restore with conflict checks and latest resour
     await assert.rejects(() => repo.getVersion(carol, initial.id, first.id), status(404));
     await assert.rejects(() => repo.restore(bob, initial.id, first.id, initial.updatedAt), status(409));
     const restored = await repo.restore(bob, initial.id, first.id, edited.updatedAt); assert.equal(restored.name, initial.name);
+    assert.equal((await repo.audits(bob, "workflow", initial.id)).find(event => event.action === "workflow.restore")?.metadata.version, first.number);
     assert.deepEqual((await repo.versions(bob, initial.id)).map(version => version.number), [2, 1]);
     await repo.updateResource(alice, resource.id, { ...resourceInput, visibility: "private", allowedEmails: [] }, resource.updatedAt);
     await assert.rejects(() => repo.restore(bob, initial.id, first.id, restored.updatedAt), status(403));
@@ -137,4 +206,17 @@ test("version diff ignores implicit mapping/schema defaults introduced by public
   const diff = workflowDiff(published, edited);
   assert.equal(diff.nameChanged, true); assert.deepEqual(diff.nodes.changed, [{ id: edited.definition.nodes[1].id, title: "제목만 수정", fields: ["title"] }]);
   assert.ok(diff.changes.every(change => change.path === "name" || change.path.endsWith(".title")));
+});
+
+
+test("additive sharing migration leaves existing rows private and preserves definitions", () => {
+  const sqlite = new DatabaseSync(":memory:");
+  try {
+    sqlite.exec(readFileSync(new URL("../drizzle/0000_flat_robbie_robertson.sql", import.meta.url), "utf8"));
+    sqlite.prepare("INSERT INTO workflows(id,owner_id,name,description,definition,updated_at) VALUES(?,?,?,?,?,?)").run("legacy","owner","saved","keep","{\"nodes\":[]}","before");
+    sqlite.exec(readFileSync(new URL("../drizzle/0003_workflow_sharing.sql", import.meta.url), "utf8"));
+    const row = sqlite.prepare("SELECT * FROM workflows WHERE id='legacy'").get()!;
+    assert.equal(row.definition, '{"nodes":[]}'); assert.equal(row.updated_at, "before");
+    assert.equal(row.visibility,"private"); assert.equal(row.read_emails,"[]"); assert.equal(row.edit_emails,"[]"); assert.equal(row.last_modified_by,"owner");
+  } finally { sqlite.close(); }
 });

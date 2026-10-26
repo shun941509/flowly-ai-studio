@@ -1,3 +1,4 @@
+/** 내보내기의 신뢰 경계. 검증한 설계·현재 자료 권한·선택 도구를 하나의 manifest로 고정해 문서와 실행 ZIP이 함께 사용한다. */
 import { strToU8, zipSync } from "fflate";
 import { canReadResource, validateGraph, type Identity, type Resource, type Workflow } from "../app/lib/model";
 import { compileDefinition, referencedResourceIds } from "../domain/workflow";
@@ -18,27 +19,37 @@ import { selectedCompletionOperations } from "../runtime/completion-programs";
 import completionContracts from "../domain/completion-operations.json";
 import { buildAgentExportFiles } from "./export-agent-package";
 import { exportExecution, type ExportExecutionTarget } from "./export-execution";
+import { projectCheckPython, projectFileInventory, roundtripGuide } from "./export-integrity";
+import { exportedAttachment } from "../domain/resource-export";
+import { buildResourceExportFiles, type ResourceFileResolver } from "./export-resource-files";
+import { parseResourceAttachments, parseResourceDetails, skillReferenceIssues } from "../domain/resource-validation";
 
 export type ExportKind = "runtime" | "agent" | "prompt";
+export type ExportIntent = "run" | "modify" | "build";
 
 export type ExportConnection = { id: string; ownerId: string; resourceId: string; name: string; endpoint: string; endpointEnv?: string; tokenEnv?: string; tools: ToolDefinition[] };
+/** 웹 편집 JSON과 구별되는 실행 묶음 형식이다. origin은 가져오기 비교 기준이며 과거 실행/승인 상태를 포함하지 않는다. */
 export type ExportManifest = {
   format: "flowly-executable-export";
   language: "node" | "python";
   version: 1;
   exportedAt: string;
+  intent?: ExportIntent;
+  origin?: { workflowId: string; updatedAt: string; schemaVersion: number; versionId?: string; versionNumber?: number };
   owner: Identity;
   workflow: Workflow;
   resources: Omit<Resource, "allowedEmails">[];
   connections: ExportConnection[];
   limits: Limits;
+  resourcePackage?: { version: 1 };
 };
 export class ExportPackageError extends Error {
   constructor(message: string, readonly status = 400) { super(message); }
 }
 
 /** Called after session verification; worker/index.ts drains and bounds the source first. */
-export async function readExportRequest(request: Request, config: AuthConfig): Promise<{ workflow?: unknown; workflowId?: string; versionId?: string; language: "node" | "python"; kind: ExportKind }> {
+/** 세션 확인 이후 호출한다. 동일 출처·크기·언어/종류를 검사하고 편집 초안과 저장 버전 지정이 섞인 요청을 거절한다. */
+export async function readExportRequest(request: Request, config: AuthConfig): Promise<{ workflow?: unknown; workflowId?: string; versionId?: string; language: "node" | "python"; kind: ExportKind; intent?: ExportIntent }> {
   if (!sameOriginMutation(config, request)) throw new ExportPackageError("허용되지 않은 요청이에요. Flowly 화면에서 다시 내보내 주세요.", 403);
   if (request.headers.get("content-type")?.split(";")[0].trim().toLowerCase() !== "application/json") throw new ExportPackageError("JSON 요청이 필요해요.", 415);
   const raw = await request.text();
@@ -49,35 +60,40 @@ export async function readExportRequest(request: Request, config: AuthConfig): P
   const input = body as Record<string, unknown>;
   const language = input.language ?? "node";
   const kind = input.kind ?? "runtime";
+  if (input.intent !== undefined && !["run", "modify", "build"].includes(String(input.intent))) throw new ExportPackageError("AI에게 맡길 작업 목적을 선택해 주세요.");
+  const intent = input.intent as ExportIntent | undefined;
   if (kind !== "runtime" && kind !== "agent" && kind !== "prompt") throw new ExportPackageError("내보낼 항목을 다시 선택해 주세요.");
   if (language !== "node" && language !== "python") throw new ExportPackageError("Node 또는 Python 실행 프로젝트를 선택해 주세요.");
   if (input.versionId !== undefined || input.workflowId !== undefined) {
     if (input.workflow !== undefined || typeof input.workflowId !== "string" || !input.workflowId || input.workflowId.length > 100 || /[\x00-\x1f]/.test(input.workflowId) || typeof input.versionId !== "string" || !/^[a-zA-Z0-9_-]{1,100}$/.test(input.versionId)) throw new ExportPackageError("저장한 워크플로와 발행 버전을 확인해 주세요.");
-    return { workflowId: input.workflowId, versionId: input.versionId, language, kind };
+    return { workflowId: input.workflowId, versionId: input.versionId, language, kind, ...(intent ? { intent } : {}) };
   }
-  return { workflow: input.workflow, language, kind };
+  return { workflow: input.workflow, language, kind, ...(intent ? { intent } : {}) };
 }
 type ExportOptions = {
   user: Identity;
   workflow: unknown;
   connections: ExportConnection[];
   resolveResources: (user: Identity, ids: string[]) => Promise<Resource[]>;
+  resolveResourceFiles?: ResourceFileResolver;
   runnerSource: string;
-  helpers?: { files: string; triggers: string; requirements: string; programs?: string; dynamic?: string; knowledge?: string; search?: string; pythonTools?: string; scientificTools?: string; mediaTools?: string; toolRequirements?: string; completions?: string; completionResearch?: string; completionPrograms?: string; completionOperations?: string };
+  helpers?: { files: string; triggers: string; requirements: string; programs?: string; dynamic?: string; knowledge?: string; search?: string; pythonTools?: string; scientificTools?: string; mediaTools?: string; toolRequirements?: string; completions?: string; completionResearch?: string; completionPrograms?: string; completionOperations?: string; skills?: string };
   operations?: { ops: string; local: string; guide?: string };
   language?: "node" | "python";
   kind?: ExportKind;
+  intent?: ExportIntent;
+  sourceVersion?: { id: string; number: number };
   exportedAt?: string;
 };
 
 /** Only explicit, server-resolved fields cross the downloadable package boundary. */
+/** 매 내보내기마다 자료를 다시 조회한다. 클라이언트가 보낸 ownerId/연결 정의나 과거 읽기 성공을 권한으로 신뢰하지 않는다. */
 export async function buildExportManifest(options: Omit<ExportOptions, "runnerSource">): Promise<ExportManifest> {
   if (!options.workflow || typeof options.workflow !== "object" || Array.isArray(options.workflow)) throw new ExportPackageError("내보낼 워크플로를 확인해 주세요.");
   const raw = options.workflow as Record<string, unknown>;
   let definition: Workflow["definition"];
   try { definition = compileDefinition(raw.definition); }
   catch (error) { throw new ExportPackageError(error instanceof Error ? error.message : "워크플로 형식을 확인해 주세요."); }
-  if (options.kind === "agent" && !allNodes(definition).some(node => node.type === "agent")) throw new ExportPackageError("Agent 다운로드에는 AI Agent 블록이 필요해요. 하위 작업의 Agent도 사용할 수 있어요.", 409);
   const selected = allNodes(definition).flatMap(node => node.allowedTools || []);
   if (selected.some(tool => ["test-read", "test-write"].includes(tool.connectionId))) throw new ExportPackageError("테스트 도구는 실행 프로젝트로 내보낼 수 없어요. 에이전트에서 실제로 사용할 서비스 도구를 선택해 주세요.", 409);
   const ids = referencedResourceIds(definition);
@@ -88,10 +104,14 @@ export async function buildExportManifest(options: Omit<ExportOptions, "runnerSo
   const resources = ids.map(id => {
     const resource = accessible.find(candidate => candidate.id === id);
     if (!resource || !canReadResource(resource, options.user)) throw new ExportPackageError("접근 권한이 없거나 공유가 철회된 자료예요. 자료 소유자에게 확인해 주세요.", 403);
-    return resource;
+    const files = resource.files ? parseResourceAttachments(resource.files, resource.type) : undefined;
+    const details = parseResourceDetails(resource.details, resource.type, files);
+    if (resource.type === "skill") { const issues = skillReferenceIssues(resource.content, files ?? []); if (issues.length) throw new ExportPackageError(issues.join("\n")); }
+    return { ...resource, ...(details ? { details } : {}), ...(files ? { files } : {}) };
   });
   const resourceErrors = validateGraph(definition, resources);
   if (resourceErrors.length) throw new ExportPackageError(resourceErrors.join("\n"));
+  if (resources.some(resource => resource.files?.length) && !options.resolveResourceFiles) throw new ExportPackageError("첨부 파일 저장소가 미설정이에요. 관리자에게 확인해 주세요.", 503);
   const connections: ExportConnection[] = [];
   const registered = registeredConnections(options.user, resources);
   // A current registration supersedes an older server-side definition. The
@@ -118,6 +138,8 @@ export async function buildExportManifest(options: Omit<ExportOptions, "runnerSo
     if (!exported.tools.some(candidate => candidate.toolName === tool.toolName)) exported.tools.push({
       connectionId: exported.id, resourceId: exported.resourceId, toolName: tool.toolName, name: tool.name,
       description: tool.description, effect: tool.effect, inputSchema: parseSchema(tool.inputSchema), supportsIdempotency: tool.supportsIdempotency === true,
+      ...(tool.outputSchema ? { outputSchema: parseSchema(tool.outputSchema) } : {}),
+      ...(tool.outputTarget ? { outputTarget: tool.outputTarget } : {}),
     });
   }
   const toolNames = connections.flatMap(connection => connection.tools.map(tool => tool.name));
@@ -128,19 +150,25 @@ export async function buildExportManifest(options: Omit<ExportOptions, "runnerSo
   if (!inspection.canExport) throw new ExportPackageError(inspection.issues.filter(i => i.severity === "error").map(i => i.message).join("\n"));
   const manifest: ExportManifest = {
     format: "flowly-executable-export", version: 1, language: options.language || "node", exportedAt,
+    intent: options.intent || "run", origin: { workflowId: workflow.id, updatedAt: String(raw.updatedAt || ""), schemaVersion: definition.schemaVersion || 1, ...(options.sourceVersion ? {versionId:options.sourceVersion.id,versionNumber:options.sourceVersion.number} : {}) },
     owner: { userId: options.user.userId, email: options.user.email, displayName: options.user.displayName },
     workflow,
     resources: resources.map(resource => ({ id: resource.id, ownerId: resource.ownerId, name: resource.name, type: resource.type,
       description: resource.description, content: resource.content, url: resource.url, visibility: resource.visibility,
-      createdAt: resource.createdAt, updatedAt: resource.updatedAt, ...(resource.sample ? { sample: true } : {}) })),
+      createdAt: resource.createdAt, updatedAt: resource.updatedAt, ...(resource.sample ? { sample: true } : {}),
+      ...(resource.details ? { details: structuredClone(resource.details) } : {}),
+      ...(resource.files?.length ? { files: resource.files.map(file => exportedAttachment(resources, resource.id, file)) } : {}) })),
+    ...(resources.length ? { resourcePackage: { version: 1 as const } } : {}),
     connections, limits: { ...DEFAULT_LIMITS },
   };
   if (strToU8(JSON.stringify(manifest, null, 2)).byteLength > 8_000_000) throw new ExportPackageError("내보낼 자료가 너무 커요. 자료를 나누거나 사용하지 않는 연결을 제거해 주세요.", 413);
   return manifest;
 }
 
+/** 실행 언어와 선택 기능에서 안내를 파생한다. 여기의 문자열은 다운로드 산출물이므로 로직 주석과 구분해 관리한다. */
 function readme(manifest: ExportManifest, withOperations: boolean, target: ExportExecutionTarget): string {
   const nodes = allNodes(manifest.workflow.definition);
+  const executableSkills = nodes.some(node => node.skillExecution);
   const hasFiles = nodes.some(node => ["file_input", "document_extract", "file_output"].includes(node.type));
   const trigger = nodes.find(node => node.type === "trigger")?.trigger;
   const hasVector = nodes.some(nodeUsesEmbeddings);
@@ -154,10 +182,12 @@ function readme(manifest: ExportManifest, withOperations: boolean, target: Expor
 웹 화면은 워크플로를 설계하고 파일로 내보냅니다. 이 파일을 다운로드하는 동안 모델이나 MCP 서비스는 호출하지 않습니다.
 실제 AI 실행은 이 폴더에서 사용자가 직접 시작하며, 사용자의 OpenAI API 키와 서비스 연결을 사용합니다.
 AI 작업 도구에 전달할 지시는 AI_PROMPT.md, 공통 지침은 AGENTS.md, 설계 설명은 WORKFLOW_GUIDE.md입니다. START_HERE.md에서 Skill 목록과 사용 순서를 확인하세요. 이 파일들은 전역 설치되지 않습니다.
+${withOperations ? "일상 사용은 python flowly_local.py로 로컬 운영 화면을 여세요. 첫 실행 안내에서 환경을 확인하고 설정·요청·파일 선택·실행·승인·결과를 이어서 처리합니다. 키·토큰은 이 PC의 선택한 .env에만 저장하고 웹에는 보내지 않습니다. 고급 명령은 아래에 유지합니다." : ""}
 
 ## 준비
 
-1. ${runtime}을 설치하고 ZIP을 새 폴더에 풉니다.${hasFiles || trigger ? " 파일·자동 시작 도우미는 Python 3.11 이상도 필요합니다." : " 별도 패키지 설치는 필요하지 않습니다."}
+1. ${runtime}을 설치하고 ZIP을 새 폴더에 풉니다.${hasFiles || trigger || executableSkills ? " 파일·자동 시작·Skill 실행 도우미에는 Python 3.11 이상이 필요합니다." : " 별도 패키지 설치는 필요하지 않습니다."}
+${executableSkills ? "Skill 코드의 언어·의존성·입출력은 RESOURCE_GUIDE.md에서 확인합니다. .mjs 실행에는 Node.js 22.13 이상도 필요하고 Python 의존성은 사용자 실행 환경에 직접 설치합니다. 실행기는 자동 설치나 코드 언어 변환을 하지 않습니다.\n" : ""}
 ${requiresModel || manifest.connections.length ? "2. .env.example을 .env로 복사합니다. Windows PowerShell: Copy-Item .env.example .env" : "2. 이 흐름에는 모델 키나 서비스 토큰이 필요하지 않습니다. .env 없이 실행할 수 있습니다."}
 ${requiresModel ? "3. 로컬 편집기로 .env를 열어 OPENAI_API_KEY에 본인의 키를 입력합니다. FLOWLY_MODEL은 사용 가능한 모델로 지정합니다. 기본 예시는 gpt-5.4-mini입니다." : "이 흐름에는 AI 블록이 없어 OpenAI를 호출하지 않습니다."}
 ${extraCredentials.length ? `서비스 인증에는 ${extraCredentials.join(", ")}에 본인의 토큰을 입력합니다.\n` : ""}
@@ -212,7 +242,7 @@ ${withOperations ? `## 로컬 실행 화면과 운영 도구
     python flowly_local.py
 
 터미널에 표시한 토큰 포함 주소를 브라우저로 엽니다. 127.0.0.1에서만 접근하고 페이지를 열 때마다 생성한 토큰을 사용합니다. 웹 서비스로 모델 키를 전송하지 않습니다. 실제 연결 점검·작업 시작·사례 평가를 누를 때만 모델/서비스를 호출합니다. 자동 새로고침은 저장 상태를 읽습니다.
-프로필별 환경 파일과 실행 기록을 분리하며 기본 프로필 이름은 development입니다. 입력을 대기열에 추가한 뒤 처리기를 시작합니다. 한 번에 한 작업을 우선순위·접수 순서로 처리합니다. 중지는 취소 파일을 통해 실행기에 전달하고, 진행 중 외부 쓰기의 결과가 불명확하면 자동 재시도하지 않습니다.
+프로필별 환경 파일과 실행 기록을 분리하며 기본 프로필 이름은 production입니다. 입력을 대기열에 추가한 뒤 처리기를 시작합니다. 한 번에 한 작업을 우선순위·접수 순서로 처리합니다. 중지는 취소 파일을 통해 실행기에 전달하고, 진행 중 외부 쓰기의 결과가 불명확하면 자동 재시도하지 않습니다.
 
     python flowly_ops.py --help
     python flowly_ops.py request --root . --request-file operation.json
@@ -220,18 +250,18 @@ ${withOperations ? `## 로컬 실행 화면과 운영 도구
 
 operation.json 예시:
 
-    {"action":"check","profile":"development"}
-    {"action":"probe","profile":"development","target":"all","confirm":true}
+    {"action":"check","profile":"production"}
+    {"action":"probe","profile":"production","confirmProduction":true,"target":"all","confirm":true}
     {"action":"profiles.set","name":"production","env":".env.production","production":true,"confirmProduction":true}
-    {"action":"jobs.enqueue","profile":"development","input":"실행할 요청","priority":0}
-    {"action":"runs.resume","profile":"development","runId":"run_..."}
-    {"action":"backup","profile":"development","scopes":["state","outputs","reports"]}
-    {"action":"restore","profile":"development","backupId":"backup_...","confirm":true}
-    {"action":"prune","profile":"development","scopes":["state","outputs","reports"],"olderThanDays":30,"confirm":true}
-    {"action":"evaluate","profile":"development","dataset":"evaluations/cases.json"}
+    {"action":"jobs.enqueue","profile":"production","confirmProduction":true,"input":"실행할 요청","priority":0}
+    {"action":"runs.resume","profile":"production","confirmProduction":true,"runId":"run_..."}
+    {"action":"backup","profile":"production","confirmProduction":true,"scopes":["state","outputs","reports"]}
+    {"action":"restore","profile":"production","confirmProduction":true,"backupId":"backup_...","confirm":true}
+    {"action":"prune","profile":"production","confirmProduction":true,"scopes":["state","outputs","reports"],"olderThanDays":30,"confirm":true}
+    {"action":"evaluate","profile":"production","confirmProduction":true,"dataset":"evaluations/cases.json"}
     {"action":"compare","evaluationId":"eval_...","baselineId":"eval_..."}
     {"action":"prices.set","model":"사용할 모델명","inputPerMillion":1,"outputPerMillion":4,"currency":"USD","asOf":"2026-10-22"}
-    {"action":"prices.estimate","profile":"development","runId":"run_..."}
+    {"action":"prices.estimate","profile":"production","confirmProduction":true,"runId":"run_..."}
     {"action":"bills.import","path":"billing.csv"}
 
 위 단가는 형식 설명용 가상 숫자입니다. 실제 제공자의 확인한 단가와 기준일을 직접 입력하세요. 비용 추정은 제공자 청구 금액이 아닙니다. 세부 입력/출력 토큰이 없는 기록은 추정 범위로 표시합니다. 청구 CSV는 수동으로 준비한 금액과 비교하며 계정 청구 API를 자동 조회하지 않습니다.
@@ -278,9 +308,19 @@ ${trigger.kind === "schedule" ? "예약은 지정 시각(시간대 포함)부터
 `;
 }
 
+/** manifest에서 필요한 실행기·도우미·문서만 조립한다. 설정 예시는 비민감 기본값과 빈 자격 증명 칸을 제공하며 서버 비밀값을 읽지 않는다. */
 export async function buildExportPackage(options: ExportOptions): Promise<Uint8Array> {
   if (options.kind === "prompt") throw new ExportPackageError("AI 명령 프롬프트는 미리보기에서 복사해 주세요. 파일 다운로드는 제공하지 않아요.");
   const manifest = await buildExportManifest(options);
+  // 본문 스냅샷과 파일을 서로 다른 자료 버전에서 가져오지 않도록 바이트 조회 전에 현재 자료 버전을 대조한다.
+  const resourcesWithFiles = manifest.resources.filter(resource => resource.files?.length);
+  const currentResources = resourcesWithFiles.length ? await options.resolveResources(options.user, resourcesWithFiles.map(resource => resource.id)) : [];
+  for (const resource of resourcesWithFiles) {
+    const current = currentResources.find(item => item.id === resource.id);
+    if (!current || !canReadResource(current, options.user)) throw new ExportPackageError("내보내는 동안 자료 사용 권한이 변경됐어요. 현재 자료 권한을 확인해 주세요.", 403);
+    if (current.updatedAt !== resource.updatedAt) throw new ExportPackageError("내보내는 동안 자료가 변경됐어요. 새로고침한 뒤 다시 내보내 주세요.", 409);
+  }
+  const resourceFiles = await buildResourceExportFiles(manifest, currentResources, options.resolveResourceFiles);
   const target = options.kind === "agent" ? "agent" : "runtime";
   const json = strToU8(JSON.stringify(manifest, null, 2));
   if (json.byteLength > 8_000_000) throw new ExportPackageError("내보낼 자료가 너무 커요. 자료를 나누거나 사용하지 않는 연결을 제거해 주세요.", 413);
@@ -288,6 +328,8 @@ export async function buildExportPackage(options: ExportOptions): Promise<Uint8A
   const tokenNames = [...new Set(manifest.connections.flatMap(connection => [connection.endpointEnv, connection.tokenEnv].filter((name): name is string => !!name)))];
   const requiresModel = allNodes(manifest.workflow.definition).some(nodeRequiresModel);
   const nodes = allNodes(manifest.workflow.definition);
+  const executableSkills = nodes.some(node => node.skillExecution);
+  if (executableSkills && !options.helpers?.skills?.trim()) throw new ExportPackageError("Skill 실행 도우미가 준비되지 않았어요. 관리자에게 확인해 주세요.", 503);
   const hasFiles = nodes.some(node => ["file_input", "document_extract", "file_output"].includes(node.type));
   const trigger = nodes.find(node => node.type === "trigger")?.trigger;
   const vector = nodes.some(nodeUsesEmbeddings);
@@ -316,10 +358,12 @@ export async function buildExportPackage(options: ExportOptions): Promise<Uint8A
   if (options.operations && (!options.operations.ops.trim() || !options.operations.local.trim())) throw new ExportPackageError("로컬 운영 도우미가 준비되지 않았어요. 관리자에게 확인해 주세요.", 503);
   if (programs && !options.helpers?.programs?.trim()) throw new ExportPackageError("등록 프로그램 실행 도우미가 준비되지 않았어요. 관리자에게 확인해 주세요.", 503);
   const entries: Record<string, Uint8Array> = {
+    ...resourceFiles,
+    ...(executableSkills ? { "flowly_skills.py": strToU8(options.helpers!.skills!) } : {}),
     ...Object.fromEntries(Object.entries(buildAiExportDocuments(manifest, target)).map(([path, text]) => [path, strToU8(text)])),
     [manifest.language === "python" ? "runner.py" : "runner.mjs"]: strToU8(options.runnerSource),
     "workflow.json": json,
-    ".env.example": strToU8(["# 본인 기기의 .env 파일에만 필요한 키를 입력하세요.", ...(requiresModel ? ["OPENAI_API_KEY=", ...(nodes.some(nodeRequiresResponseModel) ? ["FLOWLY_MODEL=gpt-5.4-mini"] : [])] : ["# AI 블록이 없는 흐름에는 OpenAI 키가 필요하지 않습니다."]), ...(vector ? ["FLOWLY_EMBEDDING_MODEL=text-embedding-3-small"] : []), ...(pythonToolIds.length ? ["# 로컬 모델 도구 ID -> models/ 아래 상대경로의 JSON 객체", "FLOWLY_TOOL_MODELS={}", ...(pythonToolIds.includes("watermark") ? ["FLOWLY_WATERMARK_KEY="] : []), ...(pythonToolIds.includes("content_credentials") ? ["FLOWLY_CONTENT_CREDENTIALS_KEY="] : [])] : []), ...((hasFiles || pythonAssets) && manifest.language === "node" ? ["# 선택한 도우미 가상 환경의 Python 실행 파일 절대경로", "FLOWLY_PYTHON="] : []), ...(trigger && trigger.kind !== "schedule" ? ["FLOWLY_TRIGGER_SECRET="] : []), ...tokenNames.map(name => `${name}=`), ""].join("\n")),
+    ".env.example": strToU8(["# 본인 기기의 .env 파일에만 필요한 키를 입력하세요.", ...(requiresModel ? ["OPENAI_API_KEY=", ...(nodes.some(nodeRequiresResponseModel) ? ["FLOWLY_MODEL=gpt-5.4-mini"] : [])] : ["# AI 블록이 없는 흐름에는 OpenAI 키가 필요하지 않습니다."]), ...(vector ? ["FLOWLY_EMBEDDING_MODEL=text-embedding-3-small"] : []), ...(pythonToolIds.length ? ["# 로컬 모델 도구 ID -> models/ 아래 상대경로의 JSON 객체", "FLOWLY_TOOL_MODELS={}", ...(pythonToolIds.includes("watermark") ? ["FLOWLY_WATERMARK_KEY="] : []), ...(pythonToolIds.includes("content_credentials") ? ["FLOWLY_CONTENT_CREDENTIALS_KEY="] : [])] : []), ...((hasFiles || pythonAssets || executableSkills) && manifest.language === "node" ? ["# 선택한 도우미 가상 환경의 Python 실행 파일 절대경로", "FLOWLY_PYTHON="] : []), ...(trigger && trigger.kind !== "schedule" ? ["FLOWLY_TRIGGER_SECRET="] : []), ...tokenNames.map(name => `${name}=`), ""].join("\n")),
     ...(hasFiles ? { "flowly_files.py": strToU8(options.helpers!.files), "requirements-files.txt": strToU8(options.helpers!.requirements) } : {}),
     ...(trigger ? { "flowly_triggers.py": strToU8(options.helpers!.triggers) } : {}),
     ...Object.fromEntries((["dynamic", "knowledge", "search"] as const).filter(name => features[name]).map(name => [`flowly_${name}.py`, strToU8(options.helpers![name]!)])),
@@ -341,5 +385,8 @@ export async function buildExportPackage(options: ExportOptions): Promise<Uint8A
     ".gitignore": strToU8(".env\n.env.*\n!.env.example\n.flowly-runs/\n.flowly-python-runs/\n.flowly-triggers/\n.flowly-ops/\n.flowly-profiles/\n.venv-files/\n.venv-tools/\nmodels/\ninputs/\noutputs/\nreports/\ntessdata/\n__pycache__/\n"),
   };
   if (options.kind === "agent") Object.assign(entries, Object.fromEntries(Object.entries(await buildAgentExportFiles(manifest, entries)).map(([path, text]) => [path, strToU8(text)])));
+  entries["ROUNDTRIP.md"] = strToU8(roundtripGuide);
+  entries["project-check.py"] = strToU8(projectCheckPython);
+  entries["PROJECT_FILES.json"] = strToU8(await projectFileInventory(entries));
   return zipSync(entries, { level: 1 });
 }

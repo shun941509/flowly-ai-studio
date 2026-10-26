@@ -1,3 +1,7 @@
+/**
+ * 경쟁 실행·계층 분배·이벤트·다자 검토·사례 처리 등의 협업 예제다. 병렬 하위 설계의 결과 합류와 기다리는 결정의 위치를 함께 읽는다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { WorkflowDesign } from '../workflow-design';
 import {b,n,graph,start,calc,out,agent,reply,check,hold,review,design,service,tool} from './completion-035-068-helpers';
 const j=JSON.stringify,str={type:'string' as const};

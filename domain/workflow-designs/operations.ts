@@ -1,3 +1,7 @@
+/**
+ * 사내 자료 조회·변경 요청·검토 등 운영 업무의 예제다. MCP 정의와 허용 도구 계약을 명시하며 실제 주소와 자격 증명은 포함하지 않는다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode, Resource } from "../../app/lib/model";
 import type { WorkflowDesign, WorkflowScenario } from "../workflow-design";
 import type { FormConfig, InputBinding } from "../../runtime/types";

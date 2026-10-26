@@ -1,3 +1,7 @@
+/**
+ * 파일 입출력·문서 추출·가드레일·평가·트리거·보상 작업의 설정 검증.
+ * 응답 모델과 임베딩 필요 여부도 여기서 구분하며 웹에서 서비스를 호출하지 않는다.
+ */
 import type { FlowNode } from "../app/lib/model";
 import type { ExtendedNodeConfig, GuardrailConfig, EvaluationConfig } from "../runtime/types";
 import { parseDataNodeConfig, safeDataPath } from "./node-config";
@@ -14,6 +18,9 @@ function text(value: unknown, max: number, empty = false): string {
 function path(value: unknown) { const v = text(value, 500); if (!safeDataPath(v)) throw new Error("이전 결과의 값 경로를 확인해 주세요."); return v; }
 function int(value: unknown, max: number) { if (typeof value !== "number" || !Number.isSafeInteger(value) || value < 1 || value > max) throw new Error(`설정은 1~${max} 정수가 필요해요.`); return value; }
 function choice<T extends string>(value: unknown, options: readonly T[]): T { if (!options.includes(value as T)) throw new Error("지원하는 처리 방식을 선택해 주세요."); return value as T; }
+/**
+ * 각 블록이 지원하는 설정과 범위를 확인한다. 실제 파일 접근·모델 평가·보상 실행은 실행기의 책임이다.
+ */
 export function parseExtendedNodeConfig(node: Record<string, unknown>): ExtendedNodeConfig {
   const out: ExtendedNodeConfig = {};
   for (const [field, type] of Object.entries(extendedConfigTypes)) if (node[field] !== undefined && node.type !== type) throw new Error("다른 종류의 블록 설정이 포함되어 있어요.");
@@ -50,6 +57,15 @@ export function parseExtendedNodeConfig(node: Record<string, unknown>): Extended
   return out;
 }
 export const missingExtendedConfig = (node: FlowNode) => Object.entries(extendedConfigTypes).some(([key, type]) => type === node.type && node[key as keyof ExtendedNodeConfig] === undefined);
+/**
+ * 벡터 검색/색인처럼 임베딩 연결이 필요한 설정인지 판별한다.
+ */
 export const nodeUsesEmbeddings = (node: FlowNode) => node.type === "retrieval" && node.retrieval?.mode === "vector" || node.type === "knowledge" && node.knowledge?.mode === "vector" && ["stage", "query", "evaluate"].includes(node.knowledge.action);
+/**
+ * 응답 생성 모델이 필요한 블록과 실행 방식을 판별한다.
+ */
 export const nodeRequiresResponseModel = (node: FlowNode) => ["ai", "agent", "classify", "orchestrator", "candidate_search"].includes(node.type) || node.type === "evaluate" && node.evaluation?.mode === "model" || node.type === "retrieval" && node.retrieval?.mode === "web";
+/**
+ * 응답 생성 또는 임베딩 중 하나라도 필요하면 모델 설정 대상으로 표시한다.
+ */
 export const nodeRequiresModel = (node: FlowNode) => nodeRequiresResponseModel(node) || nodeUsesEmbeddings(node);

@@ -1,3 +1,7 @@
+/**
+ * 개발 협업·학습·연습·역할 대화를 작업 단계로 구성한 예제다. 역할 이름뿐 아니라 입력·피드백·후속 조치의 연결이 동작을 결정한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type {WorkflowDesign} from '../workflow-design';
 import {b,n,graph,start,calc,out,agent,reply,check,hold,review,design,service,tool,waitInput} from './completion-035-068-helpers';
 const j=JSON.stringify,str={type:'string' as const};

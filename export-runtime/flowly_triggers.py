@@ -1,3 +1,4 @@
+# 사용자가 시작한 로컬 일정/이벤트/웹훅을 실제 실행기로 전달한다. SQLite 영수증으로 중복 수신 상태를 추적한다.
 """User-started local schedules and authenticated event/webhook listener. Stdlib only."""
 from __future__ import annotations
 import argparse
@@ -27,6 +28,7 @@ def no_links(path):
         if part.is_symlink() or reparse:
             raise TriggerFault("트리거 상태·패키지 경로에 심볼릭 링크를 사용할 수 없어요.")
 
+# 진입 블록이 trigger인 패키지만 허용한다. 임의 JSON을 일정 작업 명령으로 해석하지 않는다.
 def read_package(path):
     no_links(path)
     raw = path.read_bytes()
@@ -57,6 +59,7 @@ def load_secret(path):
         raise TriggerFault("FLOWLY_TRIGGER_SECRET은 무작위 32자 이상이어야 해요.")
     return value.encode("utf-8")
 
+# 타임스탬프와 원문 본문을 HMAC에 묶고 시간 차이를 검사한다. 이벤트 중복은 영수증으로 별도 관리한다.
 def authenticate(secret, stamp, signature, body, now=None):
     if not isinstance(stamp, str) or not re.fullmatch(r"[0-9]{10,12}", stamp) or abs((now or time.time()) - int(stamp)) > 300:
         return False
@@ -145,6 +148,7 @@ class Launcher:
                 db.commit()
             if current.get("status") not in ("succeeded", "failed", "cancelled", "expired", "budget_exceeded"):
                 raise TriggerFault("이전 실행의 승인·검토·재개 또는 결과 확인이 필요해요.")
+    # 이벤트를 기록하고 이미 처리한 이벤트는 재사용한다. 불명확한 외부 변경은 자동 반복하지 않는다.
     def dispatch(self, event_id, payload, digest=None):
         if not isinstance(event_id, str) or not re.fullmatch(r"[A-Za-z0-9_:\-.]{1,160}", event_id):
             raise TriggerFault("이벤트 ID는 160자 이하의 영문·숫자 식별자여야 해요.")
@@ -235,6 +239,7 @@ def server(launcher, port, secret):
             except (ValueError, TimeoutError): self.reply(400, {"error": "이벤트 JSON과 전송 시간을 확인해 주세요."})
     return HTTPServer(("127.0.0.1", port), Handler)
 
+# 시각/주기의 이벤트를 로컬 루프에서 만든다. 중앙 웹에 상주 스케줄러를 등록하는 기능은 아니다.
 def schedule(launcher, payload, max_runs, stopped=lambda: False):
     if launcher.config["kind"] != "schedule":
         raise TriggerFault("예약 자동 시작 방식을 선택해 주세요.")

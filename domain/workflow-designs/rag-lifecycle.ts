@@ -1,3 +1,7 @@
+/**
+ * 자료 색인의 준비·평가·발행·검색·철회·복구 흐름을 구성한다. 버전과 현재 상태를 명시적으로 전달해 수명주기 작업의 결과를 확인한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode, Resource } from "../../app/lib/model";
 import type { InputBinding } from "../../runtime/types";
 import type { KnowledgeConfig } from "../knowledge-config";

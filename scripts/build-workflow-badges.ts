@@ -1,3 +1,6 @@
+/**
+ * 현재 소스 지문·설계·시나리오·두 언어 ZIP 해시가 맞는 실행 증거만 공개 검증 배지로 반영한다. 과거 통과 기록을 그대로 재사용하지 않는다.
+ */
 /** Publish a local-validation badge only for current, complete two-language evidence. */
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";

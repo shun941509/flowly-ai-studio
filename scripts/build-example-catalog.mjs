@@ -1,3 +1,6 @@
+/**
+ * 작성자가 저장한 JSON 시드를 검사해 domain/catalog/index.ts를 생성한다. 제목을 치환해 새 업무 예제를 생성하는 스크립트가 아니다.
+ */
 import { createHash } from "node:crypto";
 import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";

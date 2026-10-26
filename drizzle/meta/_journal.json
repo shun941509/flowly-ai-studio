@@ -22,6 +22,20 @@
       "when": 1792670400000,
       "tag": "0002_workflow_history",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1792972800000,
+      "tag": "0003_workflow_sharing",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1793030400000,
+      "tag": "0004_resource_packages",
+      "breakpoints": true
     }
   ]
 }

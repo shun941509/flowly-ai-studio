@@ -1,3 +1,6 @@
+/**
+ * 내보낼 실행기와 예제 산출물을 만든 뒤 환경에 맞는 Vinext/Vite 진입점을 호출한다. 일반 Next.js 서버 배포 명령으로 바꾸지 않는다.
+ */
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { readExecutionProfile } from "./execution-profile.mjs";

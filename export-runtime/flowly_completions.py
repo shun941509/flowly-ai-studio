@@ -1,3 +1,4 @@
+# 선택 업무 프로그램을 고정 모듈에서 실행하는 worker. manifest에 포함한 작업만 허용하며 사용자 코드 경로를 받지 않는다.
 """Fixed packaged business algorithms. No user code, dynamic paths or providers."""
 import importlib
 import importlib.metadata
@@ -10,6 +11,7 @@ from pathlib import Path
 MAX_BYTES = 2_000_000
 MODULES = ("completion_research", "completion_programs", "completion_operations")
 
+# 고정 세 모듈의 OPERATIONS/CONTRACTS를 합친다. 중복 작업 ID는 덮어쓰지 않고 오류로 처리한다.
 def registry():
     operations, contracts = {}, {}
     for name in MODULES:
@@ -46,6 +48,7 @@ def bounded(value):
     return value
 
 
+# 작업별 의존성 버전과 필요한 로컬 Chrome을 확인한다. 사내 서비스 연동 성공을 의미하지 않는다.
 def readiness(names, operations, contracts, allowed):
     missing = []
     for name in names:
@@ -69,6 +72,7 @@ def readiness(names, operations, contracts, allowed):
                 missing.append({"operation": name, "configuration": "installed Chrome browser", "reason": "missing_configuration"})
     return missing
 
+# 허용 목록/의존성을 통과한 JSON만 실행하고 ok/result 또는 오류 계약으로 응답한다.
 def main():
     try:
         raw = sys.stdin.buffer.read(MAX_BYTES + 1)

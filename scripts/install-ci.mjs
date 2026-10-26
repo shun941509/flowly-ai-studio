@@ -1,3 +1,6 @@
+/**
+ * 기존 Sites 설치 환경과의 호환 설치 진입점. 이 스크립트의 존재가 프로젝트의 pnpm 잠금 파일을 npm으로 이관하라는 의미는 아니다.
+ */
 import { spawnSync } from "node:child_process";
 import { accessSync, constants } from "node:fs";
 import path from "node:path";

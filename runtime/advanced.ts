@@ -1,3 +1,4 @@
+// 입력 대기·사람 검토와 중첩 실행 탐색을 모은 런타임 보조 계층. 결정 저장과 실제 재개는 분리한다.
 import type { Definition, FlowNode } from "../app/lib/model";
 import type { FormConfig, InputRequest, Json, Review, RuntimeRun } from "./types";
 import { argsHash, canonicalJson, redactJson, RuntimeFault } from "./policy";
@@ -6,10 +7,12 @@ import { assertSchema } from "../domain/schema";
 import { resolveNodeInput } from "../domain/workflow";
 
 /** Only explicit input/model/data failures may follow an onError edge. */
+// 복구 가능한 입력·모델·데이터 오류만 오류 연결선으로 보낸다. 권한·저장·한도 오류에는 이 타입을 쓰지 않는다.
 export class NodeProcessingFault extends RuntimeFault {
   constructor(message: string) { super("failed", message); }
 }
 export class PauseChild extends Error {}
+// 정적 하위 설계를 순회하는 공통 진입점. 실행 기록의 자식 탐색은 runTree를 사용한다.
 export function nestedDefinitions(node: FlowNode): Definition[] {
   return [...(node.parallel?.tasks ?? []).map(task => task.definition), ...(node.team?.tasks ?? []).map(task => task.definition), ...(node.orchestration?.tasks ?? []).map(task => task.definition), ...(node.subworkflow ? [node.subworkflow.definition] : []), ...(node.loop ? [node.loop.definition] : [])];
 }
@@ -24,6 +27,7 @@ export function finalOutput(run: RuntimeRun): Record<string, Json> {
   if (!id || !run.checkpoint.outputs[id]) throw new RuntimeFault("failed", "하위 작업의 출력 기록을 찾지 못했어요.");
   return run.checkpoint.outputs[id];
 }
+// 폼에 선언한 필드와 자료형을 검사하고 text/data를 함께 반환한다. 파일은 상대 경로 문자열만 받는다.
 export function formInput(node: FlowNode, text: string): Record<string, Json> {
   let value: unknown;
   try { value = JSON.parse(text); } catch { throw new NodeProcessingFault("입력 폼에는 JSON 객체를 입력해 주세요."); }
@@ -48,6 +52,7 @@ export function errorOutput(node: FlowNode, input: Record<string, Json>): Record
   const template = node.error?.template ?? "작업을 완료하지 못했어요: {{error.message}}";
   return { ...input, text: template.replace(/\{\{([^{}]+)\}\}/g, (_, path: string) => { const value = dataAt(input, path.trim()); return typeof value === "string" ? value : canonicalJson(value); }) };
 }
+// 검토 대상 입력의 해시·소유자·기한을 다시 확인한 뒤 결정을 기록한다. 수락·반려 경로는 이후 resume에서 실행한다.
 export async function decideReview(root: RuntimeRun, reviewId: string, userId: string, decision: "accepted" | "rejected", edited?: Record<string, Json>): Promise<RuntimeRun> {
   if (root.owner.userId !== userId) throw new RuntimeFault("failed", "이 검토를 처리할 권한이 없어요.");
   if (root.restoredReadOnly) throw new RuntimeFault("failed", "복원한 외부 변경 실행은 조회만 가능해요. 서비스의 실제 결과를 확인한 뒤 새 실행을 시작해 주세요.");
@@ -76,6 +81,7 @@ export async function decideReview(root: RuntimeRun, reviewId: string, userId: s
 export function pendingReviews(run: RuntimeRun): (Review & { instructions: string; allowEdit: boolean })[] { return runTree(run).flatMap(current => (current.reviews ?? []).map(review => { const config = current.workflow.definition.nodes.find(node => node.id === review.nodeId)?.review; return { ...review, instructions: config?.instructions ?? "", allowEdit: config?.allowEdit === true }; })); }
 
 /** A submission records validated data. Only a separate resume may execute downstream work. */
+// 요청 당시 설정과 이전 출력이 그대로인지 확인한다. 같은 값의 재제출은 허용하지만 이미 제출한 값을 교체하지 않는다.
 export async function submitInput(root: RuntimeRun, requestId: string, userId: string, values: Record<string, Json>): Promise<RuntimeRun> {
   if (root.owner.userId !== userId) throw new RuntimeFault("failed", "이 입력 요청을 처리할 권한이 없어요.");
   if (root.restoredReadOnly) throw new RuntimeFault("failed", "복원한 외부 변경 실행은 조회만 가능해요.");

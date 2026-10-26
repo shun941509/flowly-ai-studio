@@ -1,3 +1,4 @@
+# Node knowledge.ts의 로컬 RAG 수명주기 계약. 발행 버전/철회 목록/변경 이력을 메모리 어댑터에 보관한다.
 """Bounded local RAG generations, incremental vectors, evaluation and tombstones.
 
 This module makes no network calls. The runner supplies its metered embedding callback
@@ -20,6 +21,16 @@ def digest(value):
 
 def fail(message):
     raise ValueError(message)
+
+
+def resource_text(resource):
+    # 입력 documentsPath를 명시한 갱신은 그 내용을 쓰며, 자료 자동 선택 시에만 추출 상태를 확인한다.
+    document = resource.get("details", {}).get("document") if resource["type"] == "document" else None
+    if document and document.get("extractionStatus") == "provided":
+        return document["extractedText"]
+    if document and (document.get("originalFileId") or document.get("extractionStatus") in ("pending_local", "failed")):
+        fail(resource["name"] + ": Document 텍스트 추출이 완료되지 않았어요. 원본을 파일 입력 → 문서 내용 추출로 처리한 뒤 추출 텍스트를 등록하거나 지식 색인의 문서 입력으로 연결해 주세요.")
+    return resource["content"]
 
 
 def data_at(value, path):
@@ -81,6 +92,7 @@ def validate_vectors(vectors, count):
         cosine(vector, vector)
 
 
+# 작업 범위/자료 접근을 검사하고 동일 operationId 변경은 저장 결과를 재사용한다.
 def execute_knowledge(raw, input_data, context):
     config = validate_config(raw)
     owner, workflow, operation = context["owner_id"], context["workflow_id"], context["operation_id"]
@@ -118,12 +130,14 @@ def execute_knowledge(raw, input_data, context):
             fail("대상 색인 버전이 없어요. 먼저 준비·평가·발행해 주세요.")
         return state["generations"][generation_id]
 
+    # 허용 자료이면서 철회되지 않은 조각만 남긴다. 과거 버전 복구로 철회 자료를 다시 노출하지 않는다.
     def chunks(generation):
         return [c for c in generation["chunks"] if c["resourceId"] in allowed and c["resourceId"] not in state["revoked"]]
 
     def output(data):
         return {"text": canonical(data), **data}
 
+    # 이전 revision을 저장 어댑터에 전달하고 접근을 재검사해 동시 갱신을 이전 상태로 덮어쓰지 않는다.
     def persist(data):
         if len(state["operations"]) >= 128:
             fail("색인 변경 기록 128개 한도에 도달했어요. 새 색인 이름으로 보관을 분리해 주세요.")
@@ -136,6 +150,7 @@ def execute_knowledge(raw, input_data, context):
         memory({**scope, "operationId": operation + ":commit", "action": "write", "value": state, "expectedRevision": previous_revision, "trackOperation": False})
         return result
 
+    # lexical은 단어 포함 점수, vector는 코사인 유사도다. 서로 다른 모델의 임베딩은 섞지 않는다.
     def search(generation, query):
         if generation["mode"] != config.get("mode", "lexical"):
             fail("색인 검색 방식과 노드 설정이 달라요. 같은 검색 방식을 선택해 주세요.")
@@ -169,7 +184,7 @@ def execute_knowledge(raw, input_data, context):
     if action == "stage":
         if len(state["generations"]) >= 8:
             fail("색인 버전 8개 한도에 도달했어요. 새 색인 이름으로 보관을 분리해 주세요.")
-        documents = get("documentsPath", [{"resourceId": r["id"], "version": r["updatedAt"], "content": r["content"]} for r in available.values() if r["id"] not in state["revoked"]])
+        documents = data_at(input_data, config["documentsPath"]) if "documentsPath" in config else [{"resourceId": r["id"], "version": r["updatedAt"], "content": resource_text(r)} for r in available.values() if r["id"] not in state["revoked"]]
         if not isinstance(documents, list) or not 1 <= len(documents) <= 20:
             fail("갱신 문서는 1~20개 필요해요.")
         changed, new_chunks = set(), []

@@ -1,8 +1,15 @@
+/**
+ * Document에 저장된 Python 도구 프리셋을 고정 program 설정으로 읽는 어댑터.
+ * 등록 문서에 코드가 있어도 임의로 실행하지 않으며 지원 도구 ID와 인자 계약을 사용한다.
+ */
 import type { Resource } from "../app/lib/model";
 import { getToolCandidate } from "./tool-catalog";
 import { parseDataNodeConfig } from "./node-config";
 
 /** Presets are ordinary permission-controlled documents; never uploaded Python code. */
+/**
+ * 지원하는 프리셋 문서인지 확인해 프로그램 설정을 반환한다.
+ */
 export function readPythonToolPreset(resource: Pick<Resource, "type" | "content">) {
   if (resource.type !== "document") return null;
   let parsed: unknown;

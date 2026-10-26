@@ -1,3 +1,7 @@
+/**
+ * 개별 작성 모듈을 공개 설계 배열로 합치는 진입점이다. 빌드·예제 목록·내보내기 검증이 이 배열을 공유한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import { integratedAnalyticsDesigns } from "./integrated-analytics";
 import { completion035068Designs } from "./completion-035-068";
 import { completion008034Designs } from "./completion-008-034";

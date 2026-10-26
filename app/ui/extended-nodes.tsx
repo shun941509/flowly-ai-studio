@@ -1,4 +1,9 @@
 "use client";
+import { NumberField } from "./control-fields";
+/**
+ * 파일·평가·보안 필터·트리거·보상 작업의 속성 UI. 웹에서는 실행 설정만 다루고 파일 처리와 서비스 호출은 내보낸 환경에서 수행한다.
+ */
+
 import { useState } from "react";
 import type { Definition, FlowNode, NodeType } from "../lib/model";
 import type { Json, RuntimeCapabilities, ToolSelection } from "../../runtime/types";
@@ -6,6 +11,7 @@ import { parseDataNodeConfig, safeDataPath, validateJson } from "../../domain/no
 import { Icon, IconButton } from "./common";
 
 export const extendedNodeTypes:NodeType[]=["file_input","document_extract","guardrail","evaluate","file_output","trigger","compensate"];
+/** 확장 블록의 초기 크기·평가 기준·일정 등을 반환한다. 파일 또는 예약 프로세스를 생성하지 않는다. */
 export function extendedDefaults(type:NodeType):Partial<FlowNode> {
  switch(type){
   case "file_input":return {fileInput:{path:"file",maxBytes:10_000_000}};
@@ -31,10 +37,9 @@ export function extendedSummary(node:FlowNode):string|undefined {
  }
 }
 type Props={node:FlowNode;definition:Definition;capabilities?:RuntimeCapabilities|null;onChange:(node:FlowNode)=>void;onSettings:()=>void};
-export function BoundedNumber({label,value,min,max,step=1,onChange}:{label:string;value:number;min:number;max:number;step?:number;onChange:(value:number)=>void}) {
- return <label className="field-label">{label}<input type="number" min={min} max={max} step={step} value={value} onChange={e=>{const value=Number(e.target.value);if(e.target.value!==""&&Number.isFinite(value)&&value>=min&&value<=max&&(step!==1||Number.isInteger(value)))onChange(value);}}/><small className="field-help">{min.toLocaleString()}~{max.toLocaleString()} 범위로 설정하세요.</small></label>;
-}
+export function BoundedNumber(props:{label:string;value:number;min:number;max:number;step?:number;onChange:(value:number)=>void}) { return <NumberField {...props}/>; }
 const sameTool=(a:ToolSelection,b:ToolSelection)=>a.resourceId===b.resourceId&&a.connectionId===b.connectionId&&a.toolName===b.toolName;
+/** capabilities의 도구 정의에서 하나를 선택한다. 필요하면 읽기/쓰기 종류로 제한하고 참조 ID만 노드에 저장한다. */
 export function SingleToolPicker({node,capabilities,onChange,onSettings,label="사용할 도구",effect}:{node:FlowNode;capabilities?:RuntimeCapabilities|null;onChange:(node:FlowNode)=>void;onSettings:()=>void;label?:string;effect?:"read"|"write"}) {
  const options=(capabilities?.connections??[]).flatMap(connection=>connection.tools.map(tool=>({connection,tool}))),selected=node.allowedTools?.[0];
  const enabledTools=options.filter(option=>option.connection.status==="configured"&&(!effect||option.tool.effect===effect));
@@ -43,11 +48,13 @@ export function SingleToolPicker({node,capabilities,onChange,onSettings,label="�
 }
 function FileRuntimeNote(){return <div className="soft-note"><Icon name="file" size={15}/><p>파일은 내보낸 프로젝트에서 처리해요. Node.js도 파일 기능에는 Python 3.11+가 필요합니다. PDF·DOCX·XLSX·OCR는 README의 추가 라이브러리를 설치해야 해요. OCR에는 Tesseract/tesserocr와 언어 데이터가 필요합니다. Node.js의 Python 경로는 로컬 .env의 FLOWLY_PYTHON으로 지정할 수 있으며 미설정이면 중단해요.</p></div>;}
 function InputPath({label,value,onChange}:{label:string;value:string;onChange:(value:string)=>void}) {return <label className="field-label">{label}<input maxLength={500} value={value} onChange={e=>onChange(e.target.value)} placeholder="file 또는 data.file"/>{!safeDataPath(value)&&<small className="field-help mapping-error">전달받을 내용에서 사용할 입력 경로를 지정하세요.</small>}</label>;}
+/** 보상 작업의 고정 인자와 실행 시 경로 연결을 편집한다. JSON은 검사 후 적용하고 실제 보상 호출은 실행기에 맡긴다. */
 function CompensationArguments({node,onChange}:Pick<Props,"node"|"onChange">) {
  const config=node.compensation!,[draft,setDraft]=useState(JSON.stringify(config.arguments,null,2)),[error,setError]=useState(""),[name,setName]=useState("");
  const update=(patch:Partial<typeof config>)=>onChange({...node,compensation:{...config,...patch}});
  return <><label className="field-label">보상 도구 고정 입력값 (JSON)<textarea rows={5} maxLength={20000} value={draft} onChange={e=>{setDraft(e.target.value);setError("");}}/></label><button className="text-btn" disabled={draft===JSON.stringify(config.arguments,null,2)} onClick={()=>{try{const args:unknown=JSON.parse(draft);validateJson(args);if(!args||Array.isArray(args)||typeof args!=="object")throw new Error("JSON 객체를 입력하세요.");parseDataNodeConfig({type:"tool",tool:{arguments:args,bindings:{}}});update({arguments:args as Record<string,Json>});setDraft(JSON.stringify(args,null,2));setError("");}catch(e){setError(e instanceof SyntaxError?"JSON 문법을 확인해 주세요.":(e as Error).message);}}}>보상 입력값 적용</button><p className="field-help">{draft===JSON.stringify(config.arguments,null,2)?"블록에 적용된 입력값이에요.":"보상 입력값 적용을 눌러 변경을 반영하세요."}</p>{error&&<p className="form-error" role="alert">{error}</p>}<h4 className="context-title">보상 도구 동적 입력값</h4><p className="field-help">인자 이름과 현재 블록 입력 경로를 연결해요. 동적 값이 같은 이름의 고정값보다 우선합니다.</p>{Object.entries(config.bindings).map(([key,path])=><div className="path-field-row" key={key}><InputPath label={key} value={path} onChange={path=>update({bindings:{...config.bindings,[key]:path}})}/><IconButton icon="x" label={`${key} 보상 입력 삭제`} onClick={()=>update({bindings:Object.fromEntries(Object.entries(config.bindings).filter(([field])=>field!==key))})}/></div>)}<div className="mapping-add"><input aria-label="보상 도구 인자 이름" value={name} maxLength={80} placeholder="예: record_id" onChange={e=>setName(e.target.value)}/><button className="text-btn" disabled={!/^[A-Za-z_][A-Za-z0-9_-]*$/.test(name)||["constructor","prototype","__proto__"].includes(name)||name in config.bindings||Object.keys(config.bindings).length>=40} onClick={()=>{update({bindings:{...config.bindings,[name]:"text"}});setName("");}}>추가</button></div><p className="field-help">키·토큰을 넣지 마세요. 실제 보상은 이 인자로 새 승인을 받은 뒤 실행됩니다.</p></>;
 }
+/** 블록별 계약을 편집하고 누락된 설정에는 기본값 추가 동작을 제공한다. 사용자 파일을 웹으로 업로드하는 화면은 아니다. */
 export function ExtendedNodeSettings({node,definition,capabilities,onChange,onSettings}:Props) {
  if(node.type==="file_input") {const c=node.fileInput; if(!c)return <AddConfig node={node} onChange={onChange}/>; return <><InputPath label="파일 이름이 들어 있는 입력 경로" value={c.path} onChange={path=>onChange({...node,fileInput:{...c,path}})}/><BoundedNumber label="최대 파일 크기 (바이트)" value={c.maxBytes} min={1} max={10_000_000} onChange={maxBytes=>onChange({...node,fileInput:{...c,maxBytes}})}/><p className="field-help">파일을 실행 폴더 inputs/에 복사하고 상대 파일명만 입력하세요. 예: report.pdf. 아래 입력 매핑에 file을 추가해 양식의 data.file을 연결할 수 있어요. 실제 파일을 확인하고 file에 경로·이름·크기·해시를 전달합니다. 웹에는 파일을 업로드하지 않아요.</p><FileRuntimeNote/></>;}
  if(node.type==="document_extract") {const c=node.documentExtract;if(!c)return <AddConfig node={node} onChange={onChange}/>;return <><label className="field-label">추출 방식<select value={c.mode} onChange={e=>onChange({...node,documentExtract:{...c,mode:e.target.value as typeof c.mode}})}><option value="text">문서의 글 읽기</option><option value="table">표 읽기</option><option value="ocr">이미지에서 글 읽기 (OCR)</option></select></label><InputPath label="파일 정보가 들어 있는 입력 경로" value={c.filePath} onChange={filePath=>onChange({...node,documentExtract:{...c,filePath}})}/><BoundedNumber label="최대 페이지 수" value={c.maxPages} min={1} max={100} onChange={maxPages=>onChange({...node,documentExtract:{...c,maxPages}})}/><label className="field-label">OCR 언어<input maxLength={80} value={c.language} onChange={e=>onChange({...node,documentExtract:{...c,language:e.target.value}})} placeholder="kor+eng"/></label><p className="field-help">앞 파일 입력 블록의 file을 매핑하세요. 출력 text는 추출한 글, pages는 페이지와 출처, tables는 표예요. 글 200,000자·표 10,000셀까지 지원하며 손상·암호화·지원하지 않는 형식은 오류로 알려줘요.</p><FileRuntimeNote/></>;}

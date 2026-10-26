@@ -1,3 +1,7 @@
+/**
+ * 대표 검색/RAG 예제에서 질문·자료·근거·판정 분기의 실제 연결을 정의한다. 테스트 응답은 설계대로 값이 흐르는지 확인하기 위한 대역이다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode, Resource } from "../../app/lib/model";
 import type { DataSchema, InputBinding, ToolDefinition } from "../../runtime/types";
 import type { WorkflowDesign, WorkflowScenario } from "../workflow-design";

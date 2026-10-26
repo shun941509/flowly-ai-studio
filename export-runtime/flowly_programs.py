@@ -1,3 +1,4 @@
+# Node runtime/programs.ts의 고정 계산/검증 계약. 네트워크/파일/eval 없이 JSON으로 동작한다.
 """Finite, pure Flowly calculation/validation programs. No external I/O or eval."""
 import copy
 import json
@@ -12,6 +13,7 @@ def _fail(message):
     raise ValueError(message)
 
 
+# 길이 한도는 JavaScript UTF-16 기준이다. Python len의 코드 포인트 개수와 구분한다.
 def _length(value):
     return len(value.encode("utf-16-le", errors="surrogatepass")) // 2
 
@@ -60,6 +62,7 @@ def _integer(value, minimum, maximum):
     return int(number)
 
 
+# 키 정렬과 정수 표현을 Node에 맞춘다. 정규 문자열은 결과 비교와 중복 판별에 사용한다.
 def _canonical(value):
     def normalize(item):
         if type(item) is float and item.is_integer() and abs(item) < 1e21:
@@ -194,6 +197,7 @@ def _numeric(args):
     return result
 
 
+# schema_patch는 현재 오류가 있는 필드만 수정한다. 전체 자료를 교체하는 임의 패치가 아니다.
 def _check(args, patch=False):
     _keys(args, ["data", "schema", "patches"] if patch else ["data", "schema"])
     schema, data = _schema(args["schema"]), _bounded(args["data"])
@@ -323,6 +327,7 @@ def _fusion(args):
     return {"matches": ranked, "count": len(ranked)}
 
 
+# 고정 이름과 명시적 바인딩으로 인자를 준비한 뒤 등록 함수를 선택한다.
 def execute_program(config, input_data):
     config = _object(config)
     _keys(config, ["name", "arguments", "bindings"], ["name"])

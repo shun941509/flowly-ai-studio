@@ -1,7 +1,14 @@
+/**
+ * 조건 분기와 완료 조건에서 공유하는 제한된 비교식 파서·평가기.
+ * 사용자 입력을 코드로 평가하지 않고 정해진 연산자와 값 경로로 판단한다.
+ */
 import type { PredicateConfig } from "../runtime/types";
 import { safeDataPath } from "./node-config";
 
 const primitive = (v: unknown) => v === null || typeof v === "string" || typeof v === "boolean" || (typeof v === "number" && Number.isFinite(v));
+/**
+ * 비교식 구조를 검사해 실행기가 해석할 수 있는 조건만 허용한다.
+ */
 export function parsePredicate(value: unknown): PredicateConfig {
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("값 비교 조건을 확인해 주세요.");
   const c = value as Record<string, unknown>;
@@ -10,6 +17,9 @@ export function parsePredicate(value: unknown): PredicateConfig {
   if (Object.hasOwn(c, "rightPath") && (typeof c.rightPath !== "string" || !safeDataPath(c.rightPath))) throw new Error("비교할 다른 값의 경로를 확인해 주세요.");
   return structuredClone(c) as PredicateConfig;
 }
+/**
+ * 현재 입력에서 경로 값을 찾아 등록된 비교 연산을 적용한다.
+ */
 export function evaluatePredicate(config: PredicateConfig, input: unknown): boolean {
   const c = parsePredicate(config);
   const read = (path: string): unknown => path.split(".").reduce<unknown>((value, part) => {

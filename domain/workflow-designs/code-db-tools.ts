@@ -1,3 +1,7 @@
+/**
+ * 코드·DB 관련 고정 도구를 Agent/검토/조건 분기와 연결하는 예제다. 도구 계약과 로컬 검증 범위를 넘어 임의 저장소·DB의 실운영 성공으로 해석하지 않는다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode, Resource } from '../../app/lib/model';
 import type { DataSchema, InputBinding, Json } from '../../runtime/types';
 import type { WorkflowDesign, WorkflowScenario } from '../workflow-design';

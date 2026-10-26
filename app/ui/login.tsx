@@ -1,7 +1,11 @@
+/**
+ * 서버가 전달한 인증 표시 정보를 이용하는 로그인 화면. 키·토큰을 입력받거나 클라이언트에서 세션을 신뢰 판정하지 않는다.
+ */
 import { Icon, Logo } from "./common";
 import type { Identity } from "../lib/model";
 import type { AuthDisplay } from "../../server/auth/config";
 import Link from "next/link";
+/** 설정된 인증 모드에 맞는 시작 링크를 표시한다. 인증 미설정이면 로그인 버튼을 비활성화하고 체험 공간을 안내한다. */
 export function Login({user,signInUrl,auth}:{user:Identity|null;signInUrl:string;auth:AuthDisplay}){
  const signInLabel=auth.mode==="test"?"로컬 테스트 계정으로 계속하기":auth.mode==="sites"?"ChatGPT 계정으로 계속하기":"SSO 계정으로 계속하기";
  return <main className="login-page">

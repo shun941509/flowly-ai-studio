@@ -1,3 +1,7 @@
+/**
+ * 복구·접근·실험·지식 피드백의 제어 단계를 구성한다. 상태 변경 전후의 조건과 실패/보류 경로를 시나리오로 구분한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Resource } from '../../app/lib/model';
 import type { WorkflowDesign } from '../workflow-design';
 import {b,n,graph,start,calc,out,agent,reply,check,hold,review,design,service,tool,waitInput} from './completion-035-068-helpers';

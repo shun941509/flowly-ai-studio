@@ -1,3 +1,6 @@
+/**
+ * Windows에서 소스 변경 시 전체 빌드 후 로컬 Wrangler를 다시 띄우는 개발 진입점. 빌드 중 변경은 pending으로 합쳐 재빌드하며 D1 저장 경로는 유지한다.
+ */
 import { spawn } from "node:child_process";
 import { watch } from "node:fs";
 import { fileURLToPath } from "node:url";

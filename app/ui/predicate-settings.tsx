@@ -1,7 +1,12 @@
 "use client";
+/**
+ * 조건 블록의 문자열 포함 비교와 타입 있는 값 비교를 편집한다. 비교할 값은 노드 입력 매핑을 기준으로 실행 시 해석한다.
+ */
+
 import type { FlowNode } from "../lib/model";
 import type { PredicateConfig } from "../../runtime/types";
 
+/** 비교 모드를 바꿀 때 기본 출력 스키마만 해당 모드에 맞춘다. 사용자가 별도로 선언한 출력 스키마는 보존한다. */
 export function PredicateSettings({ node, onChange }: { node: FlowNode; onChange: (node: FlowNode) => void }) {
   const p = node.predicate;
   const update = (next: PredicateConfig) => onChange({ ...node, predicate: next });

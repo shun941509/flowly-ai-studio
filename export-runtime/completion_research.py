@@ -1,3 +1,4 @@
+# 조사 예제의 근거/정책/보완 입력/수정·전달 계약. 외부 검색은 다른 노드가 담당하고 이 모듈은 입력 JSON만 검사한다.
 """Bounded, pure JSON contracts for authored research workflows. No I/O or eval."""
 import copy
 import csv
@@ -50,6 +51,7 @@ def digest(v):
     return hashlib.sha256(json.dumps(v, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
 
 
+# 실제 근거의 미해결 참조만 다음 질문으로 선택한다. 이미 방문한 자료의 반복 조사를 막는다.
 def frontier(a):
     records = seq(a["records"], 20)
     visited = list(dict.fromkeys(seq(a.get("visited", []), 20)))
@@ -81,6 +83,7 @@ def frontier(a):
     return {"records": list(by_id.values()), "visited": visited, "lineage": lineage, "hasNext": bool(next_query), "nextQuery": next_query}
 
 
+# 범위/기간/권위/최신 시행일로 선택한다. 같은 우선순위의 내용 충돌은 검토 필요 상태로 반환한다.
 def policy_resolve(a):
     as_of = stamp(a["asOf"])
     scope = txt(a["scope"], 100)
@@ -351,6 +354,7 @@ def response_trust(a):
     return {"state": "review" if conflict else "trusted" if valid else "retry", "valid": valid, "invalid": invalid, "value": valid[0]["value"] if valid and not conflict else None}
 
 
+# 표의 행/수치 정규화 결과 차이를 명시한다. 모델 요약으로 데이터 일치 검증을 대체하지 않는다.
 def table_reconcile(a):
     raw = txt(a["csvText"])
     table = list(csv.DictReader(io.StringIO(raw)))
@@ -469,6 +473,7 @@ def hypothesis_update(a):
     return {"hypotheses": hypotheses, "observations": observations, "states": statuses, "nextFeatures": discriminating, "sufficient": len(alive) == 1 and bool(observations), "winner": alive[0]["id"] if len(alive) == 1 and observations else "", "selectedFeature": selected or ""}
 
 
+# 허용 규칙으로 사례를 검사한다. 표현식을 eval하지 않고 고정 조건만 평가한다.
 def regression(a):
     def evaluate(rule, value, depth=0):
         if depth > 5:
@@ -535,6 +540,7 @@ def version(a):
     return {"document": document, "versionHash": current, "decision": a.get("decision"), "valid": True}
 
 
+# 등록 handler와 선행 관계로 작업 순서를 검증한다. 실제 실행과 예산 관리는 런타임이 담당한다.
 def task_plan(a):
     tasks = seq(a["tasks"], 10); ids = [txt(obj(t)["id"], 100) for t in tasks]
     if len(set(ids)) != len(ids): raise ValueError("계획 작업 ID 중복입니다.")

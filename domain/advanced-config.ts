@@ -1,3 +1,7 @@
+/**
+ * 중첩 작업·작업 조정·검토·보완 입력·메모리 설정과 자식 설계 순회 규칙.
+ * 재귀 파서는 호출 측에서 주입해 모델 모듈의 순환 의존성을 피하고 전체 설계 한도를 함께 적용한다.
+ */
 import { parsePredicate } from "./predicate";
 import type { Definition, FlowNode } from "../app/lib/model";
 import type { AdvancedNodeConfig, CompositeTask, FormConfig, Json } from "../runtime/types";
@@ -32,6 +36,9 @@ function completionPredicates(value: unknown) {
 }
 
 /** The caller supplies a bounded recursive parser to avoid graph/model module cycles. */
+/**
+ * 선행 관계의 순환, 작업 수, 동적 생성 템플릿, 입력 항목과 메모리 옵션의 조합을 검사한다.
+ */
 export function parseAdvancedNodeConfig(n: Record<string, unknown>, parseChild: (value: unknown) => Definition): AdvancedNodeConfig {
   const out: AdvancedNodeConfig = {};
   for (const [field, type] of Object.entries(configTypes)) if (n[field] !== undefined && n.type !== type) throw new Error("다른 종류의 블록 설정이 포함되어 있어요.");
@@ -120,11 +127,20 @@ export function parseAdvancedNodeConfig(n: Record<string, unknown>, parseChild: 
   if (n.error !== undefined) { const c = object(n.error, ["template"]); out.error = { template: string(c.template, 12000, true) }; }
   return out;
 }
+/**
+ * 중첩 경로 계산과 권한 참조 수집에 사용하는 공통 자식 순서다. 순서를 바꾸면 편집기 초안의 childIndex 해석도 달라진다.
+ */
 export function childDefinitions(node: FlowNode): Definition[] {
   return [...(node.parallel?.tasks ?? node.team?.tasks ?? node.orchestration?.tasks ?? []).map(t => t.definition), ...(node.subworkflow ? [node.subworkflow.definition] : []), ...(node.loop ? [node.loop.definition] : [])];
 }
+/**
+ * 현재 설계의 노드와 고정된 자식 설계의 노드를 재귀적으로 펼친다. 실행 중 생성될 작업 인스턴스 수는 세지 않는다.
+ */
 export function allNodes(definition: Definition): FlowNode[] { return definition.nodes.flatMap(node => [node, ...childDefinitions(node).flatMap(allNodes)]); }
 /** Conservative materialized-node bound, used only for workflows opting into dynamic creation. */
+/**
+ * 반복·적응형 조정·동적 생성의 설정 한도로 펼쳐질 수 있는 노드 수를 보수적으로 계산한다.
+ */
 export function expandedNodeCount(definition: Definition): number {
   return definition.nodes.reduce((count, node) => {
     const children = childDefinitions(node).map(expandedNodeCount);
@@ -135,6 +151,9 @@ export function expandedNodeCount(definition: Definition): number {
     return count + 1 + expanded;
   }, 0);
 }
+/**
+ * 조건·검토·분류·오류 분기의 포트 ID와 화면 이름을 같은 계약에서 공급한다.
+ */
 export function nodeRoutes(node: FlowNode): { id: string; label: string }[] {
   if (node.type === "condition") return [{ id: "yes", label: "예" }, { id: "no", label: "아니요" }];
   if (node.type === "review") return [{ id: "yes", label: "수락" }, { id: "no", label: "거절" }];
@@ -147,4 +166,7 @@ export function missingAdvancedConfig(node: FlowNode): boolean {
   return !!field && node[field as keyof AdvancedNodeConfig] === undefined;
 }
 
+/**
+ * 보완 입력 form은 중간 대기 단계이므로 시작 노드에 포함하지 않는다.
+ */
 export function isStartNode(node: FlowNode): boolean { return node.type === "input" || node.type === "trigger" || node.type === "form" && node.form?.mode !== "request"; }

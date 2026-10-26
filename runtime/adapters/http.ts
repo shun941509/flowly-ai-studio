@@ -1,6 +1,8 @@
+// 외부 HTTP 응답의 크기와 연결 주소 형식을 검증한다. 주소 허용 목록은 두지 않으며 네트워크 접근 범위는 실행 환경이 정한다.
 import { RuntimeFault } from "../policy";
 
 /** Bounded body reader: no provider error body is ever returned to callers/logs. */
+// 스트림을 누적할 때 바이트 한도를 검사하고 성공/실패와 무관하게 reader를 정리한다.
 export async function readBody(response: Response, maxBytes = 400000): Promise<string> {
   if (!response.body) throw new RuntimeFault("failed", "외부 서비스 응답이 비어 있어요.");
   const reader = response.body.getReader();
@@ -15,6 +17,7 @@ export async function readBody(response: Response, maxBytes = 400000): Promise<s
     return body + decoder.decode();
   } finally { await reader.cancel().catch(() => {}); }
 }
+// 사용자 정보·쿼리·프래그먼트가 포함된 주소는 거절한다. 사내 DNS·사설 IP·사용자 지정 포트는 사용할 수 있다.
 export function safeEndpoint(endpoint: string): string {
   let url: URL;
   try {

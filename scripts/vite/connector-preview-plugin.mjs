@@ -1,3 +1,6 @@
+/**
+ * Sites 개발 프로필에서만 쓰는 임시 커넥터 브리지 플러그인. 공유 디렉터리와 세션 토큰으로 미리보기 프로세스/소유 에이전트를 연결한다.
+ */
 import { randomUUID } from "node:crypto";
 import { access, readFile, rename, rm, writeFile } from "node:fs/promises";
 import path from "node:path";

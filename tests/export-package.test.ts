@@ -96,7 +96,7 @@ test("Node and Python ZIPs contain one runner, empty local credentials and accur
   for (const language of ["node", "python"] as const) {
     const runner = language === "node" ? "runner.mjs" : "runner.py";
     const files = unzipSync(await buildExportPackage({ ...options(), language, runnerSource: "# synthetic test source; never executed" }));
-    assert.deepEqual(Object.keys(files).sort(), [".env.example", ".gitignore", "README.md", "START_HERE.md", "AI_PROMPT.md", "AGENTS.md", "WORKFLOW_GUIDE.md", "skills/flowly-workflow/SKILL.md", runner, "workflow.json"].sort());
+    assert.deepEqual(Object.keys(files).sort(), [".env.example", ".gitignore", "README.md", "START_HERE.md", "AI_PROMPT.md", "AI_START.md", "CORE_TERMS.md", "RESOURCE_GUIDE.md", "PROJECT_FILES.json", "ROUNDTRIP.md", "project-check.py", "AGENTS.md", "WORKFLOW_GUIDE.md", "skills/flowly-workflow/SKILL.md", runner, "workflow.json"].sort());
     assert.match(strFromU8(files[".env.example"]), /OPENAI_API_KEY=\nFLOWLY_MODEL=gpt-5\.4-mini\nFLOWLY_MCP_TOKEN_OWN=\n$/);
     assert.match(strFromU8(files["README.md"]), /공유 철회가 이 파일에 적용되지 않습니다/);
     assert.match(strFromU8(files["README.md"]), /승인 또는 거절은 결정만 저장합니다/);

@@ -1,3 +1,6 @@
+/**
+ * 감사와 현재 실행 증거를 합쳐 예제 인벤토리/문서를 갱신한다. 일부 검증 통과와 전체 목표 달성을 구분하고 미달이면 종료 코드로 알린다.
+ */
 /** Count executable designs, never the legacy prompt-only scenario inventory. */
 import { readFile, writeFile } from "node:fs/promises";
 import { auditWorkflowDesigns, sha256 } from "./audit-examples";

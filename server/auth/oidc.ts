@@ -1,3 +1,4 @@
+/** OIDC 로그인 왕복과 검증된 사용자 매핑을 담당한다. 원격 토큰은 이 경계 밖으로 반환하지 않는다. */
 import * as oauth from "oauth4webapi";
 import { safeReturnPath, type AuthConfig } from "./config";
 import { cookieName, readCookie, seal, sessionCookie, sessionScope, unseal, type AuthUser } from "./session";
@@ -10,6 +11,7 @@ async function discover(config: AuthConfig) {
   return oauth.processDiscoveryResponse(issuer, response);
 }
 
+/** PKCE·state·nonce를 생성하고 10분짜리 서명 쿠키에 묶어 콜백 요청을 최초 로그인과 연결한다. */
 export async function startOidc(config: AuthConfig, returnTo: string) {
   const as = await discover(config);
   if (!as.authorization_endpoint) throw new Error("OIDC authorization endpoint is missing");
@@ -31,6 +33,7 @@ export async function startOidc(config: AuthConfig, returnTo: string) {
   return { location: authorization.href, cookie: sessionCookie(config, flow, "oidc", 600) };
 }
 
+/** 콜백 origin, flow 쿠키, state, PKCE, nonce, ID token 서명을 검증한 뒤 로컬 사용자 정보만 반환한다. */
 export async function finishOidc(config: AuthConfig, request: Request): Promise<{ user: AuthUser; returnTo: string }> {
   if (new URL(request.url).origin !== config.appOrigin) throw new Error("Unexpected callback origin");
   const flow = await unseal(readCookie(request.headers, cookieName(config, "oidc")), config.sessionSecret);
@@ -51,6 +54,7 @@ export async function finishOidc(config: AuthConfig, request: Request): Promise<
 }
 
 /** Only call with the validated ID-token claims returned by oauth4webapi. */
+/** 이미 검증된 claim만 입력받는다. issuer+sub의 해시를 사용자 ID로 삼아 이메일이 바뀌어도 소유권 식별을 유지한다. */
 export async function userFromVerifiedClaims(issuer: string, claims: Record<string, unknown>): Promise<AuthUser> {
   if (typeof claims.sub !== "string" || !claims.sub || claims.sub.length > 500
     || claims.email_verified !== true || typeof claims.email !== "string"

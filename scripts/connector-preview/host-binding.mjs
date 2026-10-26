@@ -1,3 +1,6 @@
+/**
+ * 개발 중 임시 커넥터 미리보기에서 허용된 읽기 동작과 세션 한도를 검사한다. 배포된 워크플로 실행기나 일반 사용자 MCP 연결 구현과는 별개다.
+ */
 import { Readable } from "node:stream";
 import { setMaxListeners } from "node:events";
 import getRawBody from "raw-body";

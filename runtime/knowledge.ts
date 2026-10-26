@@ -1,12 +1,15 @@
+// 로컬 RAG 색인의 준비·평가·발행·철회·복구를 버전별로 관리한다. 내보낸 자료 사본을 원격 공유 철회로 회수하는 기능은 아니다.
 import type { Resource } from "../app/lib/model";
 import { parseKnowledgeConfig, type KnowledgeConfig } from "../domain/knowledge-config";
 import { dataAt, cosine } from "./data-nodes";
 import { argsHash, canonicalJson } from "./policy";
 import type { Json, RuntimeDependencies } from "./types";
+import { resourceSearchText } from "../domain/resource-document";
 
 type Chunk = { resourceId: string; version: string; name: string; url: string; chunkIndex: number; excerpt: string; vectorKey?: string };
 type Generation = { id: string; chunks: Chunk[]; model: string; mode: "lexical" | "vector"; signature: string; evaluation?: { passed: boolean; checks: { query: string; resourceId: string; passed: boolean }[]; tombstoneRevision: number }; publishedOnce?: boolean };
 type State = { version: 1; ownerId: string; workflowId: string; indexKey: string; revision: number; sequence: number; tombstoneRevision: number; published: string | null; generations: Record<string, Generation>; vectors: Record<string, number[]>; revoked: string[]; operations: Record<string, { hash: string; result: Record<string, Json> }> };
+// 저장과 권한 확인은 호출 환경이 제공한다. 벡터 방식일 때만 embed가 필요하며 로컬 문자열 검색은 모델을 쓰지 않는다.
 export type KnowledgeContext = {
   ownerId: string; workflowId: string; operationId: string; resources: Resource[];
   memory: NonNullable<RuntimeDependencies["memory"]>;
@@ -24,6 +27,7 @@ function validateVectors(vectors: number[][], expected: number) {
 }
 
 /** Durable local generations. Remote ACL changes cannot recall exported snapshots. */
+// 소유자·워크플로·색인 키로 저장 범위를 나누고 operationId로 동일 변경의 중복 적용을 막는다.
 export async function executeKnowledge(raw: KnowledgeConfig, input: Record<string, Json>, context: KnowledgeContext): Promise<Record<string, Json>> {
   const config = parseKnowledgeConfig(raw);
   if (!context.ownerId || !context.workflowId || !context.operationId) fail("지식 색인 소유자와 실행 범위를 확인해 주세요.");
@@ -65,6 +69,7 @@ export async function executeKnowledge(raw: KnowledgeConfig, input: Record<strin
     }
     return chunks.map((c, i) => ({ resourceId: c.resourceId, version: c.version, name: c.name, url: c.url, chunkIndex: c.chunkIndex, excerpt: c.excerpt, score: scores[i] })).filter(m => g.mode === "vector" || m.score > 0).sort((a, b) => b.score - a.score || a.resourceId.localeCompare(b.resourceId, "en") || a.chunkIndex - b.chunkIndex).slice(0, config.topK ?? 3);
   };
+  // 갱신 직전 자료 접근을 다시 확인하고 expectedRevision으로 동시 변경을 검사한다. 저장 성공 전에는 새 버전을 확정하지 않는다.
   const persist = async (data: Record<string, Json>) => {
     if (Object.keys(state.operations).length >= 128) fail("색인 변경 기록 128개 한도에 도달했어요. 새 색인 이름으로 보관을 분리해 주세요.");
     state.revision++;
@@ -76,6 +81,7 @@ export async function executeKnowledge(raw: KnowledgeConfig, input: Record<strin
     return result;
   };
   if (config.action === "inspect") return output({ revision: state.revision, publishedGeneration: state.published, revoked: state.revoked.filter(id => allowed.has(id)), generations: Object.values(state.generations).map(g => ({ generation: g.id, mode: g.mode, model: g.model, chunkCount: activeChunks(g).length, evaluated: Boolean(g.evaluation?.passed && g.evaluation.tombstoneRevision === state.tombstoneRevision), publishedOnce: Boolean(g.publishedOnce) })) });
+  // 조회는 현재 발행 버전만 허용하며 철회된 자료는 후보에서 제외한다. 준비된 미발행 버전은 평가에만 사용한다.
   if (config.action === "query") {
     const g = target(), query = scalar(input, config.queryPath ?? "text");
     if (state.published !== g.id) fail("현재 발행한 색인 버전만 조회할 수 있어요. 후보는 평가 후 발행해 주세요.");
@@ -86,7 +92,7 @@ export async function executeKnowledge(raw: KnowledgeConfig, input: Record<strin
   if (config.action === "stage") {
     if (Object.keys(state.generations).length >= 8) fail("색인 버전 8개 한도에 도달했어요. 새 색인 이름으로 보관을 분리해 주세요.");
     const supplied = scalar(input, config.documentsPath);
-    const documents = supplied === undefined ? available.filter(r => !state.revoked.includes(r.id)).map(r => ({ resourceId: r.id, version: r.updatedAt, content: r.content })) : supplied;
+    const documents = supplied === undefined ? available.filter(r => !state.revoked.includes(r.id)).map(r => ({ resourceId: r.id, version: r.updatedAt, content: resourceSearchText(r) })) : supplied;
     if (!Array.isArray(documents) || !documents.length || documents.length > 20) fail("갱신 문서는 1~20개 필요해요.");
     const changes = new Set<string>();
     const newChunks: Chunk[] = [];

@@ -6,6 +6,26 @@
 
 ## 실행 방법
 
+처음 사용한다면 ZIP을 풀고 `python flowly_local.py`를 한 번 실행한 뒤 표시된 로컬 주소를 여세요. Node.js 프로젝트도 이 운영 화면에는 Python 3.11 이상이 필요합니다. 이후 요청을 보낼 때마다 터미널이나 JSON을 입력할 필요는 없습니다.
+
+1. **처음 실행 준비**에서 Python·Node.js 설치와 설정 파일 위치를 확인합니다. 설계에 필요한 OpenAI 모델·키와 MCP 주소·토큰 항목만 표시됩니다. 키는 내려받은 PC의 로컬 화면에서 입력해 선택한 `.env` 파일에 저장하며 Flowly 웹사이트로 보내지 않습니다. 기존 키·토큰은 다시 표시하지 않고 빈칸 저장은 기존 값을 유지합니다. 대기·실행 중에는 설정 변경을 막습니다.
+2. **설정 확인**으로 로컬 준비 상태를 확인합니다. 이 단계는 외부 모델·MCP를 호출하지 않습니다. 실제 연결 점검은 고급 메뉴에서 직접 요청할 때만 수행합니다.
+3. **요청 입력**에서 요청을 작성하거나 설계의 입력 양식을 채우고 **새 실행 시작**을 누릅니다. 입력 양식의 숫자·예/아니요·목록·날짜·파일은 각 자료형으로 전달됩니다. 파일은 최대 10MB이며 `inputs/uploads/` 아래 새 사본으로 보관합니다. 파일 입력 블록의 입력 연결은 이 상대 경로를 받도록 설계되어 있어야 합니다.
+4. **진행 상황과 결과**에서 현재 상태, 다음 행동과 답변을 봅니다. 승인 화면은 정확한 도구·인자·기한을 보여줍니다. 승인·거절·보완 입력 저장 후 **이어서 실행**을 누르면 같은 실행의 완료 단계는 유지됩니다.
+5. 생성한 결과 파일은 저장 경로와 **결과 파일 받기**로 확인합니다. 이 실행 기록에 연결된 `outputs/` 파일만 내려받을 수 있습니다. 받은 파일은 파일 탐색기에서 열 수 있습니다. 임의 프로그램은 자동 실행하지 않습니다.
+
+등록한 Prompt는 앞 단계 값 → 블록의 직접 입력 → 자료 기본값 순서로 변수를 채우며 필수 값과 자료형을 검사합니다. 문자열 속 `{{변수}}`를 다시 실행하거나 모델을 불러 치환하지 않습니다. Document의 첨부 원본은 `inputs/resources/`에 보존됩니다. 자료 블록의 `document.originalPath`를 파일 입력 블록에 연결한 뒤 문서 처리 블록으로 텍스트를 추출할 수 있습니다. 원본 보관·추출 텍스트·검색 색인은 별도 상태입니다.
+
+Skill 본문만 연결하면 지침으로 전달됩니다. 블록에서 실행 정의를 명시적으로 선택했을 때만 동봉한 `scripts/*.py` 또는 `scripts/*.mjs`를 실행하며, 읽기 작업으로 선언했어도 코드 실행 승인이 필요합니다. Node.js·Python 프로젝트 모두 감독 도우미에 Python 3.11 이상이 필요하고 JavaScript Skill은 Node.js 22 이상도 필요합니다. Python 의존성은 사용자가 해당 환경에 직접 설치합니다. JavaScript는 Node 내장 모듈과 동봉 파일만 지원하며 자동 설치·언어 변환은 하지 않습니다. 선택 코드는 JSON 객체를 표준입력으로 받고 JSON 결과 하나를 표준출력으로 반환해야 합니다. 코드에 모델/MCP 키를 자동 전달하지 않습니다.
+
+실행 전·재개 시 첨부 크기/해시와 감독 코드를 확인합니다. 파일을 고쳤다면 웹에서 새 자료 버전으로 등록하고 새 프로젝트·새 실행으로 검증하세요. 코드 실행의 시간/출력 한도 초과, 취소, 출력 형식 오류는 부작용이 없었다고 단정할 수 없어 불명확 상태로 중단합니다. 이미 발생한 변경을 확인한 뒤 다음 작업을 결정하세요. 이 실행 방식은 OS 보안 샌드박스가 아니므로 승인 전에 동봉 코드를 검토해야 합니다.
+
+새 실행과 재개는 먼저 오프라인 설정 검사를 수행합니다. 모델·MCP 설정이나 실행 의존성이 없으면 필요한 항목을 안내하고 대기열을 생성하지 않습니다. 동일한 `.env`를 여러 프로필이 함께 쓰면 어느 프로필에든 대기·실행 작업 또는 실행기 잠금이 있는 동안 해당 환경 파일의 설정 변경을 차단합니다. MCP 주소 변수와 토큰 변수는 각각 `FLOWLY_MCP_ENDPOINT_`, `FLOWLY_MCP_TOKEN_` 이름 범위를 사용해야 하며 다른 역할의 변수로 바꿀 수 없습니다.
+
+**현재 작업 중지**는 처리기를 멈추고 진행 중인 작업에 중지 요청을 전달합니다. 외부 쓰기 결과가 불명확하면 해당 서비스에서 확인해야 하며 자동 재시도하지 않습니다. **새 실행**은 이전 승인·기록과 분리됩니다. 설계나 실행기 코드가 바뀌면 기존 패키지의 운영 상태를 재사용하지 말고 새 프로젝트 폴더에서 시작합니다.
+
+고급 운영을 자동화할 때는 다음 JSON 명령을 사용할 수 있습니다.
+
 요청 JSON을 `operation.json`에 저장합니다. 요청 파일은 프로젝트 내부의 상대 경로이며 1MB 이하여야 합니다.
 
 ```powershell
@@ -18,16 +38,16 @@ python flowly_local.py --root .
 
 ## 프로필과 지속 대기열
 
-기본 프로필은 `development`, 환경 파일은 `.env`입니다. 환경 파일 내용은 관리 화면이나 프로필 목록에 표시하지 않습니다.
+기본 프로필은 `production`, 환경 파일은 `.env`입니다. 모든 프로필은 운영 환경이며 개발용 실행 모드는 제공하지 않습니다. 로컬 화면의 ‘선택한 운영 환경에서 실행 허용’을 확인해야 연결 설정 저장과 실제 실행을 진행할 수 있습니다. 이전 패키지의 프로필 이름·환경 파일·실행 기록은 보존하며, 기존 프로필에도 운영 확인을 적용합니다. 모델명·MCP 주소 같은 일반 설정은 로컬 화면에서 다시 확인할 수 있지만, 비밀 값과 환경 파일 전체는 반환하지 않습니다. 추가 환경 변수는 로컬 편집기로 직접 설정합니다.
 
 ```json
 {"action":"profiles.set","name":"production","env":".env.production","production":true,"confirmProduction":true}
 ```
 
-프로필의 상태 경로는 자동으로 격리됩니다. `production` 프로필의 실행·재개·승인·평가·프로브 요청에는 `confirmProduction:true`가 필요합니다. 대기 또는 실행 중인 작업이 있으면 프로필을 바꿀 수 없습니다.
+프로필의 상태 경로는 자동으로 격리됩니다. 모든 프로필의 실행·재개·승인·평가·프로브 요청에는 `confirmProduction:true`가 필요합니다. 대기 또는 실행 중인 작업이 있으면 프로필을 바꿀 수 없습니다.
 
 ```json
-{"action":"jobs.enqueue","profile":"development","input":"확인할 내용","priority":0}
+{"action":"jobs.enqueue","profile":"production","confirmProduction":true,"input":"확인할 내용","priority":0}
 ```
 
 대기열은 우선순위가 높은 작업부터, 같은 우선순위에서는 접수 순서대로 실행합니다. 입력 우선순위 범위는 -100~100이며, 오래 기다린 작업에는 5분마다 1점을 더합니다(최대 유효 우선순위 200). 낮은 우선순위가 계속 밀리는 것을 방지합니다. 프로젝트마다 worker 하나만 허용하며, 노드 안의 병렬 처리는 실행기의 최대 4개 하위 작업 한도를 따릅니다. 입력은 제한된 임시 파일로 전달하고 처리 후 제거합니다.
@@ -35,10 +55,10 @@ python flowly_local.py --root .
 ```json
 {"action":"jobs.list"}
 {"action":"jobs.cancel","jobId":"목록에서 받은 작업 ID"}
-{"action":"runs.list","profile":"development"}
-{"action":"runs.status","profile":"development","runId":"실행 ID"}
-{"action":"runs.decision","profile":"development","runId":"실행 ID","decision":"approve","decisionId":"승인 ID"}
-{"action":"runs.resume","profile":"development","runId":"실행 ID"}
+{"action":"runs.list","profile":"production"}
+{"action":"runs.status","profile":"production","confirmProduction":true,"runId":"실행 ID"}
+{"action":"runs.decision","profile":"production","confirmProduction":true,"runId":"실행 ID","decision":"approve","decisionId":"승인 ID"}
+{"action":"runs.resume","profile":"production","confirmProduction":true,"runId":"실행 ID"}
 ```
 
 결정은 `approve`, `deny`, `accept`, `reject` 중 하나입니다. 수정 가능한 검토를 수락할 때는 `editedInput` 객체를 추가할 수 있습니다. 결정은 저장만 하며, 명시적인 재개 요청 후 worker를 실행해야 이어집니다. 재개 요청은 실행 기록의 `queued` 상태에만 허용합니다. 실행기가 중간 저장 지점에서 `queued`를 반환하면 대기열 작업은 `paused`로 표시하여 자동 반복하지 않습니다. 새 실행에 저장된 모델명과 임베딩 모델명을 재개 시 확인하므로 모델 설정이 바뀌면 원래 설정을 복구하거나 새 실행을 시작해야 합니다. 같은 모델의 키 교체는 허용합니다.
@@ -48,15 +68,15 @@ python flowly_local.py --root .
 ## 오프라인 점검과 실제 연결 점검
 
 ```json
-{"action":"check","profile":"development"}
-{"action":"probe","profile":"development","target":"all","confirm":true}
+{"action":"check","profile":"production"}
+{"action":"probe","profile":"production","confirmProduction":true,"target":"all","confirm":true}
 ```
 
 `check`는 네트워크를 호출하지 않습니다. `probe`는 사용자가 명시적으로 요청할 때 실제 네트워크를 호출하며 모델 사용료가 발생할 수 있습니다. `target`은 `openai`, `embeddings`, `mcp`, `all`입니다.
 
 - OpenAI: 고정된 Responses 주소로 출력 한도 16토큰의 최소 요청 한 번을 보냅니다. 모델 응답 본문은 반환하거나 저장하지 않습니다.
 - 임베딩: `embeddings`를 지정하거나 `all` 점검 대상에 벡터 검색 블록이 있으면 고정된 Embeddings 주소로 작은 입력 한 번을 보냅니다. 중첩 워크플로의 검색 블록도 포함하며 여러 블록이 있어도 점검 호출은 한 번입니다. 실제 모델명·벡터 순서·유한한 숫자 벡터·0이 아닌 크기·사용 토큰을 확인합니다. 벡터 원문은 반환하거나 저장하지 않습니다. `OPENAI_API_KEY`만 필요하며 답변용 `FLOWLY_MODEL`은 요구하지 않습니다. `FLOWLY_EMBEDDING_MODEL`을 생략하면 실행기와 동일하게 `text-embedding-3-small`을 사용하고 `modelSource:default`로 표시합니다. 빈 모델값이나 키 누락은 `unconfigured`와 `missingEnv`로 표시합니다.
-- MCP: 패키지에 포함된 본인 소유의 승인된 HTTPS 443 연결에 초기 협상, 초기화 알림, 도구 목록 조회를 수행합니다. 선택한 도구의 입력 스키마와 읽기 전용 표시를 비교합니다. 도구 실행(`tools/call`)은 하지 않습니다. 목록 페이지는 최대 10개입니다.
+- MCP: 패키지에 포함된 연결 정의와 로컬 환경 변수의 HTTP/HTTPS 주소에 초기 협상, 초기화 알림, 도구 목록 조회를 수행합니다. 사내 호스트·IP·사용자 지정 포트를 지원합니다. 선택한 도구의 입력 스키마와 읽기 전용 표시를 비교하며 도구 실행(`tools/call`)은 하지 않습니다. 목록 페이지는 최대 10개입니다.
 - `remoteCalls`에는 종류별 전송 시도 수가 표시됩니다. 통신 실패도 시도 수에 포함됩니다. 자격 증명이나 원격 오류 본문을 출력하지 않습니다. `connected`는 이 제한된 점검만 성공했다는 뜻이며 전체 워크플로의 정확성이나 외부 쓰기 권한을 보장하지 않습니다.
 
 ## 평가 자료와 버전 비교
@@ -71,7 +91,7 @@ python flowly_local.py --root .
 ```
 
 ```json
-{"action":"evaluate","profile":"development","dataset":"cases.json"}
+{"action":"evaluate","profile":"production","confirmProduction":true,"dataset":"cases.json"}
 {"action":"compare","evaluationId":"이번 평가의 id","baselineId":"이전 평가의 id"}
 {"action":"compare","evaluationId":"이번 평가의 id","baselineFile":"previous-evaluation.json"}
 ```
@@ -84,7 +104,7 @@ python flowly_local.py --root .
 
 ```json
 {"action":"prices.set","model":"사용하는-모델-ID","inputPerMillion":1,"outputPerMillion":3,"currency":"USD","asOf":"2026-10-22"}
-{"action":"prices.estimate","profile":"development","runId":"실행 ID"}
+{"action":"prices.estimate","profile":"production","confirmProduction":true,"runId":"실행 ID"}
 ```
 
 실행 당시 고정한 모델명을 우선 사용합니다. 입력·출력 토큰 비율을 따로 저장하지 않으므로 전체 토큰에 입력/출력 단가를 각각 적용한 최소~최대 범위만 제공합니다. 실제 청구액이 아닙니다. 임베딩과 답변 모델을 함께 사용한 실행은 토큰별 모델 분리가 없어 `mixed_models`로 표시합니다. 과거 모델 기록이 없는 실행은 명시적인 `model` 지정이 필요합니다. 검색·도구 별도 요금, 실패 시 보수적으로 예약한 토큰, 캐시 할인은 정확히 정산하지 않습니다.
@@ -98,7 +118,7 @@ start,end,model,amount,currency
 
 ```json
 {"action":"bills.import","path":"billing.csv"}
-{"action":"bills.compare","profile":"development","model":"사용하는-모델-ID","start":"2026-10-01","end":"2026-10-31"}
+{"action":"bills.compare","profile":"production","confirmProduction":true,"model":"사용하는-모델-ID","start":"2026-10-01","end":"2026-10-31"}
 ```
 
 비교는 해당 프로필·고정 모델·UTC 실행 시작일 범위의 실행 추정을 합산합니다. 같은 기간·모델 CSV 행의 합계와 비교하되 다른 프로젝트/프로필 사용료나 제공자의 집계 기준이 포함될 수 있습니다. 통화가 다르거나 단가가 없으면 차액을 만들지 않습니다. 동일한 CSV 행을 다시 가져오면 중복 저장하지 않습니다. 단일 실행만 비교하려면 `runId`를 추가할 수 있으나 기간 전체 청구와 집계 범위가 다를 수 있습니다.
@@ -106,9 +126,9 @@ start,end,model,amount,currency
 ## 백업·복원·보존
 
 ```json
-{"action":"backup","profile":"development","scopes":["state","outputs","reports"]}
-{"action":"restore","profile":"development","backupId":"반환된 백업 ID","confirm":true}
-{"action":"prune","profile":"development","scopes":["state"],"olderThanDays":30,"confirm":true}
+{"action":"backup","profile":"production","confirmProduction":true,"scopes":["state","outputs","reports"]}
+{"action":"restore","profile":"production","confirmProduction":true,"backupId":"반환된 백업 ID","confirm":true}
+{"action":"prune","profile":"production","confirmProduction":true,"scopes":["state"],"olderThanDays":30,"confirm":true}
 ```
 
 백업은 `.flowly-ops/backups`에 저장합니다. `state`는 선택 프로필의 실행 상태입니다. `outputs`, `reports`는 프로젝트 공용 폴더이므로 다른 실행에서도 사용할 수 있다는 점을 확인하세요. 공용 폴더를 관리할 때는 등록된 모든 프로필과 기본 native 상태 폴더의 실행기 잠금을 잡습니다. 관리 중에는 새 대기 작업을 실행하지 않습니다. 별도 사용자 지정 상태 경로로 수동 실행한 프로세스는 작업 전에 직접 중지하세요. 관리 대상은 파일 최대 5,000개, 전체 100MB, 개별 16MB입니다.

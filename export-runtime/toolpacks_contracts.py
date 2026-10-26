@@ -1,14 +1,17 @@
+# 등록 Python 도구의 공개 스키마/예시/설명 생성 소스. 실제 도구 실행이나 모델 연결은 수행하지 않는다.
 """Build public JSON argument contracts; no provider/runtime execution."""
 import json
 from pathlib import Path
 
 
+# 레지스트리 ID와 입력 필드를 함께 정의한다. 구현 변경 시 생성 JSON 계약/설명도 별도로 동기화한다.
 def contracts():
     from flowly_tools import registry
     from toolpacks_scientific import ESTIMATORS,CLUSTER,REDUCE,METRICS
     string={"type":"string"};num={"type":"number"};obj={"type":"object"};boolean={"type":"boolean"}
     numbers={"type":"array","items":num};strings={"type":"array","items":string};rows={"type":"array","items":numbers};items={"type":"array"}
     output={}
+    # 별칭이 동일 입력 계약을 공유할 수 있다. 계약 공유가 서로 다른 알고리즘을 뜻하지는 않는다.
     def add(ids,fields,required,example,note=""):
         if isinstance(ids,str):ids=ids.split()
         for identifier in ids:

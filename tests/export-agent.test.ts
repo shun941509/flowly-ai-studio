@@ -51,21 +51,23 @@ test("four export choices preserve parsing and published-version contracts", asy
   await assert.rejects(buildExportPackage({ ...options(), kind: "prompt", runnerSource: "unused" }), status(400));
 });
 
-test("Agent package requires an explicit recursive Agent; AI, Skill and tools alone do not qualify", async () => {
+test("Agent package accepts zero Agents and preserves explicit recursive Agents", async () => {
   const base = { user: alice, connections: [], resolveResources: async () => [], kind: "agent" as const };
   for (const type of ["ai", "transform"] as const) {
     const definition = chain([n("input", "input"), n("work", type, type === "transform" ? { transform: { mode: "template", template: "{{text}}" } } : { prompt: "분석" }), n("output", "output")]);
-    await assert.rejects(buildExportManifest({ ...base, workflow: workflow(definition) }), status(409));
+    const manifest = await buildExportManifest({ ...base, workflow: workflow(definition) });
+    assert.equal(manifest.workflow.definition.nodes.filter(node=>node.type==="agent").length, 0);
   }
   const noAgent = fullWorkflow(); noAgent.definition.nodes = noAgent.definition.nodes.map(node => node.type === "agent" ? { ...node, type: "tool", tool: { arguments: { value: "예시" }, bindings: {} }, requireToolResult: undefined } as FlowNode : node);
-  await assert.rejects(buildExportManifest({ ...options(), workflow: noAgent, kind: "agent" }), status(409));
+  assert.equal((await buildExportManifest({ ...options(), workflow: noAgent, kind: "agent" })).workflow.definition.nodes.filter(node=>node.type==="agent").length, 0);
   const nested = workflow(chain([n("input", "input"), n("nested", "subworkflow", { subworkflow: { definition: workflow().definition } }), n("output", "output")]));
   const entries = unzipSync(await buildExecutableExportPackage({ ...base, workflow: nested }));
   const manifest = JSON.parse(strFromU8(entries["agent-manifest.json"]));
   assert.equal(manifest.agents.length, 1); assert.equal(manifest.agents[0].scope, "root/nested/child");
   const plainMarkup = renderToStaticMarkup(createElement(ExportDialog, { workflow: workflow(chain([n("input", "input"), n("output", "output")])), resources: [], onClose() {}, onInspectNode() {} }));
   assert.match(plainMarkup, /내보낼 항목/); assert.match(plainMarkup, /AI 명령 프롬프트/);
-  assert.match(plainMarkup, /<button[^>]*disabled=""[^>]*>[\s\S]*?<strong>Agent 다운로드<\/strong>/);
+  const plainButton = plainMarkup.match(/<button[^>]*>[^]*?<strong>Agent 다운로드<\/strong>/)?.[0].split("<button").at(-1);
+  assert.ok(plainButton); assert.doesNotMatch(plainButton, /disabled/);
   const nestedMarkup = renderToStaticMarkup(createElement(ExportDialog, { workflow: nested, resources: [], onClose() {}, onInspectNode() {} }));
   const agentButton = nestedMarkup.match(/<button[^>]*>[^]*?<strong>Agent 다운로드<\/strong>/)?.[0].split("<button").at(-1);
   assert.ok(agentButton); assert.doesNotMatch(agentButton, /disabled/);
@@ -141,7 +143,7 @@ test("all generated Agent instructions use one language-correct entrypoint and p
     assert.match(buildCopyPrompt(manifest), language === "node" ? /node agent\.mjs check/ : /python agent\.py check/);
     assert.match(strFromU8(runtime["README.md"]), language === "node" ? /node runner\.mjs/ : /python runner\.py/);
     const plain = await buildExportManifest({ user: alice, workflow: workflow(chain([n("input", "input"), n("output", "output")])), language, kind: "prompt", connections: [], resolveResources: async () => [] });
-    assert.match(buildCopyPrompt(plain), language === "node" ? /node runner\.mjs check/ : /python runner\.py check/);
+    assert.match(buildCopyPrompt(plain), language === "node" ? /node agent\.mjs check/ : /python agent\.py check/);
   }
 });
 

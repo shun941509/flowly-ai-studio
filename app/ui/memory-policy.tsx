@@ -1,6 +1,11 @@
 "use client";
+/**
+ * 로컬 기억 저장의 공유 범위와 버전 비교 정책을 편집한다. MCP 백엔드의 기억 정책은 이 UI의 적용 대상이 아니다.
+ */
+
 import type { FlowNode } from "../lib/model";
 
+/** 버전 비교 저장을 켜면 TTL을 제거한다. 기대 리비전 경로와 보관 만료를 동시에 설정하지 않는 계약을 지킨다. */
 export function MemoryPolicySettings({ node, onChange }: { node: FlowNode; onChange: (node: FlowNode) => void }) {
   const config = node.memory!;
   if (config.backend === "mcp") return null;

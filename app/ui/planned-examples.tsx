@@ -1,7 +1,12 @@
 "use client";
+/**
+ * 기획 예제와 도구 후보의 대응표 UI. 공통 실행 계약 지원·개별 흐름 구현·실제 서비스 설정을 구별하는 설명을 제공한다.
+ */
+
 import { useMemo, useState } from 'react';
 import { PLANNED_EXAMPLES, TOOL_FAMILIES, getToolsForExample } from '../../domain/tool-catalog';
 
+/** 대응표를 검색하고 실제 소스 예제로 이동시킨다. 추천 도구 목록을 Agent의 허용 목록에 자동 추가하지 않는다. */
 export function PlannedExamples({ onOpen }: { onOpen: (sourceId: string) => void }) {
   const [query,setQuery]=useState('');
   const [family,setFamily]=useState('');

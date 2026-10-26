@@ -1,3 +1,7 @@
+/**
+ * 재시도·캐시·오류·지연 등 시스템 실행 정책을 조합한 예제다. 화면 배치나 제목이 아닌 실제 조건/입력 연결을 기준으로 읽는다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode } from "../../app/lib/model";
 import type { FormConfig, Json, PredicateConfig } from "../../runtime/types";
 import type { WorkflowDesign, WorkflowScenario } from "../workflow-design";

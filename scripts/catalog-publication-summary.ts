@@ -1,3 +1,6 @@
+/**
+ * 전체 소스 회귀검사 수와 명시적 Agent 예제의 게시 목표를 따로 집계한다. 보조 흐름을 Agent 예제 목표 수에 더하지 않는다.
+ */
 /** Keep source regression coverage separate from the published Agent-example target. */
 export type ClassifiedInventoryRecord = {
   id: string;

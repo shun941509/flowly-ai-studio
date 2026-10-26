@@ -1,3 +1,7 @@
+/**
+ * API·마이그레이션·의존성·절차·설정 등 기술 계약을 분석하고 확인하는 예제다. 고정 프로그램의 반환값과 Agent 결과의 매핑이 핵심이다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type {Json} from '../../runtime/types';
 import type { WorkflowDesign } from '../workflow-design';
 import {b,n,graph,start,calc,out,agent,reply,check,hold,review,design,service,tool,waitInput} from './completion-035-068-helpers';

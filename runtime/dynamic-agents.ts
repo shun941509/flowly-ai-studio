@@ -1,3 +1,4 @@
+// 동적 Sub-agent 배정 계획을 검증하고 등록된 하위 설계 템플릿으로 구체화한다. 임의 코드나 권한은 생성하지 않는다.
 import type { CompositeTask, DynamicAgentSpec, Json, OrchestrationConfig } from "./types";
 import { assertSchema } from "../domain/workflow";
 import { canonicalJson } from "./policy";
@@ -9,6 +10,7 @@ const templateId = (value: unknown): value is string => typeof value === "string
 const text = (value: unknown, max: number): value is string => typeof value === "string" && Boolean(value.trim()) && value.length <= max;
 
 /** Planner output is data, never a new authority, graph, tool, or executable program. */
+// 모델 결과의 필드·템플릿·입력 스키마를 검사하고 의존 관계를 위상 정렬한다. 순환이나 미등록 작업은 거절한다.
 export function parseDynamicPlan(value: unknown, config: OrchestrationConfig): DynamicAgentSpec[] {
   const settings = config.dynamic;
   if (!settings || !value || typeof value !== "object" || Array.isArray(value) || Object.keys(value).length !== 1 || !("agents" in value)) return invalid("동적 작업 계획에는 agents 배열만 필요해요.");
@@ -33,6 +35,7 @@ export function parseDynamicPlan(value: unknown, config: OrchestrationConfig): D
   return ordered;
 }
 
+// 기존 설계를 복사하고 선택한 Agent의 역할·목표 지침만 추가한다. 도구·승인·실행 한도는 원래 템플릿을 유지한다.
 export function instantiateDynamicTasks(agents: DynamicAgentSpec[], config: OrchestrationConfig): CompositeTask[] {
   return agents.map(agent => {
     const original = config.tasks.find(task => task.id === agent.templateId);
@@ -46,6 +49,7 @@ export function instantiateDynamicTasks(agents: DynamicAgentSpec[], config: Orch
   });
 }
 
+// 배정 정보와 완료된 선행 작업 산출물을 별도 필드로 전달하여 모델 지침과 실행 데이터의 경계를 보존한다.
 export function dynamicChildInput(agent: DynamicAgentSpec, input: Record<string, Json>, artifacts: Record<string, Json> = {}): Record<string, Json> {
   return { text: typeof input.text === "string" ? input.text : "", assignment: { id: agent.id, role: agent.role, goal: agent.goal, input: structuredClone(agent.input) }, artifacts };
 }

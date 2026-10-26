@@ -1,3 +1,6 @@
+/**
+ * 앱 코드의 린트 규칙과 생성물/벤더 코드의 검사 범위를 정의한다. 외부 UI 원본의 예외를 앱 전체에 확대하지 않는다.
+ */
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";

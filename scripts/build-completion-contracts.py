@@ -1,3 +1,4 @@
+# 고정 작업 레지스트리에서 공개 도구 계약 목록을 생성한다. 작업과 계약의 일대일 대응을 확인하며 작업 자체를 실행하지 않는다.
 """Generate the public contract inventory from the fixed packaged operation registry."""
 from pathlib import Path
 import json

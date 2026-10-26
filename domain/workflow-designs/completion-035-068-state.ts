@@ -1,3 +1,7 @@
+/**
+ * 공유 작업판과 목표 상태 등 여러 단계가 함께 사용하는 상태 예제다. 관측 상태·쓰기 요청·후속 판단의 입력 연결을 분리해 읽는다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type {WorkflowDesign} from '../workflow-design';
 import {b,n,graph,start,calc,out,agent,reply,check,hold,review,design,service,tool,waitInput} from './completion-035-068-helpers';
 const j=JSON.stringify,str={type:'string' as const};

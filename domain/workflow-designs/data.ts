@@ -1,3 +1,7 @@
+/**
+ * 기준일·증빙·형식·근거 문서 등 실제 데이터에 따라 경로가 달라지는 예제다. 정상 결과뿐 아니라 미지원 기간과 부족한 입력의 경로도 정의한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode, Resource } from "../../app/lib/model";
 import type { DataSchema, FormConfig, InputBinding } from "../../runtime/types";
 import type { WorkflowDesign } from "../workflow-design";

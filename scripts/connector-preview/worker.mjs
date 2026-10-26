@@ -1,3 +1,6 @@
+/**
+ * Sites 개발용 커넥터 미리보기의 Worker RPC 진입점. 현재 바인딩으로 전달하며 일반 HTTP 요청에는 기능을 공개하지 않는다.
+ */
 import { WorkerEntrypoint } from "cloudflare:workers";
 import binding from "virtual:sites-connector-preview";
 

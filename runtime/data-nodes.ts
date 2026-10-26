@@ -1,9 +1,12 @@
+// 모델 없이 처리하는 값 매핑·변환·합류·규칙 평가·문서 검색 함수. 여기서 반환하는 필드가 편집기 입출력 계약의 기준이다.
 import type { FlowNode, Resource } from "../app/lib/model";
 import { safeDataPath, validateJson } from "../domain/node-config";
 import { canonicalJson } from "./policy";
 import type { Json } from "./types";
 import { RuntimeFault } from "./policy";
+import { resourceSearchText } from "../domain/resource-document";
 
+// 허용된 점 경로와 자기 소유 필드만 읽는다. 누락 값은 암묵적 빈 값으로 바꾸지 않고 호출자에게 오류로 전달한다.
 export function dataAt(input: Record<string, Json>, path: string): Json {
   if (!safeDataPath(path)) throw new Error("값 경로 형식을 확인해 주세요.");
   let value: Json = input;
@@ -15,6 +18,7 @@ export function dataAt(input: Record<string, Json>, path: string): Json {
 }
 const textOf = (v: Json) => typeof v === "string" ? v : canonicalJson(v);
 
+// 설계에 고정한 인자를 복사한 뒤 명시적 바인딩만 덮어쓴다. 보상 노드도 같은 규칙을 따른다.
 export function toolArguments(node: FlowNode, input: Record<string, Json>): Record<string, Json> {
   const config = node.type === "compensate" ? node.compensation : node.tool;
   const args = structuredClone(config?.arguments ?? {});
@@ -50,6 +54,7 @@ export function guardrailData(node: FlowNode, input: Record<string, Json>): Reco
   return { ...data, guardrail: { counts, changed } };
 }
 
+// 문자 수 규칙은 유니코드 코드 포인트 기준이다. 모델 평가와 달리 이 결과는 고정 규칙으로 재현 가능하다.
 export function ruleEvaluation(node: FlowNode, input: Record<string, Json>): Record<string, Json> {
   const text = String(input.text ?? ""), config = node.evaluation!;
   const checks = config.rules.map(rule => {
@@ -66,13 +71,14 @@ export function ruleEvaluation(node: FlowNode, input: Record<string, Json>): Rec
   return { ...input, evaluation: { score, passed: score >= config.threshold, checks, reason: `${checks.filter(check => check.passed).length}/${checks.length} 규칙 통과` } };
 }
 
+// 권한 검사 후 전달된 문서 스냅샷을 약 20% 겹치는 조각으로 나누고 원본 버전을 함께 기록한다.
 export function documentChunks(node: FlowNode, resources: Resource[]) {
   const config = node.retrieval!;
   const chunks: { resourceId: string; name: string; url: string; version: string; chunkIndex: number; excerpt: string }[] = [];
   for (const id of config.resourceIds) {
     const resource = resources.find(r => r.id === id && ["document", "prompt"].includes(r.type));
     if (!resource) throw new RuntimeFault("failed", "검색 자료의 권한 또는 종류를 확인해 주세요.");
-    const chars = Array.from(resource.content), stride = config.chunkSize - Math.floor(config.chunkSize * .2);
+    const chars = Array.from(resourceSearchText(resource)), stride = config.chunkSize - Math.floor(config.chunkSize * .2);
     for (let start = 0, chunkIndex = 0; start < chars.length; start += stride, chunkIndex++) {
       chunks.push({ resourceId: id, name: resource.name, url: resource.url, version: resource.updatedAt, chunkIndex, excerpt: chars.slice(start, start + config.chunkSize).join("") });
       if (start + config.chunkSize >= chars.length) break;
@@ -108,6 +114,7 @@ export function transformData(node: FlowNode, input: Record<string, Json>): Reco
   return { text: canonicalJson(data), data };
 }
 
+// 입력 키를 정렬한 후 합쳐 실행 순서와 무관한 결과를 만든다. 중복 제거는 정규화된 JSON 값 기준이다.
 export function mergeData(node: FlowNode, input: Record<string, Json>): Record<string, Json> {
   const c = node.merge ?? { mode: "text" };
   const entries = Object.entries(input).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0);
@@ -119,6 +126,7 @@ export function mergeData(node: FlowNode, input: Record<string, Json>): Record<s
 }
 
 /** Local lexical retrieval over authorized export snapshots; no embeddings/model/network. */
+// 단어와 한글 2글자 조각의 포함 개수로 순위를 매기는 로컬 검색이다. 벡터 검색은 engine의 별도 경로를 사용한다.
 export function retrieveDocuments(node: FlowNode, input: Record<string, Json>, resources: Resource[]): Record<string, Json> {
   const c = node.retrieval;
   if (!c || typeof input.text !== "string" || !input.text.trim()) throw new Error("문서 검색에는 검색할 자료와 비어 있지 않은 text 질문이 필요해요.");
@@ -133,7 +141,7 @@ export function retrieveDocuments(node: FlowNode, input: Record<string, Json>, r
   c.resourceIds.forEach((id, order) => {
     const resource = resources.find(r => r.id === id);
     if (!resource || !["document", "prompt"].includes(resource.type)) throw new Error("검색할 문서에 접근할 수 없어요. 연결한 자료를 확인해 주세요.");
-    const chars = Array.from(resource.content);
+    const chars = Array.from(resourceSearchText(resource));
     const stride = c.chunkSize - Math.floor(c.chunkSize * .2);
     for (let start = 0, chunkIndex = 0; start < chars.length; start += stride, chunkIndex++) {
       const excerpt = chars.slice(start, start + c.chunkSize).join("");

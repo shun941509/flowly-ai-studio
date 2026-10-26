@@ -1,4 +1,8 @@
+/**
+ * 내보내기 프롬프트의 브라우저 전달 도우미. 클립보드 복사와 무손실 텍스트 분할만 수행하며 AI를 호출하지 않는다.
+ */
 /** Clipboard failure keeps the complete prompt visible and selects it for manual copying. */
+/** 클립보드 권한이 없으면 원문을 선택해 수동 복사를 돕는다. 반환값은 실제 복사와 단순 선택을 구분한다. */
 export async function copyExportPrompt(text: string, clipboard: Pick<Clipboard, "writeText"> | undefined, select: () => void): Promise<"copied" | "selected"> {
   try {
     if (!clipboard) throw new Error("Clipboard unavailable");
@@ -13,6 +17,7 @@ export async function copyExportPrompt(text: string, clipboard: Pick<Clipboard, 
 export const PROMPT_PART_CHARACTERS = 20_000;
 
 /** Lossless pieces: concatenating them reproduces the original design, including whitespace. */
+/** Unicode 코드 포인트 수로 분할하되 UTF-16 오프셋으로 원문을 자른다. 조각을 이어 붙이면 원문과 정확히 같아야 한다. */
 export function splitExportPrompt(text: string, limit = PROMPT_PART_CHARACTERS): string[] {
   if (!Number.isInteger(limit) || limit < 256) throw new Error("프롬프트 조각 크기가 올바르지 않아요.");
   if (!text.length) return [""];
@@ -28,6 +33,7 @@ export function splitExportPrompt(text: string, limit = PROMPT_PART_CHARACTERS):
   return parts;
 }
 
+/** 화면에 표시할 문자 수를 계산한다. 모델별 토큰 수나 컨텍스트 한도를 추정하는 함수가 아니다. */
 export function exportPromptCharacterCount(text: string): number {
   let count = 0;
   for (let index = 0; index < text.length; count++) index += text.codePointAt(index)! > 0xffff ? 2 : 1;
@@ -35,6 +41,7 @@ export function exportPromptCharacterCount(text: string): number {
 }
 
 /** The delivery envelope is separate from the raw payload and never removes execution policy. */
+/** 원문과 충돌하지 않는 구분자를 골라 한 조각의 전달 지시를 감싼다. 안내문은 원문 자체와 분리된다. */
 export function exportPromptPart(parts: string[], index: number): string {
   if (!Number.isInteger(index) || index < 0 || index >= parts.length) throw new Error("복사할 프롬프트 조각을 선택해 주세요.");
   const used = new Set(parts.flatMap(part => Array.from(part.matchAll(/FLOWLY_PROMPT_PAYLOAD_\d+_END/g), match => match[0])));

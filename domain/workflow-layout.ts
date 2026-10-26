@@ -1,3 +1,7 @@
+/**
+ * DAG의 단계와 가지를 캔버스 좌표로 배치하고 연결선을 우회시킨다.
+ * 배치 순서는 화면 표현이며 실제 실행 가능 여부와 입력 매핑은 그래프 검증·실행기가 결정한다.
+ */
 import type { Definition, FlowEdge, FlowNode } from "../app/lib/model";
 import { nodeRoutes } from "./advanced-config";
 
@@ -9,6 +13,9 @@ export type GraphBounds = { minX: number; minY: number; maxX: number; maxY: numb
 export type EdgeRoute = { edgeId: string; points: GraphPoint[]; path: string; label: GraphPoint; blocked: boolean };
 
 /** Presentation only: retain node/edge array order, IDs, bindings and policies. */
+/**
+ * 선행 관계를 기준으로 좌표를 계산한다. 노드의 업무 설정이나 연결 의미를 바꾸지 않는다.
+ */
 export function layoutWorkflow(definition: Definition, options: { recursive?: boolean } = {}): Definition {
   const nodes = definition.nodes;
   const indices = new Map(nodes.map((node, index) => [node.id, index]));
@@ -111,6 +118,9 @@ function gridRoute(start: GraphPoint, end: GraphPoint, nodes: FlowNode[]): Graph
   return null;
 }
 
+/**
+ * 노드 영역과 분기 포트를 고려해 화면에 그릴 연결선 경로를 계산한다.
+ */
 export function routeWorkflowEdges(definition: Definition): EdgeRoute[] {
   const lookup = new Map(definition.nodes.map(node => [node.id, node]));
   const clear = (points: GraphPoint[]) => points.every((point, index) => !index || !definition.nodes.some(node => segmentCrossesNode(points[index - 1], point, node)));
@@ -135,6 +145,9 @@ export function routeWorkflowEdges(definition: Definition): EdgeRoute[] {
   });
 }
 
+/**
+ * 노드 크기를 포함한 전체 경계를 구해 화면 맞춤과 이동 범위 계산에 사용한다.
+ */
 export function workflowBounds(definition: Definition, routes = routeWorkflowEdges(definition)): GraphBounds {
   const points = [...definition.nodes.flatMap(node => [{ x: node.x, y: node.y }, { x: node.x + WORKFLOW_NODE_WIDTH, y: node.y + WORKFLOW_NODE_HEIGHT }]), ...routes.flatMap(route => route.points)];
   if (!points.length) points.push({ x: 0, y: 0 }, { x: WORKFLOW_NODE_WIDTH, y: WORKFLOW_NODE_HEIGHT });
@@ -144,6 +157,9 @@ export function workflowBounds(definition: Definition, routes = routeWorkflowEdg
 }
 
 /** Find a nearby empty slot without moving any existing user node. */
+/**
+ * 기존 노드와의 겹침을 줄이는 새 블록 위치를 찾는다.
+ */
 export function placeNewNode(definition: Definition, preferred?: GraphPoint): GraphPoint {
   const anchor = preferred ?? { x: MARGIN, y: definition.nodes.length ? Math.max(...definition.nodes.map(node => node.y)) + ROW : MARGIN };
   const free = (point: GraphPoint) => point.x >= -9800 && point.x <= 9800 && point.y >= -9800 && point.y <= 9800 && definition.nodes.every(node => point.x + WORKFLOW_NODE_WIDTH + 24 <= node.x || node.x + WORKFLOW_NODE_WIDTH + 24 <= point.x || point.y + WORKFLOW_NODE_HEIGHT + 24 <= node.y || node.y + WORKFLOW_NODE_HEIGHT + 24 <= point.y);

@@ -1,3 +1,7 @@
+/**
+ * 사람이 일하는 방식에 따라 예제를 찾을 수 있도록 설계의 블록·설정에서 분류 태그를 계산한다.
+ * 태그는 탐색용 설명이며 실행기를 선택하거나 새 워크플로를 만들어 내지 않는다.
+ */
 import type { Definition, NodeType } from "../app/lib/model";
 import { allNodes } from "./advanced-config";
 

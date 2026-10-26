@@ -1,3 +1,7 @@
+/**
+ * 규칙 위반 수정·재계획·가설·자기 검토를 관측 가능한 입출력 단계로 구성한다. 모델의 비공개 사고 원문을 검증 자료로 요구하지 않는다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import {ai,any,b,calc,gate,graph,input,make,mem,merge,n,note,obj,out,parse,reply,result,review,str,svc,tool} from './completion-008-034-support';
 
 const rule={op:'gte',field:'x',value:0};

@@ -1,3 +1,6 @@
+/**
+ * 작성된 예제를 컴파일해 공개 JSON을 생성한다. 구조/실행 중복과 시나리오 누락을 검사하고 테스트 응답은 공개 설계에서 제거한다.
+ */
 import { writeFile, mkdir } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { workflowDesigns } from "../domain/workflow-designs";

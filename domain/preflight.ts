@@ -1,3 +1,7 @@
+/**
+ * 내보내기 전에 설계·자료·연결 설정의 문제를 알려주는 공통 사전 검사.
+ * 서비스를 호출하는 연결 시험이 아니며 서버의 현재 세션·자료 권한 검사를 대체하지 않는다.
+ */
 import { parseDefinition, validateGraph, type FlowNode, type Resource, type Workflow } from "../app/lib/model";
 import type { RuntimeCapabilities } from "../runtime/types";
 import { assertSchema, parseNodeRuntime } from "./schema";
@@ -10,6 +14,9 @@ import { nodeRequiresModel, parseExtendedNodeConfig } from "./extended-config";
 
 export type PreflightIssue = { severity: "error" | "warning" | "info"; message: string; nodeId?: string };
 /** Pure inspection only. Authorization is still repeated by the export API. */
+/**
+ * 중첩 설계까지 오류/경고와 모델 필요 여부를 수집한다. 하위 오류는 상위 캔버스에서 찾아갈 수 있는 노드와 연결한다.
+ */
 export function inspectWorkflow(workflow: Workflow, resources: Resource[], capabilities?: RuntimeCapabilities | null) {
   const issues: PreflightIssue[] = [];
   const topLevel = new Map<FlowNode, string>();

@@ -1,3 +1,4 @@
+// Node 실행기의 문서 입출력을 패키지 내 flowly_files.py에 위임한다. JSON 표준 입출력으로 교환하며 셸과 모델 자격 증명을 넘기지 않는다.
 import { spawn } from "node:child_process";
 import { dirname, resolve, join } from "node:path";
 import { StringDecoder } from "node:string_decoder";
@@ -5,6 +6,7 @@ import { RuntimeFault } from "../runtime/policy";
 import type { RuntimeDependencies } from "../runtime/types";
 
 /** Files are handled by the packaged helper, never by a shell or ambient model credentials. */
+// 취소·시간·출력 크기를 제한한다. 파일 경로 자체의 허용 범위와 덮어쓰기 정책은 Python 도우미가 검사한다.
 export function fileBridge(packagePath: string, stateDirectory: string, executable?: string): NonNullable<RuntimeDependencies["files"]> {
   const root = dirname(resolve(packagePath));
   return request => new Promise((resolveResult, reject) => {

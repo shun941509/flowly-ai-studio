@@ -1,3 +1,6 @@
+/**
+ * Vite와 Wrangler가 공유하는 로컬 도구 환경 기본값을 채운다. 이미 지정된 환경 변수는 덮어쓰지 않는다.
+ */
 import path from "node:path";
 
 // Shared defaults for Vite and standalone Wrangler commands. Managed Linux

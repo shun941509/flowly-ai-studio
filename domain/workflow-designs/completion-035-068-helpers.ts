@@ -1,3 +1,7 @@
+/**
+ * 035~068 예제에서 공유하는 작업·Agent·승인·보완 입력 생성 도우미다. 짧은 도우미 호출도 최종적으로 일반 Definition과 검증 시나리오를 만든다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode, Resource } from '../../app/lib/model';
 import type { InputBinding, Json, DataSchema } from '../../runtime/types';
 import type { WorkflowDesign, WorkflowScenario } from '../workflow-design';

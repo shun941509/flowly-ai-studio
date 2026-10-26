@@ -1,4 +1,8 @@
 "use client";
+/**
+ * 기존 서버 실행 상태 조회와 테스트 실행 조작 UI. 내보낸 프로젝트의 로컬 기록과는 별개이며 모델 연결 키를 웹에서 받지 않는다.
+ */
+
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Workflow } from "../lib/model";
@@ -13,6 +17,7 @@ const statusNames: Record<RunStatus, string> = {
 type ResponseData = { error?: string; capabilities?: RuntimeCapabilities; runs?: PublicRun[]; run?: PublicRun };
 type RuntimeAction = "run.cancel" | "run.resume" | "approval.decide" | "input.submit";
 
+/** 네트워크 오류는 서버 처리가 없었다는 뜻이 아니므로 상태 확인을 안내한다. 실패 요청을 여기서 자동 재시도하지 않는다. */
 async function request(body?: Record<string, unknown>): Promise<ResponseData> {
   let response: Response;
   try {
@@ -29,6 +34,7 @@ async function request(body?: Record<string, unknown>): Promise<ResponseData> {
   return data;
 }
 
+/** capabilities와 서버 실행 기록을 관리하고 진행 중 실행이 있을 때 갱신한다. 데모는 이 서버 경로를 사용하지 않는다. */
 export function useRuntime(demo: boolean) {
   const [capabilities, setCapabilities] = useState<RuntimeCapabilities | null>(null);
   const [runs, setRuns] = useState<PublicRun[]>([]);
@@ -63,6 +69,7 @@ export function useRuntime(demo: boolean) {
     if (demo) throw new Error("체험 공간에서는 미리보기만 사용할 수 있어요. 로그인한 후 실행해 주세요.");
     setBusy(true);
     const signature = JSON.stringify({ workflow, input, mode });
+    // 응답을 받지 못한 동일 시작 요청은 같은 키를 재사용한다. 서버가 이미 만든 실행을 중복 생성하지 않도록 하기 위함이다.
     if (retry.current?.signature !== signature) retry.current = { signature, key: uid("request") };
     try {
       const data = await request({ action: "run.start", workflow, input, mode, idempotencyKey: retry.current.key });
@@ -93,6 +100,7 @@ function ChildRunList({ items }: { items: NonNullable<PublicRun["children"]> }) 
   return <div className="runtime-child-list">{items.map(child => <details className="runtime-data" key={child.run.id}><summary><span>{child.run.workflowName} · {child.taskId}</span><RuntimeStatus run={child.run}/></summary><p className="field-help">하위 실행 ID: {child.run.id}</p><p className="field-help">모델 {child.run.usage.turns}회 · 도구 {child.run.usage.toolCalls}회 · 토큰 {child.run.usage.tokens.toLocaleString()}개</p>{child.run.error&&<p className="form-error">{child.run.error}</p>}{child.run.result&&<pre>{child.run.result}</pre>}{!!child.run.children?.length&&<ChildRunList items={child.run.children}/>}</details>)}</div>;
 }
 
+/** 대기 중 입력 요청의 필드를 문자열로 편집해 제출한다. 입력 제출과 저장된 단계 재개는 별도 사용자 동작이다. */
 function SupplementalInput({ request: pending, enabled, busy, onSubmit }: { request: NonNullable<PublicRun["inputRequests"]>[number]; enabled: boolean; busy: boolean; onSubmit: (values: Record<string, Json>) => Promise<void> }) {
   const [values, setValues] = useState<Record<string, string>>({});
   const set = (key: string, value: string) => setValues(current => ({ ...current, [key]: value }));
@@ -104,6 +112,7 @@ function SupplementalInput({ request: pending, enabled, busy, onSubmit }: { requ
   </section>;
 }
 
+/** 기존 서버 실행 기록만 표시한다. 내보낸 Node.js·Python의 기록을 웹 기록으로 합치지 않는다. */
 export function RuntimeHistory({ runtime, demo, onOpen }: { runtime: RuntimeController; demo: boolean; onOpen: (id: string) => void }) {
   return <section className="runtime-history" aria-label="서버 실행 기록"><div className="runtime-section-heading"><div><h2>이전 서버 실행 기록</h2><p>기존 기록을 확인하세요. 내보낸 프로젝트의 실행 기록은 해당 프로젝트에 저장됩니다.</p></div>{!demo && <button className="btn secondary" onClick={() => void runtime.refresh()}>상태 새로고침</button>}</div>
     {runtime.error && <p className="form-error" role="alert">{runtime.error}</p>}
@@ -111,6 +120,7 @@ export function RuntimeHistory({ runtime, demo, onOpen }: { runtime: RuntimeCont
   </section>;
 }
 
+/** 내보내기에 사용할 연결 도구의 정의와 설정 위치를 안내한다. 목록 존재를 실제 외부 서비스 연결 성공으로 취급하지 않는다. */
 export function RuntimeSettings({ capabilities, demo, error, onRefresh }: { capabilities: RuntimeCapabilities | null; demo: boolean; error: string; onRefresh: () => void }) {
   return <section className="settings-card"><header><Icon name="plug" size={21}/><div><h3>실행 프로젝트와 연결 도구</h3><p>내보낸 프로젝트에서 사용할 수 있는 도구 정의예요.</p></div><span className="neutral-badge">내 환경에서 실행</span></header><div className="runtime-settings-body">
     <p>웹에서는 워크플로를 설계하고 Node.js 또는 Python 프로젝트로 내보내요. OpenAI API 키와 필요한 서비스 토큰은 다운로드한 프로젝트의 .env에 직접 설정하세요.</p>
@@ -122,6 +132,7 @@ export function RuntimeSettings({ capabilities, demo, error, onRefresh }: { capa
   </div></section>;
 }
 
+/** 선택된 실행의 상태·승인·보완 입력·재개를 표시한다. 활성화 여부는 서버 capabilities와 현재 실행 상태를 따른다. */
 export function RuntimeDialog({ runtime, workflow, selectedId, onSelect, onClose }: { runtime: RuntimeController; workflow: Workflow; selectedId: string | null; onSelect: (id: string | null) => void; onClose: () => void }) {
   const [mode, setMode] = useState<"test" | "live">("test");
   const [input, setInput] = useState("우리 팀의 휴가 신청 절차를 알려주세요.");

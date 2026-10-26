@@ -1,3 +1,4 @@
+# 명시한 Python 환경에서 실제 SDK 예제의 오프라인 시험과 미설정 경계를 확인한다. 테스트용 자식 환경에 실제 모델 키나 추적 설정을 전달하지 않는다.
 """실제 설치한 Python SDK 대표 예제를 네트워크 차단 테스트로 검사한다.
 
 Usage: python scripts/test-python-frameworks.py --python <shared-env-python> --crew-python <crew-env-python>

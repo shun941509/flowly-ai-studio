@@ -1,3 +1,7 @@
+/**
+ * 규칙·검색·자료형·메모리를 조합해 결과를 검증하는 예제다. 변환된 값과 조건 결과를 모델 응답 문구와 구분해 확인한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import type { Definition, FlowNode, Resource } from "../../app/lib/model";
 import type { DataSchema, InputBinding, Json, ProgramConfig } from "../../runtime/types";
 import type { WorkflowDesign, WorkflowScenario } from "../workflow-design";

@@ -1,3 +1,4 @@
+# 대표 예제의 고정 코드/DB/RAG 작업과 검증 근거 생성기. 임의 저장소/SQL/회사 DB를 운영하는 범용 도구는 아니다.
 """Bounded reference-project operations used by the completed example workflows.
 
 This is a registered lab, not a shell, repository executor, arbitrary SQL service,
@@ -45,6 +46,7 @@ def bounded(value):
     return copy.deepcopy(value)
 
 
+# 측정된 record와 Agent 제안을 분리한다. 모델이 기존 실행 근거 전체를 교체하지 못하게 한다.
 def context(args):
     # A merge node may add an Agent proposal. It cannot replace the measured state.
     value = args.get("executed", args.get("reused", args))
@@ -67,6 +69,7 @@ def context(args):
     return result
 
 
+# 관찰 근거/버전 해시를 ledger에 누적해 다음 단계가 실제 선행 결과를 확인하게 한다.
 def finish(state, operation, evidence, passed=True):
     state["passed"] = bool(passed)
     state["evidence"] = evidence
@@ -110,6 +113,7 @@ def code_reproduce(args):
     return finish(s, "code_reproduce", {"cases": results, "failureCount": len(failures), "sourceHash": s.get("sourceHash")}, bool(failures))
 
 
+# 등록 평균 계산 예제의 허용 패치만 임시 폴더에 구체화한다. 모델의 임의 Python 코드는 실행하지 않는다.
 def code_patch(args):
     s = context(args)
     proposal = s.get("proposal", {})
@@ -127,6 +131,7 @@ def code_patch(args):
     return finish(s, "code_patch", {"action": action, "before": s.get("sourceHash"), "after": s["candidateHash"], "registeredSource": materialized, "materializedFiles": ["average.py"], "workspace": "isolated temporary directory"})
 
 
+# 고정 소스와 일치하는 후보만 격리 Python에서 검사한다. 업로드 코드 자동 실행 기능이 아니다.
 def code_test(args):
     s = context(args)
     version = s.get("candidateVersion", "fixed")
@@ -262,6 +267,7 @@ def installed_chrome_path():
     return next((str(path) for path in candidates if path.is_file()), None)
 
 
+# 예제 HTML의 허용 동작을 로컬 브라우저에서 측정한다. 외부 업무 사이트 범용 조작과 구분한다.
 def ui_interaction(args):
     s = context(args)
     html = s.get("html", '<form><label for="q">질문</label><input id="q" required><button id="send" type="submit">전송</button></form>')
@@ -342,6 +348,7 @@ def image_bytes(value, encoding):
     return raw
 
 
+# 제한 JSON 행에서 인메모리 SQLite를 구성한다. 사내 영속 DB 접속이나 임의 SQL을 받지 않는다.
 def db_open(s):
     db = sqlite3.connect(":memory:")
     image = s.get("databaseImage")
@@ -388,6 +395,7 @@ def db_inspect(args):
     return finish(s, "db_inspect", {"count": count, "rowHash": digest(rows), "schema": s["schema"], "integrity": integrity, "scope": "isolated registered SQLite table", "observedAt": s.get("observedAt", 100), "requestedAt": s.get("requestedAt", 100)}, integrity == "ok" and abs(s.get("observedAt", 100) - s.get("requestedAt", 100)) <= 5)
 
 
+# 예제 DB의 실제 SQLite 바이트/해시로 복구를 검증한다. 회사 DB 서버의 운영 백업은 아니다.
 def db_backup(args):
     s = context(args)
     with db_open(s) as source, sqlite3.connect(":memory:") as target:
@@ -647,6 +655,7 @@ def evidence_revalidate(args):
     return finish(s, "evidence_revalidate", {"changedIds": sorted(set(changed)), "invalidatedArtifacts": affected, "pinnedEvidenceHash": s.get("evidenceHash")}, not changed)
 
 
+# 자료/상태의 색인/철회/버전 예제 계약을 검사한다. 원격 벡터 DB 권한 관리와 구분한다.
 def rag_lifecycle(args):
     s = context(args)
     documents = s.get("documents", [{"id": "contract", "version": 1, "text": "average release threshold 10", "links": ["policy"]}, {"id": "policy", "version": 1, "text": "approval release threshold 20", "links": []}])
@@ -957,6 +966,7 @@ CONTRACTS["operations.ui_interaction"]["dependencies"] = ["playwright==1.58.0"]
 CONTRACTS["operations.ui_interaction"]["configuration"] = ["installed Chrome browser"]
 
 
+# 등록 작업의 분배점. 실제 범위는 OPERATIONS/CONTRACTS와 함께 확인한다.
 def execute_operation(operation, arguments):
     if operation not in OPERATIONS:
         raise ValueError("unregistered completion operation")

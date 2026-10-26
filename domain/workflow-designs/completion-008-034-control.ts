@@ -1,3 +1,7 @@
+/**
+ * 예산·경쟁 실행·토론·작업 분배·복구처럼 실행 제어가 중심인 예제 묶음이다. 조건 분기와 승인/대기의 관측 결과를 시나리오로 명시한다.
+ * 노드/연결/자료는 내려받을 설계이며 scenarios의 응답·상태 기대값은 테스트 전용이다.
+ */
 import {ai,any,b,bool,calc,form,gate,graph,input,make,mem,merge,n,note,obj,out,parse,reply,review,str} from './completion-008-034-support';
 
 const analyze=graph([input(),ai('analyze','C013_ANALYZE','보완된 목표를 실행 가능한 산출물과 검증 기준으로 정리하세요. {artifact:string}을 반환하세요.',{request:b('input','request')},obj({artifact:str})),n('artifact','output','분석 산출물',{inputBindings:{artifact:b('analyze','data.artifact'),text:b('analyze')}})],[['input','analyze'],['analyze','artifact']]);
